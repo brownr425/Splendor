@@ -1,5 +1,6 @@
 package edu.up.cs301.splendor;
 
+import java.util.ArrayList;
 import edu.up.cs301.game.GameFramework.GamePlayer;
 import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
 
@@ -18,7 +19,8 @@ public class splCardAction extends GameAction {
     }
 
     public boolean canBuy() {
-        if(player) {
+        //pseudocode
+        if(player.hasResources()) {
 
         }
     }
