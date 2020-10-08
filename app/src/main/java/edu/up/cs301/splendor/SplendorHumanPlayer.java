@@ -1,5 +1,7 @@
-package edu.up.cs301.counter;
+package edu.up.cs301.splendor;
 
+import edu.up.cs301.counter.CounterMoveAction;
+import edu.up.cs301.counter.CounterState;
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
 import edu.up.cs301.game.GameFramework.GameMainActivity;
 import edu.up.cs301.game.R;
@@ -149,8 +151,47 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         ImageButton nobleCard5 = (ImageButton) activity.findViewById(R.id.nobleCard5);
         nobleCard5.setOnClickListener(this);
 
+        //image buttons for all the rank cards 1-3; starting with 3
         ImageButton rank3Card1 = (ImageButton) activity.findViewById(R.id.rank3Card1);
+        rank3Card1.setOnClickListener(this);
+        ImageButton rank3Card2 = (ImageButton) activity.findViewById(R.id.rank3Card2);
+        rank3Card2.setOnClickListener(this);
+        ImageButton rank3Card3 = (ImageButton) activity.findViewById(R.id.rank3Card3);
+        rank3Card3.setOnClickListener(this);
+        ImageButton rank3Card4 = (ImageButton) activity.findViewById(R.id.rank3Card4);
+        rank3Card4.setOnClickListener(this);
 
+        ImageButton rank2Card1 = (ImageButton) activity.findViewById(R.id.rank2Card1);
+        rank2Card1.setOnClickListener(this);
+        ImageButton rank2Card2 = (ImageButton) activity.findViewById(R.id.rank2Card2);
+        rank2Card2.setOnClickListener(this);
+        ImageButton rank2Card3 = (ImageButton) activity.findViewById(R.id.rank2Card3);
+        rank2Card3.setOnClickListener(this);
+        ImageButton rank2Card4 = (ImageButton) activity.findViewById(R.id.rank2Card4);
+        rank2Card4.setOnClickListener(this);
+
+        ImageButton rank1Card1 = (ImageButton) activity.findViewById(R.id.rank1Card1);
+        rank1Card1.setOnClickListener(this);
+        ImageButton rank1Card2 = (ImageButton) activity.findViewById(R.id.rank1Card2);
+        rank1Card2.setOnClickListener(this);
+        ImageButton rank1Card3 = (ImageButton) activity.findViewById(R.id.rank1Card3);
+        rank1Card3.setOnClickListener(this);
+        ImageButton rank1Card4 = (ImageButton) activity.findViewById(R.id.rank1Card4);
+        rank1Card4.setOnClickListener(this);
+
+        ImageButton emeraldCoin = (ImageButton) activity.findViewById(R.id.emeraldCoin);
+        emeraldCoin.setOnClickListener(this);
+        ImageButton diamondCoin = (ImageButton) activity.findViewById(R.id.diamondCoin);
+        diamondCoin.setOnClickListener(this);
+        ImageButton sapphireCoin = (ImageButton) activity.findViewById(R.id.sapphireCoin);
+        sapphireCoin.setOnClickListener(this);
+        ImageButton onyxCoin = (ImageButton) activity.findViewById(R.id.onyxCoin);
+        onyxCoin.setOnClickListener(this);
+        ImageButton rubyCoin = (ImageButton) activity.findViewById(R.id.rubyCoin);
+        rubyCoin.setOnClickListener(this);
+        ImageButton goldCoin = (ImageButton) activity.findViewById(R.id.goldCoin);
+        goldCoin.setOnClickListener(this);
+        
         // remember the field that we update to display the counter's value
         this.counterValueTextView =
                 (TextView) activity.findViewById(R.id.counterValueTextView);
