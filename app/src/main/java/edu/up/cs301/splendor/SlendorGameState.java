@@ -6,13 +6,27 @@ import edu.up.cs301.game.GameFramework.infoMessage.GameState;
 
 public class SlendorGameState extends GameState {
 
+//~~~~~~~~~~~~~ player names and IDs ~~~~~~~~~~~ //
     //player display names
     private String player1Name;
     private String player2Name;
     private String player3Name;
     private String player4Name;
 
+    //holds turn value corresponding to player ID below
+    private int playerTurn;
+
+    //player values for playerTurn
+    private final int PLAYER1ID = 1;
+    private final int PLAYER2ID = 2;
+    private final int PLAYER3ID = 3;
+    private final int PLAYER4ID = 4;
+
+
 //~~~~~~~~~~~~~~~~ player 1 ~~~~~~~~~~~~~~~~~~ //
+    //player 1 prestigePts
+    private int p1PrestigePts;
+
     //player 1 resource point values
     private int p1GoldPts;
     private int p1EmeraldPts;
@@ -34,6 +48,9 @@ public class SlendorGameState extends GameState {
     private ArrayList<Cards> p1ReserveCards;
 
 //~~~~~~~~~~~~~~~~ player 2 ~~~~~~~~~~~~~~~~~~ //
+
+    //player 2 prestigePts
+    private int p2PrestigePts;
 
     //player 2 resource point values
     private int p2GoldPts;
@@ -58,6 +75,9 @@ public class SlendorGameState extends GameState {
 
 //~~~~~~~~~~~~~~~~ player 3 ~~~~~~~~~~~~~~~~~~ //
 
+    //player 3 prestigePts
+    private int p3PrestigePts;
+
     //player 3 resource point values
     private int p3GoldPts;
     private int p3EmeraldPts;
@@ -80,6 +100,9 @@ public class SlendorGameState extends GameState {
 
 
 //~~~~~~~~~~~~~~~~ player 4 ~~~~~~~~~~~~~~~~~~ //
+
+    //player 4 prestigePts
+    private int p4PrestigePts;
 
     //player 4 resource point values
     private int p4GoldPts;
@@ -106,5 +129,11 @@ public class SlendorGameState extends GameState {
     private ArrayList<Cards> rank1Stack; //ArrayList of rank1 cards
     private ArrayList<Cards> rank2Stack; //ArrayList of rank2 cards
     private ArrayList<Cards> rank3Stack; //ArrayList of rank3 cards
+
+    private Noble noble1;
+    private Noble noble2;
+    private Noble noble3;
+    private Noble noble4;
+
 
 }
