@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Splendor</string>
     <string name="hello_world">Hello world!</string>
+    <string name="given_info">\n\nCard Type: Ruby\nPrestige Points: 4\nGreen Currency Needed: 5</string>
 </resources>
