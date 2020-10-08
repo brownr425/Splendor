@@ -17,8 +17,10 @@ public class splCardAction extends GameAction {
         this.cards = cards;
     }
 
-    public canBuy() {
-        if(player.)
+    public boolean canBuy() {
+        if(player) {
+
+        }
     }
 
 

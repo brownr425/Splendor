@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wood_grain_background_1"
-    android:orientation="verticall">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/playerLayout"
