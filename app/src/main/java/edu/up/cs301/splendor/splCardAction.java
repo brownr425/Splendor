@@ -5,20 +5,20 @@ import edu.up.cs301.game.GameFramework.GamePlayer;
 import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
 
 public class splCardAction extends GameAction {
-    private ArrayList<Card> cards;
+    private Card card;
 
     /**
      * Constructor for the splCardAction class
      *
      * @param player - the player making the move
-     * @param cards
+     * @param card
      */
-    public splCardAction(GamePlayer player, ArrayList<Card> cards) {
+    public splCardAction(GamePlayer player, Card card) {
         super(player);
-        this.cards = cards;
+        this.card = card;
     }
 
-    public boolean canBuy() {
+    public boolean canBuy(Card card) {
         //pseudocode
         if(player.hasResources()) {
 
