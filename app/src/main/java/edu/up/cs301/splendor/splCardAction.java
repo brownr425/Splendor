@@ -6,6 +6,7 @@ import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
 
 public class splCardAction extends GameAction {
     private Card card;
+    private GamePlayer player;
 
     /**
      * Constructor for the splCardAction class
@@ -16,12 +17,16 @@ public class splCardAction extends GameAction {
     public splCardAction(GamePlayer player, Card card) {
         super(player);
         this.card = card;
+        this.player = player;
     }
 
     public boolean canBuy(Card card) {
         //pseudocode
-        if(player.hasResources()) {
-
+        if(player.hasResources(card)) {
+            player.addToHand(card);
+            return true;
+        } else {
+            return false;
         }
     }
 

@@ -4,7 +4,7 @@ import android.support.annotation.VisibleForTesting;
 
 import edu.up.cs301.game.GameFramework.infoMessage.GameState;
 
-public class SlendorGameState extends GameState {
+public class SplendorGameState extends GameState {
 
 //~~~~~~~~~~~~~ player names and IDs ~~~~~~~~~~~ //
     //player display names
