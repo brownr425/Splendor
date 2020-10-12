@@ -442,7 +442,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton14"
+                    android:id="@+id/rank3Card1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -450,7 +450,7 @@
                     app:srcCompat="@drawable/background7" />
 
                 <ImageButton
-                    android:id="@+id/imageButton13"
+                    android:id="@+id/rank3Card2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -458,7 +458,7 @@
                     app:srcCompat="@drawable/background6" />
 
                 <ImageButton
-                    android:id="@+id/imageButton12"
+                    android:id="@+id/rank3Card3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -466,7 +466,7 @@
                     app:srcCompat="@drawable/background4" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/rank3Card4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -491,7 +491,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton17"
+                    android:id="@+id/rank2Card1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -499,7 +499,7 @@
                     app:srcCompat="@drawable/background2" />
 
                 <ImageButton
-                    android:id="@+id/imageButton16"
+                    android:id="@+id/rank2Card2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -507,7 +507,7 @@
                     app:srcCompat="@drawable/background3" />
 
                 <ImageButton
-                    android:id="@+id/imageButton15"
+                    android:id="@+id/rank2Card3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -515,7 +515,7 @@
                     app:srcCompat="@drawable/background8" />
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/rank2Card4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -591,42 +591,42 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/imageButton19"
+                android:id="@+id/emeraldCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/emerald" />
 
             <ImageButton
-                android:id="@+id/imageButton20"
+                android:id="@+id/diamondCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/diamond" />
 
             <ImageButton
-                android:id="@+id/imageButton21"
+                android:id="@+id/sapphireCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/sapphire" />
 
             <ImageButton
-                android:id="@+id/imageButton22"
+                android:id="@+id/onyxCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/onyx" />
 
             <ImageButton
-                android:id="@+id/imageButton23"
+                android:id="@+id/rubyCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/ruby" />
 
             <ImageButton
-                android:id="@+id/imageButton24"
+                android:id="@+id/goldCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
