@@ -1,8 +1,5 @@
 package edu.up.cs301.splendor;
 
-import android.graphics.Paint;
-import android.support.annotation.VisibleForTesting;
-
 import java.util.ArrayList;
 
 import edu.up.cs301.game.GameFramework.infoMessage.GameState;
@@ -11,6 +8,7 @@ public class SplendorGameState extends GameState {
 
 //~~~~~~~~~~~~~ player names and IDs ~~~~~~~~~~~ //
     //player display names
+    //TODO figure out how to get the player names from super class.
     private String player1Name;
     private String player2Name;
     private String player3Name;
@@ -36,7 +34,7 @@ public class SplendorGameState extends GameState {
     private int p1SapphirePts;
     private int p1RubyPts;
     private int p1DiamondPts;
-    private int p1OnxyPts;
+    private int p1OnyxPts;
 
     //player 1 coin values
     private int p1GoldCoins;
@@ -44,7 +42,7 @@ public class SplendorGameState extends GameState {
     private int p1SapphireCoins;
     private int p1RubyCoins;
     private int p1DiamondCoins;
-    private int p1OnxyCoins;
+    private int p1OnyxCoins;
 
     //reserve cards count
     private int p1NumCardsReserved;
@@ -61,7 +59,7 @@ public class SplendorGameState extends GameState {
     private int p2SapphirePts;
     private int p2RubyPts;
     private int p2DiamondPts;
-    private int p2OnxyPts;
+    private int p2OnyxPts;
 
     //player 2 coin values
     private int p2GoldCoins;
@@ -69,7 +67,7 @@ public class SplendorGameState extends GameState {
     private int p2SapphireCoins;
     private int p2RubyCoins;
     private int p2DiamondCoins;
-    private int p2OnxyCoins;
+    private int p2OnyxCoins;
 
     //reserve card count
     private int p2NumCardsReserved;
@@ -87,7 +85,7 @@ public class SplendorGameState extends GameState {
     private int p3SapphirePts;
     private int p3RubyPts;
     private int p3DiamondPts;
-    private int p3OnxyPts;
+    private int p3OnyxPts;
 
     //player 3 coin values
     private int p3GoldCoins;
@@ -95,7 +93,7 @@ public class SplendorGameState extends GameState {
     private int p3SapphireCoins;
     private int p3RubyCoins;
     private int p3DiamondCoins;
-    private int p3OnxyCoins;
+    private int p3OnyxCoins;
 
     //reserve card count
     private int p3NumCardsReserved;
@@ -113,7 +111,7 @@ public class SplendorGameState extends GameState {
     private int p4SapphirePts;
     private int p4RubyPts;
     private int p4DiamondPts;
-    private int p4OnxyPts;
+    private int p4OnyxPts;
 
     //player 4 coin values
     private int p4GoldCoins;
@@ -121,7 +119,7 @@ public class SplendorGameState extends GameState {
     private int p4SapphireCoins;
     private int p4RubyCoins;
     private int p4DiamondCoins;
-    private int p4OnxyCoins;
+    private int p4OnyxCoins;
 
     //reserve card count
     private int p4NumCardsReserved;
@@ -154,8 +152,8 @@ public class SplendorGameState extends GameState {
         this.p1SapphirePts = 0;
         this.p1RubyCoins = 0;
         this.p1RubyPts = 0;
-        this.p1OnxyCoins = 0;
-        this.p1OnxyPts = 0;
+        this.p1OnyxCoins = 0;
+        this.p1OnyxPts = 0;
         this.p1DiamondCoins = 0;
         this.p1PrestigePts = 0;
         this.p1NumCardsReserved = 0;
@@ -169,8 +167,8 @@ public class SplendorGameState extends GameState {
         this.p2SapphirePts = 0;
         this.p2RubyCoins = 0;
         this.p2RubyPts = 0;
-        this.p2OnxyCoins = 0;
-        this.p2OnxyPts = 0;
+        this.p2OnyxCoins = 0;
+        this.p2OnyxPts = 0;
         this.p2DiamondCoins = 0;
         this.p2PrestigePts = 0;
         this.p2NumCardsReserved = 0;
@@ -184,8 +182,8 @@ public class SplendorGameState extends GameState {
         this.p3SapphirePts = 0;
         this.p3RubyCoins = 0;
         this.p3RubyPts = 0;
-        this.p3OnxyCoins = 0;
-        this.p3OnxyPts = 0;
+        this.p3OnyxCoins = 0;
+        this.p3OnyxPts = 0;
         this.p3DiamondCoins = 0;
         this.p3PrestigePts = 0;
         this.p3NumCardsReserved = 0;
@@ -199,8 +197,8 @@ public class SplendorGameState extends GameState {
         this.p4SapphirePts = 0;
         this.p4RubyCoins = 0;
         this.p4RubyPts = 0;
-        this.p4OnxyCoins = 0;
-        this.p4OnxyPts = 0;
+        this.p4OnyxCoins = 0;
+        this.p4OnyxPts = 0;
         this.p4DiamondCoins = 0;
         this.p4PrestigePts = 0;
         this.p4NumCardsReserved = 0;
@@ -208,7 +206,7 @@ public class SplendorGameState extends GameState {
     }
 
     public void initializeDecks() {
-        this.rank1Stack = new ArrayList<Card>;
+        this.rank1Stack = new ArrayList<Card>();
         this.rank2Stack = new ArrayList<Card>();
         this.rank3Stack = new ArrayList<Card>();
         
