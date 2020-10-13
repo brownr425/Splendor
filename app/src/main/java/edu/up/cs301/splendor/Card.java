@@ -6,5 +6,10 @@ public class Card {
     private int gPrice;
     private int wPrice;
     private int brPrice;
+
+    private int colorGem;
+    private int cardLevel;
     private int prestigePoints;
+
+
 }

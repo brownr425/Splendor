@@ -45,7 +45,7 @@ public class SplendorGameState extends GameState {
 
     //reserve cards count
     private int p1NumCardsReserved;
-    private ArrayList<Cards> p1ReserveCards;
+    private ArrayList<Card> p1ReserveCards;
 
 //~~~~~~~~~~~~~~~~ player 2 ~~~~~~~~~~~~~~~~~~ //
 
