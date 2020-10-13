@@ -208,9 +208,10 @@ public class SplendorGameState extends GameState {
     }
 
     public void initializeDecks() {
-        this.rank1Stack = new ArrayList<Card>;
+        this.rank1Stack = new ArrayList<Card>();
         this.rank2Stack = new ArrayList<Card>();
         this.rank3Stack = new ArrayList<Card>();
-        
+
+        //toString
     }
 }
