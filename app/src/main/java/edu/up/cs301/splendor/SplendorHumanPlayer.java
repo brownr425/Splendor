@@ -37,7 +37,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private int goldCurrency;
     private int onyxCurrency;
     private int sapphireCurrency;
-
+    private Hand hand;
 
     // the most recent game state, as given to us by the CounterLocalGame
     private SplendorGameState state;
