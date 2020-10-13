@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
-import edu.up.cs301.splendor.SlendorGameState;
+import edu.up.cs301.splendor.SplendorGameState;
 
 /**
  * A GUI of a counter-player. The GUI displays the current value of the counter,
@@ -40,7 +40,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
 
     // the most recent game state, as given to us by the CounterLocalGame
-    private SlendorGameState state;
+    private SplendorGameState state;
 
     // the android activity that we are running
     private GameMainActivity myActivity;
@@ -100,7 +100,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         if (button instanceof ImageButton)
         {
-            
+
         }
         game.sendAction(action); // send action to the game
     }// onClick
