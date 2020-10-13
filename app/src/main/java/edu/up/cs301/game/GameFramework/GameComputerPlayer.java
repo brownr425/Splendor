@@ -25,7 +25,7 @@ import android.os.Looper;
  * @author Andrew Nuxoll
  * @version July 2013
  */
-public abstract class GameComputerPlayer implements GamePlayer, Tickable {
+public abstract class  GameComputerPlayer implements GamePlayer, Tickable {
     //Tag for logging
     private static final String TAG = "GameComputerPlayer";
     /**
