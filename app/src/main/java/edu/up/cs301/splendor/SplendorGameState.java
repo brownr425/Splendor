@@ -1,6 +1,9 @@
 package edu.up.cs301.splendor;
 
+import android.graphics.Paint;
 import android.support.annotation.VisibleForTesting;
+
+import java.util.ArrayList;
 
 import edu.up.cs301.game.GameFramework.infoMessage.GameState;
 
@@ -70,7 +73,7 @@ public class SplendorGameState extends GameState {
 
     //reserve card count
     private int p2NumCardsReserved;
-    private ArrayList<Cards> p2ReserveCards;
+    private ArrayList<Card> p2ReserveCards;
 
 
 //~~~~~~~~~~~~~~~~ player 3 ~~~~~~~~~~~~~~~~~~ //
@@ -96,7 +99,7 @@ public class SplendorGameState extends GameState {
 
     //reserve card count
     private int p3NumCardsReserved;
-    private ArrayList<Cards> p3ReserveCards;
+    private ArrayList<Card> p3ReserveCards;
 
 
 //~~~~~~~~~~~~~~~~ player 4 ~~~~~~~~~~~~~~~~~~ //
@@ -122,7 +125,7 @@ public class SplendorGameState extends GameState {
 
     //reserve card count
     private int p4NumCardsReserved;
-    private ArrayList<Cards> p4ReserveCards;
+    private ArrayList<Card> p4ReserveCards;
 
 //~~~~~~~~~~~~~~~~~~ Deck Information ~~~~~~~~~~~~~~~ //
 
@@ -135,5 +138,79 @@ public class SplendorGameState extends GameState {
     private Noble noble3;
     private Noble noble4;
 
+    public SplendorGameState(){
+        initializePlayerPointValues();
+        initializeDecks();
+    }
 
+    //helper method for constructor setting all point values for player to zero
+    public void initializePlayerPointValues() {
+        //player one
+        this.p1GoldCoins = 0;
+        this.p1GoldPts = 0;
+        this.p1EmeraldCoins = 0;
+        this.p1EmeraldPts = 0;
+        this.p1SapphireCoins = 0;
+        this.p1SapphirePts = 0;
+        this.p1RubyCoins = 0;
+        this.p1RubyPts = 0;
+        this.p1OnxyCoins = 0;
+        this.p1OnxyPts = 0;
+        this.p1DiamondCoins = 0;
+        this.p1PrestigePts = 0;
+        this.p1NumCardsReserved = 0;
+        this.p1ReserveCards = new ArrayList<Card>();
+
+        this.p2GoldCoins = 0;
+        this.p2GoldPts = 0;
+        this.p2EmeraldCoins = 0;
+        this.p2EmeraldPts = 0;
+        this.p2SapphireCoins = 0;
+        this.p2SapphirePts = 0;
+        this.p2RubyCoins = 0;
+        this.p2RubyPts = 0;
+        this.p2OnxyCoins = 0;
+        this.p2OnxyPts = 0;
+        this.p2DiamondCoins = 0;
+        this.p2PrestigePts = 0;
+        this.p2NumCardsReserved = 0;
+        this.p2ReserveCards = new ArrayList<Card>();
+
+        this.p3GoldCoins = 0;
+        this.p3GoldPts = 0;
+        this.p3EmeraldCoins = 0;
+        this.p3EmeraldPts = 0;
+        this.p3SapphireCoins = 0;
+        this.p3SapphirePts = 0;
+        this.p3RubyCoins = 0;
+        this.p3RubyPts = 0;
+        this.p3OnxyCoins = 0;
+        this.p3OnxyPts = 0;
+        this.p3DiamondCoins = 0;
+        this.p3PrestigePts = 0;
+        this.p3NumCardsReserved = 0;
+        this.p3ReserveCards = new ArrayList<Card>();
+
+        this.p4GoldCoins = 0;
+        this.p4GoldPts = 0;
+        this.p4EmeraldCoins = 0;
+        this.p4EmeraldPts = 0;
+        this.p4SapphireCoins = 0;
+        this.p4SapphirePts = 0;
+        this.p4RubyCoins = 0;
+        this.p4RubyPts = 0;
+        this.p4OnxyCoins = 0;
+        this.p4OnxyPts = 0;
+        this.p4DiamondCoins = 0;
+        this.p4PrestigePts = 0;
+        this.p4NumCardsReserved = 0;
+        this.p4ReserveCards = new ArrayList<Card>();
+    }
+
+    public void initializeDecks() {
+        this.rank1Stack = new ArrayList<Card>;
+        this.rank2Stack = new ArrayList<Card>();
+        this.rank3Stack = new ArrayList<Card>();
+        
+    }
 }
