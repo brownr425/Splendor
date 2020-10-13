@@ -11,5 +11,4 @@ public class Card {
     private int cardLevel;
     private int prestigePoints;
 
-
 }

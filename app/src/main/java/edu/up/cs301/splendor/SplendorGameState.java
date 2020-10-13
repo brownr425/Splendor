@@ -127,20 +127,32 @@ public class SplendorGameState extends GameState {
     private int p4NumCardsReserved;
     private ArrayList<Card> p4ReserveCards;
 
+
 //~~~~~~~~~~~~~~~~~~ Deck Information ~~~~~~~~~~~~~~~ //
 
-    private ArrayList<Cards> rank1Stack; //ArrayList of rank1 cards
-    private ArrayList<Cards> rank2Stack; //ArrayList of rank2 cards
-    private ArrayList<Cards> rank3Stack; //ArrayList of rank3 cards
+    private ArrayList<Card> rank1Stack; //ArrayList of rank1 cards
+    private ArrayList<Card> rank2Stack; //ArrayList of rank2 cards
+    private ArrayList<Card> rank3Stack; //ArrayList of rank3 cards
 
     private Noble noble1;
     private Noble noble2;
     private Noble noble3;
     private Noble noble4;
 
+//~~~~~~~~~~~~~~~~~~ Hand Informtion ~~~~~~~~~~~~~ //
+
+    //all players' hands
+    private Hand p1Hand;
+    private Hand p2Hand;
+    private Hand p3Hand;
+    private Hand p4Hand;
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
     public SplendorGameState(){
         initializePlayerPointValues();
         initializeDecks();
+        initializeHands();
     }
 
     //helper method for constructor setting all point values for player to zero
@@ -211,7 +223,15 @@ public class SplendorGameState extends GameState {
         this.rank1Stack = new ArrayList<Card>();
         this.rank2Stack = new ArrayList<Card>();
         this.rank3Stack = new ArrayList<Card>();
-
-        //toString
     }
+
+    public void initializeHands() {
+        this.p1Hand = new Hand();
+        this.p2Hand = new Hand();
+        this.p3Hand = new Hand();
+        this.p4Hand = new Hand();
+
+
+    }
+    //toString
 }
