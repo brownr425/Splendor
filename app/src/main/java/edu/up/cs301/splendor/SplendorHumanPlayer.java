@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+import edu.up.cs301.splendor.SlendorGameState;
 
 /**
  * A GUI of a counter-player. The GUI displays the current value of the counter,
@@ -37,11 +38,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private int onyxCurrency;
     private int sapphireCurrency;
 
-    // The TextView the displays the current counter value
-    private TextView counterValueTextView;
 
     // the most recent game state, as given to us by the CounterLocalGame
-    private CounterState state;
+    private SlendorGameState state;
 
     // the android activity that we are running
     private GameMainActivity myActivity;
@@ -70,7 +69,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      */
     protected void updateDisplay() {
         // set the text in the appropriate widget
-        counterValueTextView.setText("" + state.getCounter());
+        //counterValueTextView.setText("" + state.getCounter());
     }
 
     /**
@@ -86,7 +85,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         // Construct the action and send it to the game
         GameAction action = null;
-        if (button.getId() == R.id.plusButton) {
+        /*if (button.getId() == R.id.plusButton) {
             // plus button: create "increment" action
             action = new CounterMoveAction(this, true);
         }
@@ -97,8 +96,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         else {
             // something else was pressed: ignore
             return;
-        }
+        }*/
 
+        if (button instanceof ImageButton)
+        {
+            
+        }
         game.sendAction(action); // send action to the game
     }// onClick
 
@@ -114,7 +117,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         if (!(info instanceof CounterState)) return;
 
         // update our state; then update the display
-        this.state = (CounterState)info;
+        // this.state = (CounterState)info;
         updateDisplay();
     }
 
@@ -132,12 +135,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         // Load the layout resource for our GUI
         activity.setContentView(R.layout.splendor_human_player);
-
-        // make this object the listener for both the '+' and '-' 'buttons
-        /*Button plusButton = (Button) activity.findViewById(R.id.plusButton);
-        plusButton.setOnClickListener(this);
-        Button minusButton = (Button) activity.findViewById(R.id.minusButton);
-        minusButton.setOnClickListener(this);*/
 
         // make noble cards and set on click listener to display noble card information
         ImageButton nobleCard1 = (ImageButton) activity.findViewById(R.id.nobleCard1);
@@ -179,6 +176,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         ImageButton rank1Card4 = (ImageButton) activity.findViewById(R.id.rank1Card4);
         rank1Card4.setOnClickListener(this);
 
+        // imagebuttons for all coins
         ImageButton emeraldCoin = (ImageButton) activity.findViewById(R.id.emeraldCoin);
         emeraldCoin.setOnClickListener(this);
         ImageButton diamondCoin = (ImageButton) activity.findViewById(R.id.diamondCoin);
@@ -191,10 +189,26 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         rubyCoin.setOnClickListener(this);
         ImageButton goldCoin = (ImageButton) activity.findViewById(R.id.goldCoin);
         goldCoin.setOnClickListener(this);
-        
-        // remember the field that we update to display the counter's value
-        this.counterValueTextView =
-                (TextView) activity.findViewById(R.id.counterValueTextView);
+
+        // simple buttons for the reserved cards
+        Button reserveCard1 = (Button) activity.findViewById(R.id.reserveSlot1);
+        reserveCard1.setOnClickListener(this);
+        Button reserveCard2 = (Button) activity.findViewById(R.id.reserveSlot2);
+        reserveCard2.setOnClickListener(this);
+        Button reserveCard3 = (Button) activity.findViewById(R.id.reserveSlot3);
+        reserveCard3.setOnClickListener(this);
+
+        //action buttons for the actions
+        Button buyButton = (Button) activity.findViewById(R.id.buyAction);
+        buyButton.setOnClickListener(this);
+        Button reserveButton = (Button) activity.findViewById(R.id.reserveAction);
+        reserveButton.setOnClickListener(this);
+        Button coinButton = (Button) activity.findViewById(R.id.coinAction);
+        coinButton.setOnClickListener(this);
+
+        // will provide info on current player stats if clicked on
+        Button currentPlayer = (Button) activity.findViewById(R.id.currentPlayerName);
+        currentPlayer.setOnClickListener(this);
 
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated
