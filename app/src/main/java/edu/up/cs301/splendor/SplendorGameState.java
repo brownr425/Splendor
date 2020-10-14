@@ -654,12 +654,4 @@ public class SplendorGameState extends GameState {
         return noble4;
     }
 
-    public void initializeHands() {
-        this.p1Hand = new Hand();
-        this.p2Hand = new Hand();
-        this.p3Hand = new Hand();
-        this.p4Hand = new Hand();
-
-
-    }
 }
