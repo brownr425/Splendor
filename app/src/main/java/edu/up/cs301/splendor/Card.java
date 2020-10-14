@@ -3,7 +3,6 @@ package edu.up.cs301.splendor;
 public class Card {
     private int rPrice;
     private int bPrice;
-
     private int gPrice;
     private int wPrice;
     private int brPrice;
@@ -23,8 +22,8 @@ public class Card {
         this.cardLevel = cardLevel;
         this.prestigePoints = prestigePoints;
     }
-    
-    //Copy Constructor 
+
+    //Copy Constructor
     public Card(Card cardToCopy) {
         this.rPrice = cardToCopy.rPrice;
         this.bPrice = cardToCopy.bPrice;

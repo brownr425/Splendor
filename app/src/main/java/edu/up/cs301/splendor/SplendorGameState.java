@@ -1,5 +1,7 @@
 package edu.up.cs301.splendor;
 
+import android.graphics.Paint;
+import android.support.annotation.VisibleForTesting;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,8 +15,7 @@ import edu.up.cs301.game.GameFramework.infoMessage.GameState;
 
 public class SplendorGameState extends GameState {
 
-
-    //~~~~~~~~~~~~~ player names and IDs ~~~~~~~~~~~ //
+//~~~~~~~~~~~~~ player names and IDs ~~~~~~~~~~~ //
     //player display names
     //TODO figure out how to get the player names from super class.
     private String player1Name;
@@ -150,6 +151,16 @@ public class SplendorGameState extends GameState {
     *  -figure out  file reading for initializing deck array lists
     *  -possibly add noble/card visibility boolean instance variables
     */
+//~~~~~~~~~~~~~~~~~~ Hand Informtion ~~~~~~~~~~~~~ //
+
+    //all players' hands
+    private Hand p1Hand;
+    private Hand p2Hand;
+    private Hand p3Hand;
+    private Hand p4Hand;
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
     public SplendorGameState(){
         initializePlayerPointValues();
         initializeDecks(); //unfinished
@@ -178,7 +189,7 @@ public class SplendorGameState extends GameState {
         newGameState.p1NumCardsReserved = this.getP1NumCardsReserved();
         newGameState.p1ReserveCards = new ArrayList<Card>();
         for(Card card: this.p1ReserveCards) {
-            newGameState.p1ReserveCards.add(new Card(card)); //uses copy constructor in card 
+            newGameState.p1ReserveCards.add(new Card(card)); //uses copy constructor in card
         }
 
         //deep copy of player 2 points and reserve cards
@@ -197,7 +208,7 @@ public class SplendorGameState extends GameState {
         newGameState.p2NumCardsReserved = this.getP2NumCardsReserved();
         newGameState.p2ReserveCards = new ArrayList<Card>();
         for(Card card: this.p2ReserveCards) {
-            newGameState.p2ReserveCards.add(new Card(card)); //uses copy constructor in card 
+            newGameState.p2ReserveCards.add(new Card(card)); //uses copy constructor in card
         }
 
         //deep copy of player 3 points and reserve cards
@@ -216,7 +227,7 @@ public class SplendorGameState extends GameState {
         newGameState.p3NumCardsReserved = this.getP3NumCardsReserved();
         newGameState.p3ReserveCards = new ArrayList<Card>();
         for(Card card: this.p3ReserveCards) {
-            newGameState.p3ReserveCards.add(new Card(card)); //uses copy constructor in card 
+            newGameState.p3ReserveCards.add(new Card(card)); //uses copy constructor in card
         }
 
         //deep copy of player 4 points and reserve cards
@@ -235,26 +246,28 @@ public class SplendorGameState extends GameState {
         newGameState.p4NumCardsReserved = this.getP4NumCardsReserved();
         newGameState.p4ReserveCards = new ArrayList<Card>();
         for(Card card: this.p4ReserveCards) {
-            newGameState.p4ReserveCards.add(new Card(card)); //uses copy constructor in card 
+            newGameState.p4ReserveCards.add(new Card(card)); //uses copy constructor in card
         }
-        
+
         //deep copies for all 3 card stacks
         newGameState.rank1Stack = new ArrayList<>();
         for(Card rankCard: this.rank1Stack) {
-            newGameState.rank1Stack.add(new Card(rankCard)); //uses copy constructor in card 
+            newGameState.rank1Stack.add(new Card(rankCard)); //uses copy constructor in card
         }
 
         newGameState.rank2Stack = new ArrayList<>();
         for(Card rankCard: this.rank2Stack) {
-            newGameState.rank2Stack.add(new Card(rankCard)); //uses copy constructor in card 
+            newGameState.rank2Stack.add(new Card(rankCard)); //uses copy constructor in card
         }
 
         newGameState.rank3Stack = new ArrayList<>();
         for(Card rankCard: this.rank3Stack) {
-            newGameState.rank3Stack.add(new Card(rankCard)); //uses copy constructor in card 
+            newGameState.rank3Stack.add(new Card(rankCard)); //uses copy constructor in card
         }
 
         //TODO make noble class and copy constructor
+        initializeDecks();
+        initializeHands();
     }
 
     //helper method for constructor setting all point values for player to zero
@@ -330,7 +343,12 @@ public class SplendorGameState extends GameState {
         this.rank1Stack = new ArrayList<Card>();
         this.rank2Stack = new ArrayList<Card>();
         this.rank3Stack = new ArrayList<Card>();
-        
+    }
+    public void initializeHands() {
+        this.p1Hand = new Hand();
+        this.p2Hand = new Hand();
+        this.p3Hand = new Hand();
+        this.p4Hand = new Hand();
     }
     public String getPlayer1Name() {
         return player1Name;
@@ -634,5 +652,14 @@ public class SplendorGameState extends GameState {
 
     public Noble getNoble4() {
         return noble4;
+    }
+
+    public void initializeHands() {
+        this.p1Hand = new Hand();
+        this.p2Hand = new Hand();
+        this.p3Hand = new Hand();
+        this.p4Hand = new Hand();
+
+
     }
 }
