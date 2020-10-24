@@ -20,16 +20,16 @@ public class Hand {
     /**
      * @param card - to add to player's hand
      */
-     protected void addToHand(Card card) {
+    protected void addToHand(Card card) {
         hand.add(card);
-     }
+    }
 
     /**
      * @param card - to add to player's reserved hand
      */
-     protected void addToReserved(Card card) {
+    protected void addToReserved(Card card) {
         reserved.add(card);
-     }
+    }
 
     /**
      * canReserve - detects if player's reserved hand is equal to or greater than 3

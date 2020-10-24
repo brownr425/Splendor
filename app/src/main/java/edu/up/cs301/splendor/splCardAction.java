@@ -22,12 +22,12 @@ public class splCardAction extends GameAction {
 
     public boolean buyCard() {
         //pseudocode
-        if(player.hasResources(card)) {
+       /* {
             player.hand.addToHand(card);
             return true;
         } else {
             return false;
-        }
+       /*
     }
 
     public boolean reserveCard() {
