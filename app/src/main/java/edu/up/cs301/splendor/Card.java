@@ -12,6 +12,7 @@ public class Card {
     private int cardLevel;
     private int prestigePoints;
 
+
     public Card(int rPrice, int bPrice, int gPrice, int wPrice, int brPrice, int colorGem, int cardLevel, int prestigePoints) {
         this.rPrice = rPrice;
         this.bPrice = bPrice;
@@ -21,6 +22,17 @@ public class Card {
         this.colorGem = colorGem;
         this.cardLevel = cardLevel;
         this.prestigePoints = prestigePoints;
+    }
+    //card factory constructor
+    public Card() {
+        this.rPrice = 0;
+        this.bPrice = 0;
+        this.gPrice = 0;
+        this.wPrice = 0;
+        this.brPrice = 0;
+        this.colorGem = 0;
+        this.cardLevel = 0;
+        this.prestigePoints = 0;
     }
 
     //Copy Constructor
@@ -35,9 +47,28 @@ public class Card {
         this.prestigePoints = cardToCopy.prestigePoints;
     }
 
+    @Override
+    public String toString(){
+        String ret;
+        ret = "\n----" +
+                "\nCard Level: " + cardLevel +
+                "\t Gem Color: " + colorGem +
+                "\t Prestige Points:  " + prestigePoints +
+                "\t Price of Card: " +
+                "\t Ruby: " + rPrice +
+                "\t Sapphire: " + bPrice +
+                "\t Emerald: " + gPrice +
+                "\t Diamond: " + wPrice +
+                "\t Onyx: " + brPrice;
+
+
+        return ret;
+    }
+
     public int getrPrice() {
         return rPrice;
     }
+
     public void setrPrice(int rPrice) {
         this.rPrice = rPrice;
     }

@@ -27,7 +27,7 @@ public class splCardAction extends GameAction {
             return true;
         } else {
             return false;
-       /*
+
     }
 
     public boolean reserveCard() {
