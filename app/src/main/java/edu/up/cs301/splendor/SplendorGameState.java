@@ -1,5 +1,7 @@
 package edu.up.cs301.splendor;
 
+import edu.up.cs301.game.GameFramework.infoMessage.GameState;
+
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class SplendorGameState {
+public class SplendorGameState extends GameState {
 
     //~~~~~~~~~~~~~ player names and IDs ~~~~~~~~~~~ //
     //player display names
@@ -701,6 +703,7 @@ public class SplendorGameState {
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~actions for #d~~~~~~~~~~~~~~~~~~~*/
 
+    //TODO: Move actions and helpers?
     public boolean cardAction(Card cardToBuy) {
         switch(this.getPlayerTurn()){
             case 1:

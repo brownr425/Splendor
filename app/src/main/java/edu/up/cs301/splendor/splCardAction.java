@@ -20,21 +20,14 @@ public class splCardAction extends GameAction {
         this.player = player;
     }
 
+    //TODO: ?
     public boolean buyCard() {
-        //pseudocode
-       /* {
-            player.hand.addToHand(card);
-            return true;
-        } else {
-            return false;
-
+      return false;
     }
 
+    //TODO: ?
     public boolean reserveCard() {
-        if(player.hand.canReserve(card)) {
-            player.hand.addToReserve(card);
-            return true;
-        }
+        return false;
     }
 
 
