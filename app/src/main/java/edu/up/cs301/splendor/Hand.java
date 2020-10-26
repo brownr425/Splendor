@@ -18,6 +18,24 @@ public class Hand {
     }
 
     /**
+
+     Hand copy constructor
+
+     **/
+    public Hand(Hand handToCopy) {
+
+        this.hand = new ArrayList<Card>();
+        for (Card card : handToCopy.hand) {
+            this.hand.add(new Card(card)); //uses copy constructor in card
+        }
+
+        this.reserved = new ArrayList<Card>();
+        for (Card card: handToCopy.reserved) {
+            this.reserved.add(new Card(card));
+        }
+    }
+
+    /**
      * @param card - to add to player's hand
      */
     protected void addToHand(Card card) {
@@ -41,5 +59,13 @@ public class Hand {
             return false;
         } else
             return true;
+    }
+
+    public ArrayList<Card> getHand(){
+        return this.hand;
+    }
+
+    public ArrayList<Card> getReserved(){
+        return this.reserved;
     }
 }
