@@ -164,6 +164,7 @@ public class SplendorGameState extends GameState {
     public SplendorGameState(){
         initializePlayerPointValues();
         initializeDecks(); //unfinished
+        initializeHands();
     }
 
     /*
@@ -264,6 +265,8 @@ public class SplendorGameState extends GameState {
         for(Card rankCard: this.rank3Stack) {
             newGameState.rank3Stack.add(new Card(rankCard)); //uses copy constructor in card
         }
+
+        //deep copies for each players hand
 
         //TODO make noble class and copy constructor
         initializeDecks();
