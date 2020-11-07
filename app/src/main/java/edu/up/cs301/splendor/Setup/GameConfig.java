@@ -1,4 +1,4 @@
-package edu.up.cs301.game.GameFramework.gameConfiguration;
+package edu.up.cs301.splendor.Setup;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 
-import edu.up.cs301.game.GameFramework.GameMainActivity;
-import edu.up.cs301.game.GameFramework.GamePlayer;
+import edu.up.cs301.splendor.Players.GamePlayer;
 import edu.up.cs301.game.GameFramework.ProxyPlayer;
 import edu.up.cs301.game.GameFramework.utilities.Logger;
 

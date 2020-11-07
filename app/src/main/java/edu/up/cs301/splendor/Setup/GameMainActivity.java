@@ -1,4 +1,4 @@
-package edu.up.cs301.game.GameFramework;
+package edu.up.cs301.splendor.Setup;
 
 import java.util.ArrayList;
 
@@ -26,12 +26,17 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TabHost.TabSpec;
-import edu.up.cs301.game.GameFramework.gameConfiguration.GameConfig;
-import edu.up.cs301.game.GameFramework.gameConfiguration.GamePlayerType;
+
+import edu.up.cs301.game.GameFramework.ProxyGame;
+import edu.up.cs301.splendor.Setup.GameConfig;
+import edu.up.cs301.splendor.Setup.GamePlayerType;
 import edu.up.cs301.game.GameFramework.utilities.IPCoder;
 import edu.up.cs301.game.GameFramework.utilities.Logger;
 import edu.up.cs301.game.GameFramework.utilities.MessageBox;
 import edu.up.cs301.game.R;
+import edu.up.cs301.splendor.Game.Game;
+import edu.up.cs301.splendor.Game.LocalGame;
+import edu.up.cs301.splendor.Players.GamePlayer;
 
 /**
  * class GameMainActivity

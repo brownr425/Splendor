@@ -1,18 +1,18 @@
-package edu.up.cs301.splendor;
+package edu.up.cs301.splendor.Players;
 
-import edu.up.cs301.counter.CounterMoveAction;
 import edu.up.cs301.counter.CounterState;
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
-import edu.up.cs301.game.GameFramework.GameMainActivity;
+import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
-import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
+import edu.up.cs301.splendor.State.GameInfo;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.view.View.OnClickListener;
-import edu.up.cs301.splendor.SplendorGameState;
+
+import edu.up.cs301.splendor.Game.Hand;
+import edu.up.cs301.splendor.State.SplendorGameState;
 
 /**
  * A GUI of a counter-player. The GUI displays the current value of the counter,

@@ -1,4 +1,4 @@
-package edu.up.cs301.splendor;
+package edu.up.cs301.splendor.Game;
 
 import java.util.ArrayList;
 

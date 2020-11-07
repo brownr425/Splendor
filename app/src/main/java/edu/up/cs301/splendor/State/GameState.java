@@ -1,4 +1,6 @@
-package edu.up.cs301.game.GameFramework.infoMessage;
+package edu.up.cs301.splendor.State;
+
+import edu.up.cs301.splendor.State.GameInfo;
 
 /**
  * The state of the game. This class should be subclassed so that it holds

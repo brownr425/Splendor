@@ -1,6 +1,8 @@
-package edu.up.cs301.splendor;
+package edu.up.cs301.splendor.State;
 
-import edu.up.cs301.game.GameFramework.infoMessage.GameState;
+import edu.up.cs301.splendor.Game.Card;
+import edu.up.cs301.splendor.Game.Hand;
+import edu.up.cs301.splendor.Game.Noble;
 
 import android.util.Log;
 

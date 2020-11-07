@@ -1,8 +1,8 @@
 package edu.up.cs301.counter;
 
-import edu.up.cs301.game.GameFramework.GameMainActivity;
+import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
-import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
+import edu.up.cs301.splendor.State.GameInfo;
 import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;

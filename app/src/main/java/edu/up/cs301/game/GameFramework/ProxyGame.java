@@ -4,10 +4,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
-import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
+import edu.up.cs301.splendor.Game.Game;
+import edu.up.cs301.splendor.State.GameInfo;
 import edu.up.cs301.game.GameFramework.utilities.IPCoder;
 import edu.up.cs301.game.GameFramework.utilities.NetworkObjectPasser;
 import edu.up.cs301.game.GameFramework.utilities.Logger;
+import edu.up.cs301.splendor.Players.GamePlayer;
 
 /**
  * A Game object that is used as a proxy for the real game that is on another

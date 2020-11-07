@@ -1,5 +1,7 @@
 package edu.up.cs301.game.GameFramework.infoMessage;
 
+import edu.up.cs301.splendor.State.GameInfo;
+
 /**
  * A message from the game to a player that tells the player that
  * the game is over.
