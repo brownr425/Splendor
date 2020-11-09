@@ -3,6 +3,7 @@ package edu.up.cs301.splendor.State;
 import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Game.Hand;
 import edu.up.cs301.splendor.Game.Noble;
+import edu.up.cs301.splendor.Players.SplendorPlayer;
 
 import android.util.Log;
 
@@ -18,6 +19,9 @@ import java.util.Collections;
 public class SplendorGameState extends GameState {
 
     //~~~~~~~~~~~~~ player names and IDs ~~~~~~~~~~~ //
+    //max game score
+    public static final int MAX_GAME_SCORE = 15;
+
     //player display names
     private String player1Name;
     private String player2Name;
@@ -33,6 +37,8 @@ public class SplendorGameState extends GameState {
     private final int PLAYER3ID = 3;
     private final int PLAYER4ID = 4;
 
+    //create list of all players
+    public ArrayList<SplendorPlayer> playerList = new ArrayList<>();
 
     //~~~~~~~~~~~~~~~~ player 1 ~~~~~~~~~~~~~~~~~~ //
     //player 1 prestigePts
@@ -175,15 +181,13 @@ public class SplendorGameState extends GameState {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
     public SplendorGameState(InputStream rank1, InputStream rank2, InputStream rank3) {
-        initializePlayerPointValues();
-        //initializeDecks(); //unfinished
-        //initializeHands();
+        initializePlayers();
         initializeCoins();
         initializeNobles();
-        // initializeDecks(rank1, rank2, rank3); //unfinished
+        initializeDecks(rank1, rank2, rank3);
 
-        initializeDecks(rank1, rank2, rank3); //unfinished
-        initializeHands();
+        this.playerTurn = 1;
+
         Collections.shuffle(this.rank1Stack);
         Collections.shuffle(this.rank2Stack);
         Collections.shuffle(this.rank3Stack);
@@ -210,6 +214,7 @@ public class SplendorGameState extends GameState {
         this.p2Hand = new Hand(stateToCopy.p2Hand);
         this.p3Hand = new Hand(stateToCopy.p3Hand);
         this.p4Hand = new Hand(stateToCopy.p4Hand);
+
 
         //deep copy of player 1 points and reserve cards
         this.p1GoldCoins = stateToCopy.getP1GoldCoins();
@@ -298,8 +303,13 @@ public class SplendorGameState extends GameState {
     }
 
     //helper method for constructor setting all point values for player to zero
-    public void initializePlayerPointValues() {
+    public void initializePlayers() {
         this.playerTurn = 1;
+
+        for(int i = 0; i < getNumPlayers(); i++) {
+            playerList.add(new SplendorPlayer());
+        }
+
         //player one
         this.p1GoldCoins = 0;
         this.p1GoldPts = 0;
@@ -469,6 +479,10 @@ public class SplendorGameState extends GameState {
         this.p2Hand = new Hand();
         this.p3Hand = new Hand();
         this.p4Hand = new Hand();
+
+        /*for(SplendorPlayer player : playerList) {
+            player.setPlayerHand(new Hand());
+        }*/
     }
 
     public void initializeCoins() {

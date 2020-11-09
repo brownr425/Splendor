@@ -1,12 +1,13 @@
 package edu.up.cs301.splendor.Players;
 
+import edu.up.cs301.game.GameFramework.GameComputerPlayer;
 import edu.up.cs301.splendor.Game.Game;
 import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.State.GameInfo;
 import edu.up.cs301.splendor.State.GameState;
 
-public class SplendorComputerPlayer implements GamePlayer {
+public class SplendorComputerPlayer extends GameComputerPlayer {
     private Game game;
     private int playerId;
     private String[] playerNames;
@@ -23,33 +24,11 @@ public class SplendorComputerPlayer implements GamePlayer {
         return true;
     }
 
-    @Override
-    public void gameSetAsGui(GameMainActivity activity) {
 
-    }
 
     @Override
-    public void setAsGui(GameMainActivity activity) {
-
+    protected void receiveInfo(GameInfo info) {
+        //nothin
     }
 
-    @Override
-    public void sendInfo(GameInfo info) {
-
-    }
-
-    @Override
-    public void start() {
-
-    }
-
-    @Override
-    public boolean requiresGui() {
-        return false;
-    }
-
-    @Override
-    public boolean supportsGui() {
-        return false;
-    }
 }
