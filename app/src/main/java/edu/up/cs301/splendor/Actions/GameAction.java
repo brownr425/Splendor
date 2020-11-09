@@ -1,4 +1,4 @@
-package edu.up.cs301.game.GameFramework.actionMessage;
+package edu.up.cs301.splendor.Actions;
 
 
 import java.io.Serializable;

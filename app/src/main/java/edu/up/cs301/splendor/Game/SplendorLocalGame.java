@@ -2,7 +2,7 @@ package edu.up.cs301.splendor.Game;
 
 import edu.up.cs301.splendor.Actions.SplendorAction;
 import edu.up.cs301.splendor.Players.GamePlayer;
-import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.State.SplendorGameState;
 
 public class SplendorLocalGame extends LocalGame {

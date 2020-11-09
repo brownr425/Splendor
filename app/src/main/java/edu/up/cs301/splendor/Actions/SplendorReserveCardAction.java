@@ -3,9 +3,18 @@ package edu.up.cs301.splendor.Actions;
 import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Players.GamePlayer;
 
-public class SplendorReserveCardAction {
+public class SplendorReserveCardAction extends GameAction{
     private Card card;
     private GamePlayer player;
+
+    /**
+     * constructor for GameAction
+     *
+     * @param player the player who created the action
+     */
+    public SplendorReserveCardAction(GamePlayer player) {
+        super(player);
+    }
 
     public void ReserveCardAction(GamePlayer player, Card card) {
         super(player);

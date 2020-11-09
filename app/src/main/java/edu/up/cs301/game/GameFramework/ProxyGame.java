@@ -3,7 +3,7 @@ package edu.up.cs301.game.GameFramework;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.Game.Game;
 import edu.up.cs301.splendor.State.GameInfo;
 import edu.up.cs301.game.GameFramework.utilities.IPCoder;

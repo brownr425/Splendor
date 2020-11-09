@@ -2,7 +2,6 @@ package edu.up.cs301.splendor.Actions;
 
 import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Players.GamePlayer;
-import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
 
 public class splCardAction extends GameAction {
     private Card card;
