@@ -3,6 +3,7 @@ package edu.up.cs301.splendor.Game;
 import java.io.InputStream;
 
 import edu.up.cs301.splendor.Actions.SplendorAction;
+import edu.up.cs301.splendor.Actions.splCardAction;
 import edu.up.cs301.splendor.Actions.splCoinAction;
 import edu.up.cs301.splendor.Players.GamePlayer;
 import edu.up.cs301.splendor.Actions.GameAction;
@@ -32,7 +33,8 @@ public class SplendorLocalGame extends LocalGame {
         }
         else if(action instanceof splCardAction)
         {
-            gameState.
+
         }
+        return false;
     }
 }
