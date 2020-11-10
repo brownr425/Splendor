@@ -1,5 +1,8 @@
 package edu.up.cs301.splendor.Setup;
 
+import android.support.v7.app.AppCompatActivity;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import edu.up.cs301.counter.CounterComputerPlayer1;
@@ -73,5 +76,10 @@ public class SplendorMainActivity extends GameMainActivity {
     }
 
     @Override
-    public LocalGame createLocalGame() {return new SplendorLocalGame();}
+    public LocalGame createLocalGame() {
+        InputStream rank1 = getResources().openRawResource(R.raw.rank1);
+        InputStream rank2 = getResources().openRawResource(R.raw.rank2);
+        InputStream rank3 = getResources().openRawResource(R.raw.rank3);
+        return new SplendorLocalGame();
+    }
 }

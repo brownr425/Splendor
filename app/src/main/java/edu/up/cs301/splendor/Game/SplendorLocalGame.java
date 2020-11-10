@@ -20,6 +20,7 @@ public class SplendorLocalGame extends LocalGame {
 
     @Override
     protected boolean makeMove(GameAction action) {
+
         return false;
     }
 
