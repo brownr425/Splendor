@@ -175,15 +175,14 @@ public class SplendorGameState extends GameState {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-    public SplendorGameState(InputStream rank1, InputStream rank2, InputStream rank3) {
+    public SplendorGameState() { /*InputStream rank1, InputStream rank2, InputStream rank3*/ //
         initializePlayerPointValues();
         //initializeDecks(); //unfinished
         //initializeHands();
         initializeCoins();
         initializeNobles();
-        // initializeDecks(rank1, rank2, rank3); //unfinished
 
-        initializeDecks(rank1, rank2, rank3); //unfinished
+        initializeDecks(); //unfinished: rank1, rank2, rank3
         initializeHands();
         Collections.shuffle(this.rank1Stack);
         Collections.shuffle(this.rank2Stack);
@@ -382,7 +381,17 @@ public class SplendorGameState extends GameState {
      * reads input from text files into three array lists then shuffles deck
      *
      */
-    public void initializeDecks(InputStream rank1, InputStream rank2, InputStream rank3, InputStream nobles) {
+    public void initializeDecks(/*InputStream rank1, InputStream rank2, InputStream rank3, InputStream nobles*/) {
+
+        String rank1File = "res/raw/rank1.csv";
+        InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
+        String rank2File = "res/raw/rank2.csv";
+        InputStream rank2 = this.getClass().getClassLoader().getResourceAsStream(rank2File);
+        String rank3File = "res/raw/rank3.csv";
+        InputStream rank3 = this.getClass().getClassLoader().getResourceAsStream(rank3File);
+        String nobleFile = "res/raw/nobles.csv";
+        InputStream nobles = this.getClass().getClassLoader().getResourceAsStream(nobleFile);
+
         this.rank1Stack = new ArrayList<Card>();
         this.rank2Stack = new ArrayList<Card>();
         this.rank3Stack = new ArrayList<Card>();
