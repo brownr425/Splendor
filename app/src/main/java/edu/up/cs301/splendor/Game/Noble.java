@@ -17,6 +17,13 @@ public class Noble {
         this.brPrice = brPrice;
     }
 
+    public Noble() {
+        this.rPrice = -1;
+        this.bPrice = -1;
+        this.gPrice = -1;
+        this.wPrice = -1;
+        this.brPrice = -1;
+    }
 
     //COPY CONSTRUCTOR
     public Noble(Noble nobelToCopy){

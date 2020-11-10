@@ -136,6 +136,7 @@ public class SplendorGameState extends GameState {
     private ArrayList<Card> rank1Stack; //ArrayList of rank1 cards
     private ArrayList<Card> rank2Stack; //ArrayList of rank2 cards
     private ArrayList<Card> rank3Stack; //ArrayList of rank3 cards
+    private ArrayList<Noble> nobleStack;
 
     private final int RANKS = 3;
     private final int CARDS_PER_RANK = 4;
@@ -175,15 +176,14 @@ public class SplendorGameState extends GameState {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-    public SplendorGameState(InputStream rank1, InputStream rank2, InputStream rank3) {
+    public SplendorGameState() { /*InputStream rank1, InputStream rank2, InputStream rank3*/ //
         initializePlayerPointValues();
         //initializeDecks(); //unfinished
         //initializeHands();
         initializeCoins();
         initializeNobles();
-        // initializeDecks(rank1, rank2, rank3); //unfinished
 
-        initializeDecks(rank1, rank2, rank3); //unfinished
+        initializeDecks(); //unfinished: rank1, rank2, rank3
         initializeHands();
         Collections.shuffle(this.rank1Stack);
         Collections.shuffle(this.rank2Stack);
@@ -382,10 +382,21 @@ public class SplendorGameState extends GameState {
      * reads input from text files into three array lists then shuffles deck
      *
      */
-    public void initializeDecks(InputStream rank1, InputStream rank2, InputStream rank3) {
+    public void initializeDecks(/*InputStream rank1, InputStream rank2, InputStream rank3, InputStream nobles*/) {
+
+        String rank1File = "res/raw/rank1.csv";
+        InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
+        String rank2File = "res/raw/rank2.csv";
+        InputStream rank2 = this.getClass().getClassLoader().getResourceAsStream(rank2File);
+        String rank3File = "res/raw/rank3.csv";
+        InputStream rank3 = this.getClass().getClassLoader().getResourceAsStream(rank3File);
+        String nobleFile = "res/raw/nobles.csv";
+        InputStream nobles = this.getClass().getClassLoader().getResourceAsStream(nobleFile);
+
         this.rank1Stack = new ArrayList<Card>();
         this.rank2Stack = new ArrayList<Card>();
         this.rank3Stack = new ArrayList<Card>();
+        this.nobleStack = new ArrayList<Noble>();
 
         //reading data for rank 1
         BufferedReader rank1Reader = new BufferedReader(
@@ -459,6 +470,27 @@ public class SplendorGameState extends GameState {
                 card.setCardLevel(3);
                 this.rank3Stack.add(card);
 
+            }
+        } catch (IOException e) {
+            Log.wtf("MyActivity","Error reading data file " + line, e);
+        }
+        //reading data for rank 3
+        BufferedReader nobleReader = new BufferedReader(
+                new InputStreamReader(nobles, Charset.forName("UTF-8"))
+        );
+
+        line = "";
+        try {
+            while((line = nobleReader.readLine()) != null) {
+                //split by ,
+                String[] tokens = line.split(",");
+                Noble noble = new Noble();
+                noble.setwPrice(Integer.parseInt(tokens[0]));
+                noble.setbPrice(Integer.parseInt(tokens[1]));
+                noble.setgPrice(Integer.parseInt(tokens[2]));
+                noble.setrPrice(Integer.parseInt(tokens[3]));
+                noble.setBrPrice(Integer.parseInt(tokens[4]));
+                this.nobleStack.add(noble);
             }
         } catch (IOException e) {
             Log.wtf("MyActivity","Error reading data file " + line, e);

@@ -109,7 +109,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
             action = new SplendorSelectCardAction(this, 0,0);
-        }
+    }
         else if (button.getId() == R.id.nobleCard2){
             // something else was pressed: ignore
             action = new SplendorSelectCardAction(this,0,1);
