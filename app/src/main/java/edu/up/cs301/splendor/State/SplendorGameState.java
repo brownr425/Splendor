@@ -149,6 +149,9 @@ public class SplendorGameState extends GameState {
 
     private int rubyCoins;
     private int sapphireCoins;
+
+
+
     private int emeraldCoins;
     private int diamondCoins;
     private int onyxCoins;
@@ -1365,6 +1368,30 @@ public class SplendorGameState extends GameState {
 
     public Card getBoard(int row, int col){
         return this.board[row][col];
+    }
+
+    public int getRubyCoins() {
+        return rubyCoins;
+    }
+
+    public int getSapphireCoins() {
+        return sapphireCoins;
+    }
+
+    public int getEmeraldCoins() {
+        return emeraldCoins;
+    }
+
+    public int getDiamondCoins() {
+        return diamondCoins;
+    }
+
+    public int getOnyxCoins() {
+        return onyxCoins;
+    }
+
+    public int getGoldCoins() {
+        return goldCoins;
     }
 
     public Card getSelected() {return this.selected;}
