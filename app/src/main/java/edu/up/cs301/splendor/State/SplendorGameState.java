@@ -48,7 +48,7 @@ public class SplendorGameState extends GameState {
     private SplendorPlayer splendorPlayer4;
 
     //~~~~~~~~~~~~~~~~ player 1 ~~~~~~~~~~~~~~~~~~ //
-    //player 1 prestigePts
+    /*//player 1 prestigePts
     private int p1PrestigePts;
 
     //player 1 resource point values
@@ -142,7 +142,7 @@ public class SplendorGameState extends GameState {
     private int p4OnyxCoins;
 
     //reserve card count
-    private int p4NumCardsReserved;
+    private int p4NumCardsReserved;*/
 
 //~~~~~~~~~~~~~~~~~~ Deck and Coin Information ~~~~~~~~~~~~~~~ //
 
@@ -217,14 +217,17 @@ public class SplendorGameState extends GameState {
         }
 
         //creates deeps copy of each players hands
-        this.p1Hand = new Hand(stateToCopy.p1Hand);
+        /*this.p1Hand = new Hand(stateToCopy.p1Hand);
         this.p2Hand = new Hand(stateToCopy.p2Hand);
         this.p3Hand = new Hand(stateToCopy.p3Hand);
-        this.p4Hand = new Hand(stateToCopy.p4Hand);
+        this.p4Hand = new Hand(stateToCopy.p4Hand);*/
 
-        this.splendorPlayer1 = stateToCopy.getSplendorPlayer1();
+        this.splendorPlayer1 = new SplendorPlayer(stateToCopy.splendorPlayer1);
+        this.splendorPlayer2 = new SplendorPlayer(stateToCopy.splendorPlayer2);
+        this.splendorPlayer3 = new SplendorPlayer(stateToCopy.splendorPlayer3);
+        this.splendorPlayer4 = new SplendorPlayer(stateToCopy.splendorPlayer4);
 
-        //deep copy of player 1 points and reserve cards
+        /*//deep copy of player 1 points and reserve cards
         this.p1GoldCoins = stateToCopy.getP1GoldCoins();
         this.p1GoldPts = stateToCopy.getP1GoldPts();
         this.p1EmeraldCoins = stateToCopy.getP1EmeraldCoins();
@@ -286,7 +289,7 @@ public class SplendorGameState extends GameState {
         this.p4DiamondPts = stateToCopy.getP4DiamondPts();
         this.p4DiamondCoins = stateToCopy.getP4DiamondCoins();
         this.p4PrestigePts = stateToCopy.getP4OnyxPts();
-        this.p4NumCardsReserved = stateToCopy.getP4NumCardsReserved();
+        this.p4NumCardsReserved = stateToCopy.getP4NumCardsReserved();*/
 
         //deep copies for all 3 card stacks
         this.rank1Stack = new ArrayList<>();
@@ -325,7 +328,7 @@ public class SplendorGameState extends GameState {
         this.splendorPlayer4 = new SplendorPlayer();
 
         //player one
-        this.p1GoldCoins = 0;
+        /*this.p1GoldCoins = 0;
         this.p1GoldPts = 0;
         this.p1EmeraldCoins = 0;
         this.p1EmeraldPts = 4;
@@ -383,7 +386,7 @@ public class SplendorGameState extends GameState {
         this.p4DiamondCoins = 0;
         this.p4DiamondPts = 4;
         this.p4PrestigePts = 0;
-        this.p4NumCardsReserved = 0;
+        this.p4NumCardsReserved = 0;*/
     }
 
     public void initializeBoard(ArrayList<Card> rank1, ArrayList<Card> rank2, ArrayList<Card> rank3){
@@ -486,17 +489,6 @@ public class SplendorGameState extends GameState {
         } catch (IOException e) {
             Log.wtf("MyActivity","Error reading data file " + line, e);
         }
-    }
-
-    public void initializeHands() {
-        this.p1Hand = new Hand();
-        this.p2Hand = new Hand();
-        this.p3Hand = new Hand();
-        this.p4Hand = new Hand();
-
-        /*for(SplendorPlayer player : playerList) {
-            player.setPlayerHand(new Hand());
-        }*/
     }
 
     public void initializeCoins() {
@@ -731,10 +723,9 @@ public class SplendorGameState extends GameState {
         return returnString;
     }
 
-    /*~~~~~~~~~~~~~~~~~~~~~~~~actions for #d~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~action methods~~~~~~~~~~~~~~~~~~~*/
 
     //TODO: Move actions and helpers?
-
 
     private void nextPlayerTurn() {
         if(getPlayerTurn() == 4) {
@@ -780,22 +771,22 @@ public class SplendorGameState extends GameState {
 
         switch (this.getPlayerTurn()) {
             case 1:
-                if(p1coinCountBool() && flag1 && flag2 && flag3) {
+                if(coinCountBool(splendorPlayer1) && flag1 && flag2 && flag3) {
                     return true;
                 }
                 break;
             case 2:
-                if(p2coinCountBool() && flag1 && flag2 && flag3) {
+                if(coinCountBool(splendorPlayer2) && flag1 && flag2 && flag3) {
                     return true;
                 }
                 break;
             case 3:
-                if(p3coinCountBool() && flag1 && flag2 && flag3) {
+                if(coinCountBool(splendorPlayer3) && flag1 && flag2 && flag3) {
                     return true;
                 }
                 break;
             case 4:
-                if(p4coinCountBool() && flag1 && flag2 && flag3) {
+                if(coinCountBool(splendorPlayer4) && flag1 && flag2 && flag3) {
                     return true;
                 }
                 break;
@@ -808,22 +799,28 @@ public class SplendorGameState extends GameState {
         boolean flag = coinPileCheckDoubles()[coinColor];
         switch (this.getPlayerTurn()){
             case 1:
-                if(p1coinCountBool() && flag) return true;
+                if(coinCountBool(splendorPlayer1) && flag) return true;
                 break;
             case 2:
-                if(p2coinCountBool() && flag) return true;
+                if(coinCountBool(splendorPlayer2) && flag) return true;
                 break;
             case 3:
-                if(p3coinCountBool() && flag) return true;
+                if(coinCountBool(splendorPlayer3) && flag) return true;
                 break;
             case 4:
-                if(p4coinCountBool() && flag) return true;
+                if(coinCountBool(splendorPlayer4) && flag) return true;
                 break;
         }
         return false;
     }
 
-    private boolean p1coinCountBool() {
+    private boolean coinCountBool(SplendorPlayer splendorPlayer) {
+        if(splendorPlayer.getDiaCoins()+splendorPlayer.getEmerCoins()+splendorPlayer.getOnyxCoins()+
+                splendorPlayer.getRubyCoins()+splendorPlayer.getSapphCoins()+splendorPlayer.getGoldCoins() >= 10) return false;
+        return true;
+    }
+
+    /*private boolean p1coinCountBool() {
         if(this.p1DiamondCoins+this.p1EmeraldCoins+this.p1OnyxCoins+this.p1RubyCoins+this.p1SapphireCoins+this.p1GoldCoins >= 10)
             return false;
         return true;
@@ -844,7 +841,7 @@ public class SplendorGameState extends GameState {
         if(this.p4DiamondCoins+this.p4EmeraldCoins+this.p4OnyxCoins+this.p4RubyCoins+this.p4SapphireCoins+this.p4GoldCoins >= 10)
             return false;
         return true;
-    }
+    }*/
 
     private boolean[] coinPileCheckDoubles() {
         boolean[] coinPilesDoubles = {(this.rubyCoins >=4), (this.sapphireCoins >= 4), this.emeraldCoins >= 4, this.diamondCoins >= 4, this.onyxCoins >= 4};
@@ -862,16 +859,20 @@ public class SplendorGameState extends GameState {
                 this.rubyCoins--;
                 switch(this.getPlayerTurn()) {
                     case 1:
-                        this.p1RubyCoins++;
+                        //this.p1RubyCoins++;
+                        splendorPlayer1.setRubyCoins(splendorPlayer1.getRubyCoins()+1);
                         break;
                     case 2:
-                        this.p2RubyCoins++;
+                        //this.p2RubyCoins++;
+                        splendorPlayer2.setRubyCoins(splendorPlayer2.getRubyCoins()+1);
                         break;
                     case 3:
-                        this.p3RubyCoins++;
+                        //this.p3RubyCoins++;
+                        splendorPlayer3.setRubyCoins(splendorPlayer3.getRubyCoins()+1);
                         break;
                     case 4:
-                        this.p4RubyCoins++;
+                        //this.p4RubyCoins++;
+                        splendorPlayer4.setRubyCoins(splendorPlayer4.getRubyCoins()+1);
                         break;
                 }
                 break;
@@ -879,16 +880,20 @@ public class SplendorGameState extends GameState {
                 this.sapphireCoins--;
                 switch(this.getPlayerTurn()) {
                     case 1:
-                        this.p1SapphireCoins++;
+                        //this.p1SapphireCoins++;
+                        splendorPlayer1.setSapphCoins(splendorPlayer1.getSapphCoins()+1);
                         break;
                     case 2:
-                        this.p2SapphireCoins++;
+                        //this.p2SapphireCoins++;
+                        splendorPlayer2.setSapphCoins(splendorPlayer2.getSapphCoins()+1);
                         break;
                     case 3:
-                        this.p3SapphireCoins++;
+                        //this.p3SapphireCoins++;
+                        splendorPlayer3.setSapphCoins(splendorPlayer3.getSapphCoins()+1);
                         break;
                     case 4:
-                        this.p4SapphireCoins++;
+                        //this.p4SapphireCoins++;
+                        splendorPlayer4.setSapphCoins(splendorPlayer4.getSapphCoins()+1);
                         break;
                 }
                 break;
@@ -896,16 +901,20 @@ public class SplendorGameState extends GameState {
                 this.emeraldCoins--;
                 switch(this.getPlayerTurn()) {
                     case 1:
-                        this.p1EmeraldCoins++;
+                        //this.p1EmeraldCoins++;
+                        splendorPlayer1.setEmerCoins(splendorPlayer1.getEmerCoins()+1);
                         break;
                     case 2:
-                        this.p2EmeraldCoins++;
+                        //this.p2EmeraldCoins++;
+                        splendorPlayer2.setEmerCoins(splendorPlayer2.getEmerCoins()+1);
                         break;
                     case 3:
-                        this.p3EmeraldCoins++;
+                        //this.p3EmeraldCoins++;
+                        splendorPlayer3.setEmerCoins(splendorPlayer3.getEmerCoins()+1);
                         break;
                     case 4:
-                        this.p4EmeraldCoins++;
+                        //this.p4EmeraldCoins++;
+                        splendorPlayer4.setEmerCoins(splendorPlayer4.getEmerCoins()+1);
                         break;
                 }
                 break;
@@ -913,16 +922,20 @@ public class SplendorGameState extends GameState {
                 this.diamondCoins--;
                 switch(this.getPlayerTurn()) {
                     case 1:
-                        this.p1DiamondCoins++;
+                        //this.p1DiamondCoins++;
+                        splendorPlayer1.setDiaCoins(splendorPlayer1.getDiaCoins()+1);
                         break;
                     case 2:
-                        this.p2DiamondCoins++;
+                        //this.p2DiamondCoins++;
+                        splendorPlayer2.setDiaCoins(splendorPlayer2.getDiaCoins()+1);
                         break;
                     case 3:
-                        this.p3DiamondCoins++;
+                        //this.p3DiamondCoins++;
+                        splendorPlayer3.setDiaCoins(splendorPlayer3.getDiaCoins()+1);
                         break;
                     case 4:
-                        this.p4DiamondCoins++;
+                        //this.p4DiamondCoins++;
+                        splendorPlayer4.setDiaCoins(splendorPlayer4.getDiaCoins()+1);
                         break;
                 }
                 break;
@@ -930,16 +943,20 @@ public class SplendorGameState extends GameState {
                 this.onyxCoins--;
                 switch(this.getPlayerTurn()) {
                     case 1:
-                        this.p1OnyxCoins++;
+                        //this.p1OnyxCoins++;
+                        splendorPlayer1.setOnyxCoins(splendorPlayer1.getOnyxCoins()+1);
                         break;
                     case 2:
-                        this.p2OnyxCoins++;
+                        //this.p2OnyxCoins++;
+                        splendorPlayer2.setOnyxCoins(splendorPlayer2.getOnyxCoins()+1);
                         break;
                     case 3:
-                        this.p3OnyxCoins++;
+                        //this.p3OnyxCoins++;
+                        splendorPlayer3.setOnyxCoins(splendorPlayer3.getOnyxCoins()+1);
                         break;
                     case 4:
-                        this.p4OnyxCoins++;
+                        //this.p4OnyxCoins++;
+                        splendorPlayer4.setOnyxCoins(splendorPlayer4.getOnyxCoins()+1);
                         break;
                 }
                 break;
@@ -984,7 +1001,7 @@ public class SplendorGameState extends GameState {
         return PLAYER4ID;
     }
 
-    public int getP1PrestigePts() {
+    /*public int getP1PrestigePts() {
         return p1PrestigePts;
     }
 
@@ -1203,6 +1220,7 @@ public class SplendorGameState extends GameState {
     public int getP4NumCardsReserved() {
         return p4NumCardsReserved;
     }
+    */
 
     public ArrayList<Card> getRank1Stack() {
         return rank1Stack;
