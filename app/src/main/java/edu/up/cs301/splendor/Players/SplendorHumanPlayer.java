@@ -216,6 +216,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         nobleCard2.setOnClickListener(this);
         ImageButton nobleCard3 = (ImageButton) activity.findViewById(R.id.nobleCard3);
         nobleCard3.setOnClickListener(this);
+
         ImageButton nobleCard4 = (ImageButton) activity.findViewById(R.id.nobleCard4);
         nobleCard4.setOnClickListener(this);
         ImageButton nobleCard5 = (ImageButton) activity.findViewById(R.id.nobleCard5);

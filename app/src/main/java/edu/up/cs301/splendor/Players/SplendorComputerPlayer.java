@@ -1,6 +1,7 @@
 package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameComputerPlayer;
+import edu.up.cs301.game.GameFramework.GameComputerPlayer;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.splCardAction;
@@ -12,7 +13,7 @@ import edu.up.cs301.splendor.State.GameState;
 import edu.up.cs301.splendor.State.SplendorGameState;
 
 public class SplendorComputerPlayer extends GameComputerPlayer {
-    private SplendorGameState gameState;
+    private Game game;
     private int playerId;
     private String[] playerNames;
     private String name;
