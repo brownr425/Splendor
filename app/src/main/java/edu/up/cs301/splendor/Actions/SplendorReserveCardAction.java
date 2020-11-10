@@ -17,7 +17,6 @@ public class SplendorReserveCardAction extends GameAction{
     }
 
     public void ReserveCardAction(GamePlayer player, Card card) {
-        super(player);
         this.card = card;
         this.player = player;
     }

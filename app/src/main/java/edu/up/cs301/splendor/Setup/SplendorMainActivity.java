@@ -1,5 +1,7 @@
 package edu.up.cs301.splendor.Setup;
 
+import android.support.v7.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
 import edu.up.cs301.counter.CounterComputerPlayer1;

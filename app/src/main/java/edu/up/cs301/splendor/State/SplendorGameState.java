@@ -171,6 +171,7 @@ public class SplendorGameState extends GameState {
     private int stack3Iterator = 0;
 
     private Card board[][] = new Card[RANKS][CARDS_PER_RANK];
+    private Noble nobles[];
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
@@ -479,7 +480,7 @@ public class SplendorGameState extends GameState {
         this.onyxCoins = 7;
         this.goldCoins = 5;
     }
-    //this will eventually initialize 4 random nobles from a set of 10, for now we have choosen 4
+    //this will eventually initialize 4 random nobles from a set of 10, for now we have chosen 4
     public void initializeNobles(){
         this.noble1 = new Noble(4,0,4,0,0);
         this.noble2 = new Noble(3,0,0,3,3);
