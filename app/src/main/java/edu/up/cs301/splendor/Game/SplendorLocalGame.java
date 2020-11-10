@@ -28,9 +28,11 @@ public class SplendorLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if (action instanceof splCoinAction){
-
+            gameState.coinAction();
+        }
+        else if(action instanceof splCardAction)
+        {
+            gameState.
         }
     }
-
-    protected boolean makeMove(SplendorAction action) {return true;}
 }
