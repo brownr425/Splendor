@@ -1,4 +1,4 @@
-package edu.up.cs301.splendor;
+package edu.up.cs301.splendor.Game;
 
 import java.util.ArrayList;
 
@@ -38,14 +38,14 @@ public class Hand {
     /**
      * @param card - to add to player's hand
      */
-    protected void addToHand(Card card) {
+    public void addToHand(Card card) {
         hand.add(card);
     }
 
     /**
      * @param card - to add to player's reserved hand
      */
-    protected void addToReserved(Card card) {
+    public void addToReserved(Card card) {
         reserved.add(card);
     }
 
@@ -54,7 +54,7 @@ public class Hand {
      *
      * @return - if player's reserved hand has less than 3, return true
      */
-    protected boolean canReserve() { //detects if player's reserved hand is equal to or greater than 3, return condition
+    public boolean canReserve() { //detects if player's reserved hand is equal to or greater than 3, return condition
         if(reserved.size() >= 3) {
             return false;
         } else

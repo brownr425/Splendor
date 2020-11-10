@@ -1,8 +1,8 @@
-package edu.up.cs301.game.GameFramework.infoMessage;
+package edu.up.cs301.splendor.State;
 
 import java.io.Serializable;
 
-import edu.up.cs301.game.GameFramework.Game;
+import edu.up.cs301.splendor.Game.Game;
 
 /**
  * An informational message that is sent from the game to a player.  The

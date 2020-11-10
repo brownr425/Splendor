@@ -1,18 +1,21 @@
-package edu.up.cs301.splendor;
+package edu.up.cs301.splendor.Players;
 
-import edu.up.cs301.counter.CounterMoveAction;
 import edu.up.cs301.counter.CounterState;
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
-import edu.up.cs301.game.GameFramework.GameMainActivity;
+import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
+import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
+import edu.up.cs301.splendor.Actions.splCardAction;
+import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
-import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
-import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
+import edu.up.cs301.splendor.Actions.GameAction;
+import edu.up.cs301.splendor.State.GameInfo;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.view.View.OnClickListener;
-import edu.up.cs301.splendor.SplendorGameState;
+
+import edu.up.cs301.splendor.Game.Hand;
+import edu.up.cs301.splendor.State.SplendorGameState;
 
 /**
  * A GUI of a counter-player. The GUI displays the current value of the counter,
@@ -79,24 +82,97 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * @param button
      * 		the button that was clicked
      */
+
+    //TODO figure how cards can get passed into this method
+    //I am thinking that when cards are selected well pass the location in the gameboard array and
+    //in its handler ill set a new instance variable Card SelectedCard to the appropriate Card.
+    //that way when the actions are called they perform the action on the last selected card.
+
     public void onClick(View button) {
         // if we are not yet connected to a game, ignore
         if (game == null) return;
 
         // Construct the action and send it to the game
         GameAction action = null;
-        /*if (button.getId() == R.id.plusButton) {
+        if (button.getId() == R.id.buyAction) {
             // plus button: create "increment" action
-            action = new CounterMoveAction(this, true);
+            action = new splCardAction(this, null);
         }
-        else if (button.getId() == R.id.minusButton) {
+        else if (button.getId() == R.id.reserveAction) {
             // minus button: create "decrement" action
-            action = new CounterMoveAction(this, false);
+            action = new SplendorReserveCardAction(this, null);
+        }
+        else if (button.getId() == R.id.coinAction){
+            // something else was pressed: ignore
+            action = new SplendorReserveCardAction(this, null);
+        }
+        else if (button.getId() == R.id.nobleCard1){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this, 0,0);
+        }
+        else if (button.getId() == R.id.nobleCard2){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,0,1);
+        }
+        else if (button.getId() == R.id.nobleCard3){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,0,2);
+        }
+        else if (button.getId() == R.id.nobleCard4){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,0,3);
+        }
+        else if (button.getId() == R.id.rank1Card1){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this, 1,0);
+        }
+        else if (button.getId() == R.id.rank1Card2){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,1,1);
+        }
+        else if (button.getId() == R.id.rank1Card3){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,1,2);
+        }
+        else if (button.getId() == R.id.rank1Card4){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,1,3);
+        }
+        else if (button.getId() == R.id.rank2Card1){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this, 2,0);
+        }
+        else if (button.getId() == R.id.rank2Card2){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,2,1);
+        }
+        else if (button.getId() == R.id.rank2Card3){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,2,2);
+        }
+        else if (button.getId() == R.id.rank2Card4){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,2,3);
+        }
+        else if (button.getId() == R.id.rank3Card1){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this, 3,0);
+        }
+        else if (button.getId() == R.id.rank3Card2){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,3,1);
+        }
+        else if (button.getId() == R.id.rank3Card3){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,3,2);
+        }
+        else if (button.getId() == R.id.rank3Card4){
+            // something else was pressed: ignore
+            action = new SplendorSelectCardAction(this,3,3);
         }
         else {
-            // something else was pressed: ignore
             return;
-        }*/
+        }
 
         if (button instanceof ImageButton)
         {

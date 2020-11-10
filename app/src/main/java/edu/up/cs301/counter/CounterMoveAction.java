@@ -1,7 +1,7 @@
 package edu.up.cs301.counter;
 
-import edu.up.cs301.game.GameFramework.GamePlayer;
-import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.splendor.Players.GamePlayer;
+import edu.up.cs301.splendor.Actions.GameAction;
 
 /**
  * A CounterMoveAction is an action that is a "move" the game: either increasing

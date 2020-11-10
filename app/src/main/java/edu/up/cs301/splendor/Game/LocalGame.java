@@ -1,12 +1,11 @@
-package edu.up.cs301.game.GameFramework;
+package edu.up.cs301.splendor.Game;
 
 import edu.up.cs301.game.GameFramework.actionMessage.EndTurnAction;
-import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.game.GameFramework.actionMessage.GameOverAckAction;
 import edu.up.cs301.game.GameFramework.actionMessage.MyNameIsAction;
 import edu.up.cs301.game.GameFramework.actionMessage.ReadyAction;
 import edu.up.cs301.game.GameFramework.actionMessage.TimerAction;
-import edu.up.cs301.game.GameFramework.gameConfiguration.GameConfig;
 import edu.up.cs301.game.GameFramework.infoMessage.BindGameInfo;
 import edu.up.cs301.game.GameFramework.infoMessage.GameOverInfo;
 import edu.up.cs301.game.GameFramework.infoMessage.IllegalMoveInfo;
@@ -15,6 +14,7 @@ import edu.up.cs301.game.GameFramework.infoMessage.StartGameInfo;
 import edu.up.cs301.game.GameFramework.utilities.GameTimer;
 import edu.up.cs301.game.GameFramework.utilities.Tickable;
 import edu.up.cs301.game.GameFramework.utilities.Logger;
+import edu.up.cs301.splendor.Players.GamePlayer;
 
 import android.os.Handler;
 import android.os.Looper;

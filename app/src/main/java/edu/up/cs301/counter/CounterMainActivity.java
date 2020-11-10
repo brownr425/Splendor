@@ -2,11 +2,11 @@ package edu.up.cs301.counter;
 
 import java.util.ArrayList;
 
-import edu.up.cs301.game.GameFramework.GameMainActivity;
-import edu.up.cs301.game.GameFramework.GamePlayer;
-import edu.up.cs301.game.GameFramework.LocalGame;
-import edu.up.cs301.game.GameFramework.gameConfiguration.GameConfig;
-import edu.up.cs301.game.GameFramework.gameConfiguration.GamePlayerType;
+import edu.up.cs301.splendor.Setup.GameMainActivity;
+import edu.up.cs301.splendor.Players.GamePlayer;
+import edu.up.cs301.splendor.Game.LocalGame;
+import edu.up.cs301.splendor.Setup.GameConfig;
+import edu.up.cs301.splendor.Setup.GamePlayerType;
 
 /**
  * this is the primary activity for Counter game

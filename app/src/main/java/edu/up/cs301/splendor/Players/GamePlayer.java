@@ -1,6 +1,7 @@
-package edu.up.cs301.game.GameFramework;
+package edu.up.cs301.splendor.Players;
 
-import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
+import edu.up.cs301.splendor.Setup.GameMainActivity;
+import edu.up.cs301.splendor.State.GameInfo;
 
 /**
  * A player who plays a (generic) game. Each class that implements a player for

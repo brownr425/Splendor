@@ -1,10 +1,13 @@
 package edu.up.cs301.game.GameFramework;
 
-import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.game.GameFramework.infoMessage.BindGameInfo;
-import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
+import edu.up.cs301.splendor.Game.Game;
+import edu.up.cs301.splendor.Setup.GameMainActivity;
+import edu.up.cs301.splendor.State.GameInfo;
 import edu.up.cs301.game.GameFramework.utilities.NetworkObjectPasser;
 import edu.up.cs301.game.GameFramework.utilities.Logger;
+import edu.up.cs301.splendor.Players.GamePlayer;
 
 /**
  * A Player object that is used as a proxy for the real player that is on another

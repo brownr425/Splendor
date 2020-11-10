@@ -1,6 +1,7 @@
-package edu.up.cs301.game.GameFramework.gameConfiguration;
+package edu.up.cs301.splendor.Setup;
 
-import edu.up.cs301.game.GameFramework.GamePlayer;
+import edu.up.cs301.splendor.Players.GamePlayer;
+import edu.up.cs301.splendor.Setup.GameConfig;
 
 /**
  * class GamePlayerType

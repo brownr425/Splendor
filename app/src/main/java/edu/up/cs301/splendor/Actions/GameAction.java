@@ -1,8 +1,8 @@
-package edu.up.cs301.game.GameFramework.actionMessage;
+package edu.up.cs301.splendor.Actions;
 
 
 import java.io.Serializable;
-import edu.up.cs301.game.GameFramework.GamePlayer;
+import edu.up.cs301.splendor.Players.GamePlayer;
 
 /**
  * An action for a generic game.  A game action is something that a player
