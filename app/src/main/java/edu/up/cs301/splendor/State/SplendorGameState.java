@@ -40,6 +40,13 @@ public class SplendorGameState extends GameState {
     //create list of all players
     public ArrayList<SplendorPlayer> playerList = new ArrayList<>();
 
+    //~~~~~~~~~~~~~~~~ players ~~~~~~~~~~~~~~~~~~~ //
+
+    private SplendorPlayer splendorPlayer1;
+    private SplendorPlayer splendorPlayer2;
+    private SplendorPlayer splendorPlayer3;
+    private SplendorPlayer splendorPlayer4;
+
     //~~~~~~~~~~~~~~~~ player 1 ~~~~~~~~~~~~~~~~~~ //
     //player 1 prestigePts
     private int p1PrestigePts;
@@ -215,6 +222,7 @@ public class SplendorGameState extends GameState {
         this.p3Hand = new Hand(stateToCopy.p3Hand);
         this.p4Hand = new Hand(stateToCopy.p4Hand);
 
+        this.splendorPlayer1 = stateToCopy.getSplendorPlayer1();
 
         //deep copy of player 1 points and reserve cards
         this.p1GoldCoins = stateToCopy.getP1GoldCoins();
@@ -306,9 +314,15 @@ public class SplendorGameState extends GameState {
     public void initializePlayers() {
         this.playerTurn = 1;
 
-        for(int i = 0; i < getNumPlayers(); i++) {
+        //TODO: get number of players from config
+        /*for(int i = 0; i < getNumPlayers(); i++) {
             playerList.add(new SplendorPlayer());
-        }
+        }*/
+
+        this.splendorPlayer1 = new SplendorPlayer();
+        this.splendorPlayer2 = new SplendorPlayer();
+        this.splendorPlayer3 = new SplendorPlayer();
+        this.splendorPlayer4 = new SplendorPlayer();
 
         //player one
         this.p1GoldCoins = 0;
@@ -1146,9 +1160,7 @@ public class SplendorGameState extends GameState {
         return p4GoldPts;
     }
 
-    public int getP4EmeraldPts() {
-        return p4EmeraldPts;
-    }
+    public int getP4EmeraldPts() { return p4EmeraldPts; }
 
     public int getP4SapphirePts() {
         return p4SapphirePts;
@@ -1158,9 +1170,7 @@ public class SplendorGameState extends GameState {
         return p4RubyPts;
     }
 
-    public int getP4DiamondPts() {
-        return p4DiamondPts;
-    }
+    public int getP4DiamondPts() { return p4DiamondPts; }
 
     public int getP4OnyxPts() {
         return p4OnyxPts;
@@ -1225,5 +1235,21 @@ public class SplendorGameState extends GameState {
     public Card getBoard(int row, int col){
         return this.board[row][col];
     }
+
+    public SplendorPlayer getSplendorPlayer1() { return splendorPlayer1; }
+
+    public void setSplendorPlayer1(SplendorPlayer splendorPlayer1) { this.splendorPlayer1 = splendorPlayer1; }
+
+    public SplendorPlayer getSplendorPlayer2() { return splendorPlayer2; }
+
+    public void setSplendorPlayer2(SplendorPlayer splendorPlayer2) { this.splendorPlayer2 = splendorPlayer2; }
+
+    public SplendorPlayer getSplendorPlayer3() { return splendorPlayer3; }
+
+    public void setSplendorPlayer3(SplendorPlayer splendorPlayer3) { this.splendorPlayer3 = splendorPlayer3; }
+
+    public SplendorPlayer getSplendorPlayer4() { return splendorPlayer4; }
+
+    public void setSplendorPlayer4(SplendorPlayer splendorPlayer4) { this.splendorPlayer4 = splendorPlayer4; }
 }
 
