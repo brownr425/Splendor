@@ -23,7 +23,14 @@ public class SplendorLocalGame extends LocalGame {
         return playerIdx == gameState.getPlayerTurn();
     }
 
-    protected String checkIfGameOver() {return "";}
+    //TODO: check for point threshold, create and change search iteration to numplayers
+    protected String checkIfGameOver() {
+        int i, playerLeadID = 0;
+        if(gameState.getP1PrestigePts() > playerLeadID) {
+            gameState.getPLAYER1ID();
+        }
+        return null;
+    }
 
     @Override
     protected boolean makeMove(GameAction action) {
