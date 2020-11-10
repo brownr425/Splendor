@@ -149,9 +149,6 @@ public class SplendorGameState extends GameState {
 
     private int rubyCoins;
     private int sapphireCoins;
-
-
-
     private int emeraldCoins;
     private int diamondCoins;
     private int onyxCoins;

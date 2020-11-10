@@ -189,7 +189,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         // update our state; then update the display
         // this.state = (CounterState)info;
-        this.state = (SplendorGameState) info;
+        this.state = (SplendorGameState)info;
         updateDisplay();
     }
 
