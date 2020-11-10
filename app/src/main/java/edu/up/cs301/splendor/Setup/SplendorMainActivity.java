@@ -77,9 +77,6 @@ public class SplendorMainActivity extends GameMainActivity {
 
     @Override
     public LocalGame createLocalGame() {
-        InputStream rank1 = getResources().openRawResource(R.raw.rank1);
-        InputStream rank2 = getResources().openRawResource(R.raw.rank2);
-        InputStream rank3 = getResources().openRawResource(R.raw.rank3);
         return new SplendorLocalGame();
     }
 }

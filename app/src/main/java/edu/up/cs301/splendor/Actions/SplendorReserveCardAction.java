@@ -17,53 +17,53 @@ public class SplendorReserveCardAction extends GameAction{
     }
 
     public void ReserveCardAction(GamePlayer player, Card card) {
-        super(player);
+        //super(player);
         this.card = card;
         this.player = player;
     }
 
-    public boolean reserveAction(Card cardToReserve) {
-        switch(this.getPlayerTurn()){
-            case 1:
-                if (!this.p1Hand.canReserve()) {
-                    return false;
-                }
-                else {
-                    if (this.goldCoins > 0) this.p1GoldCoins++; this.goldCoins--;
-                    this.p1Hand.addToReserved(cardToReserve);
-                }
-                break;
-            case 2:
-                if (!this.p2Hand.canReserve()) {
-                    return false;
-                }
-                else {
-                    if (this.goldCoins > 0) this.p2GoldCoins++; this.goldCoins--;
-                    this.p2Hand.addToReserved(cardToReserve);
-                }
-                break;
-            case 3:
-                if (!this.p3Hand.canReserve()) {
-                    return false;
-                }
-                else {
-                    if (this.goldCoins > 0) this.p3GoldCoins++; this.goldCoins--;
-                    this.p3Hand.addToReserved(cardToReserve);
-                }
-                break;
-            case 4:
-                if (!this.p4Hand.canReserve()) {
-                    return false;
-                }
-                else {
-                    if (this.goldCoins > 0) this.p4GoldCoins++; this.goldCoins--;
-                    this.p4Hand.addToReserved(cardToReserve);
-                }
-                break;
-        }
-        this.nextPlayerTurn();
-        return true;
-    }
+//    public boolean reserveAction(Card cardToReserve) {
+//        switch(this.getPlayerTurn()){
+//            case 1:
+//                if (!this.p1Hand.canReserve()) {
+//                    return false;
+//                }
+//                else {
+//                    if (this.goldCoins > 0) this.p1GoldCoins++; this.goldCoins--;
+//                    this.p1Hand.addToReserved(cardToReserve);
+//                }
+//                break;
+//            case 2:
+//                if (!this.p2Hand.canReserve()) {
+//                    return false;
+//                }
+//                else {
+//                    if (this.goldCoins > 0) this.p2GoldCoins++; this.goldCoins--;
+//                    this.p2Hand.addToReserved(cardToReserve);
+//                }
+//                break;
+//            case 3:
+//                if (!this.p3Hand.canReserve()) {
+//                    return false;
+//                }
+//                else {
+//                    if (this.goldCoins > 0) this.p3GoldCoins++; this.goldCoins--;
+//                    this.p3Hand.addToReserved(cardToReserve);
+//                }
+//                break;
+//            case 4:
+//                if (!this.p4Hand.canReserve()) {
+//                    return false;
+//                }
+//                else {
+//                    if (this.goldCoins > 0) this.p4GoldCoins++; this.goldCoins--;
+//                    this.p4Hand.addToReserved(cardToReserve);
+//                }
+//                break;
+//        }
+//        this.nextPlayerTurn();
+//        return true;
+//    }
 
 
 //    public boolean reserveCard() {
