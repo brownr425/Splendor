@@ -45,9 +45,8 @@ public class SplendorLocalGame extends LocalGame {
             return true;
         }
         else if(action instanceof SplendorSelectCardAction){
-            SplendorSelectCardAction sSELca = (SplendorSelectCardAction) action;
-            Card updateCard = gameState.getBoard(sSELca.getRow(), sSELca.getCol());
-
+            Card updateCard = gameState.getBoard(action.getRow(), action.getCol());
+            gameState.setSelected(updateCard);
             //action was made, return true/valid move
             return true;
         }

@@ -101,7 +101,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // set the text in the appropriate widget
         //counterValueTextView.setText("" + state.getCounter());
 
-            rank3Card1.setImageResource(R.drawable.background1);
+        rank3Card1.setImageResource(R.drawable.background1);
         rank3Card2.setImageResource(R.drawable.background2);
         rank3Card3.setImageResource(R.drawable.background3);
         rank3Card4.setImageResource(R.drawable.background4);
@@ -121,7 +121,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         nobleCard3.setImageResource(R.drawable.noble3);
         nobleCard4.setImageResource(R.drawable.noble4);
         nobleCard5.setImageResource(R.drawable.noble5);
-
+        if(state.getSelected() != null) {
+            String info = state.getSelected().toString();
+            infoBox.setText(info);
+        }
 
     }
 
@@ -224,6 +227,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             return;
         }
         game.sendAction(action); // send action to the game
+        updateDisplay();
     }// onClick
 
     /**
