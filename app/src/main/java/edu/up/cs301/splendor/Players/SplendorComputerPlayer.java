@@ -5,6 +5,7 @@ import edu.up.cs301.game.GameFramework.GameComputerPlayer;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.splCardAction;
+import edu.up.cs301.game.GameFramework.GameComputerPlayer;
 import edu.up.cs301.splendor.Game.Game;
 import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.splendor.Game.Card;
