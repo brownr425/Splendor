@@ -150,7 +150,6 @@ public class SplendorGameState extends GameState {
     private ArrayList<Card> rank2Stack; //ArrayList of rank2 cards
     private ArrayList<Card> rank3Stack; //ArrayList of rank3 cards
     private ArrayList<Noble> nobleStack;
-
     private final int RANKS = 3;
     private final int CARDS_PER_RANK = 4;
 
