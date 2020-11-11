@@ -100,7 +100,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
 
     public void whatCard(ImageButton currButton){
-        currButton.setImageResource(R.drawable.background1);
+        currButton.setImageResource(R.drawable.background2);
     }
     /**
      * sets the counter value in the text view
@@ -108,9 +108,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     protected void updateDisplay() {
         // set the text in the appropriate widget
         //counterValueTextView.setText("" + state.getCounter());
+    int counter = 0;
+        rank3Card1.setImageResource(R.drawable.background1);
+        if(counter == 1){
+        whatCard(rank3Card1);}
 
-        //rank3Card1.setImageResource(R.drawable.background1);
-        whatCard(rank3Card1);
         rank3Card2.setImageResource(R.drawable.background2);
         rank3Card3.setImageResource(R.drawable.background3);
         rank3Card4.setImageResource(R.drawable.background4);
@@ -133,7 +135,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         //if(state.getSelected() == null);
 
-
+        counter = 1;
     }
 
     /**
