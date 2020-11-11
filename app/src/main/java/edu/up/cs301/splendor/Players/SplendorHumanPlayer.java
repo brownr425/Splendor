@@ -9,10 +9,14 @@ import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.State.GameInfo;
+
+import android.media.Image;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import edu.up.cs301.splendor.Game.Hand;
 import edu.up.cs301.splendor.State.SplendorGameState;
@@ -70,6 +74,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private ImageButton rank1Card3;
     private ImageButton rank1Card4;
 
+    private TextView infoBox;
+
 
     /**
      * constructor
@@ -90,6 +96,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         return myActivity.findViewById(R.id.top_gui_layout);
     }
 
+
+
+    public void whatCard(ImageButton currButton){
+        currButton.setImageResource(R.drawable.background1);
+    }
     /**
      * sets the counter value in the text view
      */
@@ -97,7 +108,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // set the text in the appropriate widget
         //counterValueTextView.setText("" + state.getCounter());
 
-            rank3Card1.setImageResource(R.drawable.background1);
+        //rank3Card1.setImageResource(R.drawable.background1);
+        whatCard(rank3Card1);
         rank3Card2.setImageResource(R.drawable.background2);
         rank3Card3.setImageResource(R.drawable.background3);
         rank3Card4.setImageResource(R.drawable.background4);
@@ -117,6 +129,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         nobleCard3.setImageResource(R.drawable.noble3);
         nobleCard4.setImageResource(R.drawable.noble4);
         nobleCard5.setImageResource(R.drawable.noble5);
+
+        //if(state.getSelected() == null);
 
 
     }
@@ -142,6 +156,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         GameAction action = null;
         if (button.getId() == R.id.buyAction) {
             // plus button: create "increment" action
+            Log.d("Button", "BUY");
             action = new splCardAction(this, null);
         }
         else if (button.getId() == R.id.reserveAction) {
@@ -154,6 +169,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
         else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
+            Log.d("Button", "NOBLE");
             action = new SplendorSelectCardAction(this, 0,0);
     }
         else if (button.getId() == R.id.nobleCard2){
@@ -170,6 +186,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
         else if (button.getId() == R.id.rank1Card1){
             // something else was pressed: ignore
+            Log.d("Button", "R1C1");
             action = new SplendorSelectCardAction(this, 1,0);
         }
         else if (button.getId() == R.id.rank1Card2){
@@ -236,6 +253,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // update our state; then update the display
         // this.state = (CounterState)info;
         this.state = (SplendorGameState)info;
+        Log.d("RI", "action");
         updateDisplay();
     }
 

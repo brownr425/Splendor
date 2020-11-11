@@ -28,10 +28,10 @@ public class SplendorGameState extends GameState {
     private int playerTurn;
 
     //player values for playerTurn
-    private final int PLAYER1ID = 1;
-    private final int PLAYER2ID = 2;
-    private final int PLAYER3ID = 3;
-    private final int PLAYER4ID = 4;
+    private final int PLAYER1ID = 0;
+    private final int PLAYER2ID = 1;
+    private final int PLAYER3ID = 2;
+    private final int PLAYER4ID = 3;
 
     //create list of all players
     public ArrayList<SplendorPlayer> playerList = new ArrayList<>();
@@ -313,7 +313,7 @@ public class SplendorGameState extends GameState {
 
     //helper method for constructor setting all point values for player to zero
     public void initializePlayers() {
-        this.playerTurn = 1;
+        this.playerTurn = 0;
 
         //TODO: get number of players from config
         /*for(int i = 0; i < getNumPlayers(); i++) {
