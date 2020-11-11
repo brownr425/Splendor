@@ -1,4 +1,4 @@
-package edu.up.cs301.splendor.Players;
+package edu.up.cs301.splendor.State;
 
 import edu.up.cs301.splendor.Game.Hand;
 

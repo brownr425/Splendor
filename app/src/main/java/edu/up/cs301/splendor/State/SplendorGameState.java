@@ -3,7 +3,6 @@ package edu.up.cs301.splendor.State;
 import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Game.Hand;
 import edu.up.cs301.splendor.Game.Noble;
-import edu.up.cs301.splendor.Players.SplendorPlayer;
 
 import android.util.Log;
 
