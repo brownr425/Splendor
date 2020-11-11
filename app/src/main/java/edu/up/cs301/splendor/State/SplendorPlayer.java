@@ -26,7 +26,7 @@ public class SplendorPlayer {
 
     private int numCardsReserved;
 
-    public SplendorPlayer() {
+    public SplendorPlayer(int playerID) {
         initializePtsNCoins();
     }
 
@@ -132,5 +132,7 @@ public class SplendorPlayer {
     public int getNumCardsReserved() { return numCardsReserved; }
 
     public void setNumCardsReserved(int numCardsReserved) { this.numCardsReserved = numCardsReserved; }
+
+    public Hand getPlayerHand() { return playerHand; }
 
 }
