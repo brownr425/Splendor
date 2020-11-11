@@ -2,7 +2,10 @@ package edu.up.cs301.splendor.Game;
 
 import java.io.InputStream;
 
-import edu.up.cs301.splendor.Actions.SplendorAction;
+
+import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
+import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
+import edu.up.cs301.splendor.Actions.splCardAction;
 import edu.up.cs301.splendor.Actions.splCoinAction;
 import edu.up.cs301.splendor.Players.GamePlayer;
 import edu.up.cs301.splendor.Actions.GameAction;
@@ -28,11 +31,37 @@ public class SplendorLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if (action instanceof splCoinAction){
-            gameState.coinAction();
+            splCoinAction sCOINa = (splCoinAction) action;
+
+           // gameState.coinAction();
+            //action was made, return true/valid move
+            return true;
         }
         else if(action instanceof splCardAction)
         {
-            gameState.
+            splCardAction sCARDa = (splCardAction) action;
+            //gameState.
+            //action was made, return true/valid move
+            return true;
         }
+        else if(action instanceof SplendorSelectCardAction){
+            SplendorSelectCardAction sSELca = (SplendorSelectCardAction) action;
+            Card updateCard = gameState.getBoard(sSELca.getRow(), sSELca.getCol());
+
+            //action was made, return true/valid move
+            return true;
+        }
+        else if(action instanceof SplendorReserveCardAction){
+            SplendorReserveCardAction sRESca = (SplendorReserveCardAction) action;
+            //action was made, return true/valid move
+            return true;
+        }
+        else{
+
+            return false;
+        }
+
     }
+
+
 }

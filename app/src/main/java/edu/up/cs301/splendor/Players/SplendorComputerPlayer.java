@@ -50,8 +50,9 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
                 if (canBuy(card)) {
                     SplendorSelectCardAction select = new SplendorSelectCardAction(null, row, col);
                     this.game.sendAction(select);
-                    splCardAction buy = new splCardAction();
-                    this.game.sendAction(buy);
+                    //TODO this should take current player and current card selected
+                    //splCardAction buy = new splCardAction( );
+                    //this.game.sendAction(buy);
                     //not sure if sending a buy action increments player turn counter and breaks here
                 }
             }

@@ -182,6 +182,7 @@ public class SplendorGameState extends GameState {
 
     private Card board[][] = new Card[RANKS][CARDS_PER_RANK];
     private Noble nobles[];
+    private Card selected = null;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
@@ -413,7 +414,7 @@ public class SplendorGameState extends GameState {
         InputStream rank2 = this.getClass().getClassLoader().getResourceAsStream(rank2File);
         String rank3File = "res/raw/rank3.csv";
         InputStream rank3 = this.getClass().getClassLoader().getResourceAsStream(rank3File);
-        String nobleFile = "res/raw/nobles.csv";
+        String nobleFile = "res/raw/noble";
         InputStream nobles = this.getClass().getClassLoader().getResourceAsStream(nobleFile);
 
         this.rank1Stack = new ArrayList<Card>();
@@ -1439,6 +1440,15 @@ public class SplendorGameState extends GameState {
 
     public int getGoldCoins() {
         return goldCoins;
+    }
+
+    public Card getSelected(){
+        return this.selected;
+    }
+
+    public void setSelected(Card card)
+    {
+        this.selected = card;
     }
 }
 
