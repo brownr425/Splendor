@@ -3,6 +3,7 @@ package edu.up.cs301.splendor.Game;
 import java.io.InputStream;
 
 
+import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.splCardAction;
@@ -45,8 +46,7 @@ public class SplendorLocalGame extends LocalGame {
             return true;
         }
         else if(action instanceof SplendorSelectCardAction){
-            Card updateCard = gameState.getBoard(action.getRow(), action.getCol());
-            gameState.setSelected(updateCard);
+            this.gameState.setSelected(this.gameState.getBoard(((SplendorSelectCardAction) action).getRow(), ((SplendorSelectCardAction) action).getCol()));
             //action was made, return true/valid move
             return true;
         }
@@ -55,11 +55,31 @@ public class SplendorLocalGame extends LocalGame {
             //action was made, return true/valid move
             return true;
         }
+        else if(action instanceof SplendorCoinSelectAction)
+        {
+            if(this.gameState.getCoinTracking().size() == 3) {
+                this.gameState.getCoinTracking().remove(0);
+                this.gameState.getCoinTracking().set(0, this.gameState.getCoinTracking().get(1));
+            }
+            else {
+                for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
+                {
+                    if(((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)){
+                        this.gameState.getCoinTracking().clear();
+                        this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+                        this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+                    }
+                    else{
+                        this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+                    }
+                }
+            }
+        }
         else{
 
             return false;
         }
-
+        return false;
     }
 
 

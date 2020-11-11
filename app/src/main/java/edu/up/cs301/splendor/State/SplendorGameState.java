@@ -183,6 +183,7 @@ public class SplendorGameState extends GameState {
     private Card board[][] = new Card[RANKS][CARDS_PER_RANK];
     private Noble nobles[];
     private Card selected = null;
+    private ArrayList<Integer> coinTracking;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
@@ -1449,6 +1450,14 @@ public class SplendorGameState extends GameState {
     public void setSelected(Card card)
     {
         this.selected = card;
+    }
+
+    public ArrayList<Integer> getCoinTracking(){
+        return this.coinTracking;
+    }
+
+    public void setCoinTracking(ArrayList<Integer> toChange){
+        this.coinTracking = toChange;
     }
 }
 
