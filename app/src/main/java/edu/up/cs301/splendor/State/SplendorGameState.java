@@ -149,6 +149,7 @@ public class SplendorGameState extends GameState {
     private ArrayList<Card> rank1Stack; //ArrayList of rank1 cards
     private ArrayList<Card> rank2Stack; //ArrayList of rank2 cards
     private ArrayList<Card> rank3Stack; //ArrayList of rank3 cards
+    private ArrayList<Noble> nobleStack;
 
     private final int RANKS = 3;
     private final int CARDS_PER_RANK = 4;
@@ -550,6 +551,7 @@ public class SplendorGameState extends GameState {
     coins in bank
 
     * */
+    /*
     @Override
     public String toString(){
         //p refers to player, n refers to noble, TS refers to ToString
@@ -754,7 +756,7 @@ public class SplendorGameState extends GameState {
 
         return returnString;
     }
-
+    */
     /*~~~~~~~~~~~~~~~~~~~~~~~~action methods~~~~~~~~~~~~~~~~~~~*/
 
     //TODO: Move actions and helpers?
