@@ -1,6 +1,6 @@
 package edu.up.cs301.game.GameFramework;
 
-import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.game.GameFramework.infoMessage.BindGameInfo;
 import edu.up.cs301.splendor.Game.Game;
 import edu.up.cs301.splendor.Setup.GameMainActivity;

@@ -133,6 +133,4 @@ public class SplendorPlayer {
 
     public void setNumCardsReserved(int numCardsReserved) { this.numCardsReserved = numCardsReserved; }
 
-
-
 }

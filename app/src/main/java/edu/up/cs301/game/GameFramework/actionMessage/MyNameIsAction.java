@@ -1,5 +1,6 @@
 package edu.up.cs301.game.GameFramework.actionMessage;
 
+import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.Players.GamePlayer;
 
 /**

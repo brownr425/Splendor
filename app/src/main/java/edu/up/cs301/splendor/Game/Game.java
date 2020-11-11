@@ -1,7 +1,7 @@
 package edu.up.cs301.splendor.Game;
 
 import edu.up.cs301.game.GameFramework.ProxyGame;
-import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.Players.GamePlayer;
 
 /**
