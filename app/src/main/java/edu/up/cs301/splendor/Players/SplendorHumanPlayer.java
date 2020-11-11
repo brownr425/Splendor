@@ -77,6 +77,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView infoBox;
 
 
+
     /**
      * constructor
      * @param name
