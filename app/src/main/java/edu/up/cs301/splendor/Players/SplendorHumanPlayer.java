@@ -49,6 +49,29 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     // the android activity that we are running
     private GameMainActivity myActivity;
 
+    //Everything on the GUI that gets updated TODO: RANK card stack for random reserve
+    private ImageButton nobleCard1;
+    private ImageButton nobleCard2;
+    private ImageButton nobleCard3;
+    private ImageButton nobleCard4;
+    private ImageButton nobleCard5;
+
+    private ImageButton rank3Card1;
+    private ImageButton rank3Card2;
+    private ImageButton rank3Card3;
+    private ImageButton rank3Card4;
+
+    private ImageButton rank2Card1;
+    private ImageButton rank2Card2;
+    private ImageButton rank2Card3;
+    private ImageButton rank2Card4;
+
+    private ImageButton rank1Card1;
+    private ImageButton rank1Card2;
+    private ImageButton rank1Card3;
+    private ImageButton rank1Card4;
+
+
     // infoBox
     private TextView infoBox;
 
@@ -77,6 +100,29 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     protected void updateDisplay() {
         // set the text in the appropriate widget
         //counterValueTextView.setText("" + state.getCounter());
+
+            rank3Card1.setImageResource(R.drawable.background1);
+        rank3Card2.setImageResource(R.drawable.background2);
+        rank3Card3.setImageResource(R.drawable.background3);
+        rank3Card4.setImageResource(R.drawable.background4);
+
+        rank2Card1.setImageResource(R.drawable.background1);
+        rank2Card2.setImageResource(R.drawable.background2);
+        rank2Card3.setImageResource(R.drawable.background3);
+        rank2Card4.setImageResource(R.drawable.background4);
+
+        rank1Card1.setImageResource(R.drawable.background1);
+        rank1Card2.setImageResource(R.drawable.background2);
+        rank1Card3.setImageResource(R.drawable.background3);
+        rank1Card4.setImageResource(R.drawable.background4);
+
+        nobleCard1.setImageResource(R.drawable.noble1try2);
+        nobleCard2.setImageResource(R.drawable.noble2);
+        nobleCard3.setImageResource(R.drawable.noble3);
+        nobleCard4.setImageResource(R.drawable.noble4);
+        nobleCard5.setImageResource(R.drawable.noble5);
+
+
     }
 
     /**
@@ -113,7 +159,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
             action = new SplendorSelectCardAction(this, 0,0);
-            String state.getSelected().
     }
         else if (button.getId() == R.id.nobleCard2){
             // something else was pressed: ignore
@@ -190,7 +235,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     @Override
     public void receiveInfo(GameInfo info) {
         // ignore the message if it's not a CounterState message
-        if (!(info instanceof CounterState)) return;
+        if (!(info instanceof SplendorGameState)) return;
 
         // update our state; then update the display
         // this.state = (CounterState)info;
@@ -217,44 +262,44 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         infoBox = (TextView) activity.findViewById(R.id.infoGiven);
 
         // make noble cards and set on click listener to display noble card information
-        ImageButton nobleCard1 = (ImageButton) activity.findViewById(R.id.nobleCard1);
+        nobleCard1 = (ImageButton) activity.findViewById(R.id.nobleCard1);
         nobleCard1.setOnClickListener(this);
-        ImageButton nobleCard2 = (ImageButton) activity.findViewById(R.id.nobleCard2);
+        nobleCard2 = (ImageButton) activity.findViewById(R.id.nobleCard2);
         nobleCard2.setOnClickListener(this);
-        ImageButton nobleCard3 = (ImageButton) activity.findViewById(R.id.nobleCard3);
+        nobleCard3 = (ImageButton) activity.findViewById(R.id.nobleCard3);
         nobleCard3.setOnClickListener(this);
 
-        ImageButton nobleCard4 = (ImageButton) activity.findViewById(R.id.nobleCard4);
+        nobleCard4 = (ImageButton) activity.findViewById(R.id.nobleCard4);
         nobleCard4.setOnClickListener(this);
-        ImageButton nobleCard5 = (ImageButton) activity.findViewById(R.id.nobleCard5);
+        nobleCard5 = (ImageButton) activity.findViewById(R.id.nobleCard5);
         nobleCard5.setOnClickListener(this);
 
         //image buttons for all the rank cards 1-3; starting with 3
-        ImageButton rank3Card1 = (ImageButton) activity.findViewById(R.id.rank3Card1);
+        rank3Card1 = (ImageButton) activity.findViewById(R.id.rank3Card1);
         rank3Card1.setOnClickListener(this);
-        ImageButton rank3Card2 = (ImageButton) activity.findViewById(R.id.rank3Card2);
+        rank3Card2 = (ImageButton) activity.findViewById(R.id.rank3Card2);
         rank3Card2.setOnClickListener(this);
-        ImageButton rank3Card3 = (ImageButton) activity.findViewById(R.id.rank3Card3);
+        rank3Card3 = (ImageButton) activity.findViewById(R.id.rank3Card3);
         rank3Card3.setOnClickListener(this);
-        ImageButton rank3Card4 = (ImageButton) activity.findViewById(R.id.rank3Card4);
+        rank3Card4 = (ImageButton) activity.findViewById(R.id.rank3Card4);
         rank3Card4.setOnClickListener(this);
 
-        ImageButton rank2Card1 = (ImageButton) activity.findViewById(R.id.rank2Card1);
+        rank2Card1 = (ImageButton) activity.findViewById(R.id.rank2Card1);
         rank2Card1.setOnClickListener(this);
-        ImageButton rank2Card2 = (ImageButton) activity.findViewById(R.id.rank2Card2);
+        rank2Card2 = (ImageButton) activity.findViewById(R.id.rank2Card2);
         rank2Card2.setOnClickListener(this);
-        ImageButton rank2Card3 = (ImageButton) activity.findViewById(R.id.rank2Card3);
+        rank2Card3 = (ImageButton) activity.findViewById(R.id.rank2Card3);
         rank2Card3.setOnClickListener(this);
-        ImageButton rank2Card4 = (ImageButton) activity.findViewById(R.id.rank2Card4);
+        rank2Card4 = (ImageButton) activity.findViewById(R.id.rank2Card4);
         rank2Card4.setOnClickListener(this);
 
-        ImageButton rank1Card1 = (ImageButton) activity.findViewById(R.id.rank1Card1);
+        rank1Card1 = (ImageButton) activity.findViewById(R.id.rank1Card1);
         rank1Card1.setOnClickListener(this);
-        ImageButton rank1Card2 = (ImageButton) activity.findViewById(R.id.rank1Card2);
+        rank1Card2 = (ImageButton) activity.findViewById(R.id.rank1Card2);
         rank1Card2.setOnClickListener(this);
-        ImageButton rank1Card3 = (ImageButton) activity.findViewById(R.id.rank1Card3);
+        rank1Card3 = (ImageButton) activity.findViewById(R.id.rank1Card3);
         rank1Card3.setOnClickListener(this);
-        ImageButton rank1Card4 = (ImageButton) activity.findViewById(R.id.rank1Card4);
+        rank1Card4 = (ImageButton) activity.findViewById(R.id.rank1Card4);
         rank1Card4.setOnClickListener(this);
 
         // imagebuttons for all coins
