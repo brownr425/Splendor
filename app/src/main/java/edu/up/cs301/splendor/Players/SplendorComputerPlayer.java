@@ -13,7 +13,7 @@ import edu.up.cs301.splendor.State.GameState;
 import edu.up.cs301.splendor.State.SplendorGameState;
 
 public class SplendorComputerPlayer extends GameComputerPlayer {
-    private Game game;
+    private SplendorGameState gameState;
     private int playerId;
     private String[] playerNames;
     private String name;
