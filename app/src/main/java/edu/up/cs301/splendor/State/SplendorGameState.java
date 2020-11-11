@@ -193,12 +193,12 @@ public class SplendorGameState extends GameState {
     public SplendorGameState(InputStream rank1, InputStream rank2, InputStream rank3) {
         initializePlayers();
         initializeCoins();
-        initializeDecks(rank1, rank2, rank3);
+        initializeDecks();
         //initializeNobles();
 
         this.playerTurn = 1;
 
-        initializeHands();
+        //initializeHands();
         Collections.shuffle(this.rank1Stack);
         Collections.shuffle(this.rank2Stack);
         Collections.shuffle(this.rank3Stack);
@@ -554,7 +554,7 @@ public class SplendorGameState extends GameState {
     coins in bank
 
     * */
-    @Override
+   /* @Override
     public String toString(){
         //p refers to player, n refers to noble, TS refers to ToString
         String p1, p2, p3, p4, playerTS, n1, n2, n3, n4, nobleTS, coinToString, returnString, newGame, GameInfoTS, allCardsTS;
@@ -757,7 +757,7 @@ public class SplendorGameState extends GameState {
         returnString = newGame + playerTS + nobleTS + coinToString + GameInfoTS;
 
         return returnString;
-    }
+    }*/
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~action methods~~~~~~~~~~~~~~~~~~~*/
 
@@ -839,20 +839,20 @@ public class SplendorGameState extends GameState {
         return true;
     }
 
-    public boolean cardAction(Card cardToBuy) {
+    public boolean cardAction(Card cardToBuy, SplendorPlayer player) {
         switch(this.getPlayerTurn()){
             case 1:
-                if (cardToBuy.getrPrice() <= p1RubyCoins+p1RubyPts &&
-                        cardToBuy.getbPrice() <= p1SapphireCoins+p1SapphirePts &&
-                        cardToBuy.getBrPrice() <= p1OnyxCoins+p1OnyxPts &&
-                        cardToBuy.getwPrice() <= p1DiamondCoins+p1DiamondPts &&
-                        cardToBuy.getgPrice() <= p1EmeraldCoins+p1EmeraldPts)
+                if (cardToBuy.getrPrice() <= player.getRubyCoins()+player.getRubyCoins() &&
+                        cardToBuy.getbPrice() <= player.getSapphCoins()+player.getSapphPts() &&
+                        cardToBuy.getBrPrice() <= player.getOnyxCoins()+player.getOnyxPts() &&
+                        cardToBuy.getwPrice() <= player.getDiaCoins()+player.getDiaPts() &&
+                        cardToBuy.getgPrice() <= player.getEmerCoins()+player.getEmerPts())
                 {
-                    if(cardToBuy.getrPrice()-p1RubyPts >= 0) p1RubyCoins = cardToBuy.getrPrice()-p1RubyPts-p1RubyCoins;
-                    if(cardToBuy.getbPrice()-p1SapphirePts >= 0) p1SapphireCoins = cardToBuy.getbPrice()-p1SapphirePts-p1SapphireCoins;
-                    if(cardToBuy.getBrPrice()-p1OnyxPts >= 0) p1OnyxCoins = cardToBuy.getBrPrice()-p1OnyxPts-p1OnyxCoins;
-                    if(cardToBuy.getwPrice()-p1DiamondPts >= 0) p1DiamondCoins = cardToBuy.getwPrice()-p1DiamondPts-p1DiamondCoins;
-                    if(cardToBuy.getgPrice()-p1EmeraldPts >= 0) p1EmeraldCoins = cardToBuy.getgPrice()-p1EmeraldPts-p1EmeraldCoins;
+                    if(cardToBuy.getrPrice()-player.getRubyPts() >= 0) player.setRubyCoins(cardToBuy.getrPrice()-player.getRubyPts()-player.getRubyCoins());
+                    if(cardToBuy.getbPrice()-player.getSapphPts() >= 0) player.setSapphCoins(cardToBuy.getbPrice()-player.getSapphPts()-player.getSapphCoins());
+                    if(cardToBuy.getBrPrice()-player.getOnyxPts() >= 0) player.setOnyxCoins(cardToBuy.getBrPrice()-player.getRubyPts()-player.getRubyCoins());
+                    if(cardToBuy.getwPrice()-player.getDiaPts() >= 0) player.setDiaCoins(cardToBuy.getwPrice()-player.getDiaPts()-player.getDiaCoins());
+                    if(cardToBuy.getgPrice()-player.getEmerPts() >= 0) player.setEmerCoins(cardToBuy.getgPrice()-player.getEmerPts()-player.getEmerCoins());
                     //add card to hand -> maybe fill new card in place of the bought card?
                     this.p1Hand.addToHand(cardToBuy);
                     this.nextPlayerTurn();
