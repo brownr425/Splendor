@@ -71,6 +71,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private ImageButton rank1Card4;
 
 
+
     /**
      * constructor
      * @param name
@@ -97,7 +98,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // set the text in the appropriate widget
         //counterValueTextView.setText("" + state.getCounter());
 
-            rank3Card1.setImageResource(R.drawable.background1);
+        rank3Card1.setImageResource(R.drawable.background1);
         rank3Card2.setImageResource(R.drawable.background2);
         rank3Card3.setImageResource(R.drawable.background3);
         rank3Card4.setImageResource(R.drawable.background4);

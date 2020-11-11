@@ -27,14 +27,22 @@ public class SplendorLocalGame extends LocalGame {
         return playerIdx == gameState.getPlayerTurn();
     }
 
-    protected String checkIfGameOver() {return "";}
+    protected String checkIfGameOver() {
+        if (this.gameState.getSplendorPlayer1().getPrestigePts() == 15 ||
+                this.gameState.getSplendorPlayer2().getPrestigePts() == 15 ||
+                this.gameState.getSplendorPlayer3().getPrestigePts() == 15 ||
+                this.gameState.getSplendorPlayer4().getPrestigePts() == 15) {
+            return "";
+        }
+        else {
+            return null;
+        }
+    }
 
     @Override
     protected boolean makeMove(GameAction action) {
         if (action instanceof splCoinAction){
-            splCoinAction sCOINa = (splCoinAction) action;
-
-           // gameState.coinAction();
+            
             //action was made, return true/valid move
             return true;
         }
@@ -58,8 +66,22 @@ public class SplendorLocalGame extends LocalGame {
         else if(action instanceof SplendorCoinSelectAction)
         {
             if(this.gameState.getCoinTracking().size() == 3) {
+                for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
+                {
+                    if(((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)){
+                        this.gameState.getCoinTracking().clear();
+                        this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+                        this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+                        return true;
+                    }
+                }
                 this.gameState.getCoinTracking().remove(0);
                 this.gameState.getCoinTracking().set(0, this.gameState.getCoinTracking().get(1));
+                this.gameState.getCoinTracking().remove(1);
+                this.gameState.getCoinTracking().set(0, this.gameState.getCoinTracking().get(2));
+                this.gameState.getCoinTracking().remove(2);
+                this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+                return true;
             }
             else {
                 for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
@@ -68,18 +90,18 @@ public class SplendorLocalGame extends LocalGame {
                         this.gameState.getCoinTracking().clear();
                         this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                         this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
-                    }
-                    else{
-                        this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+                        return true;
                     }
                 }
+                this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+                return true;
             }
         }
         else{
 
             return false;
         }
-        return false;
+
     }
 
 
