@@ -182,6 +182,7 @@ public class SplendorGameState extends GameState {
 
     private Card board[][] = new Card[RANKS][CARDS_PER_RANK];
     private Noble nobles[];
+    private Card selected = null;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
@@ -1439,6 +1440,15 @@ public class SplendorGameState extends GameState {
 
     public int getGoldCoins() {
         return goldCoins;
+    }
+
+    public Card getSelected(){
+        return this.selected;
+    }
+
+    public void setSelected(Card card)
+    {
+        this.selected = card;
     }
 }
 
