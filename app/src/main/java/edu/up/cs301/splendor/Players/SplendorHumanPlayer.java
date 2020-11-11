@@ -124,6 +124,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         if(state.getSelected() != null) {
             String info = state.getSelected().toString();
             infoBox.setText(info);
+        } else {
+            infoBox.setText("Your card info will be shown here");
         }
 
     }
@@ -161,7 +163,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
         else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this, 0,0);
+            action = new SplendorSelectCardAction(this,0,0);
     }
         else if (button.getId() == R.id.nobleCard2){
             // something else was pressed: ignore
@@ -177,19 +179,19 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
         else if (button.getId() == R.id.rank1Card1){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this, 0,0);
+            action = new SplendorSelectCardAction(this, 2,0);
         }
         else if (button.getId() == R.id.rank1Card2){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,1);
+            action = new SplendorSelectCardAction(this,2,1);
         }
         else if (button.getId() == R.id.rank1Card3){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,2);
+            action = new SplendorSelectCardAction(this,2,2);
         }
         else if (button.getId() == R.id.rank1Card4){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,3);
+            action = new SplendorSelectCardAction(this,2,3);
         }
         else if (button.getId() == R.id.rank2Card1){
             // something else was pressed: ignore
@@ -209,19 +211,19 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
         else if (button.getId() == R.id.rank3Card1){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this, 2,0);
+            action = new SplendorSelectCardAction(this, 0,0);
         }
         else if (button.getId() == R.id.rank3Card2){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,2,1);
+            action = new SplendorSelectCardAction(this,0,1);
         }
         else if (button.getId() == R.id.rank3Card3){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,2,2);
+            action = new SplendorSelectCardAction(this,0,2);
         }
         else if (button.getId() == R.id.rank3Card4){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,2,3);
+            action = new SplendorSelectCardAction(this,0,3);
         }
         else {
             return;
@@ -240,9 +242,16 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     public void receiveInfo(GameInfo info) {
         // ignore the message if it's not a CounterState message
         if (!(info instanceof SplendorGameState)) return;
+        this.state = (SplendorGameState) info;
+
+        if(state.getSelected() != null) {
+            String text = state.getSelected().toString();
+            infoBox.setText(text);
+        } else {
+            infoBox.setText("Your card info will be shown here");
+        }
 
         // update our state; then update the display
-        // this.state = (CounterState)info;
         this.state = (SplendorGameState)info;
         updateDisplay();
     }

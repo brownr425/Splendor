@@ -27,7 +27,13 @@ public class SplendorLocalGame extends LocalGame {
         return playerIdx == gameState.getPlayerTurn();
     }
 
-    protected String checkIfGameOver() {return "";}
+    protected String checkIfGameOver() {
+        if (gameState.getSplendorPlayer1().getPrestigePts() > 15){
+            return "player1 has won";
+        }
+
+        return null;
+    }
 
     @Override
     protected boolean makeMove(GameAction action) {
