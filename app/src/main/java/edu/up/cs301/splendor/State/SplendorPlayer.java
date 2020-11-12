@@ -33,7 +33,7 @@ public class SplendorPlayer {
         this.sapphPts = 15;
         this.emerPts = 15;
         this.diaPts = 15;
-        this.onyxCoins = 15;
+        this.onyxPts = 15;
     }
     /**
      * constructor SplendorPlayer - initialize all values for new object
