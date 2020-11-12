@@ -42,14 +42,19 @@ public class SplendorLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if (action instanceof splCoinAction){
-            
+
             //action was made, return true/valid move
             return true;
         }
         else if(action instanceof splCardAction)
         {
-            splCardAction sCARDa = (splCardAction) action;
-            //gameState.
+            if(this.gameState.getSelected() != null)
+            {
+                this.gameState.cardAction(this.gameState.getSelected());
+            }
+            else{
+                return false;
+            }
             //action was made, return true/valid move
             return true;
         }
