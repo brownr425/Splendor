@@ -353,8 +353,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         if (!(info instanceof SplendorGameState)) return;
         this.state = (SplendorGameState) info;
 
-
-
         // update our state; then update the display
         this.state = (SplendorGameState)info;
         updateDisplay();
@@ -484,7 +482,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Ruby= (TextView) activity.findViewById(R.id.rubyPoint4);
         p4Gold= (TextView) activity.findViewById(R.id.goldPoint4);
         p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
-
 
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated
