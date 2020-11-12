@@ -420,13 +420,14 @@ public class SplendorGameState extends GameState {
                         cardToBuy.getwPrice() <= splendorPlayer1.getDiaCoins()+splendorPlayer1.getDiaCoins() &&
                         cardToBuy.getgPrice() <= splendorPlayer1.getEmerCoins()+splendorPlayer1.getEmerPts())
                 {
-                    if(cardToBuy.getrPrice()-splendorPlayer1.getRubyPts() >= 0) splendorPlayer1.setRubyCoins(cardToBuy.getrPrice()-splendorPlayer1.getRubyPts()-splendorPlayer1.getRubyCoins());  this.rubyCoins = cardToBuy.getrPrice();
-                    if(cardToBuy.getbPrice()-splendorPlayer1.getSapphPts() >= 0) splendorPlayer1.setSapphCoins(cardToBuy.getbPrice()-splendorPlayer1.getSapphPts()-splendorPlayer1.getSapphCoins());  this.sapphireCoins = cardToBuy.getbPrice();
-                    if(cardToBuy.getBrPrice()-splendorPlayer1.getEmerPts() >= 0) splendorPlayer1.setOnyxCoins(cardToBuy.getBrPrice()-splendorPlayer1.getOnyxPts()-splendorPlayer1.getOnyxCoins());  this.onyxCoins = cardToBuy.getBrPrice();
-                    if(cardToBuy.getwPrice()-splendorPlayer1.getDiaPts() >= 0) splendorPlayer1.setDiaCoins(cardToBuy.getwPrice()-splendorPlayer1.getDiaPts()-splendorPlayer1.getDiaCoins());  this.diamondCoins = cardToBuy.getwPrice();
-                    if(cardToBuy.getgPrice()-splendorPlayer1.getEmerPts() >= 0) splendorPlayer1.setEmerCoins(cardToBuy.getgPrice()-splendorPlayer1.getEmerPts()-splendorPlayer1.getEmerCoins());  this.emeraldCoins = cardToBuy.getgPrice();
+                    if(cardToBuy.getrPrice()-splendorPlayer1.getRubyPts() >= 0) splendorPlayer1.setRubyCoins(cardToBuy.getrPrice()-splendorPlayer1.getRubyPts()-splendorPlayer1.getRubyCoins());  this.rubyCoins += cardToBuy.getrPrice();
+                    if(cardToBuy.getbPrice()-splendorPlayer1.getSapphPts() >= 0) splendorPlayer1.setSapphCoins(cardToBuy.getbPrice()-splendorPlayer1.getSapphPts()-splendorPlayer1.getSapphCoins());  this.sapphireCoins += cardToBuy.getbPrice();
+                    if(cardToBuy.getBrPrice()-splendorPlayer1.getEmerPts() >= 0) splendorPlayer1.setOnyxCoins(cardToBuy.getBrPrice()-splendorPlayer1.getOnyxPts()-splendorPlayer1.getOnyxCoins());  this.onyxCoins += cardToBuy.getBrPrice();
+                    if(cardToBuy.getwPrice()-splendorPlayer1.getDiaPts() >= 0) splendorPlayer1.setDiaCoins(cardToBuy.getwPrice()-splendorPlayer1.getDiaPts()-splendorPlayer1.getDiaCoins());  this.diamondCoins += cardToBuy.getwPrice();
+                    if(cardToBuy.getgPrice()-splendorPlayer1.getEmerPts() >= 0) splendorPlayer1.setEmerCoins(cardToBuy.getgPrice()-splendorPlayer1.getEmerPts()-splendorPlayer1.getEmerCoins());  this.emeraldCoins += cardToBuy.getgPrice();
                     //add card to hand -> maybe fill new card in place of the bought card?
                     this.splendorPlayer1.getPlayerHand().addToHand(cardToBuy);
+                    this.splendorPlayer1.setPrestigePts(splendorPlayer1.getPrestigePts()+cardToBuy.getPrestigePoints());
                     switch(row)
                     {
                         case 0:
@@ -457,6 +458,7 @@ public class SplendorGameState extends GameState {
                     if(cardToBuy.getgPrice()-splendorPlayer2.getEmerPts() >= 0) splendorPlayer2.setEmerCoins(cardToBuy.getgPrice()-splendorPlayer2.getEmerPts()-splendorPlayer2.getEmerCoins());  this.emeraldCoins = cardToBuy.getgPrice();
                     //add card to hand -> maybe fill new card in place of the bought card?
                     this.splendorPlayer2.getPlayerHand().addToHand(cardToBuy);
+                    this.splendorPlayer2.setPrestigePts(splendorPlayer2.getPrestigePts()+cardToBuy.getPrestigePoints());
                     switch(row)
                     {
                         case 0:
@@ -487,6 +489,7 @@ public class SplendorGameState extends GameState {
                     if(cardToBuy.getgPrice()-splendorPlayer3.getEmerPts() >= 0) splendorPlayer3.setEmerCoins(cardToBuy.getgPrice()-splendorPlayer3.getEmerPts()-splendorPlayer3.getEmerCoins()); this.emeraldCoins = cardToBuy.getgPrice();
                     //add card to hand -> maybe fill new card in place of the bought card?
                     this.splendorPlayer3.getPlayerHand().addToHand(cardToBuy);
+                    this.splendorPlayer3.setPrestigePts(splendorPlayer3.getPrestigePts()+cardToBuy.getPrestigePoints());
                     switch(row)
                     {
                         case 0:
@@ -517,6 +520,7 @@ public class SplendorGameState extends GameState {
                     if(cardToBuy.getgPrice()-splendorPlayer4.getEmerPts() >= 0) splendorPlayer4.setEmerCoins(cardToBuy.getgPrice()-splendorPlayer4.getEmerPts()-splendorPlayer4.getEmerCoins()); this.emeraldCoins = cardToBuy.getgPrice();
                     //add card to hand -> maybe fill new card in place of the bought card?
                     this.splendorPlayer4.getPlayerHand().addToHand(cardToBuy);
+                    this.splendorPlayer4.setPrestigePts(splendorPlayer4.getPrestigePts()+cardToBuy.getPrestigePoints());
                     switch(row)
                     {
                         case 0:
