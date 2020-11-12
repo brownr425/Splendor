@@ -187,35 +187,35 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
 
         //player point values
-        p1Emerald.setText("" + state.getSplendorPlayer1().getEmerCoins());
-        p1Diamond.setText("" + state.getSplendorPlayer1().getDiaCoins());
-        p1Sapphire.setText(""+ state.getSplendorPlayer1().getSapphCoins());
-        p1Onyx.setText("" + state.getSplendorPlayer1().getOnyxCoins());
-        p1Ruby.setText("" + state.getSplendorPlayer1().getRubyCoins());
+        p1Emerald.setText("" + (state.getSplendorPlayer1().getEmerCoins() + state.getSplendorPlayer1().getEmerPts()));
+        p1Diamond.setText("" + (state.getSplendorPlayer1().getDiaCoins()+ state.getSplendorPlayer1().getDiaPts()));
+        p1Sapphire.setText(""+ (state.getSplendorPlayer1().getSapphCoins()+ state.getSplendorPlayer1().getSapphPts()));
+        p1Onyx.setText("" + (state.getSplendorPlayer1().getOnyxCoins()+ state.getSplendorPlayer1().getOnyxPts()));
+        p1Ruby.setText("" + (state.getSplendorPlayer1().getRubyCoins()+ state.getSplendorPlayer1().getRubyPts()));
         p1Gold.setText("" + state.getSplendorPlayer1().getGoldCoins());
         p1PrestigePt.setText(""+ state.getSplendorPlayer1().getPrestigePts());
 
-        p2Emerald.setText("" + state.getSplendorPlayer2().getEmerCoins());
-        p2Diamond.setText("" + state.getSplendorPlayer2().getDiaCoins());
-        p2Sapphire.setText(""+ state.getSplendorPlayer2().getSapphCoins());
-        p2Onyx.setText("" + state.getSplendorPlayer2().getOnyxCoins());
-        p2Ruby.setText("" + state.getSplendorPlayer2().getRubyCoins());
+        p2Emerald.setText("" + (state.getSplendorPlayer2().getEmerCoins() + state.getSplendorPlayer2().getEmerPts()));
+        p2Diamond.setText("" + (state.getSplendorPlayer2().getDiaCoins()+ state.getSplendorPlayer2().getDiaPts()));
+        p2Sapphire.setText(""+ (state.getSplendorPlayer2().getSapphCoins()+ state.getSplendorPlayer2().getSapphPts()));
+        p2Onyx.setText("" + (state.getSplendorPlayer2().getOnyxCoins()+ state.getSplendorPlayer2().getOnyxPts()));
+        p2Ruby.setText("" + (state.getSplendorPlayer2().getRubyCoins()+ state.getSplendorPlayer2().getRubyPts()));
         p2Gold.setText("" + state.getSplendorPlayer2().getGoldCoins());
         p2PrestigePt.setText(""+ state.getSplendorPlayer2().getPrestigePts());
 
-        p3Emerald.setText("" + state.getSplendorPlayer3().getEmerCoins());
-        p3Diamond.setText("" + state.getSplendorPlayer3().getDiaCoins());
-        p3Sapphire.setText(""+ state.getSplendorPlayer3().getSapphCoins());
-        p3Onyx.setText("" + state.getSplendorPlayer3().getOnyxCoins());
-        p3Ruby.setText("" + state.getSplendorPlayer3().getRubyCoins());
+        p3Emerald.setText("" + (state.getSplendorPlayer3().getEmerCoins() + state.getSplendorPlayer3().getEmerPts()));
+        p3Diamond.setText("" + (state.getSplendorPlayer3().getDiaCoins()+ state.getSplendorPlayer3().getDiaPts()));
+        p3Sapphire.setText(""+ (state.getSplendorPlayer3().getSapphCoins()+ state.getSplendorPlayer3().getSapphPts()));
+        p3Onyx.setText("" + (state.getSplendorPlayer3().getOnyxCoins()+ state.getSplendorPlayer3().getOnyxPts()));
+        p3Ruby.setText("" + (state.getSplendorPlayer3().getRubyCoins()+ state.getSplendorPlayer3().getRubyPts()));
         p3Gold.setText("" + state.getSplendorPlayer3().getGoldCoins());
         p3PrestigePt.setText(""+ state.getSplendorPlayer3().getPrestigePts());
 
-        p4Emerald.setText("" + state.getSplendorPlayer4().getEmerCoins());
-        p4Diamond.setText("" + state.getSplendorPlayer4().getDiaCoins());
-        p4Sapphire.setText(""+ state.getSplendorPlayer4().getSapphCoins());
-        p4Onyx.setText("" + state.getSplendorPlayer4().getOnyxCoins());
-        p4Ruby.setText("" + state.getSplendorPlayer4().getRubyCoins());
+        p4Emerald.setText("" + (state.getSplendorPlayer4().getEmerCoins() + state.getSplendorPlayer4().getEmerPts()));
+        p4Diamond.setText("" + (state.getSplendorPlayer4().getDiaCoins()+ state.getSplendorPlayer4().getDiaPts()));
+        p4Sapphire.setText(""+ (state.getSplendorPlayer4().getSapphCoins()+ state.getSplendorPlayer4().getSapphPts()));
+        p4Onyx.setText("" + (state.getSplendorPlayer4().getOnyxCoins()+ state.getSplendorPlayer4().getOnyxPts()));
+        p4Ruby.setText("" + (state.getSplendorPlayer4().getRubyCoins()+ state.getSplendorPlayer4().getRubyPts()));
         p4Gold.setText("" + state.getSplendorPlayer4().getGoldCoins());
         p4PrestigePt.setText(""+ state.getSplendorPlayer4().getPrestigePts());
 
