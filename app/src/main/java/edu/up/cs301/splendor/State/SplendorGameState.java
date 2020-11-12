@@ -185,13 +185,15 @@ public class SplendorGameState extends GameState {
     private Card selected = null;
     private ArrayList<Integer> coinTracking;
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//~~~~~~~~~~~~~~~~~~~~~~CONSTRUCTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
     public SplendorGameState(/*InputStream rank1, InputStream rank2, InputStream rank3*/) {
         initializePlayers();
         initializeCoins();
         initializeNobles();
         // initializeDecks(rank1, rank2, rank3); //unfinished
+
+        this.selected = new Card();
 
         initializeDecks(); //unfinished: rank1, rank2, rank3
         Collections.shuffle(this.rank1Stack);
@@ -216,6 +218,7 @@ public class SplendorGameState extends GameState {
             }
         }
 
+         this.selected = new Card (stateToCopy.getSelected());
         //creates deeps copy of each players hands
         /*this.p1Hand = new Hand(stateToCopy.p1Hand);
         this.p2Hand = new Hand(stateToCopy.p2Hand);
@@ -317,7 +320,7 @@ public class SplendorGameState extends GameState {
 
     //helper method for constructor setting all point values for player to zero
     public void initializePlayers() {
-        this.playerTurn = 1;
+        this.playerTurn = 0;
 
         //TODO: get number of players from config
         /*for(int i = 0; i < getNumPlayers(); i++) {
@@ -329,19 +332,20 @@ public class SplendorGameState extends GameState {
         this.splendorPlayer3 = new SplendorPlayer(PLAYER3ID);
         this.splendorPlayer4 = new SplendorPlayer(PLAYER4ID);
 
+
         //player one
         this.p1GoldCoins = 0;
         this.p1GoldPts = 0;
         this.p1EmeraldCoins = 0;
-        this.p1EmeraldPts = 4;
+        this.p1EmeraldPts = 0;
         this.p1SapphireCoins = 0;
-        this.p1SapphirePts = 4;
+        this.p1SapphirePts = 0;
         this.p1RubyCoins = 0;
-        this.p1RubyPts = 4;
+        this.p1RubyPts = 0;
         this.p1OnyxCoins = 0;
-        this.p1OnyxPts = 4;
+        this.p1OnyxPts = 0;
         this.p1DiamondCoins = 0;
-        this.p1DiamondPts = 4;
+        this.p1DiamondPts = 0;
         this.p1PrestigePts = 0;
         this.p1NumCardsReserved = 0;
 

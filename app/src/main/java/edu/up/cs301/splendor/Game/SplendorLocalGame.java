@@ -27,6 +27,7 @@ public class SplendorLocalGame extends LocalGame {
         return playerIdx == gameState.getPlayerTurn();
     }
 
+
     protected String checkIfGameOver() {
         if (this.gameState.getSplendorPlayer1().getPrestigePts() == 15 ||
                 this.gameState.getSplendorPlayer2().getPrestigePts() == 15 ||
