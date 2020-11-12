@@ -5,10 +5,13 @@ import edu.up.cs301.game.GameFramework.GameHumanPlayer;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.splCardAction;
+import edu.up.cs301.splendor.Actions.splCoinAction;
 import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.State.GameInfo;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -71,6 +74,20 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private ImageButton rank1Card3;
     private ImageButton rank1Card4;
 
+    //coins I buttons
+    ImageButton emeraldCoin;
+    ImageButton diamondCoin;
+    ImageButton sapphireCoin;
+    ImageButton onyxCoin;
+    ImageButton rubyCoin;
+    ImageButton goldCoin;
+
+    //Buy button
+    Button buyButton;
+    //Take Coins
+    Button coinButton;
+
+
 
     // infoBox
     private TextView infoBox;
@@ -101,6 +118,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // set the text in the appropriate widget
         //counterValueTextView.setText("" + state.getCounter());
 
+        //TODO: update player values. coins
+
+
+        //for now, card/coin images are default
         rank3Card1.setImageResource(R.drawable.background1);
         rank3Card2.setImageResource(R.drawable.background2);
         rank3Card3.setImageResource(R.drawable.background3);
@@ -121,12 +142,27 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         nobleCard3.setImageResource(R.drawable.noble3);
         nobleCard4.setImageResource(R.drawable.noble4);
         nobleCard5.setImageResource(R.drawable.noble5);
+
+        emeraldCoin.setImageResource(R.drawable.emerald);
+        diamondCoin.setImageResource(R.drawable.diamond);
+        sapphireCoin.setImageResource(R.drawable.sapphire);
+        onyxCoin.setImageResource(R.drawable.onyx);
+        rubyCoin.setImageResource(R.drawable.ruby);
+        goldCoin.setImageResource(R.drawable.gold);
+
+
+
+        //Update info box to reflect selected card
         if(state.getSelected() != null) {
             String info = state.getSelected().toString();
             infoBox.setText(info);
         } else {
             infoBox.setText("Your card info will be shown here");
         }
+
+
+
+
 
     }
 
@@ -151,6 +187,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         GameAction action = null;
         if (button.getId() == R.id.buyAction) {
             // plus button: create "increment" action
+            Log.d("SHP", "BUY");
             action = new splCardAction(this, null);
         }
         else if (button.getId() == R.id.reserveAction) {
@@ -158,24 +195,24 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
           //  action = new SplendorReserveCardAction(this, null);
         }
         else if (button.getId() == R.id.coinAction){
-            // something else was pressed: ignore
-          //  action = new SplendorReserveCardAction(this, null);
+
+          action = new splCoinAction(this);
         }
         else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,0);
+           // action = new SplendorSelectCardAction(this,0,0);
     }
         else if (button.getId() == R.id.nobleCard2){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,1);
+            //action = new SplendorSelectCardAction(this,0,1);
         }
         else if (button.getId() == R.id.nobleCard3){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,2);
+           // action = new SplendorSelectCardAction(this,0,2);
         }
         else if (button.getId() == R.id.nobleCard4){
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,3);
+           // action = new SplendorSelectCardAction(this,0,3);
         }
         else if (button.getId() == R.id.rank1Card1){
             // something else was pressed: ignore
@@ -244,12 +281,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         if (!(info instanceof SplendorGameState)) return;
         this.state = (SplendorGameState) info;
 
-        if(state.getSelected() != null) {
-            String text = state.getSelected().toString();
-            infoBox.setText(text);
-        } else {
-            infoBox.setText("Your card info will be shown here");
-        }
+
 
         // update our state; then update the display
         this.state = (SplendorGameState)info;
@@ -316,17 +348,17 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         rank1Card4.setOnClickListener(this);
 
         // imagebuttons for all coins
-        ImageButton emeraldCoin = (ImageButton) activity.findViewById(R.id.emeraldCoin);
+        emeraldCoin = (ImageButton) activity.findViewById(R.id.emeraldCoin);
         emeraldCoin.setOnClickListener(this);
-        ImageButton diamondCoin = (ImageButton) activity.findViewById(R.id.diamondCoin);
+        diamondCoin = (ImageButton) activity.findViewById(R.id.diamondCoin);
         diamondCoin.setOnClickListener(this);
-        ImageButton sapphireCoin = (ImageButton) activity.findViewById(R.id.sapphireCoin);
+        sapphireCoin = (ImageButton) activity.findViewById(R.id.sapphireCoin);
         sapphireCoin.setOnClickListener(this);
-        ImageButton onyxCoin = (ImageButton) activity.findViewById(R.id.onyxCoin);
+        onyxCoin = (ImageButton) activity.findViewById(R.id.onyxCoin);
         onyxCoin.setOnClickListener(this);
-        ImageButton rubyCoin = (ImageButton) activity.findViewById(R.id.rubyCoin);
+        rubyCoin = (ImageButton) activity.findViewById(R.id.rubyCoin);
         rubyCoin.setOnClickListener(this);
-        ImageButton goldCoin = (ImageButton) activity.findViewById(R.id.goldCoin);
+        goldCoin = (ImageButton) activity.findViewById(R.id.goldCoin);
         goldCoin.setOnClickListener(this);
 
         // simple buttons for the reserved cards
@@ -338,11 +370,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         reserveCard3.setOnClickListener(this);
 
         //action buttons for the actions
-        Button buyButton = (Button) activity.findViewById(R.id.buyAction);
+        buyButton = (Button) activity.findViewById(R.id.buyAction);
         buyButton.setOnClickListener(this);
         Button reserveButton = (Button) activity.findViewById(R.id.reserveAction);
         reserveButton.setOnClickListener(this);
-        Button coinButton = (Button) activity.findViewById(R.id.coinAction);
+        coinButton = (Button) activity.findViewById(R.id.coinAction);
         coinButton.setOnClickListener(this);
 
         // will provide info on current player stats if clicked on
