@@ -47,8 +47,7 @@ public class SplendorLocalGame extends LocalGame {
             //action was made, return true/valid move
             return true;
         }
-        else if(action instanceof splCardAction)
-        {
+        else if(action instanceof splCardAction) {
             if(this.gameState.getSelected() != null)
             {
                 this.gameState.cardAction(this.gameState.getSelected());
