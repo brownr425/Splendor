@@ -127,6 +127,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p4Gold;
     private TextView p4PrestigePt;
 
+
     /**
      * constructor
      * @param name
@@ -218,7 +219,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Ruby.setText("" + (state.getSplendorPlayer4().getRubyCoins()+ state.getSplendorPlayer4().getRubyPts()));
         p4Gold.setText("" + state.getSplendorPlayer4().getGoldCoins());
         p4PrestigePt.setText(""+ state.getSplendorPlayer4().getPrestigePts());
-
 
 
         //Update info box to reflect selected card
@@ -498,6 +498,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Ruby= (TextView) activity.findViewById(R.id.rubyPoint4);
         p4Gold= (TextView) activity.findViewById(R.id.goldPoint4);
         p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
+
 
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated
