@@ -805,7 +805,7 @@ public class SplendorGameState extends GameState {
 
     public boolean reserveAction(Card cardToReserve) {
         switch(this.getPlayerTurn()){
-            case 1:
+            case 0:
                 if (this.splendorPlayer1.getPlayerHand().canReserve()) {
                     return false;
                 }
@@ -814,7 +814,7 @@ public class SplendorGameState extends GameState {
                     this.splendorPlayer1.getPlayerHand().addToReserved(cardToReserve);
                 }
                 break;
-            case 2:
+            case 1:
                 if (!this.splendorPlayer2.getPlayerHand().canReserve()) {
                     return false;
                 }
@@ -823,7 +823,7 @@ public class SplendorGameState extends GameState {
                     this.splendorPlayer2.getPlayerHand().addToReserved(cardToReserve);
                 }
                 break;
-            case 3:
+            case 2:
                 if (!this.splendorPlayer3.getPlayerHand().canReserve()) {
                     return false;
                 }
@@ -832,7 +832,7 @@ public class SplendorGameState extends GameState {
                     this.splendorPlayer3.getPlayerHand().addToReserved(cardToReserve);
                 }
                 break;
-            case 4:
+            case 3:
                 if (!this.splendorPlayer4.getPlayerHand().canReserve()) {
                     return false;
                 }
@@ -848,7 +848,7 @@ public class SplendorGameState extends GameState {
 
     public boolean cardAction(Card cardToBuy, int row, int col) {
         switch(this.getPlayerTurn()){
-            case 1:
+            case 0:
                 if (cardToBuy.getrPrice() <= splendorPlayer1.getRubyCoins()+splendorPlayer1.getRubyPts() &&
                         cardToBuy.getbPrice() <= splendorPlayer1.getSapphCoins()+splendorPlayer1.getSapphPts() &&
                         cardToBuy.getBrPrice() <= splendorPlayer1.getEmerCoins()+splendorPlayer1.getEmerPts() &&
@@ -878,7 +878,7 @@ public class SplendorGameState extends GameState {
                     return true;
                 }
                 break;
-            case 2:
+            case 1:
                 if (cardToBuy.getrPrice() <= splendorPlayer2.getRubyCoins()+splendorPlayer2.getRubyPts() &&
                         cardToBuy.getbPrice() <= splendorPlayer2.getSapphCoins()+splendorPlayer2.getSapphPts() &&
                         cardToBuy.getBrPrice() <= splendorPlayer2.getEmerCoins()+splendorPlayer2.getEmerPts() &&
@@ -908,7 +908,7 @@ public class SplendorGameState extends GameState {
                     return true;
                 }
                 break;
-            case 3:
+            case 2:
                 if (cardToBuy.getrPrice() <= splendorPlayer3.getRubyCoins()+splendorPlayer3.getRubyPts() &&
                         cardToBuy.getbPrice() <= splendorPlayer3.getSapphCoins()+splendorPlayer3.getSapphPts() &&
                         cardToBuy.getBrPrice() <= splendorPlayer3.getEmerCoins()+splendorPlayer3.getEmerPts() &&
@@ -938,7 +938,7 @@ public class SplendorGameState extends GameState {
                     return true;
                 }
                 break;
-            case 4:
+            case 3:
                 if (cardToBuy.getrPrice() <= splendorPlayer4.getRubyCoins()+splendorPlayer4.getRubyPts() &&
                         cardToBuy.getbPrice() <= splendorPlayer4.getSapphCoins()+splendorPlayer4.getSapphPts() &&
                         cardToBuy.getBrPrice() <= splendorPlayer4.getEmerCoins()+splendorPlayer4.getEmerPts() &&
@@ -982,22 +982,22 @@ public class SplendorGameState extends GameState {
         boolean flag3 = coinPileCheck()[coinColor3];
 
         switch (this.getPlayerTurn()) {
-            case 1:
+            case 0:
                 if(coinCountBool(splendorPlayer1) && flag1 && flag2 && flag3) {
                     return true;
                 }
                 break;
-            case 2:
+            case 1:
                 if(coinCountBool(splendorPlayer2) && flag1 && flag2 && flag3) {
                     return true;
                 }
                 break;
-            case 3:
+            case 2:
                 if(coinCountBool(splendorPlayer3) && flag1 && flag2 && flag3) {
                     return true;
                 }
                 break;
-            case 4:
+            case 3:
                 if(coinCountBool(splendorPlayer4) && flag1 && flag2 && flag3) {
                     return true;
                 }
@@ -1009,17 +1009,18 @@ public class SplendorGameState extends GameState {
     private boolean coinCheckDoubles(int coinColor) // checks if current player can take 2 coins of same color
     {
         boolean flag = coinPileCheckDoubles()[coinColor];
+        Log.d("button", flag+"");
         switch (this.getPlayerTurn()){
-            case 1:
+            case 0:
                 if(coinCountBool(splendorPlayer1) && flag) return true;
                 break;
-            case 2:
+            case 1:
                 if(coinCountBool(splendorPlayer2) && flag) return true;
                 break;
-            case 3:
+            case 2:
                 if(coinCountBool(splendorPlayer3) && flag) return true;
                 break;
-            case 4:
+            case 3:
                 if(coinCountBool(splendorPlayer4) && flag) return true;
                 break;
         }
@@ -1028,8 +1029,13 @@ public class SplendorGameState extends GameState {
 
     private boolean coinCountBool(SplendorPlayer splendorPlayer) {
         if(splendorPlayer.getDiaCoins()+splendorPlayer.getEmerCoins()+splendorPlayer.getOnyxCoins()+
-                splendorPlayer.getRubyCoins()+splendorPlayer.getSapphCoins()+splendorPlayer.getGoldCoins() >= 10) return false;
-        return true;
+                splendorPlayer.getRubyCoins()+splendorPlayer.getSapphCoins()+splendorPlayer.getGoldCoins() >= 10)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     /*private boolean p1coinCountBool() {
@@ -1070,19 +1076,19 @@ public class SplendorGameState extends GameState {
             case 0:
                 this.rubyCoins--;
                 switch(this.getPlayerTurn()) {
-                    case 1:
+                    case 0:
                         //this.p1RubyCoins++;
                         splendorPlayer1.setRubyCoins(splendorPlayer1.getRubyCoins()+1);
                         break;
-                    case 2:
+                    case 1:
                         //this.p2RubyCoins++;
                         splendorPlayer2.setRubyCoins(splendorPlayer2.getRubyCoins()+1);
                         break;
-                    case 3:
+                    case 2:
                         //this.p3RubyCoins++;
                         splendorPlayer3.setRubyCoins(splendorPlayer3.getRubyCoins()+1);
                         break;
-                    case 4:
+                    case 3:
                         //this.p4RubyCoins++;
                         splendorPlayer4.setRubyCoins(splendorPlayer4.getRubyCoins()+1);
                         break;
@@ -1091,19 +1097,19 @@ public class SplendorGameState extends GameState {
             case 1:
                 this.sapphireCoins--;
                 switch(this.getPlayerTurn()) {
-                    case 1:
+                    case 0:
                         //this.p1SapphireCoins++;
                         splendorPlayer1.setSapphCoins(splendorPlayer1.getSapphCoins()+1);
                         break;
-                    case 2:
+                    case 1:
                         //this.p2SapphireCoins++;
                         splendorPlayer2.setSapphCoins(splendorPlayer2.getSapphCoins()+1);
                         break;
-                    case 3:
+                    case 2:
                         //this.p3SapphireCoins++;
                         splendorPlayer3.setSapphCoins(splendorPlayer3.getSapphCoins()+1);
                         break;
-                    case 4:
+                    case 3:
                         //this.p4SapphireCoins++;
                         splendorPlayer4.setSapphCoins(splendorPlayer4.getSapphCoins()+1);
                         break;
@@ -1112,19 +1118,19 @@ public class SplendorGameState extends GameState {
             case 2:
                 this.emeraldCoins--;
                 switch(this.getPlayerTurn()) {
-                    case 1:
+                    case 0:
                         //this.p1EmeraldCoins++;
                         splendorPlayer1.setEmerCoins(splendorPlayer1.getEmerCoins()+1);
                         break;
-                    case 2:
+                    case 1:
                         //this.p2EmeraldCoins++;
                         splendorPlayer2.setEmerCoins(splendorPlayer2.getEmerCoins()+1);
                         break;
-                    case 3:
+                    case 2:
                         //this.p3EmeraldCoins++;
                         splendorPlayer3.setEmerCoins(splendorPlayer3.getEmerCoins()+1);
                         break;
-                    case 4:
+                    case 3:
                         //this.p4EmeraldCoins++;
                         splendorPlayer4.setEmerCoins(splendorPlayer4.getEmerCoins()+1);
                         break;
@@ -1133,19 +1139,19 @@ public class SplendorGameState extends GameState {
             case 3:
                 this.diamondCoins--;
                 switch(this.getPlayerTurn()) {
-                    case 1:
+                    case 0:
                         //this.p1DiamondCoins++;
                         splendorPlayer1.setDiaCoins(splendorPlayer1.getDiaCoins()+1);
                         break;
-                    case 2:
+                    case 1:
                         //this.p2DiamondCoins++;
                         splendorPlayer2.setDiaCoins(splendorPlayer2.getDiaCoins()+1);
                         break;
-                    case 3:
+                    case 2:
                         //this.p3DiamondCoins++;
                         splendorPlayer3.setDiaCoins(splendorPlayer3.getDiaCoins()+1);
                         break;
-                    case 4:
+                    case 3:
                         //this.p4DiamondCoins++;
                         splendorPlayer4.setDiaCoins(splendorPlayer4.getDiaCoins()+1);
                         break;
@@ -1154,19 +1160,19 @@ public class SplendorGameState extends GameState {
             case 4:
                 this.onyxCoins--;
                 switch(this.getPlayerTurn()) {
-                    case 1:
+                    case 0:
                         //this.p1OnyxCoins++;
                         splendorPlayer1.setOnyxCoins(splendorPlayer1.getOnyxCoins()+1);
                         break;
-                    case 2:
+                    case 1:
                         //this.p2OnyxCoins++;
                         splendorPlayer2.setOnyxCoins(splendorPlayer2.getOnyxCoins()+1);
                         break;
-                    case 3:
+                    case 2:
                         //this.p3OnyxCoins++;
                         splendorPlayer3.setOnyxCoins(splendorPlayer3.getOnyxCoins()+1);
                         break;
-                    case 4:
+                    case 3:
                         //this.p4OnyxCoins++;
                         splendorPlayer4.setOnyxCoins(splendorPlayer4.getOnyxCoins()+1);
                         break;
