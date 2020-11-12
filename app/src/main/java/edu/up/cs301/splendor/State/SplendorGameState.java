@@ -183,7 +183,9 @@ public class SplendorGameState extends GameState {
     private Card board[][] = new Card[RANKS][CARDS_PER_RANK];
     private Noble nobles[];
     private Card selected = null;
-    private ArrayList<Integer> coinTracking;
+    private ArrayList<Integer> coinTracking = new ArrayList<>();
+    private int selectedRow = -1;
+    private int selectedCol = -1;
 
 //~~~~~~~~~~~~~~~~~~~~~~CONSTRUCTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
@@ -316,6 +318,9 @@ public class SplendorGameState extends GameState {
         this.noble4 = stateToCopy.getNoble4();
 
         this.coinTracking = stateToCopy.getCoinTracking();
+
+        this.selectedRow = stateToCopy.getSelectedRow();
+        this.selectedCol = stateToCopy.getSelectedCol();
     }
 
     //helper method for constructor setting all point values for player to zero
@@ -841,7 +846,7 @@ public class SplendorGameState extends GameState {
         return true;
     }
 
-    public boolean cardAction(Card cardToBuy) {
+    public boolean cardAction(Card cardToBuy, int row, int col) {
         switch(this.getPlayerTurn()){
             case 1:
                 if (cardToBuy.getrPrice() <= splendorPlayer1.getRubyCoins()+splendorPlayer1.getRubyPts() &&
@@ -857,6 +862,18 @@ public class SplendorGameState extends GameState {
                     if(cardToBuy.getgPrice()-splendorPlayer1.getEmerPts() >= 0) splendorPlayer1.setEmerCoins(cardToBuy.getgPrice()-splendorPlayer1.getEmerPts()-splendorPlayer1.getEmerCoins());
                     //add card to hand -> maybe fill new card in place of the bought card?
                     this.splendorPlayer1.getPlayerHand().addToHand(cardToBuy);
+                    switch(row)
+                    {
+                        case 0:
+                            this.board[row][col] = this.rank3Stack.remove(0);
+                            break;
+                        case 1:
+                            this.board[row][col] = this.rank2Stack.remove(0);
+                            break;
+                        case 2:
+                            this.board[row][col] = this.rank1Stack.remove(0);
+                            break;
+                    }
                     this.nextPlayerTurn();
                     return true;
                 }
@@ -875,6 +892,18 @@ public class SplendorGameState extends GameState {
                     if(cardToBuy.getgPrice()-splendorPlayer2.getEmerPts() >= 0) splendorPlayer2.setEmerCoins(cardToBuy.getgPrice()-splendorPlayer2.getEmerPts()-splendorPlayer2.getEmerCoins());
                     //add card to hand -> maybe fill new card in place of the bought card?
                     this.splendorPlayer2.getPlayerHand().addToHand(cardToBuy);
+                    switch(row)
+                    {
+                        case 0:
+                            this.board[row][col] = this.rank3Stack.remove(0);
+                            break;
+                        case 1:
+                            this.board[row][col] = this.rank2Stack.remove(0);
+                            break;
+                        case 2:
+                            this.board[row][col] = this.rank1Stack.remove(0);
+                            break;
+                    }
                     this.nextPlayerTurn();
                     return true;
                 }
@@ -893,6 +922,18 @@ public class SplendorGameState extends GameState {
                     if(cardToBuy.getgPrice()-splendorPlayer3.getEmerPts() >= 0) splendorPlayer3.setEmerCoins(cardToBuy.getgPrice()-splendorPlayer3.getEmerPts()-splendorPlayer3.getEmerCoins());
                     //add card to hand -> maybe fill new card in place of the bought card?
                     this.splendorPlayer3.getPlayerHand().addToHand(cardToBuy);
+                    switch(row)
+                    {
+                        case 0:
+                            this.board[row][col] = this.rank3Stack.remove(0);
+                            break;
+                        case 1:
+                            this.board[row][col] = this.rank2Stack.remove(0);
+                            break;
+                        case 2:
+                            this.board[row][col] = this.rank1Stack.remove(0);
+                            break;
+                    }
                     this.nextPlayerTurn();
                     return true;
                 }
@@ -911,6 +952,18 @@ public class SplendorGameState extends GameState {
                     if(cardToBuy.getgPrice()-splendorPlayer4.getEmerPts() >= 0) splendorPlayer4.setEmerCoins(cardToBuy.getgPrice()-splendorPlayer4.getEmerPts()-splendorPlayer4.getEmerCoins());
                     //add card to hand -> maybe fill new card in place of the bought card?
                     this.splendorPlayer4.getPlayerHand().addToHand(cardToBuy);
+                    switch(row)
+                    {
+                        case 0:
+                            this.board[row][col] = this.rank3Stack.remove(0);
+                            break;
+                        case 1:
+                            this.board[row][col] = this.rank2Stack.remove(0);
+                            break;
+                        case 2:
+                            this.board[row][col] = this.rank1Stack.remove(0);
+                            break;
+                    }
                     this.nextPlayerTurn();
                     return true;
                 }
@@ -1469,6 +1522,26 @@ public class SplendorGameState extends GameState {
 
     public void setCoinTracking(ArrayList<Integer> toChange){
         this.coinTracking = toChange;
+    }
+
+    public void setSelectedRow(int row)
+    {
+        this.selectedRow = row;
+    }
+
+    public int getSelectedRow()
+    {
+        return this.selectedRow;
+    }
+
+    public void setSelectedCol(int col)
+    {
+        this.selectedCol = col;
+    }
+
+    public int getSelectedCol()
+    {
+        return this.selectedCol;
     }
 }
 

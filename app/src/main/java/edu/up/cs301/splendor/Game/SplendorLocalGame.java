@@ -1,5 +1,7 @@
 package edu.up.cs301.splendor.Game;
 
+import android.util.Log;
+
 import java.io.InputStream;
 
 
@@ -26,7 +28,6 @@ public class SplendorLocalGame extends LocalGame {
     protected boolean canMove(int playerIdx) {
         return playerIdx == gameState.getPlayerTurn();
     }
-
 
     protected String checkIfGameOver() {
         if (this.gameState.getSplendorPlayer1().getPrestigePts() == 15 ||
@@ -69,7 +70,7 @@ public class SplendorLocalGame extends LocalGame {
         else if(action instanceof splCardAction) {
             if(this.gameState.getSelected() != null)
             {
-                this.gameState.cardAction(this.gameState.getSelected());
+                this.gameState.cardAction(this.gameState.getSelected(), ((splCardAction) action).getRow(), ((splCardAction) action).getCol());
             }
             else{
                 return false;
@@ -79,6 +80,8 @@ public class SplendorLocalGame extends LocalGame {
         }
         else if(action instanceof SplendorSelectCardAction){
             this.gameState.setSelected(this.gameState.getBoard(((SplendorSelectCardAction) action).getRow(), ((SplendorSelectCardAction) action).getCol()));
+            this.gameState.setSelectedRow(((SplendorSelectCardAction) action).getRow());
+            this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol());
             //action was made, return true/valid move
             return true;
         }
@@ -89,6 +92,11 @@ public class SplendorLocalGame extends LocalGame {
         }
         else if(action instanceof SplendorCoinSelectAction)
         {
+            Log.d("but", "works Jacob");
+            if(this.gameState.getCoinTracking().isEmpty())
+            {
+                this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+            }
             if(this.gameState.getCoinTracking().size() == 3) {
                 for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
                 {

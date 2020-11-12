@@ -256,7 +256,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         if (button.getId() == R.id.buyAction) {
             // plus button: create "increment" action
             Log.d("SHP", "BUY");
-            action = new splCardAction(this, null);
+            action = new splCardAction(this, this.state.getSelected(), this.state.getSelectedRow(), this.state.getSelectedCol());
         }
         else if (button.getId() == R.id.reserveAction) {
             // minus button: create "decrement" action
