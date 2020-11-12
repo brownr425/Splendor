@@ -24,6 +24,7 @@ public class SplendorGameState extends GameState {
     //holds turn value corresponding to player ID below
     private int playerTurn;
 
+
     //player values for playerTurn
     private final int PLAYER1ID = 0;
     private final int PLAYER2ID = 1;
