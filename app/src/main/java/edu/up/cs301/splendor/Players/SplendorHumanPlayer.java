@@ -2,6 +2,7 @@ package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.counter.CounterState;
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.splCardAction;
@@ -328,6 +329,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         else if (button.getId() == R.id.rank3Card4){
             // something else was pressed: ignore
             action = new SplendorSelectCardAction(this,0,3);
+        }
+        else if(button.getId() == R.id.rubyCoin){
+            // something else was pressed: ignore
+            action = new SplendorCoinSelectAction(this, 0);
         }
         else {
             return;
