@@ -39,31 +39,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/goldPoints1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
                     android:id="@+id/emeraldPoint1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/sapphirePoint1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/rubyPoint1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -79,7 +55,31 @@
                     android:text="1" />
 
                 <TextView
+                    android:id="@+id/sapphirePoint1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
                     android:id="@+id/onyxPoint1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/rubyPoint1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/goldPoint1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -121,31 +121,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/goldPoints2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
                     android:id="@+id/emeraldPoint2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/sapphirePoint2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/rubyPoint2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -161,7 +137,31 @@
                     android:text="1" />
 
                 <TextView
+                    android:id="@+id/sapphirePoint2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
                     android:id="@+id/onyxPoint2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/rubyPoint2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/goldPoint2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -203,31 +203,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/goldPoints3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
                     android:id="@+id/emeraldPoint3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/sapphirePoint3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/rubyPoint3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -243,7 +219,31 @@
                     android:text="1" />
 
                 <TextView
+                    android:id="@+id/sapphirePoint3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
                     android:id="@+id/onyxPoint3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/rubyPoint3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/goldPoint3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -252,7 +252,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/prestigePoints3"
+                android:id="@+id/prestigePoint3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#A69000"
@@ -285,31 +285,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/goldPoints4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
                     android:id="@+id/emeraldPoint4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/sapphirePoint4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/rubyPoint4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -325,7 +301,31 @@
                     android:text="1" />
 
                 <TextView
+                    android:id="@+id/sapphirePoint4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
                     android:id="@+id/onyxPoint4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/rubyPoint4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/goldPoint4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -334,7 +334,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/prestigePoints4"
+                android:id="@+id/prestigePoint4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#A69000"

@@ -1,7 +1,6 @@
 package edu.up.cs301.splendor.Players;
 
 import java.util.Random;
-
 import edu.up.cs301.game.GameFramework.GameComputerPlayer;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.splCardAction;

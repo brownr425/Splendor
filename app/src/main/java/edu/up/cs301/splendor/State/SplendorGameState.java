@@ -28,10 +28,10 @@ public class SplendorGameState extends GameState {
     private int playerTurn;
 
     //player values for playerTurn
-    private final int PLAYER1ID = 1;
-    private final int PLAYER2ID = 2;
-    private final int PLAYER3ID = 3;
-    private final int PLAYER4ID = 4;
+    private final int PLAYER1ID = 0;
+    private final int PLAYER2ID = 1;
+    private final int PLAYER3ID = 2;
+    private final int PLAYER4ID = 3;
 
     //create list of all players
     public ArrayList<SplendorPlayer> playerList = new ArrayList<>();
@@ -183,8 +183,9 @@ public class SplendorGameState extends GameState {
     private Card board[][] = new Card[RANKS][CARDS_PER_RANK];
     private Noble nobles[];
     private Card selected = null;
+    private ArrayList<Integer> coinTracking;
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//~~~~~~~~~~~~~~~~~~~~~~CONSTRUCTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
     public SplendorGameState(/*InputStream rank1, InputStream rank2, InputStream rank3*/) {
         initializePlayers();
@@ -192,11 +193,14 @@ public class SplendorGameState extends GameState {
         initializeNobles();
         // initializeDecks(rank1, rank2, rank3); //unfinished
 
+        this.selected = new Card();
+
         initializeDecks(); //unfinished: rank1, rank2, rank3
         Collections.shuffle(this.rank1Stack);
         Collections.shuffle(this.rank2Stack);
         Collections.shuffle(this.rank3Stack);
         initializeBoard(this.rank1Stack, this.rank2Stack, this.rank3Stack);
+        this.selected = board[2][0];
     }
 
     /*
@@ -214,6 +218,7 @@ public class SplendorGameState extends GameState {
             }
         }
 
+         this.selected = new Card (stateToCopy.getSelected());
         //creates deeps copy of each players hands
         /*this.p1Hand = new Hand(stateToCopy.p1Hand);
         this.p2Hand = new Hand(stateToCopy.p2Hand);
@@ -309,11 +314,13 @@ public class SplendorGameState extends GameState {
         this.noble2 = stateToCopy.getNoble2();
         this.noble3 = stateToCopy.getNoble3();
         this.noble4 = stateToCopy.getNoble4();
+
+        this.coinTracking = stateToCopy.getCoinTracking();
     }
 
     //helper method for constructor setting all point values for player to zero
     public void initializePlayers() {
-        this.playerTurn = 1;
+        this.playerTurn = 0;
 
         //TODO: get number of players from config
         /*for(int i = 0; i < getNumPlayers(); i++) {
@@ -325,64 +332,65 @@ public class SplendorGameState extends GameState {
         this.splendorPlayer3 = new SplendorPlayer(PLAYER3ID);
         this.splendorPlayer4 = new SplendorPlayer(PLAYER4ID);
 
+
         //player one
         this.p1GoldCoins = 0;
         this.p1GoldPts = 0;
         this.p1EmeraldCoins = 0;
-        this.p1EmeraldPts = 4;
+        this.p1EmeraldPts = 0;
         this.p1SapphireCoins = 0;
-        this.p1SapphirePts = 4;
+        this.p1SapphirePts = 0;
         this.p1RubyCoins = 0;
-        this.p1RubyPts = 4;
+        this.p1RubyPts = 0;
         this.p1OnyxCoins = 0;
-        this.p1OnyxPts = 4;
+        this.p1OnyxPts = 0;
         this.p1DiamondCoins = 0;
-        this.p1DiamondPts = 4;
+        this.p1DiamondPts = 0;
         this.p1PrestigePts = 0;
         this.p1NumCardsReserved = 0;
 
         this.p2GoldCoins = 0;
         this.p2GoldPts = 0;
         this.p2EmeraldCoins = 0;
-        this.p2EmeraldPts = 4;
+        this.p2EmeraldPts = 0;
         this.p2SapphireCoins = 0;
-        this.p2SapphirePts = 4;
-        this.p2RubyCoins = 4;
-        this.p2RubyPts = 4;
+        this.p2SapphirePts = 0;
+        this.p2RubyCoins = 0;
+        this.p2RubyPts = 0;
         this.p2OnyxCoins = 0;
-        this.p2OnyxPts = 4;
+        this.p2OnyxPts = 0;
         this.p2DiamondCoins = 0;
-        this.p2DiamondPts = 4;
+        this.p2DiamondPts = 0;
         this.p2PrestigePts = 0;
         this.p2NumCardsReserved = 0;
 
         this.p3GoldCoins = 0;
         this.p3GoldPts = 0;
         this.p3EmeraldCoins = 0;
-        this.p3EmeraldPts = 4;
+        this.p3EmeraldPts = 0;
         this.p3SapphireCoins = 0;
-        this.p3SapphirePts = 4;
+        this.p3SapphirePts = 0;
         this.p3RubyCoins = 0;
-        this.p3RubyPts = 4;
+        this.p3RubyPts = 0;
         this.p3OnyxCoins = 0;
-        this.p3OnyxPts = 4;
+        this.p3OnyxPts = 0;
         this.p3DiamondCoins = 0;
-        this.p3DiamondPts = 4;
+        this.p3DiamondPts = 0;
         this.p3PrestigePts = 0;
         this.p3NumCardsReserved = 0;
 
         this.p4GoldCoins = 0;
         this.p4GoldPts = 0;
         this.p4EmeraldCoins = 0;
-        this.p4EmeraldPts = 4;
+        this.p4EmeraldPts = 0;
         this.p4SapphireCoins = 0;
-        this.p4SapphirePts = 4;
+        this.p4SapphirePts = 0;
         this.p4RubyCoins = 0;
-        this.p4RubyPts = 4;
+        this.p4RubyPts = 0;
         this.p4OnyxCoins = 0;
-        this.p4OnyxPts = 4;
+        this.p4OnyxPts = 0;
         this.p4DiamondCoins = 0;
-        this.p4DiamondPts = 4;
+        this.p4DiamondPts = 0;
         this.p4PrestigePts = 0;
         this.p4NumCardsReserved = 0;
     }
@@ -758,8 +766,8 @@ public class SplendorGameState extends GameState {
     //TODO: Move actions and helpers?
 
     private void nextPlayerTurn() {
-        if(getPlayerTurn() == 4) {
-            setPlayerTurn(1);
+        if(getPlayerTurn() == 3) {
+            setPlayerTurn(0);
         } else setPlayerTurn(getPlayerTurn()+1);
     }
 
@@ -1443,12 +1451,24 @@ public class SplendorGameState extends GameState {
     }
 
     public Card getSelected(){
+        if (this.selected == null)
+        {
+            return null;
+        }
         return this.selected;
     }
 
     public void setSelected(Card card)
     {
         this.selected = card;
+    }
+
+    public ArrayList<Integer> getCoinTracking(){
+        return this.coinTracking;
+    }
+
+    public void setCoinTracking(ArrayList<Integer> toChange){
+        this.coinTracking = toChange;
     }
 }
 
