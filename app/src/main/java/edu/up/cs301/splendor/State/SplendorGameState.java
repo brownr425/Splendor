@@ -313,11 +313,11 @@ public class SplendorGameState extends GameState {
     }
 
     public void initializeCoins() {
-        this.rubyCoins = 7;
-        this.sapphireCoins = 7;
-        this.emeraldCoins = 7;
-        this.diamondCoins = 7;
-        this.onyxCoins = 7;
+        this.rubyCoins = 70;
+        this.sapphireCoins = 70;
+        this.emeraldCoins = 70;
+        this.diamondCoins = 70;
+        this.onyxCoins = 70;
         this.goldCoins = 5;
     }
     //this will eventually initialize 4 random nobles from a set of 10, for now we have chosen 4
@@ -606,7 +606,7 @@ public class SplendorGameState extends GameState {
     //helper method for coinCount
     private boolean coinsGreaterThanTen(SplendorPlayer splendorPlayer) {
         return splendorPlayer.getDiaCoins()+splendorPlayer.getEmerCoins()+splendorPlayer.getOnyxCoins()+
-                splendorPlayer.getRubyCoins()+splendorPlayer.getSapphCoins()+splendorPlayer.getGoldCoins() >= 10;
+                splendorPlayer.getRubyCoins()+splendorPlayer.getSapphCoins()+splendorPlayer.getGoldCoins() >= 100;
     }
 
     //returns array with true values for coin stacks that 2 coins of the same type can be taken
