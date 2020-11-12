@@ -87,5 +87,4 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
     public boolean canBuy(Card card, int row, int col) {
         return this.gameState.cardAction(card, row, col);
     }
-
 }
