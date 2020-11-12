@@ -200,6 +200,7 @@ public class SplendorGameState extends GameState {
         Collections.shuffle(this.rank2Stack);
         Collections.shuffle(this.rank3Stack);
         initializeBoard(this.rank1Stack, this.rank2Stack, this.rank3Stack);
+        this.selected = board[2][0];
     }
 
     /*
@@ -313,6 +314,8 @@ public class SplendorGameState extends GameState {
         this.noble2 = stateToCopy.getNoble2();
         this.noble3 = stateToCopy.getNoble3();
         this.noble4 = stateToCopy.getNoble4();
+
+        this.coinTracking = stateToCopy.getCoinTracking();
     }
 
     //helper method for constructor setting all point values for player to zero
@@ -763,8 +766,8 @@ public class SplendorGameState extends GameState {
     //TODO: Move actions and helpers?
 
     private void nextPlayerTurn() {
-        if(getPlayerTurn() == 4) {
-            setPlayerTurn(1);
+        if(getPlayerTurn() == 3) {
+            setPlayerTurn(0);
         } else setPlayerTurn(getPlayerTurn()+1);
     }
 
@@ -1448,6 +1451,10 @@ public class SplendorGameState extends GameState {
     }
 
     public Card getSelected(){
+        if (this.selected == null)
+        {
+            return null;
+        }
         return this.selected;
     }
 

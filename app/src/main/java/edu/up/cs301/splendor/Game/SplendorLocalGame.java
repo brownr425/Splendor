@@ -1,7 +1,5 @@
 package edu.up.cs301.splendor.Game;
 
-import android.util.Log;
-
 import java.io.InputStream;
 
 
@@ -46,15 +44,18 @@ public class SplendorLocalGame extends LocalGame {
     protected boolean makeMove(GameAction action) {
         if (action instanceof splCoinAction){
 
-            
             //action was made, return true/valid move
             return true;
         }
         else if(action instanceof splCardAction)
-        { //FIXME
-
-
-
+        {
+            if(this.gameState.getSelected() != null)
+            {
+                this.gameState.cardAction(this.gameState.getSelected());
+            }
+            else{
+                return false;
+            }
             //action was made, return true/valid move
             return true;
         }
