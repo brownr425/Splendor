@@ -50,6 +50,7 @@ public class SplendorLocalGame extends LocalGame {
         if (action instanceof splCoinAction){
             if(this.gameState.getCoinTracking().isEmpty() || this.gameState.getCoinTracking().size() == 1)
             {
+
                 return false;
             }
             for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++)

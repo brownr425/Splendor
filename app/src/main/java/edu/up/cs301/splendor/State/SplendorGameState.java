@@ -24,6 +24,7 @@ public class SplendorGameState extends GameState {
     //holds turn value corresponding to player ID below
     private int playerTurn;
 
+
     //player values for playerTurn
     private final int PLAYER1ID = 0;
     private final int PLAYER2ID = 1;
@@ -117,7 +118,7 @@ public class SplendorGameState extends GameState {
 
         //makes copy of card that is currently selected
         this.selected = new Card (stateToCopy.getSelected());
-
+        this.playerTurn = stateToCopy.playerTurn;
         this.splendorPlayer1 = new SplendorPlayer(stateToCopy.splendorPlayer1);
         this.splendorPlayer2 = new SplendorPlayer(stateToCopy.splendorPlayer2);
         this.splendorPlayer3 = new SplendorPlayer(stateToCopy.splendorPlayer3);
