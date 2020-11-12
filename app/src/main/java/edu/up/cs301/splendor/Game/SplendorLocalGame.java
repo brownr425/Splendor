@@ -96,6 +96,7 @@ public class SplendorLocalGame extends LocalGame {
             if(this.gameState.getCoinTracking().isEmpty())
             {
                 this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+                return true;
             }
             if(this.gameState.getCoinTracking().size() == 3) {
                 for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
