@@ -432,16 +432,16 @@ public class SplendorGameState extends GameState {
             while((line = rank1Reader.readLine()) != null) {
                 //split by ,
                 String[] tokens = line.split(",");
-                Card card = new Card();
-                card.setColorGem(Integer.parseInt(tokens[0]));
-                card.setPrestigePoints(Integer.parseInt(tokens[1]));
-                card.setwPrice(Integer.parseInt(tokens[2]));
-                card.setbPrice(Integer.parseInt(tokens[3]));
-                card.setgPrice(Integer.parseInt(tokens[4]));
-                card.setrPrice(Integer.parseInt(tokens[5]));
-                card.setBrPrice(Integer.parseInt(tokens[6]));
-                card.setCardLevel(1);
-                this.rank1Stack.add(card);
+                    Card card = new Card();
+                    card.setColorGem(Integer.parseInt(tokens[0]));
+                    card.setPrestigePoints(Integer.parseInt(tokens[1]));
+                    card.setwPrice(Integer.parseInt(tokens[2]));
+                    card.setbPrice(Integer.parseInt(tokens[3]));
+                    card.setgPrice(Integer.parseInt(tokens[4]));
+                    card.setrPrice(Integer.parseInt(tokens[5]));
+                    card.setBrPrice(Integer.parseInt(tokens[6]));
+                    card.setCardLevel(1);
+                    this.rank1Stack.add(card);
             }
         } catch (IOException e) {
             Log.wtf("MyActivity","Error reading data file " + line, e);
@@ -458,8 +458,8 @@ public class SplendorGameState extends GameState {
                 //split by ,
                 String[] tokens = line.split(",");
                 Card card = new Card();
-                card.setPrestigePoints(Integer.parseInt(tokens[0]));
-                card.setColorGem(Integer.parseInt(tokens[1]));
+                card.setColorGem(Integer.parseInt(tokens[0]));
+                card.setPrestigePoints(Integer.parseInt(tokens[1]));
                 card.setwPrice(Integer.parseInt(tokens[2]));
                 card.setbPrice(Integer.parseInt(tokens[3]));
                 card.setgPrice(Integer.parseInt(tokens[4]));
@@ -484,8 +484,8 @@ public class SplendorGameState extends GameState {
                 //split by ,
                 String[] tokens = line.split(",");
                 Card card = new Card();
-                card.setPrestigePoints(Integer.parseInt(tokens[0]));
-                card.setColorGem(Integer.parseInt(tokens[1]));
+                card.setColorGem(Integer.parseInt(tokens[0]));
+                card.setPrestigePoints(Integer.parseInt(tokens[1]));
                 card.setwPrice(Integer.parseInt(tokens[2]));
                 card.setbPrice(Integer.parseInt(tokens[3]));
                 card.setgPrice(Integer.parseInt(tokens[4]));
@@ -643,7 +643,7 @@ public class SplendorGameState extends GameState {
                 "\nDiamond: " + p3DiamondCoins +
                 "\nOnyx: " + p3OnyxCoins +
                 "\nPlayer 3 number of Cards reserved: " + p3NumCardsReserved+
-                "\nPlayer 3 Cards in reserve: ";;
+                "\nPlayer 3 Cards in reserve: ";
 
         //loop through reserve card array, append to string
         for (Card card: p3Hand.getReserved() ) {
@@ -673,7 +673,7 @@ public class SplendorGameState extends GameState {
                 "\nDiamond: " + p4DiamondCoins +
                 "\nOnyx: " + p4OnyxCoins +
                 "\nPlayer 4 number of Cards reserved: " + p4NumCardsReserved+
-                "\nPlayer 4 Cards in reserve: ";;
+                "\nPlayer 4 Cards in reserve: ";
 
         //loop through reserve card array, append to string
         for (Card card: p4Hand.getReserved() ) {

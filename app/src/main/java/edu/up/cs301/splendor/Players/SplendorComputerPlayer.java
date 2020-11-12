@@ -1,22 +1,17 @@
 package edu.up.cs301.splendor.Players;
 
+import java.util.Random;
+
 import edu.up.cs301.game.GameFramework.GameComputerPlayer;
-import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.splCardAction;
-import edu.up.cs301.game.GameFramework.GameComputerPlayer;
-import edu.up.cs301.splendor.Game.Game;
-import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.State.GameInfo;
-import edu.up.cs301.splendor.State.GameState;
 import edu.up.cs301.splendor.State.SplendorGameState;
 
 public class SplendorComputerPlayer extends GameComputerPlayer {
     private SplendorGameState gameState;
-    private int playerId;
-    private String[] playerNames;
-    private String name;
+    private Random randomizer;
 
     /**
      * constructor
@@ -27,13 +22,8 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         super(name);
     }
 
-
     @Override
-    protected void receiveInfo(GameInfo info) {
-
-    }
-
-    public void receiveInfo(SplendorGameState info) {
+    public void receiveInfo(GameInfo info) {
 
         //checks to see if it Computer Players turn
         if (notPlayerTurn()) {
@@ -41,7 +31,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         }
 
         //refreshes the local copy of the game state with the new info
-        updateGameState(info);
+        this.gameState = new SplendorGameState((SplendorGameState) info);
 
         //traverse through card board and purchases a card if it can
         for (int row = 0; row < 3; row++) {
@@ -50,33 +40,36 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
                 if (canBuy(card)) {
                     SplendorSelectCardAction select = new SplendorSelectCardAction(null, row, col);
                     this.game.sendAction(select);
-                    //TODO this should take current player and current card selected
-                    //splCardAction buy = new splCardAction( );
-                    //this.game.sendAction(buy);
-                    //not sure if sending a buy action increments player turn counter and breaks here
+                    splCardAction buy = new splCardAction(this, card);
+                    this.game.sendAction(buy);
+                    break;
                 }
             }
         }
-
-        //if it cannot purchase a card then it will buy some random coins.
-        //TODO: add random coins when we figure out how coin actions will work
-
-
+        randomCoinBuy();
     }
+
+    public boolean randomCoinBuy(){
+        //generates new random object for random coin selection
+        this.randomizer = new Random();
+        int coin1 = randomizer.nextInt(5)+1;
+        int coin2 = randomizer.nextInt(5)+1;
+        int coin3 = randomizer.nextInt(5)+1;
+        //if any of the two coins are the same, do action on the dupe coin pile
+        if(coin1 == coin2 || coin1 == coin3)
+            return this.gameState.coinAction(coin1);
+        if(coin2 == coin3)
+            return this.gameState.coinAction(coin2);
+        //otherwise, do action on 3 coins
+        return this.gameState.coinAction(coin1, coin2, coin3);
+    }
+
     public boolean notPlayerTurn() {
         return this.playerNum != gameState.getPlayerTurn();
     }
 
-    public void updateGameState(SplendorGameState info) {
-        this.gameState = new SplendorGameState(info);
-    }
-
     public boolean canBuy(Card card) {
-        gameState.cardAction(card);
-        return true;
+        return this.gameState.cardAction(card);
     }
-
-
-
 
 }
