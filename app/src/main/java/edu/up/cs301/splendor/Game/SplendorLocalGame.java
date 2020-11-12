@@ -119,10 +119,8 @@ public class SplendorLocalGame extends LocalGame {
             }
         }
         else{
-
             return false;
         }
-
     }
 
 
