@@ -43,9 +43,24 @@ public class SplendorLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if (action instanceof splCoinAction){
-
+            for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++)
+            {
+                if(this.gameState.getCoinTracking().get(i).equals(this.gameState.getCoinTracking().get(i+1)))
+                {
+                    return this.gameState.coinAction(this.gameState.getCoinTracking().get(i));
+                }
+            }
+            for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++)
+            {
+                if(this.gameState.getCoinTracking().get(i) == null)
+                {
+                    return false;
+                }
+            }
+            return this.gameState.coinAction(this.gameState.getCoinTracking().get(0),
+                    this.gameState.getCoinTracking().get(1),
+                    this.gameState.getCoinTracking().get(2));
             //action was made, return true/valid move
-            return true;
         }
         else if(action instanceof splCardAction) {
             if(this.gameState.getSelected() != null)
@@ -71,7 +86,7 @@ public class SplendorLocalGame extends LocalGame {
         else if(action instanceof SplendorCoinSelectAction)
         {
             if(this.gameState.getCoinTracking().size() == 3) {
-                for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
+                for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++)
                 {
                     if(((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)){
                         this.gameState.getCoinTracking().clear();
@@ -89,7 +104,7 @@ public class SplendorLocalGame extends LocalGame {
                 return true;
             }
             else {
-                for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
+                for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++)
                 {
                     if(((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)){
                         this.gameState.getCoinTracking().clear();
