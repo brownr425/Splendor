@@ -43,14 +43,37 @@ public class SplendorLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if (action instanceof splCoinAction){
-
+            if(this.gameState.getCoinTracking().isEmpty() || this.gameState.getCoinTracking().size() == 1)
+            {
+                return false;
+            }
+            for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++)
+            {
+                if(this.gameState.getCoinTracking().get(i).equals(this.gameState.getCoinTracking().get(i+1)))
+                {
+                    return this.gameState.coinAction(this.gameState.getCoinTracking().get(i));
+                }
+            }
+            for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++)
+            {
+                if(this.gameState.getCoinTracking().get(i) == null)
+                {
+                    return false;
+                }
+            }
+            return this.gameState.coinAction(this.gameState.getCoinTracking().get(0),
+                    this.gameState.getCoinTracking().get(1),
+                    this.gameState.getCoinTracking().get(2));
             //action was made, return true/valid move
-            return true;
         }
-        else if(action instanceof splCardAction)
-        {
-            splCardAction sCARDa = (splCardAction) action;
-            //gameState.
+        else if(action instanceof splCardAction) {
+            if(this.gameState.getSelected() != null)
+            {
+                this.gameState.cardAction(this.gameState.getSelected());
+            }
+            else{
+                return false;
+            }
             //action was made, return true/valid move
             return true;
         }
@@ -99,11 +122,7 @@ public class SplendorLocalGame extends LocalGame {
             }
         }
         else{
-
             return false;
         }
-
     }
-
-
 }

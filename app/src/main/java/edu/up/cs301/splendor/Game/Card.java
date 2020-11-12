@@ -60,7 +60,6 @@ public class Card {
                 "\n Diamond: " + wPrice +
                 "\n Onyx: " + brPrice;
 
-
         return ret;
     }
 

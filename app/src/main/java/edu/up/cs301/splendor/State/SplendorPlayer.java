@@ -8,6 +8,7 @@ public class SplendorPlayer {
 
     private int prestigePts;
 
+    //point values for each player
     private int goldPts;
     private int rubyPts;
     private int sapphPts;
@@ -15,6 +16,7 @@ public class SplendorPlayer {
     private int diaPts;
     private int onyxPts;
 
+    //coin counts for each player
     private int goldCoins;
     private int rubyCoins;
     private int sapphCoins;
@@ -22,17 +24,21 @@ public class SplendorPlayer {
     private int diaCoins;
     private int onyxCoins;
 
+    //player's hand
     private Hand playerHand;
 
-    private int numCardsReserved;
-
+    /**
+     * constructor SplendorPlayer - initialize all values for new object
+     * @param playerID - player's id, 1-4
+     *
+     */
     public SplendorPlayer(int playerID) {
         initializePtsNCoins();
     }
 
     /**
      * Constructor playerToCopy - deep copy for game state
-     * @param playerToCopy - player to send
+     * @param playerToCopy - player to copy to instance
      */
     public SplendorPlayer(SplendorPlayer playerToCopy) {
         this.playerName = playerToCopy.playerName;
@@ -65,9 +71,10 @@ public class SplendorPlayer {
         this.emerPts = 0;
         this.diaCoins = 0;
         this.diaPts = 0;
-        this.numCardsReserved = 0;
         this.playerHand = new Hand();
     }
+
+    public Hand getPlayerHand() { return playerHand; }
 
     public void setPlayerHand(Hand playerHand) {
         this.playerHand = playerHand;
@@ -128,11 +135,4 @@ public class SplendorPlayer {
     public int getOnyxCoins() { return onyxCoins; }
 
     public void setOnyxCoins(int onyxCoins) { this.onyxCoins = onyxCoins; }
-
-    public int getNumCardsReserved() { return numCardsReserved; }
-
-    public void setNumCardsReserved(int numCardsReserved) { this.numCardsReserved = numCardsReserved; }
-
-    public Hand getPlayerHand() { return playerHand; }
-
 }
