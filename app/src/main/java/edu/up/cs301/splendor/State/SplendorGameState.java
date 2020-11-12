@@ -123,6 +123,8 @@ public class SplendorGameState extends GameState {
         this.splendorPlayer3 = new SplendorPlayer(stateToCopy.splendorPlayer3);
         this.splendorPlayer4 = new SplendorPlayer(stateToCopy.splendorPlayer4);
 
+        this.playerTurn = stateToCopy.getPlayerTurn();
+
         //deep copies for all 3 card stacks
         this.rank1Stack = new ArrayList<>();
         for (Card rankCard : stateToCopy.rank1Stack) {

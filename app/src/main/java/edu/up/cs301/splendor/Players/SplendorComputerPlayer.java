@@ -24,10 +24,10 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
     @Override
     public void receiveInfo(GameInfo info) {
         //refreshes the local copy of the game state with the new info
-        this.gameState = new SplendorGameState((SplendorGameState) info);
+        SplendorGameState gameState = new SplendorGameState((SplendorGameState)info);
 
         //checks to see if it Computer Players turn
-        if (notPlayerTurn()) {
+        if (this.playerNum != gameState.getPlayerTurn()) {
             return;
         }
 
