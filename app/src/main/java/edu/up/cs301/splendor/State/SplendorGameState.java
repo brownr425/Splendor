@@ -156,6 +156,13 @@ public class SplendorGameState extends GameState {
 
         this.selectedRow = stateToCopy.getSelectedRow();
         this.selectedCol = stateToCopy.getSelectedCol();
+
+        this.rubyCoins = stateToCopy.rubyCoins;
+        this.sapphireCoins = stateToCopy.sapphireCoins;
+        this.emeraldCoins = stateToCopy.emeraldCoins;
+        this.diamondCoins = stateToCopy.diamondCoins;
+        this.onyxCoins = stateToCopy.onyxCoins;
+        this.goldCoins = stateToCopy.goldCoins;
     }
 
     //helper method for constructor setting all point values for player to zero

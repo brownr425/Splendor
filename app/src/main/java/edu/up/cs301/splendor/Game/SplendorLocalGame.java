@@ -56,7 +56,12 @@ public class SplendorLocalGame extends LocalGame {
             {
                 if(this.gameState.getCoinTracking().get(i).equals(this.gameState.getCoinTracking().get(i+1)))
                 {
-                    return this.gameState.coinAction(this.gameState.getCoinTracking().get(i));
+                    if (this.gameState.coinAction(this.gameState.getCoinTracking().get(i))) {
+                        this.gameState.getCoinTracking().clear();
+                        return true;
+                    } else  {
+                        return false;
+                    }
                 }
             }
             for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++)
@@ -66,9 +71,16 @@ public class SplendorLocalGame extends LocalGame {
                     return false;
                 }
             }
-            return this.gameState.coinAction(this.gameState.getCoinTracking().get(0),
+
+
+            if (this.gameState.coinAction(this.gameState.getCoinTracking().get(0),
                     this.gameState.getCoinTracking().get(1),
-                    this.gameState.getCoinTracking().get(2));
+                    this.gameState.getCoinTracking().get(2))) {
+                this.gameState.getCoinTracking().clear();
+                return true;
+            } else {
+                return false;
+            }
             //action was made, return true/valid move
         }
         else if(action instanceof splCardAction) {
