@@ -28,10 +28,10 @@ public class SplendorGameState extends GameState {
     private int playerTurn;
 
     //player values for playerTurn
-    private final int PLAYER1ID = 1;
-    private final int PLAYER2ID = 2;
-    private final int PLAYER3ID = 3;
-    private final int PLAYER4ID = 4;
+    private final int PLAYER1ID = 0;
+    private final int PLAYER2ID = 1;
+    private final int PLAYER3ID = 2;
+    private final int PLAYER4ID = 3;
 
     //create list of all players
     public ArrayList<SplendorPlayer> playerList = new ArrayList<>();
@@ -352,45 +352,45 @@ public class SplendorGameState extends GameState {
         this.p2GoldCoins = 0;
         this.p2GoldPts = 0;
         this.p2EmeraldCoins = 0;
-        this.p2EmeraldPts = 4;
+        this.p2EmeraldPts = 0;
         this.p2SapphireCoins = 0;
-        this.p2SapphirePts = 4;
-        this.p2RubyCoins = 4;
-        this.p2RubyPts = 4;
+        this.p2SapphirePts = 0;
+        this.p2RubyCoins = 0;
+        this.p2RubyPts = 0;
         this.p2OnyxCoins = 0;
-        this.p2OnyxPts = 4;
+        this.p2OnyxPts = 0;
         this.p2DiamondCoins = 0;
-        this.p2DiamondPts = 4;
+        this.p2DiamondPts = 0;
         this.p2PrestigePts = 0;
         this.p2NumCardsReserved = 0;
 
         this.p3GoldCoins = 0;
         this.p3GoldPts = 0;
         this.p3EmeraldCoins = 0;
-        this.p3EmeraldPts = 4;
+        this.p3EmeraldPts = 0;
         this.p3SapphireCoins = 0;
-        this.p3SapphirePts = 4;
+        this.p3SapphirePts = 0;
         this.p3RubyCoins = 0;
-        this.p3RubyPts = 4;
+        this.p3RubyPts = 0;
         this.p3OnyxCoins = 0;
-        this.p3OnyxPts = 4;
+        this.p3OnyxPts = 0;
         this.p3DiamondCoins = 0;
-        this.p3DiamondPts = 4;
+        this.p3DiamondPts = 0;
         this.p3PrestigePts = 0;
         this.p3NumCardsReserved = 0;
 
         this.p4GoldCoins = 0;
         this.p4GoldPts = 0;
         this.p4EmeraldCoins = 0;
-        this.p4EmeraldPts = 4;
+        this.p4EmeraldPts = 0;
         this.p4SapphireCoins = 0;
-        this.p4SapphirePts = 4;
+        this.p4SapphirePts = 0;
         this.p4RubyCoins = 0;
-        this.p4RubyPts = 4;
+        this.p4RubyPts = 0;
         this.p4OnyxCoins = 0;
-        this.p4OnyxPts = 4;
+        this.p4OnyxPts = 0;
         this.p4DiamondCoins = 0;
-        this.p4DiamondPts = 4;
+        this.p4DiamondPts = 0;
         this.p4PrestigePts = 0;
         this.p4NumCardsReserved = 0;
     }

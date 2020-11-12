@@ -62,8 +62,7 @@ public class SplendorLocalGame extends LocalGame {
                     this.gameState.getCoinTracking().get(2));
             //action was made, return true/valid move
         }
-        else if(action instanceof splCardAction)
-        {
+        else if(action instanceof splCardAction) {
             if(this.gameState.getSelected() != null)
             {
                 this.gameState.cardAction(this.gameState.getSelected());
