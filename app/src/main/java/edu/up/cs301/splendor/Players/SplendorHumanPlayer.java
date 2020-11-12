@@ -351,7 +351,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             action = new SplendorCoinSelectAction(this, 4);
         }
         else if(button.getId() == R.id.quitButton){
-
+            System.exit(0);
         }
         game.sendAction(action); // send action to the game
         updateDisplay();

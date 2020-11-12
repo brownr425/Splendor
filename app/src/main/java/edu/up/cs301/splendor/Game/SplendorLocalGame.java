@@ -125,10 +125,6 @@ public class SplendorLocalGame extends LocalGame {
                     }
                 }
                 this.gameState.getCoinTracking().remove(0);
-                this.gameState.getCoinTracking().set(0, this.gameState.getCoinTracking().get(1));
-                this.gameState.getCoinTracking().remove(1);
-                this.gameState.getCoinTracking().set(0, this.gameState.getCoinTracking().get(2));
-                this.gameState.getCoinTracking().remove(2);
                 this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                 return true;
             }

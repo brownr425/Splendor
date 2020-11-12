@@ -31,7 +31,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             return;
         }
         //refreshes the local copy of the game state with the new info
-        SplendorGameState gameState = new SplendorGameState((SplendorGameState)info);
+        SplendorGameState gameState = new SplendorGameState((SplendorGameState) info);
 
         //checks to see if it Computer Players turn
         if (this.playerNum != gameState.getPlayerTurn()) {
@@ -41,13 +41,11 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 4; col++) {
                 Card card = gameState.getBoard(row, col);
-                if (canBuy(card, row, col)) {
-                    SplendorSelectCardAction select = new SplendorSelectCardAction(this, row, col);
-                    this.game.sendAction(select);
-                    splCardAction buy = new splCardAction(this, card, row, col);
-                    this.game.sendAction(buy);
-                    break;
-                }
+
+                SplendorSelectCardAction select = new SplendorSelectCardAction(this, row, col);
+                this.game.sendAction(select);
+                splCardAction buy = new splCardAction(this, card, row, col);
+                this.game.sendAction(buy);
             }
         }
         randomCoinBuy();
@@ -60,6 +58,10 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         int coin1 = randomizer.nextInt(5);
         int coin2 = randomizer.nextInt(5);
         int coin3 = randomizer.nextInt(5);
+
+        //clears the coin tracking array before adding
+        this.game.sendAction(new SplendorCoinSelectAction(this, -1));
+
         //if any of the two coins are the same, do action on the dupe coin pile
         if (coin1 == coin2 || coin1 == coin3) {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
