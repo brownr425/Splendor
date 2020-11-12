@@ -50,17 +50,22 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
     public boolean randomCoinBuy(){
         //generates new random object for random coin selection
         this.randomizer = new Random();
-
-        int coin1 = randomizer.nextInt(5);
-        int coin2 = randomizer.nextInt(5);
-        int coin3 = randomizer.nextInt(5);
-        //if any of the two coins are the same, do action on the dupe coin pile
-        if(coin1 == coin2 || coin1 == coin3)
-            return this.gameState.coinAction(coin1);
-        if(coin2 == coin3)
-            return this.gameState.coinAction(coin2);
-        //otherwise, do action on 3 coins
-        return this.gameState.coinAction(coin1, coin2, coin3);
+        boolean success = false;
+        while (success != true) {
+            int coin1 = randomizer.nextInt(5);
+            int coin2 = randomizer.nextInt(5);
+            int coin3 = randomizer.nextInt(5);
+            //if any of the two coins are the same, do action on the dupe coin pile
+            if (coin1 == coin2 || coin1 == coin3) {
+                success = this.gameState.coinAction(coin1);
+            } else if (coin2 == coin3) {
+                success = this.gameState.coinAction(coin2);
+            } else {
+                //otherwise, do action on 3 coins
+                success = this.gameState.coinAction(coin1, coin2, coin3);
+            }
+        }
+        return true;
     }
 
     public boolean notPlayerTurn() {
