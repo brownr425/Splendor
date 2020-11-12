@@ -2,6 +2,7 @@ package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.counter.CounterState;
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
@@ -186,37 +187,37 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
 
         //player point values
-        p1Emerald.setText("" + state.getP1EmeraldPts());
-        p1Diamond.setText("" + state.getP1DiamondPts());
-        p1Sapphire.setText(""+ state.getP1SapphirePts());
-        p1Onyx.setText("" + state.getP1OnyxPts());
-        p1Ruby.setText("" + state.getP1RubyPts());
-        p1Gold.setText("" + state.getP1GoldPts());
-        p1PrestigePt.setText(""+ state.getP1PrestigePts());
+        p1Emerald.setText("" + state.getSplendorPlayer1().getEmerPts());
+        p1Diamond.setText("" + state.getSplendorPlayer1().getDiaPts());
+        p1Sapphire.setText(""+ state.getSplendorPlayer1().getSapphPts());
+        p1Onyx.setText("" + state.getSplendorPlayer1().getOnyxPts());
+        p1Ruby.setText("" + state.getSplendorPlayer1().getRubyPts());
+        p1Gold.setText("" + state.getSplendorPlayer1().getGoldPts());
+        p1PrestigePt.setText(""+ state.getSplendorPlayer1().getPrestigePts());
 
-        p2Emerald.setText("" + state.getP2EmeraldPts());
-        p2Diamond.setText("" + state.getP2DiamondPts());
-        p2Sapphire.setText(""+ state.getP2SapphirePts());
-        p2Onyx.setText("" + state.getP2OnyxPts());
-        p2Ruby.setText("" + state.getP2RubyPts());
-        p2Gold.setText("" + state.getP2GoldPts());
-        p2PrestigePt.setText(""+ state.getP2PrestigePts());
+        p2Emerald.setText("" + state.getSplendorPlayer2().getEmerPts());
+        p2Diamond.setText("" + state.getSplendorPlayer2().getDiaPts());
+        p2Sapphire.setText(""+ state.getSplendorPlayer2().getSapphPts());
+        p2Onyx.setText("" + state.getSplendorPlayer2().getOnyxPts());
+        p2Ruby.setText("" + state.getSplendorPlayer2().getRubyPts());
+        p2Gold.setText("" + state.getSplendorPlayer2().getGoldPts());
+        p2PrestigePt.setText(""+ state.getSplendorPlayer2().getPrestigePts());
 
-        p3Emerald.setText("" + state.getP3EmeraldPts());
-        p3Diamond.setText("" + state.getP3DiamondPts());
-        p3Sapphire.setText(""+ state.getP3SapphirePts());
-        p3Onyx.setText("" + state.getP3OnyxPts());
-        p3Ruby.setText("" + state.getP3RubyPts());
-        p3Gold.setText("" + state.getP3GoldPts());
-        p3PrestigePt.setText(""+ state.getP3PrestigePts());
+        p3Emerald.setText("" + state.getSplendorPlayer3().getEmerPts());
+        p3Diamond.setText("" + state.getSplendorPlayer3().getDiaPts());
+        p3Sapphire.setText(""+ state.getSplendorPlayer3().getSapphPts());
+        p3Onyx.setText("" + state.getSplendorPlayer3().getOnyxPts());
+        p3Ruby.setText("" + state.getSplendorPlayer3().getRubyPts());
+        p3Gold.setText("" + state.getSplendorPlayer3().getGoldPts());
+        p3PrestigePt.setText(""+ state.getSplendorPlayer3().getPrestigePts());
 
-        p4Emerald.setText("" + state.getP4EmeraldPts());
-        p4Diamond.setText("" + state.getP4DiamondPts());
-        p4Sapphire.setText(""+ state.getP4SapphirePts());
-        p4Onyx.setText("" + state.getP4OnyxPts());
-        p4Ruby.setText("" + state.getP4RubyPts());
-        p4Gold.setText("" + state.getP4GoldPts());
-        p4PrestigePt.setText(""+ state.getP4PrestigePts());
+        p4Emerald.setText("" + state.getSplendorPlayer4().getEmerPts());
+        p4Diamond.setText("" + state.getSplendorPlayer4().getDiaPts());
+        p4Sapphire.setText(""+ state.getSplendorPlayer4().getSapphPts());
+        p4Onyx.setText("" + state.getSplendorPlayer4().getOnyxPts());
+        p4Ruby.setText("" + state.getSplendorPlayer4().getRubyPts());
+        p4Gold.setText("" + state.getSplendorPlayer4().getGoldPts());
+        p4PrestigePt.setText(""+ state.getSplendorPlayer4().getPrestigePts());
 
 
 
@@ -227,10 +228,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         } else {
             infoBox.setText("Your card info will be shown here");
         }
-
-
-
-
 
     }
 
@@ -253,7 +250,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         // Construct the action and send it to the game
         GameAction action = null;
-        if (button.getId() == R.id.buyAction) {
+        if(button.getId() == R.id.quitButton) {
+            action = new QuitAction(this);
+        }
+        else if (button.getId() == R.id.buyAction) {
             // plus button: create "increment" action
             Log.d("SHP", "BUY");
             action = new splCardAction(this, this.state.getSelected(), this.state.getSelectedRow(), this.state.getSelectedCol());
@@ -334,8 +334,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             // something else was pressed: ignore
             action = new SplendorCoinSelectAction(this, 0);
         }
-        else {
-            return;
+        else if(button.getId() == R.id.quitButton){
+
         }
         game.sendAction(action); // send action to the game
         updateDisplay();
@@ -352,8 +352,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // ignore the message if it's not a CounterState message
         if (!(info instanceof SplendorGameState)) return;
         this.state = (SplendorGameState) info;
-
-
 
         // update our state; then update the display
         this.state = (SplendorGameState)info;
@@ -484,7 +482,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Ruby= (TextView) activity.findViewById(R.id.rubyPoint4);
         p4Gold= (TextView) activity.findViewById(R.id.goldPoint4);
         p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
-
 
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated

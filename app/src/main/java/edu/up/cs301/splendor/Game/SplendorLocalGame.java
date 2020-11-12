@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.InputStream;
 
 
+import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
@@ -43,6 +44,9 @@ public class SplendorLocalGame extends LocalGame {
 
     @Override
     protected boolean makeMove(GameAction action) {
+        if(action instanceof QuitAction) {
+
+        }
         if (action instanceof splCoinAction){
             if(this.gameState.getCoinTracking().isEmpty() || this.gameState.getCoinTracking().size() == 1)
             {

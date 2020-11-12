@@ -715,11 +715,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/tbd"
+            android:id="@+id/exitGame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/quitButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="EXIT GAME" />
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

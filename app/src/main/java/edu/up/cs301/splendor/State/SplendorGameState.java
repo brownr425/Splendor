@@ -331,8 +331,8 @@ public class SplendorGameState extends GameState {
         /*for(int i = 0; i < getNumPlayers(); i++) {
             playerList.add(new SplendorPlayer());
         }*/
-
-        this.splendorPlayer1 = new SplendorPlayer(PLAYER1ID);
+        this.splendorPlayer1 = new SplendorPlayer();
+        //this.splendorPlayer1 = new SplendorPlayer(PLAYER1ID);
         this.splendorPlayer2 = new SplendorPlayer(PLAYER2ID);
         this.splendorPlayer3 = new SplendorPlayer(PLAYER3ID);
         this.splendorPlayer4 = new SplendorPlayer(PLAYER4ID);
