@@ -50,7 +50,7 @@ public class SplendorMainActivity extends GameMainActivity {
             }});
 
         // a computer player type (player type 2)
-        playerTypes.add(new GamePlayerType("Computer Player (GUI)") {
+        playerTypes.add(new GamePlayerType("Smart Computer Player") {
             public GamePlayer createPlayer(String name) {
                 return new SplendorSmartComputerPlayer(name);
             }});
