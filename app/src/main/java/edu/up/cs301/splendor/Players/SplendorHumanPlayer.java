@@ -334,6 +334,22 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             // something else was pressed: ignore
             action = new SplendorCoinSelectAction(this, 0);
         }
+        else if(button.getId() == R.id.sapphireCoin){
+            // something else was pressed: ignore
+            action = new SplendorCoinSelectAction(this, 1);
+        }
+        else if(button.getId() == R.id.emeraldCoin){
+            // something else was pressed: ignore
+            action = new SplendorCoinSelectAction(this, 2);
+        }
+        else if(button.getId() == R.id.diamondCoin){
+            // something else was pressed: ignore
+            action = new SplendorCoinSelectAction(this, 3);
+        }
+        else if(button.getId() == R.id.onyxCoin){
+            // something else was pressed: ignore
+            action = new SplendorCoinSelectAction(this, 4);
+        }
         else if(button.getId() == R.id.quitButton){
 
         }

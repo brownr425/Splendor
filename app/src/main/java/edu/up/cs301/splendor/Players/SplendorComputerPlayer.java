@@ -50,6 +50,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
     public boolean randomCoinBuy(){
         //generates new random object for random coin selection
         this.randomizer = new Random();
+
         int coin1 = randomizer.nextInt(5)+1;
         int coin2 = randomizer.nextInt(5)+1;
         int coin3 = randomizer.nextInt(5)+1;

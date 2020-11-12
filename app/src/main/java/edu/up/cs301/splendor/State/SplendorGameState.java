@@ -110,7 +110,7 @@ public class SplendorGameState extends GameState {
         {
             for(int col = 0; col < 4; col++)
             {
-                Card card = new Card(getBoard(row,col));
+                Card card = new Card(stateToCopy.getBoard(row,col));
                 this.board[row][col] = card;
             }
         }
@@ -548,12 +548,12 @@ public class SplendorGameState extends GameState {
                 }
                 break;
             case 2:
-                if(coinCountBool(splendorPlayer3) && flag1 && flag2 && flag3) {
+                if(coinCountBool(splendorPlayer3) && stackOneNotEmpty && stackTwoNotEmpty && stackThreeNotEmpty) {
                     return true;
                 }
                 break;
             case 3:
-                if(coinCountBool(splendorPlayer4) && flag1 && flag2 && flag3) {
+                if(coinCountBool(splendorPlayer4) && stackOneNotEmpty && stackTwoNotEmpty && stackThreeNotEmpty) {
                     return true;
                 }
                 break;
