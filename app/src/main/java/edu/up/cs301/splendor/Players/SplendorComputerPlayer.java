@@ -23,6 +23,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
     @Override
     public void receiveInfo(GameInfo info) {
+        this.gameState = new SplendorGameState((SplendorGameState) info);
 
         //checks to see if it Computer Players turn
         if (notPlayerTurn()) {
@@ -30,7 +31,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         }
 
         //refreshes the local copy of the game state with the new info
-        this.gameState = new SplendorGameState((SplendorGameState) info);
+
 
         //traverse through card board and purchases a card if it can
         for (int row = 0; row < 3; row++) {
