@@ -124,7 +124,7 @@ public class SplendorLocalGame extends LocalGame {
                         return true;
                     }
                 }
-
+                this.gameState.getCoinTracking().remove(0);
                 this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                 return true;
             }

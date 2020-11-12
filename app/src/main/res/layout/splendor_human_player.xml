@@ -591,6 +591,20 @@
             android:orientation="vertical">
 
             <ImageButton
+                android:id="@+id/rubyCoin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ruby" />
+
+            <ImageButton
+                android:id="@+id/sapphireCoin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/sapphire" />
+
+            <ImageButton
                 android:id="@+id/emeraldCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -605,25 +619,11 @@
                 app:srcCompat="@drawable/diamond" />
 
             <ImageButton
-                android:id="@+id/sapphireCoin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/sapphire" />
-
-            <ImageButton
                 android:id="@+id/onyxCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/onyx" />
-
-            <ImageButton
-                android:id="@+id/rubyCoin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/ruby" />
 
             <ImageButton
                 android:id="@+id/goldCoin"
