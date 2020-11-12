@@ -33,7 +33,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
         //traverse through card board and purchases a card if it can
         for (int row = 0; row < 3; row++) {
-            for(int col = 0; col < 3; col++) {
+            for(int col = 0; col < 4; col++) {
                 Card card = gameState.getBoard(row, col);
                 if (canBuy(card, row, col)) {
                     SplendorSelectCardAction select = new SplendorSelectCardAction(null, row, col);
@@ -50,9 +50,10 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
     public boolean randomCoinBuy(){
         //generates new random object for random coin selection
         this.randomizer = new Random();
-        int coin1 = randomizer.nextInt(5)+1;
-        int coin2 = randomizer.nextInt(5)+1;
-        int coin3 = randomizer.nextInt(5)+1;
+
+        int coin1 = randomizer.nextInt(5);
+        int coin2 = randomizer.nextInt(5);
+        int coin3 = randomizer.nextInt(5);
         //if any of the two coins are the same, do action on the dupe coin pile
         if(coin1 == coin2 || coin1 == coin3)
             return this.gameState.coinAction(coin1);
