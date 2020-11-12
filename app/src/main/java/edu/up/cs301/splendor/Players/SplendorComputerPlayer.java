@@ -36,7 +36,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             for(int col = 0; col < 4; col++) {
                 Card card = gameState.getBoard(row, col);
                 if (canBuy(card, row, col)) {
-                    SplendorSelectCardAction select = new SplendorSelectCardAction(null, row, col);
+                    SplendorSelectCardAction select = new SplendorSelectCardAction(this, row, col);
                     this.game.sendAction(select);
                     splCardAction buy = new splCardAction(this, card, row, col);
                     this.game.sendAction(buy);
