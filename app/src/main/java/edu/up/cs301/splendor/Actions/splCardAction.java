@@ -6,6 +6,8 @@ import edu.up.cs301.splendor.Players.GamePlayer;
 public class splCardAction extends GameAction {
     private Card card;
     private GamePlayer player;
+    private int row;
+    private int col;
 
     /**
      * Constructor for the splCardAction class
@@ -13,10 +15,19 @@ public class splCardAction extends GameAction {
      * @param player - the player making the move
      * @param card
      */
-    public splCardAction(GamePlayer player, Card card) {
+    public splCardAction(GamePlayer player, Card card, int row, int col) {
         super(player);
         this.card = card;
         this.player = player;
+        this.row = row;
+        this.col = col;
     }
 
+    public int getRow(){
+        return this.row;
+    }
+
+    public int getCol(){
+        return this.col;
+    }
 }

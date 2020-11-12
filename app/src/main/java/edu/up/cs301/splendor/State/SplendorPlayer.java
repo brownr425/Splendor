@@ -27,6 +27,14 @@ public class SplendorPlayer {
     //player's hand
     private Hand playerHand;
 
+    public SplendorPlayer(){
+        initializePtsNCoins();
+        this.rubyPts = 15;
+        this.sapphPts = 15;
+        this.emerPts = 15;
+        this.diaPts = 15;
+        this.onyxPts = 15;
+    }
     /**
      * constructor SplendorPlayer - initialize all values for new object
      * @param playerID - player's id, 1-4

@@ -23,6 +23,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
     @Override
     public void receiveInfo(GameInfo info) {
+        //refreshes the local copy of the game state with the new info
         this.gameState = new SplendorGameState((SplendorGameState) info);
 
         //checks to see if it Computer Players turn
@@ -30,17 +31,14 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             return;
         }
 
-        //refreshes the local copy of the game state with the new info
-
-
         //traverse through card board and purchases a card if it can
         for (int row = 0; row < 3; row++) {
             for(int col = 0; col < 3; col++) {
                 Card card = gameState.getBoard(row, col);
-                if (canBuy(card)) {
+                if (canBuy(card, row, col)) {
                     SplendorSelectCardAction select = new SplendorSelectCardAction(null, row, col);
                     this.game.sendAction(select);
-                    splCardAction buy = new splCardAction(this, card);
+                    splCardAction buy = new splCardAction(this, card, row, col);
                     this.game.sendAction(buy);
                     break;
                 }
@@ -68,8 +66,8 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         return this.playerNum != gameState.getPlayerTurn();
     }
 
-    public boolean canBuy(Card card) {
-        return this.gameState.cardAction(card);
+    public boolean canBuy(Card card, int row, int col) {
+        return this.gameState.cardAction(card, row, col);
     }
 
 }
