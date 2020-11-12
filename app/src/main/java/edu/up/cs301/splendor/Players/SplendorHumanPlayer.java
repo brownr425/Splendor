@@ -89,6 +89,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     //Take Coins
     Button coinButton;
 
+    TextView coinB;
+
 
 
     // infoBox
@@ -126,7 +128,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p4Ruby;
     private TextView p4Gold;
     private TextView p4PrestigePt;
-
 
     /**
      * constructor
@@ -220,6 +221,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Gold.setText("" + state.getSplendorPlayer4().getGoldCoins());
         p4PrestigePt.setText(""+ state.getSplendorPlayer4().getPrestigePts());
 
+        coinB.setText("CB: R:" + state.getRubyCoins()+ "B:"+state.getSapphireCoins()+"G:"+state.getEmeraldCoins()+"W:"+state.getDiamondCoins()+"Br:"+state.getOnyxCoins());
 
         //Update info box to reflect selected card
         if(state.getSelected() != null) {
@@ -500,6 +502,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
 
 
+       coinB= (TextView) activity.findViewById(R.id.CB);
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated
         if (state != null) {
