@@ -5,8 +5,8 @@ import java.util.Random;
 import edu.up.cs301.game.GameFramework.GameComputerPlayer;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
-import edu.up.cs301.splendor.Actions.splCardAction;
-import edu.up.cs301.splendor.Actions.splCoinAction;
+import edu.up.cs301.splendor.Actions.SplendorCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCoinAction;
 import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.State.GameInfo;
 import edu.up.cs301.splendor.State.SplendorGameState;
@@ -44,7 +44,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
                 SplendorSelectCardAction select = new SplendorSelectCardAction(this, row, col);
                 this.game.sendAction(select);
-                splCardAction buy = new splCardAction(this, card, row, col);
+                SplendorCardAction buy = new SplendorCardAction(this, card, row, col);
                 this.game.sendAction(buy);
             }
         }
@@ -66,17 +66,17 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         if (coin1 == coin2 || coin1 == coin3) {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
-            this.game.sendAction(new splCoinAction(this));
+            this.game.sendAction(new SplendorCoinAction(this));
         } else if (coin2 == coin3) {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin2));
             this.game.sendAction(new SplendorCoinSelectAction(this, coin2));
-            this.game.sendAction(new splCoinAction(this));
+            this.game.sendAction(new SplendorCoinAction(this));
         } else {
             //otherwise, do action on 3 coins
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
             this.game.sendAction(new SplendorCoinSelectAction(this, coin2));
             this.game.sendAction(new SplendorCoinSelectAction(this, coin3));
-            this.game.sendAction(new splCoinAction(this));
+            this.game.sendAction(new SplendorCoinAction(this));
         }
 
         return true;

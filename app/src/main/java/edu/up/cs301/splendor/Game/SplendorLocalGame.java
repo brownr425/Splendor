@@ -2,15 +2,12 @@ package edu.up.cs301.splendor.Game;
 
 import android.util.Log;
 
-import java.io.InputStream;
 
-
-import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
-import edu.up.cs301.splendor.Actions.splCardAction;
-import edu.up.cs301.splendor.Actions.splCoinAction;
+import edu.up.cs301.splendor.Actions.SplendorCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCoinAction;
 import edu.up.cs301.splendor.Players.GamePlayer;
 import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.State.SplendorGameState;
@@ -31,23 +28,22 @@ public class SplendorLocalGame extends LocalGame {
     }
 
     protected String checkIfGameOver() {
-        if (this.gameState.getSplendorPlayer1().getPrestigePts() == 15 ||
-                this.gameState.getSplendorPlayer2().getPrestigePts() == 15 ||
-                this.gameState.getSplendorPlayer3().getPrestigePts() == 15 ||
-                this.gameState.getSplendorPlayer4().getPrestigePts() == 15) {
-            return "";
-        }
-        else {
-            return null;
-        }
+        String playerWinner = "";
+        if(gameState.getSplendorPlayer1().getPrestigePts() >= 15)
+            playerWinner = "Player 1";
+        else if(gameState.getSplendorPlayer2().getPrestigePts() >= 15)
+            playerWinner = "Player 2";
+        else if(gameState.getSplendorPlayer3().getPrestigePts() >= 15)
+            playerWinner = "Player 3";
+        else if(gameState.getSplendorPlayer4().getPrestigePts() >= 15)
+            playerWinner = "Player 4";
+        else return null;
+        return playerWinner + " wins!";
     }
 
     @Override
     protected boolean makeMove(GameAction action) {
-        if(action instanceof QuitAction) {
-
-        }
-        if (action instanceof splCoinAction){
+        if (action instanceof SplendorCoinAction){
             if(this.gameState.getCoinTracking().isEmpty() || this.gameState.getCoinTracking().size() == 1)
             {
                 return false;
@@ -83,10 +79,10 @@ public class SplendorLocalGame extends LocalGame {
             }
             //action was made, return true/valid move
         }
-        else if(action instanceof splCardAction) {
+        else if(action instanceof SplendorCardAction) {
             if(this.gameState.getSelected() != null)
             {
-                this.gameState.cardAction(this.gameState.getSelected(), ((splCardAction) action).getRow(), ((splCardAction) action).getCol());
+                this.gameState.cardAction(this.gameState.getSelected(), ((SplendorCardAction) action).getRow(), ((SplendorCardAction) action).getCol());
             }
             else{
                 return false;
