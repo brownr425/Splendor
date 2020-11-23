@@ -50,6 +50,15 @@ public class Hand {
     }
 
     /**
+     * removeFromReserved(int idx)
+     *
+     * should remove a card from the reserved hand, in case someone buys it
+     *
+     * @param idx index in array to remove from
+     * */
+    public void removeFromReserved(int idx){reserved.remove(idx);}
+
+    /**
      * canReserve - detects if player's reserved hand is equal to or greater than 3
      *
      * @return - if player's reserved hand has less than 3, return true
