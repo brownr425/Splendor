@@ -24,9 +24,9 @@ public class SplendorMainActivity extends GameMainActivity {
 
 /**
  * Create the default configuration for this game:
- * - one human player vs. one computer player
- * - minimum of 2 player, maximum of 4
- * - one kind of computer player and one kind of human player available
+ * - one human player vs. three computer players
+ * - hard 4 players
+ * - one kind of computer player available (date tbd)
  *
  * @return
  * 		the new configuration object, representing the default configuration
@@ -66,6 +66,7 @@ public class SplendorMainActivity extends GameMainActivity {
         // Add the default players to the configuration
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
+
 
         // Set the default remote-player setup:
         // - player name: "Remote Player"

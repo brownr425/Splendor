@@ -1,7 +1,7 @@
 /*
-@authors Ryan Brown, Noah LaFave, Jacob Noble, Aidan Day
-@version Alpha
-
+ * @authors Ryan Brown, Noah LaFave, Jacob Noble, Aidan Day
+ * @version Alpha
+ *
  */
 
 package edu.up.cs301.splendor.State;
