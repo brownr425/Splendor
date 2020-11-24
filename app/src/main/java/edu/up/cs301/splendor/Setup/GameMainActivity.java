@@ -143,6 +143,10 @@ public abstract class GameMainActivity extends Activity implements
         return ProxyGame.create(portNum, hostName);
     }
 
+    public GameConfig getConfig() {
+        return this.config;
+    }
+
     /*
      * ====================================================================
      * Public Methods
@@ -904,6 +908,10 @@ public abstract class GameMainActivity extends Activity implements
             // we have an error message
             MessageBox.popUpMessage(msg, this);
         }
+    }
+
+    public int getnumPlayers(){
+        return this.tableRows.size();
     }
 
 }
