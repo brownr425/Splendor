@@ -1,5 +1,17 @@
 package edu.up.cs301.splendor.Players;
 
+import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.splendor.Actions.SplendorBuyReservedCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
+import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
+import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCoinAction;
+import edu.up.cs301.splendor.Setup.GameMainActivity;
+import edu.up.cs301.game.R;
+import edu.up.cs301.splendor.Actions.GameAction;
+import edu.up.cs301.splendor.State.GameInfo;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -170,6 +182,27 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         onyxCoin.setImageResource(R.drawable.onyx);
         rubyCoin.setImageResource(R.drawable.ruby);
         goldCoin.setImageResource(R.drawable.gold);
+
+        //SELECTED COIN HIGHLIGHT
+       for(int coin : this.state.getCoinTracking()){
+
+           if(coin == 0){
+               rubyCoin.setImageResource(R.drawable.ruby_selected);
+
+           }
+           else if(coin == 1){
+               sapphireCoin.setImageResource(R.drawable.sapphire_selected);
+           }
+           else if(coin == 2){
+               emeraldCoin.setImageResource(R.drawable.emerald_selected);
+           }
+           else if(coin == 3){
+               diamondCoin.setImageResource(R.drawable.diamond_selected);
+           }
+           else if(coin == 4){
+               onyxCoin.setImageResource(R.drawable.onyx_selected);
+           }
+       }
 
         if(this.state.getPlayerList().size() == 2)
         {
@@ -516,13 +549,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         reserveButton.setOnClickListener(this);
         coinButton = (Button) activity.findViewById(R.id.coinAction);
         coinButton.setOnClickListener(this);
-        
 
         // will provide info on current player stats if clicked on
         Button currentPlayer = (Button) activity.findViewById(R.id.currentPlayerInfo);
         currentPlayer.setOnClickListener(this);
-
-
 
         //player point values
         p1Emerald = (TextView) activity.findViewById(R.id.emeraldPoint1);
@@ -543,23 +573,25 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint2);
         p2Name = (TextView) activity.findViewById(R.id.player2Name);
 
-        p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
-        p3Diamond= (TextView) activity.findViewById(R.id.diamondPoint3);
-        p3Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint3);
-        p3Onyx= (TextView) activity.findViewById(R.id.onyxPoint3);
-        p3Ruby= (TextView) activity.findViewById(R.id.rubyPoint3);
-        p3Gold= (TextView) activity.findViewById(R.id.goldPoint3);
-        p3PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint3);
-        p3Name = (TextView) activity.findViewById(R.id.player3Name);
 
-        p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
-        p4Diamond= (TextView) activity.findViewById(R.id.diamondPoint4);
-        p4Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint4);
-        p4Onyx= (TextView) activity.findViewById(R.id.onyxPoint4);
-        p4Ruby= (TextView) activity.findViewById(R.id.rubyPoint4);
-        p4Gold= (TextView) activity.findViewById(R.id.goldPoint4);
-        p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
-        p4Name = (TextView) activity.findViewById(R.id.player4Name);
+            p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
+            p3Diamond= (TextView) activity.findViewById(R.id.diamondPoint3);
+            p3Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint3);
+            p3Onyx= (TextView) activity.findViewById(R.id.onyxPoint3);
+            p3Ruby= (TextView) activity.findViewById(R.id.rubyPoint3);
+            p3Gold= (TextView) activity.findViewById(R.id.goldPoint3);
+            p3PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint3);
+            p3Name = (TextView) activity.findViewById(R.id.player3Name);
+
+
+                p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
+                p4Diamond= (TextView) activity.findViewById(R.id.diamondPoint4);
+                p4Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint4);
+                p4Onyx= (TextView) activity.findViewById(R.id.onyxPoint4);
+                p4Ruby= (TextView) activity.findViewById(R.id.rubyPoint4);
+                p4Gold= (TextView) activity.findViewById(R.id.goldPoint4);
+                p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
+                p4Name = (TextView) activity.findViewById(R.id.player4Name);
 
 
         coinB= (TextView) activity.findViewById(R.id.CB);
