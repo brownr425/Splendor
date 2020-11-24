@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
 import edu.up.cs301.splendor.Game.Hand;
 import edu.up.cs301.splendor.State.SplendorGameState;
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
@@ -89,6 +90,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p1Ruby;
     private TextView p1Gold;
     private TextView p1PrestigePt;
+    private TextView p1Name;
 
     private TextView p2Emerald;
     private TextView p2Diamond;
@@ -97,6 +99,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p2Ruby;
     private TextView p2Gold;
     private TextView p2PrestigePt;
+    private TextView p2Name;
 
     private TextView p3Emerald;
     private TextView p3Diamond;
@@ -105,6 +108,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p3Ruby;
     private TextView p3Gold;
     private TextView p3PrestigePt;
+    private TextView p3Name;
 
     private TextView p4Emerald;
     private TextView p4Diamond;
@@ -113,6 +117,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p4Ruby;
     private TextView p4Gold;
     private TextView p4PrestigePt;
+    private TextView p4Name;
 
     /**
      * constructor
@@ -175,6 +180,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3Ruby.setVisibility(View.GONE);
             p3Gold.setVisibility(View.GONE);
             p3PrestigePt.setVisibility(View.GONE);
+            p3Name.setVisibility(View.GONE);
 
             p4Emerald.setVisibility(View.GONE);
             p4Diamond.setVisibility(View.GONE);
@@ -183,6 +189,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p4Ruby.setVisibility(View.GONE);
             p4Gold.setVisibility(View.GONE);
             p4PrestigePt.setVisibility(View.GONE);
+            p4Name.setVisibility(View.GONE);
         }
         else if(this.state.getPlayerList().size() == 3)
         {
@@ -193,6 +200,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p4Ruby.setVisibility(View.GONE);
             p4Gold.setVisibility(View.GONE);
             p4PrestigePt.setVisibility(View.GONE);
+            p4Name.setVisibility(View.GONE);
         }
 
         p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +
@@ -221,32 +229,35 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2Gold.setText("" + state.getPlayer(1).getGoldCoins());
         p2PrestigePt.setText("" + state.getPlayer(1).getPrestigePts());
 
-        p3Emerald.setText("" + state.getPlayer(2).getEmerCoins() +
-                " + " + state.getPlayer(2).getEmerPts());
-        p3Diamond.setText("" + state.getPlayer(2).getDiaCoins() +
-                " + " + state.getPlayer(2).getDiaPts());
-        p3Sapphire.setText("" + state.getPlayer(2).getSapphCoins() +
-                " + " + state.getPlayer(2).getSapphPts());
-        p3Onyx.setText("" + state.getPlayer(2).getOnyxCoins() +
-                " + " + state.getPlayer(2).getOnyxPts());
-        p3Ruby.setText("" + state.getPlayer(2).getRubyCoins() +
-                " + " + state.getPlayer(2).getRubyPts());
-        p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
-        p3PrestigePt.setText("" + state.getPlayer(2).getPrestigePts());
+        if(state.getPlayerList().size() >= 3) {
+            p3Emerald.setText("" + state.getPlayer(2).getEmerCoins() +
+                    " + " + state.getPlayer(2).getEmerPts());
+            p3Diamond.setText("" + state.getPlayer(2).getDiaCoins() +
+                    " + " + state.getPlayer(2).getDiaPts());
+            p3Sapphire.setText("" + state.getPlayer(2).getSapphCoins() +
+                    " + " + state.getPlayer(2).getSapphPts());
+            p3Onyx.setText("" + state.getPlayer(2).getOnyxCoins() +
+                    " + " + state.getPlayer(2).getOnyxPts());
+            p3Ruby.setText("" + state.getPlayer(2).getRubyCoins() +
+                    " + " + state.getPlayer(2).getRubyPts());
+            p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
+            p3PrestigePt.setText("" + state.getPlayer(2).getPrestigePts());
 
-        p4Emerald.setText("" + state.getPlayer(3).getEmerCoins() +
-                " + " + state.getPlayer(3).getEmerPts());
-        p4Diamond.setText("" + state.getPlayer(3).getDiaCoins() +
-                " + " + state.getPlayer(3).getDiaPts());
-        p4Sapphire.setText("" + state.getPlayer(3).getSapphCoins() +
-                " + " + state.getPlayer(3).getSapphPts());
-        p4Onyx.setText("" + state.getPlayer(3).getOnyxCoins() +
-                " + " + state.getPlayer(3).getOnyxPts());
-        p4Ruby.setText("" + state.getPlayer(3).getRubyCoins() +
-                " + " + state.getPlayer(3).getRubyPts());
-        p4Gold.setText("" + state.getPlayer(3).getGoldCoins());
-        p4PrestigePt.setText("" + state.getPlayer(3).getPrestigePts());
-
+            if(state.getPlayerList().size() >= 4) {
+                p4Emerald.setText("" + state.getPlayer(3).getEmerCoins() +
+                        " + " + state.getPlayer(3).getEmerPts());
+                p4Diamond.setText("" + state.getPlayer(3).getDiaCoins() +
+                        " + " + state.getPlayer(3).getDiaPts());
+                p4Sapphire.setText("" + state.getPlayer(3).getSapphCoins() +
+                        " + " + state.getPlayer(3).getSapphPts());
+                p4Onyx.setText("" + state.getPlayer(3).getOnyxCoins() +
+                        " + " + state.getPlayer(3).getOnyxPts());
+                p4Ruby.setText("" + state.getPlayer(3).getRubyCoins() +
+                        " + " + state.getPlayer(3).getRubyPts());
+                p4Gold.setText("" + state.getPlayer(3).getGoldCoins());
+                p4PrestigePt.setText("" + state.getPlayer(3).getPrestigePts());
+            }
+        }
 
         coinB.setText("CB: R:" + state.getRubyCoins()+ "B:"+state.getSapphireCoins()+"G:"+state.getEmeraldCoins()+"W:"+state.getDiamondCoins()+"Br:"+state.getOnyxCoins());
 
@@ -294,6 +305,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
         else if (button.getId() == R.id.coinAction){
             action = new SplendorCoinAction(this);
+        }
+        else if (button.getId() == R.id.returnCoins) {
+            action = new SplendorReturnCoinAction(this);
         }
         else if (button.getId() == R.id.currentPlayerInfo) {
             state.setSelected(null);
@@ -515,6 +529,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p1Ruby= (TextView) activity.findViewById(R.id.rubyPoint1);
         p1Gold= (TextView) activity.findViewById(R.id.goldPoint1);
         p1PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint1);
+        p1Name = (TextView) activity.findViewById(R.id.player1Name);
 
         p2Emerald = (TextView) activity.findViewById(R.id.emeraldPoint2);
         p2Diamond= (TextView) activity.findViewById(R.id.diamondPoint2);
@@ -523,22 +538,29 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2Ruby= (TextView) activity.findViewById(R.id.rubyPoint2);
         p2Gold= (TextView) activity.findViewById(R.id.goldPoint2);
         p2PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint2);
+        p2Name = (TextView) activity.findViewById(R.id.player2Name);
 
-        p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
-        p3Diamond= (TextView) activity.findViewById(R.id.diamondPoint3);
-        p3Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint3);
-        p3Onyx= (TextView) activity.findViewById(R.id.onyxPoint3);
-        p3Ruby= (TextView) activity.findViewById(R.id.rubyPoint3);
-        p3Gold= (TextView) activity.findViewById(R.id.goldPoint3);
-        p3PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint3);
+        if(state.getPlayerList().size() >= 3) {
+            p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
+            p3Diamond= (TextView) activity.findViewById(R.id.diamondPoint3);
+            p3Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint3);
+            p3Onyx= (TextView) activity.findViewById(R.id.onyxPoint3);
+            p3Ruby= (TextView) activity.findViewById(R.id.rubyPoint3);
+            p3Gold= (TextView) activity.findViewById(R.id.goldPoint3);
+            p3PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint3);
+            p3Name = (TextView) activity.findViewById(R.id.player3Name);
 
-        p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
-        p4Diamond= (TextView) activity.findViewById(R.id.diamondPoint4);
-        p4Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint4);
-        p4Onyx= (TextView) activity.findViewById(R.id.onyxPoint4);
-        p4Ruby= (TextView) activity.findViewById(R.id.rubyPoint4);
-        p4Gold= (TextView) activity.findViewById(R.id.goldPoint4);
-        p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
+            if(state.getPlayerList().size() >= 4) {
+                p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
+                p4Diamond= (TextView) activity.findViewById(R.id.diamondPoint4);
+                p4Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint4);
+                p4Onyx= (TextView) activity.findViewById(R.id.onyxPoint4);
+                p4Ruby= (TextView) activity.findViewById(R.id.rubyPoint4);
+                p4Gold= (TextView) activity.findViewById(R.id.goldPoint4);
+                p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
+                p4Name = (TextView) activity.findViewById(R.id.player4Name);
+            }
+        }
 
         coinB= (TextView) activity.findViewById(R.id.CB);
 

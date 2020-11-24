@@ -723,6 +723,13 @@
                     android:text="Reserve Card" />
 
                 <Button
+                    android:id="@+id/returnCoins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Return Coins" />
+
+                <Button
                     android:id="@+id/coinAction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
