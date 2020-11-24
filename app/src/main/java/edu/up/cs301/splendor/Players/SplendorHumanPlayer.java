@@ -26,7 +26,7 @@ import edu.up.cs301.splendor.Actions.SplendorCoinAction;
  * A GUI of a counter-player. The GUI displays the current value of the counter,
  * and allows the human player to press the '+' and '-' buttons in order to
  * send moves to the game.
- *
+ * <p>
  * Just for fun, the GUI is implemented so that if the player presses either button
  * when the counter-value is zero, the screen flashes briefly, with the flash-color
  * being dependent on whether the player is player 0 or player 1.
@@ -121,8 +121,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
     /**
      * constructor
-     * @param name
-     * 		the player's name
+     *
+     * @param name the player's name
      */
     public SplendorHumanPlayer(String name) {
         super(name);
@@ -131,8 +131,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     /**
      * Returns the GUI's top view object
      *
-     * @return
-     * 		the top object in the GUI's view hierarchy
+     * @return the top object in the GUI's view hierarchy
      */
     public View getTopView() {
         return myActivity.findViewById(R.id.top_gui_layout);
@@ -201,8 +200,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
 
 
-        if(this.state.getPlayerList().size() == 2)
-        {
+        if (this.state.getPlayerList().size() == 2) {
             p3Emerald.setVisibility(View.GONE);
             p3Diamond.setVisibility(View.GONE);
             p3Sapphire.setVisibility(View.GONE);
@@ -223,9 +221,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p1Name.setText(state.getPlayer1Name());
             p2Name.setText(state.getPlayer2Name());
             p4Name.setVisibility(View.GONE);
-        }
-        else if(this.state.getPlayerList().size() == 3)
-        {
+        } else if (this.state.getPlayerList().size() == 3) {
             p4Emerald.setVisibility(View.GONE);
             p4Diamond.setVisibility(View.GONE);
             p4Sapphire.setVisibility(View.GONE);
@@ -237,8 +233,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p1Name.setText(state.getPlayer1Name());
             p2Name.setText(state.getPlayer2Name());
             p3Name.setText(state.getPlayer3Name());
-        }
-        else if(this.state.getPlayerList().size() == 4) {
+        } else if (this.state.getPlayerList().size() == 4) {
             p1Name.setText(state.getPlayer1Name());
             p2Name.setText(state.getPlayer2Name());
             p3Name.setText(state.getPlayer3Name());
@@ -272,7 +267,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2Gold.setText("" + state.getPlayer(1).getGoldCoins());
         p2PrestigePt.setText("" + state.getPlayer(1).getPrestigePts());
 
-        if(state.getPlayerList().size() >= 3) {
+        if (state.getPlayerList().size() >= 3) {
             p3Emerald.setText("" + state.getPlayer(2).getEmerCoins() +
                     " + " + state.getPlayer(2).getEmerPts());
             p3Diamond.setText("" + state.getPlayer(2).getDiaCoins() +
@@ -286,7 +281,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
             p3PrestigePt.setText("" + state.getPlayer(2).getPrestigePts());
 
-            if(state.getPlayerList().size() >= 4) {
+            if (state.getPlayerList().size() >= 4) {
                 p4Emerald.setText("" + state.getPlayer(3).getEmerCoins() +
                         " + " + state.getPlayer(3).getEmerPts());
                 p4Diamond.setText("" + state.getPlayer(3).getDiaCoins() +
@@ -302,10 +297,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             }
         }
 
-        coinB.setText("CB: R:" + state.getRubyCoins()+ "B:"+state.getSapphireCoins()+"G:"+state.getEmeraldCoins()+"W:"+state.getDiamondCoins()+"Br:"+state.getOnyxCoins());
+        coinB.setText("CB: R:" + state.getRubyCoins() + "B:" + state.getSapphireCoins() + "G:" + state.getEmeraldCoins() + "W:" + state.getDiamondCoins() + "Br:" + state.getOnyxCoins());
 
         //Update info box to reflect selected card
-        if(state.getSelected() != null) {
+        if (state.getSelected() != null) {
             String info = state.getSelected().toString();
             infoBox.setText(info);
         } else {
@@ -324,8 +319,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * this method gets called whenever the user clicks any of the buttons on screen.
      * It creates a corresponding action based on the button that was clicked.
      *
-     * @param button
-     * 		the button that was clicked
+     * @param button the button that was clicked
      */
     public void onClick(View button) {
         // if we are not yet connected to a game, ignore
@@ -333,26 +327,21 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         // Construct the action and send it to the game
         GameAction action = null;
-        if(button.getId() == R.id.quitButton) {
+        if (button.getId() == R.id.quitButton) {
             myActivity.restartGame();
-        }
-        else if (button.getId() == R.id.buyAction) {
+        } else if (button.getId() == R.id.buyAction) {
             // plus button: create "increment" action
             Log.d("SHP", "BUY");
             action = new SplendorCardAction(this, this.state.getSelected(),
                     this.state.getSelectedRow(), this.state.getSelectedCol());
-        }
-        else if (button.getId() == R.id.reserveAction) {
+        } else if (button.getId() == R.id.reserveAction) {
             // minus button: create "decrement" action
             action = new SplendorReserveCardAction(this, this.state.getSelectedRow(), this.state.getSelectedCol());
-        }
-        else if (button.getId() == R.id.coinAction){
+        } else if (button.getId() == R.id.coinAction) {
             action = new SplendorCoinAction(this);
-        }
-        else if (button.getId() == R.id.returnCoins) {
+        } else if (button.getId() == R.id.returnCoins) {
             action = new SplendorReturnCoinAction(this);
-        }
-        else if (button.getId() == R.id.currentPlayerInfo) {
+        } else if (button.getId() == R.id.currentPlayerInfo) {
             state.setSelected(null);
         }
 
@@ -372,84 +361,64 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             // something else was pressed: ignore
            // action = new SplendorSelectCardAction(this,0,3);
         }*/
-        else if (button.getId() == R.id.rank1Card1){
+        else if (button.getId() == R.id.rank1Card1) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this, 2,0);
-        }
-        else if (button.getId() == R.id.rank1Card2){
+            action = new SplendorSelectCardAction(this, 2, 0);
+        } else if (button.getId() == R.id.rank1Card2) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,2,1);
-        }
-        else if (button.getId() == R.id.rank1Card3){
+            action = new SplendorSelectCardAction(this, 2, 1);
+        } else if (button.getId() == R.id.rank1Card3) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,2,2);
-        }
-        else if (button.getId() == R.id.rank1Card4){
+            action = new SplendorSelectCardAction(this, 2, 2);
+        } else if (button.getId() == R.id.rank1Card4) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,2,3);
-        }
-        else if (button.getId() == R.id.rank2Card1){
+            action = new SplendorSelectCardAction(this, 2, 3);
+        } else if (button.getId() == R.id.rank2Card1) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this, 1,0);
-        }
-        else if (button.getId() == R.id.rank2Card2){
+            action = new SplendorSelectCardAction(this, 1, 0);
+        } else if (button.getId() == R.id.rank2Card2) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,1,1);
-        }
-        else if (button.getId() == R.id.rank2Card3){
+            action = new SplendorSelectCardAction(this, 1, 1);
+        } else if (button.getId() == R.id.rank2Card3) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,1,2);
-        }
-        else if (button.getId() == R.id.rank2Card4){
+            action = new SplendorSelectCardAction(this, 1, 2);
+        } else if (button.getId() == R.id.rank2Card4) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,1,3);
-        }
-        else if (button.getId() == R.id.rank3Card1){
+            action = new SplendorSelectCardAction(this, 1, 3);
+        } else if (button.getId() == R.id.rank3Card1) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this, 0,0);
-        }
-        else if (button.getId() == R.id.rank3Card2){
+            action = new SplendorSelectCardAction(this, 0, 0);
+        } else if (button.getId() == R.id.rank3Card2) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,1);
-        }
-        else if (button.getId() == R.id.rank3Card3){
+            action = new SplendorSelectCardAction(this, 0, 1);
+        } else if (button.getId() == R.id.rank3Card3) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,2);
-        }
-        else if (button.getId() == R.id.rank3Card4){
+            action = new SplendorSelectCardAction(this, 0, 2);
+        } else if (button.getId() == R.id.rank3Card4) {
             // something else was pressed: ignore
-            action = new SplendorSelectCardAction(this,0,3);
-        }
-        else if(button.getId() == R.id.rubyCoin){
+            action = new SplendorSelectCardAction(this, 0, 3);
+        } else if (button.getId() == R.id.rubyCoin) {
             // something else was pressed: ignore
             action = new SplendorCoinSelectAction(this, 0);
-        }
-        else if(button.getId() == R.id.sapphireCoin){
+        } else if (button.getId() == R.id.sapphireCoin) {
             // something else was pressed: ignore
             action = new SplendorCoinSelectAction(this, 1);
-        }
-        else if(button.getId() == R.id.emeraldCoin){
+        } else if (button.getId() == R.id.emeraldCoin) {
             // something else was pressed: ignore
             action = new SplendorCoinSelectAction(this, 2);
-        }
-        else if(button.getId() == R.id.diamondCoin){
+        } else if (button.getId() == R.id.diamondCoin) {
             // something else was pressed: ignore
             action = new SplendorCoinSelectAction(this, 3);
-        }
-        else if(button.getId() == R.id.onyxCoin){
+        } else if (button.getId() == R.id.onyxCoin) {
             // something else was pressed: ignore
             action = new SplendorCoinSelectAction(this, 4);
-        }
-        else if (button.getId() == R.id.reserveSlot1){
+        } else if (button.getId() == R.id.reserveSlot1) {
             action = new SplendorSelectCardAction(this, 0, -1); // column are -1 to signify it is not in the board, it is the reserved hand
-        }
-        else if(button.getId() == R.id.reserveSlot2) {
+        } else if (button.getId() == R.id.reserveSlot2) {
             action = new SplendorSelectCardAction(this, 1, -1);
-        }
-        else if(button.getId() == R.id.reserveSlot3){
+        } else if (button.getId() == R.id.reserveSlot3) {
             action = new SplendorSelectCardAction(this, 2, -1);
-        }
-        else if(button.getId() == R.id.quitButton){
+        } else if (button.getId() == R.id.quitButton) {
             System.exit(0);
         }
         game.sendAction(action); // send action to the game
@@ -459,8 +428,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     /**
      * callback method when we get a message (e.g., from the game)
      *
-     * @param info
-     * 		the message
+     * @param info the message
      */
     @Override
     public void receiveInfo(GameInfo info) {
@@ -469,7 +437,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         this.state = (SplendorGameState) info;
 
         // update our state; then update the display
-        this.state = (SplendorGameState)info;
+        this.state = (SplendorGameState) info;
         updateDisplay();
     }
 
@@ -477,8 +445,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * callback method--our game has been chosen/rechosen to be the GUI,
      * called from the GUI thread
      *
-     * @param activity
-     * 		the activity under which we are running
+     * @param activity the activity under which we are running
      */
     public void setAsGui(GameMainActivity activity) {
         // remember the activity
@@ -545,11 +512,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         goldCoin.setOnClickListener(this);
 
         // simple buttons for the reserved cards
-        Button reserveCard1 = (Button)activity.findViewById(R.id.reserveSlot1);
+        Button reserveCard1 = (Button) activity.findViewById(R.id.reserveSlot1);
         reserveCard1.setOnClickListener(this);
-        Button reserveCard2 = (Button)activity.findViewById(R.id.reserveSlot2);
+        Button reserveCard2 = (Button) activity.findViewById(R.id.reserveSlot2);
         reserveCard2.setOnClickListener(this);
-        Button reserveCard3 = (Button)activity.findViewById(R.id.reserveSlot3);
+        Button reserveCard3 = (Button) activity.findViewById(R.id.reserveSlot3);
         reserveCard3.setOnClickListener(this);
 
         //action buttons for the actions
@@ -566,46 +533,43 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         //player point values
         p1Emerald = (TextView) activity.findViewById(R.id.emeraldPoint1);
-        p1Diamond= (TextView) activity.findViewById(R.id.diamondPoint1);
-        p1Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint1);
-        p1Onyx= (TextView) activity.findViewById(R.id.onyxPoint1);
-        p1Ruby= (TextView) activity.findViewById(R.id.rubyPoint1);
-        p1Gold= (TextView) activity.findViewById(R.id.goldPoint1);
-        p1PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint1);
+        p1Diamond = (TextView) activity.findViewById(R.id.diamondPoint1);
+        p1Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint1);
+        p1Onyx = (TextView) activity.findViewById(R.id.onyxPoint1);
+        p1Ruby = (TextView) activity.findViewById(R.id.rubyPoint1);
+        p1Gold = (TextView) activity.findViewById(R.id.goldPoint1);
+        p1PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint1);
         p1Name = (TextView) activity.findViewById(R.id.player1Name);
 
         p2Emerald = (TextView) activity.findViewById(R.id.emeraldPoint2);
-        p2Diamond= (TextView) activity.findViewById(R.id.diamondPoint2);
-        p2Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint2);
-        p2Onyx= (TextView) activity.findViewById(R.id.onyxPoint2);
-        p2Ruby= (TextView) activity.findViewById(R.id.rubyPoint2);
-        p2Gold= (TextView) activity.findViewById(R.id.goldPoint2);
-        p2PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint2);
+        p2Diamond = (TextView) activity.findViewById(R.id.diamondPoint2);
+        p2Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint2);
+        p2Onyx = (TextView) activity.findViewById(R.id.onyxPoint2);
+        p2Ruby = (TextView) activity.findViewById(R.id.rubyPoint2);
+        p2Gold = (TextView) activity.findViewById(R.id.goldPoint2);
+        p2PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint2);
         p2Name = (TextView) activity.findViewById(R.id.player2Name);
 
-        if(state.getPlayerList().size() >= 3) {
-            p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
-            p3Diamond= (TextView) activity.findViewById(R.id.diamondPoint3);
-            p3Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint3);
-            p3Onyx= (TextView) activity.findViewById(R.id.onyxPoint3);
-            p3Ruby= (TextView) activity.findViewById(R.id.rubyPoint3);
-            p3Gold= (TextView) activity.findViewById(R.id.goldPoint3);
-            p3PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint3);
-            p3Name = (TextView) activity.findViewById(R.id.player3Name);
+        p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
+        p3Diamond = (TextView) activity.findViewById(R.id.diamondPoint3);
+        p3Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint3);
+        p3Onyx = (TextView) activity.findViewById(R.id.onyxPoint3);
+        p3Ruby = (TextView) activity.findViewById(R.id.rubyPoint3);
+        p3Gold = (TextView) activity.findViewById(R.id.goldPoint3);
+        p3PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint3);
+        p3Name = (TextView) activity.findViewById(R.id.player3Name);
 
-            if(state.getPlayerList().size() >= 4) {
-                p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
-                p4Diamond= (TextView) activity.findViewById(R.id.diamondPoint4);
-                p4Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint4);
-                p4Onyx= (TextView) activity.findViewById(R.id.onyxPoint4);
-                p4Ruby= (TextView) activity.findViewById(R.id.rubyPoint4);
-                p4Gold= (TextView) activity.findViewById(R.id.goldPoint4);
-                p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
-                p4Name = (TextView) activity.findViewById(R.id.player4Name);
-            }
-        }
+        p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
+        p4Diamond = (TextView) activity.findViewById(R.id.diamondPoint4);
+        p4Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint4);
+        p4Onyx = (TextView) activity.findViewById(R.id.onyxPoint4);
+        p4Ruby = (TextView) activity.findViewById(R.id.rubyPoint4);
+        p4Gold = (TextView) activity.findViewById(R.id.goldPoint4);
+        p4PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint4);
+        p4Name = (TextView) activity.findViewById(R.id.player4Name);
 
-        coinB= (TextView) activity.findViewById(R.id.CB);
+
+        coinB = (TextView) activity.findViewById(R.id.CB);
 
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated
