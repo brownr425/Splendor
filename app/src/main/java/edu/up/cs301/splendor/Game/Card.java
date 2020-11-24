@@ -51,7 +51,7 @@ public class Card {
         String ret;
         ret = "\n----" +
                 "\nCard Level: " + cardLevel +
-                "\n Gem Color: " + colorGem +
+                "\n Gem Color: " + colorConversion(this.colorGem) +
                 "\n Prestige Points:  " + prestigePoints +
                 "\n Price of Card: " +
                 "\n Ruby: " + rPrice +
@@ -63,6 +63,18 @@ public class Card {
         return ret;
     }
 
+    public String colorConversion(int color)
+    {
+        switch(color)
+        {
+            case 1: return "Ruby";
+            case 2: return "Sapphire";
+            case 3: return "Emerald";
+            case 4: return "Diamond";
+            case 5: return "Onyx";
+            default: return "Error.";
+        }
+    }
     public int getrPrice() {
         return rPrice;
     }

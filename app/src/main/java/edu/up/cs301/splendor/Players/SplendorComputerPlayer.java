@@ -78,7 +78,6 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin3));
             this.game.sendAction(new SplendorCoinAction(this));
         }
-
         return true;
     }
 

@@ -143,4 +143,6 @@ public class SplendorPlayer {
     public int getOnyxCoins() { return onyxCoins; }
 
     public void setOnyxCoins(int onyxCoins) { this.onyxCoins = onyxCoins; }
+
+    public int getTotalCoins() {return this.rubyCoins+this.sapphCoins+this.emerCoins+this.diaCoins+this.onyxCoins+this.goldCoins;}
 }
