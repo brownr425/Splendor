@@ -22,6 +22,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
      */
     public SplendorComputerPlayer(String name) {
         super(name);
+        this.randomizer = new Random();
     }
 
     @Override
@@ -31,7 +32,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             return;
         }
         //refreshes the local copy of the game state with the new info
-        SplendorGameState gameState = new SplendorGameState((SplendorGameState) info);
+        this.gameState = new SplendorGameState((SplendorGameState) info);
 
         //checks to see if it Computer Players turn
         if (this.playerNum != gameState.getPlayerTurn()) {
@@ -49,11 +50,11 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             }
         }
         randomCoinBuy();
+        randomReturn();
     }
 
     public boolean randomCoinBuy() {
         //generates new random object for random coin selection
-        this.randomizer = new Random();
         boolean success = false;
         int coin1 = randomizer.nextInt(5);
         int coin2 = randomizer.nextInt(5);
@@ -81,11 +82,55 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         return true;
     }
 
+    // Computer player automatically returns between 1-3 random coins.
+    public boolean randomReturn() {
+        int numTypes = randomizer.nextInt(3);
+        int coinType = randomizer.nextInt(5);
+        boolean flag = false;
+
+        for(int i = 0; i < numTypes; i++) {
+            if(!hasCoin(coinType)) {
+                while(!flag) {
+                    coinType = randomizer.nextInt(5);
+                    if(hasCoin(coinType)) {
+                        flag = true;
+                    }
+                }
+                gameState.returnCoins(coinType);
+            }
+        }
+        return true;
+    }
+
     public boolean notPlayerTurn() {
         return this.playerNum != gameState.getPlayerTurn();
     }
 
     public boolean canBuy(Card card, int row, int col) {
         return this.gameState.cardAction(card, row, col);
+    }
+
+    public boolean hasCoin(int coin) {
+        boolean flag = false;
+        switch(coin) {
+            case 0:
+                flag = (this.gameState.getPlayerList().get(gameState.getPlayerTurn()).getRubyCoins() != 0);
+                break;
+            case 1:
+                flag = (this.gameState.getPlayerList().get(gameState.getPlayerTurn()).getSapphCoins() != 0);
+                break;
+            case 2:
+                flag = (this.gameState.getPlayerList().get(gameState.getPlayerTurn()).getEmerCoins() != 0);
+                break;
+            case 3:
+                flag = (this.gameState.getPlayerList().get(gameState.getPlayerTurn()).getDiaCoins() != 0);
+                break;
+            case 4:
+                flag = (this.gameState.getPlayerList().get(gameState.getPlayerTurn()).getOnyxCoins() != 0);
+                break;
+            default:
+                break;
+        }
+        return flag;
     }
 }

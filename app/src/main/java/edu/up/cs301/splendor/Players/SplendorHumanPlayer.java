@@ -1,7 +1,6 @@
 package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
-import edu.up.cs301.splendor.Actions.SplendorBuyReservedCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
@@ -20,19 +19,7 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
-import edu.up.cs301.splendor.Game.Hand;
 import edu.up.cs301.splendor.State.SplendorGameState;
-import edu.up.cs301.game.GameFramework.GameHumanPlayer;
-import edu.up.cs301.splendor.Setup.GameMainActivity;
-import edu.up.cs301.game.R;
-import edu.up.cs301.splendor.Actions.GameAction;
-import edu.up.cs301.splendor.State.GameInfo;
-
-import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
-import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
-import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
-import edu.up.cs301.splendor.Actions.SplendorCardAction;
-import edu.up.cs301.splendor.Actions.SplendorCoinAction;
 
 /**
  * A GUI of a counter-player. The GUI displays the current value of the counter,
@@ -186,26 +173,24 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         //SELECTED COIN HIGHLIGHT
        for(int coin : this.state.getCoinTracking()){
 
-           if(coin == 0){
+           if(coin == 0) {
                rubyCoin.setImageResource(R.drawable.ruby_selected);
-
            }
-           else if(coin == 1){
+           else if(coin == 1) {
                sapphireCoin.setImageResource(R.drawable.sapphire_selected);
            }
-           else if(coin == 2){
+           else if(coin == 2) {
                emeraldCoin.setImageResource(R.drawable.emerald_selected);
            }
-           else if(coin == 3){
+           else if(coin == 3) {
                diamondCoin.setImageResource(R.drawable.diamond_selected);
            }
-           else if(coin == 4){
+           else if(coin == 4) {
                onyxCoin.setImageResource(R.drawable.onyx_selected);
            }
        }
 
-        if(this.state.getPlayerList().size() == 2)
-        {
+        if(this.state.getPlayerList().size() < 3) {
             p3Emerald.setVisibility(View.GONE);
             p3Diamond.setVisibility(View.GONE);
             p3Sapphire.setVisibility(View.GONE);
@@ -215,25 +200,16 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3PrestigePt.setVisibility(View.GONE);
             p3Name.setVisibility(View.GONE);
 
-            p4Emerald.setVisibility(View.GONE);
-            p4Diamond.setVisibility(View.GONE);
-            p4Sapphire.setVisibility(View.GONE);
-            p4Onyx.setVisibility(View.GONE);
-            p4Ruby.setVisibility(View.GONE);
-            p4Gold.setVisibility(View.GONE);
-            p4PrestigePt.setVisibility(View.GONE);
-            p4Name.setVisibility(View.GONE);
-        }
-        else if(this.state.getPlayerList().size() == 3)
-        {
-            p4Emerald.setVisibility(View.GONE);
-            p4Diamond.setVisibility(View.GONE);
-            p4Sapphire.setVisibility(View.GONE);
-            p4Onyx.setVisibility(View.GONE);
-            p4Ruby.setVisibility(View.GONE);
-            p4Gold.setVisibility(View.GONE);
-            p4PrestigePt.setVisibility(View.GONE);
-            p4Name.setVisibility(View.GONE);
+            if(this.state.getPlayerList().size() < 4) {
+                p4Emerald.setVisibility(View.GONE);
+                p4Diamond.setVisibility(View.GONE);
+                p4Sapphire.setVisibility(View.GONE);
+                p4Onyx.setVisibility(View.GONE);
+                p4Ruby.setVisibility(View.GONE);
+                p4Gold.setVisibility(View.GONE);
+                p4PrestigePt.setVisibility(View.GONE);
+                p4Name.setVisibility(View.GONE);
+            }
         }
 
         p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +
