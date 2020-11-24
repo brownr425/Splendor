@@ -764,35 +764,50 @@ public class SplendorGameState extends GameState {
                 this.rubyCoins++;
                 for(SplendorPlayer player : this.playerList)
                 {
-                    if (player.getPlayerID() == this.playerTurn) player.setRubyCoins(player.getRubyCoins()-1);
+                    if (player.getPlayerID() == this.playerTurn)
+                    {
+                        if(player.getRubyCoins() > 0) player.setRubyCoins(player.getRubyCoins()-1);
+                    }
                 }
                 break;
             case 1:
                 this.sapphireCoins++;
                 for(SplendorPlayer player : this.playerList)
                 {
-                    if (player.getPlayerID() == this.playerTurn) player.setSapphCoins(player.getSapphCoins()-1);
+                    if (player.getPlayerID() == this.playerTurn)
+                    {
+                        if(player.getSapphCoins() > 0) player.setSapphCoins(player.getSapphCoins()-1);
+                    }
                 }
                 break;
             case 2:
                 this.emeraldCoins++;
                 for(SplendorPlayer player : this.playerList)
                 {
-                    if (player.getPlayerID() == this.playerTurn) player.setEmerCoins(player.getEmerCoins()-1);
+                    if (player.getPlayerID() == this.playerTurn)
+                    {
+                        if(player.getEmerCoins() > 0) player.setEmerCoins(player.getEmerCoins()-1);
+                    }
                 }
                 break;
             case 3:
                 this.diamondCoins++;
                 for(SplendorPlayer player : this.playerList)
                 {
-                    if (player.getPlayerID() == this.playerTurn) player.setDiaCoins(player.getDiaCoins()-1);
+                    if (player.getPlayerID() == this.playerTurn)
+                    {
+                        if(player.getDiaCoins() > 0) player.setDiaCoins(player.getDiaCoins()-1);
+                    }
                 }
                 break;
             case 4:
                 this.onyxCoins++;
                 for(SplendorPlayer player : this.playerList)
                 {
-                    if (player.getPlayerID() == this.playerTurn) player.setOnyxCoins(player.getOnyxCoins()-1);
+                    if (player.getPlayerID() == this.playerTurn)
+                    {
+                        if(player.getOnyxCoins() > 0) player.setOnyxCoins(player.getOnyxCoins()-1);
+                    }
                 }
                 break;
         }
