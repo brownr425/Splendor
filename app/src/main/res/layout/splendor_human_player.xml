@@ -696,10 +696,10 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/currentPlayerName"
+                android:id="@+id/currentPlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Player Name" />
+                android:text="Player Info" />
 
             <LinearLayout
                 android:id="@+id/currentPlayerActions"
@@ -721,6 +721,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Reserve Card" />
+
+                <Button
+                    android:id="@+id/returnCoins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Return Coins" />
 
                 <Button
                     android:id="@+id/coinAction"
