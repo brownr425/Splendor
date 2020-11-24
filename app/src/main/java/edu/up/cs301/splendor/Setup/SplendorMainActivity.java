@@ -25,7 +25,7 @@ public class SplendorMainActivity extends GameMainActivity {
 /**
  * Create the default configuration for this game:
  * - one human player vs. one computer player
- * - minimum of 1 player, maximum of 2
+ * - minimum of 2 player, maximum of 4
  * - one kind of computer player and one kind of human player available
  *
  * @return
@@ -79,6 +79,11 @@ public class SplendorMainActivity extends GameMainActivity {
 
     @Override
     public LocalGame createLocalGame() {
-        return new SplendorLocalGame(this.getnumPlayers());
+        String[] names = new String[this.getnumPlayers()];
+        for (int i = 0; i < this.getnumPlayers(); i++) {
+            String name = this.getConfig().getSelName(i);
+            names[i] = name;
+        }
+        return new SplendorLocalGame(this.getnumPlayers(), names);
     }
 }

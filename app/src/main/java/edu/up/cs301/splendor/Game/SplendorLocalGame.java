@@ -19,8 +19,8 @@ import edu.up.cs301.splendor.State.SplendorGameState;
 public class SplendorLocalGame extends LocalGame {
     private SplendorGameState gameState;
 
-    public SplendorLocalGame(int num) {
-        this.gameState = new SplendorGameState(num);
+    public SplendorLocalGame(int num, String[] playerNames) {
+        this.gameState = new SplendorGameState(num, playerNames);
     }
 
     protected void sendUpdatedStateTo(GamePlayer player){

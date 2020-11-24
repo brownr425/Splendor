@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:background="#80FFFFFF"
                 android:gravity="center"
+                android:shadowColor="#FFFFFF"
                 android:text="Players" />
 
             <LinearLayout
@@ -490,14 +491,6 @@
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background5" />
 
-                <Button
-                    android:id="@+id/rank3Stack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="#3C55F6"
-                    android:text="Card Stack" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -539,14 +532,6 @@
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background1" />
 
-                <Button
-                    android:id="@+id/rank2Stack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="#F3D40D"
-                    android:text="Card stack" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -587,14 +572,6 @@
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background1" />
-
-                <Button
-                    android:id="@+id/rank1Stack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="#34C613"
-                    android:text="Card Stack" />
 
             </LinearLayout>
         </LinearLayout>

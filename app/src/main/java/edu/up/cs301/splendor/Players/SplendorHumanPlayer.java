@@ -129,6 +129,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p4Gold;
     private TextView p4PrestigePt;
 
+    private TextView p1Name;
+    private TextView p2Name;
+    private TextView p3Name;
+    private TextView p4Name;
+
     /**
      * constructor
      * @param name
@@ -187,6 +192,36 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         rubyCoin.setImageResource(R.drawable.ruby);
         goldCoin.setImageResource(R.drawable.gold);
 
+
+        switch (this.state.getPlayerTurn()) {
+            case 0:
+                p1Name.setBackgroundResource(R.color.green);
+                p2Name.setBackgroundResource(R.color.grey);
+                p3Name.setBackgroundResource(R.color.grey);
+                p4Name.setBackgroundResource(R.color.grey);
+                break;
+            case 1:
+                p1Name.setBackgroundResource(R.color.grey);
+                p2Name.setBackgroundResource(R.color.green);
+                p3Name.setBackgroundResource(R.color.grey);
+                p4Name.setBackgroundResource(R.color.grey);
+                break;
+            case 2:
+                p1Name.setBackgroundResource(R.color.grey);
+                p2Name.setBackgroundResource(R.color.grey);
+                p3Name.setBackgroundResource(R.color.green);
+                p4Name.setBackgroundResource(R.color.grey);
+                break;
+            case 3:
+                p1Name.setBackgroundResource(R.color.grey);
+                p2Name.setBackgroundResource(R.color.grey);
+                p3Name.setBackgroundResource(R.color.grey);
+                p4Name.setBackgroundResource(R.color.green);
+                break;
+
+        }
+
+
         if(this.state.getPlayerList().size() == 2)
         {
             p3Emerald.setVisibility(View.GONE);
@@ -204,6 +239,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p4Ruby.setVisibility(View.GONE);
             p4Gold.setVisibility(View.GONE);
             p4PrestigePt.setVisibility(View.GONE);
+
+            p1Name.setText(state.getPlayer1Name());
+            p2Name.setText(state.getPlayer2Name());
         }
         else if(this.state.getPlayerList().size() == 3)
         {
@@ -214,6 +252,17 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p4Ruby.setVisibility(View.GONE);
             p4Gold.setVisibility(View.GONE);
             p4PrestigePt.setVisibility(View.GONE);
+
+            p1Name.setText(state.getPlayer1Name());
+            p2Name.setText(state.getPlayer2Name());
+            p3Name.setText(state.getPlayer3Name());
+        }
+        else if(this.state.getPlayerList().size() == 4) {
+            p1Name.setText(state.getPlayer1Name());
+            p2Name.setText(state.getPlayer2Name());
+            p3Name.setText(state.getPlayer3Name());
+            p4Name.setText(state.getPlayer4Name());
+
         }
 
         //player point values
@@ -555,6 +604,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         if (state != null) {
             receiveInfo(state);
         }
+
+        p1Name= (TextView) activity.findViewById(R.id.player1Name);
+        p2Name= (TextView) activity.findViewById(R.id.player2Name);
+        p3Name= (TextView) activity.findViewById(R.id.player3Name);
+        p4Name= (TextView) activity.findViewById(R.id.player4Name);
+
     }
 
 }// class CounterHumanPlayer
