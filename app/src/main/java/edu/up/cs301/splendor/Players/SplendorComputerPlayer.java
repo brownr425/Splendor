@@ -52,6 +52,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
     }
 
     public boolean randomCoinBuy() {
+
         //generates new random object for random coin selection
         this.randomizer = new Random();
         boolean success = false;
