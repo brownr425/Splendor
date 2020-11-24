@@ -34,17 +34,6 @@ import edu.up.cs301.splendor.State.SplendorGameState;
  * @version July 2013
  */
 public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListener {
-
-    /* instance variables */
-    private int prestigePoints;
-    private int rubyCurrency;
-    private int diamondCurrency;
-    private int emeraldCurrency;
-    private int goldCurrency;
-    private int onyxCurrency;
-    private int sapphireCurrency;
-    private Hand hand;
-
     // the most recent game state, as given to us by the CounterLocalGame
     private SplendorGameState state;
 
@@ -85,6 +74,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     Button buyButton;
     //Take Coins
     Button coinButton;
+    //
 
     TextView coinB;
 
@@ -147,8 +137,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * updates the buttons and text views to match with the updated gamestate.
      */
     protected void updateDisplay() {
-        //TODO: update player values. coins
-
         //for now, card/coin images are default
         rank3Card1.setImageResource(R.drawable.background1);
         rank3Card2.setImageResource(R.drawable.background2);
@@ -219,7 +207,14 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             String info = state.getSelected().toString();
             infoBox.setText(info);
         } else {
-            infoBox.setText("Your card info will be shown here");
+            String playerCoins = "Coins\n" +
+                    "Ruby: " + state.getSplendorPlayer1().getRubyCoins() +
+                    "Sapphire: " + state.getSplendorPlayer1().getSapphCoins() +
+                    "Emerald: " + state.getSplendorPlayer1().getEmerCoins() +
+                    "Diamond: " + state.getSplendorPlayer1().getDiaCoins() +
+                    "Onyx: " + state.getSplendorPlayer1().getOnyxCoins() +
+                    "Gold: " + state.getSplendorPlayer1().getGoldCoins();
+            infoBox.setText(playerCoins);
         }
 
     }
@@ -251,9 +246,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
           //  action = new SplendorReserveCardAction(this, null);
         }
         else if (button.getId() == R.id.coinAction){
-
-          action = new SplendorCoinAction(this);
+            action = new SplendorCoinAction(this);
         }
+        else if (button.getId() == R.id.currentPlayerInfo) {
+            state.setSelected(null);
+        }
+
         else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
            // action = new SplendorSelectCardAction(this,0,0);
@@ -376,6 +374,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // Load the layout resource for our GUI
         activity.setContentView(R.layout.splendor_human_player);
 
+
         //info box for info to be given too
         infoBox = (TextView) activity.findViewById(R.id.infoGiven);
 
@@ -450,7 +449,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         coinButton.setOnClickListener(this);
 
         // will provide info on current player stats if clicked on
-        Button currentPlayer = (Button) activity.findViewById(R.id.currentPlayerName);
+        Button currentPlayer = (Button) activity.findViewById(R.id.currentPlayerInfo);
         currentPlayer.setOnClickListener(this);
 
         //player point values
