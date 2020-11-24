@@ -1,5 +1,17 @@
 package edu.up.cs301.splendor.Players;
 
+import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.splendor.Actions.SplendorBuyReservedCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
+import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
+import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCoinAction;
+import edu.up.cs301.splendor.Setup.GameMainActivity;
+import edu.up.cs301.game.R;
+import edu.up.cs301.splendor.Actions.GameAction;
+import edu.up.cs301.splendor.State.GameInfo;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -170,6 +182,27 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         onyxCoin.setImageResource(R.drawable.onyx);
         rubyCoin.setImageResource(R.drawable.ruby);
         goldCoin.setImageResource(R.drawable.gold);
+
+        //SELECTED COIN HIGHLIGHT
+       for(int coin : this.state.getCoinTracking()){
+
+           if(coin == 0){
+               rubyCoin.setImageResource(R.drawable.ruby_selected);
+
+           }
+           else if(coin == 1){
+               sapphireCoin.setImageResource(R.drawable.sapphire_selected);
+           }
+           else if(coin == 2){
+               emeraldCoin.setImageResource(R.drawable.emerald_selected);
+           }
+           else if(coin == 3){
+               diamondCoin.setImageResource(R.drawable.diamond_selected);
+           }
+           else if(coin == 4){
+               onyxCoin.setImageResource(R.drawable.onyx_selected);
+           }
+       }
 
         if(this.state.getPlayerList().size() == 2)
         {
