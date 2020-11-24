@@ -24,9 +24,9 @@ public class SplendorMainActivity extends GameMainActivity {
 
 /**
  * Create the default configuration for this game:
- * - one human player vs. one computer player
- * - minimum of 1 player, maximum of 2
- * - one kind of computer player and one kind of human player available
+ * - one human player vs. three computer players
+ * - hard 4 players
+ * - one kind of computer player available (date tbd)
  *
  * @return
  * 		the new configuration object, representing the default configuration
@@ -50,10 +50,11 @@ public class SplendorMainActivity extends GameMainActivity {
             }});
 
         // a computer player type (player type 2)
-        playerTypes.add(new GamePlayerType("Smart Computer Player") {
+        /*playerTypes.add(new GamePlayerType("Smart Computer Player") {
             public GamePlayer createPlayer(String name) {
                 return new SplendorSmartComputerPlayer(name);
             }});
+         */
 
         // Create a game configuration class for Counter:
         // - player types as given above
@@ -66,6 +67,7 @@ public class SplendorMainActivity extends GameMainActivity {
         // Add the default players to the configuration
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
+        
 
         // Set the default remote-player setup:
         // - player name: "Remote Player"

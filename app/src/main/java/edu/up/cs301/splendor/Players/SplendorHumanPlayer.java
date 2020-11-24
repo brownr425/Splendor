@@ -1,13 +1,10 @@
 package edu.up.cs301.splendor.Players;
 
-import edu.up.cs301.counter.CounterState;
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
-import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
-import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
-import edu.up.cs301.splendor.Actions.splCardAction;
-import edu.up.cs301.splendor.Actions.splCoinAction;
+import edu.up.cs301.splendor.Actions.SplendorCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCoinAction;
 import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
@@ -91,8 +88,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
     TextView coinB;
 
-
-
     // infoBox
     private TextView infoBox;
 
@@ -142,21 +137,17 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * Returns the GUI's top view object
      *
      * @return
-     * 		the top object in the GUI's view heirarchy
+     * 		the top object in the GUI's view hierarchy
      */
     public View getTopView() {
         return myActivity.findViewById(R.id.top_gui_layout);
     }
 
     /**
-     * sets the counter value in the text view
+     * updates the buttons and text views to match with the updated gamestate.
      */
     protected void updateDisplay() {
-        // set the text in the appropriate widget
-        //counterValueTextView.setText("" + state.getCounter());
-
         //TODO: update player values. coins
-
 
         //for now, card/coin images are default
         rank3Card1.setImageResource(R.drawable.background1);
@@ -272,18 +263,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     /**
-     * this method gets called when the user clicks the '+' or '-' button. It
-     * creates a new CounterMoveAction to return to the parent activity.
+     * this method gets called whenever the user clicks any of the buttons on screen.
+     * It creates a corresponding action based on the button that was clicked.
      *
      * @param button
      * 		the button that was clicked
      */
-
-    //TODO figure how cards can get passed into this method
-    //I am thinking that when cards are selected well pass the location in the gameboard array and
-    //in its handler ill set a new instance variable Card SelectedCard to the appropriate Card.
-    //that way when the actions are called they perform the action on the last selected card.
-
     public void onClick(View button) {
         // if we are not yet connected to a game, ignore
         if (game == null) return;
@@ -291,12 +276,13 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // Construct the action and send it to the game
         GameAction action = null;
         if(button.getId() == R.id.quitButton) {
-            action = new QuitAction(this);
+            myActivity.restartGame();
         }
         else if (button.getId() == R.id.buyAction) {
             // plus button: create "increment" action
             Log.d("SHP", "BUY");
-            action = new splCardAction(this, this.state.getSelected(), this.state.getSelectedRow(), this.state.getSelectedCol());
+            action = new SplendorCardAction(this, this.state.getSelected(),
+                    this.state.getSelectedRow(), this.state.getSelectedCol());
         }
         else if (button.getId() == R.id.reserveAction) {
             // minus button: create "decrement" action
@@ -304,7 +290,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
         else if (button.getId() == R.id.coinAction){
 
-          action = new splCoinAction(this);
+          action = new SplendorCoinAction(this);
         }
         else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
@@ -431,7 +417,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * 		the activity under which we are running
      */
     public void setAsGui(GameMainActivity activity) {
-
         // remember the activity
         myActivity = activity;
 
@@ -448,7 +433,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         nobleCard2.setOnClickListener(this);
         nobleCard3 = (ImageButton) activity.findViewById(R.id.nobleCard3);
         nobleCard3.setOnClickListener(this);
-
         nobleCard4 = (ImageButton) activity.findViewById(R.id.nobleCard4);
         nobleCard4.setOnClickListener(this);
         nobleCard5 = (ImageButton) activity.findViewById(R.id.nobleCard5);
@@ -516,6 +500,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         Button currentPlayer = (Button) activity.findViewById(R.id.currentPlayerName);
         currentPlayer.setOnClickListener(this);
 
+        //player point values
         p1Emerald = (TextView) activity.findViewById(R.id.emeraldPoint1);
         p1Diamond= (TextView) activity.findViewById(R.id.diamondPoint1);
         p1Sapphire= (TextView) activity.findViewById(R.id.sapphirePoint1);
@@ -548,8 +533,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Gold= (TextView) activity.findViewById(R.id.goldPoint4);
         p4PrestigePt= (TextView) activity.findViewById(R.id.prestigePoint4);
 
+        coinB= (TextView) activity.findViewById(R.id.CB);
 
-       coinB= (TextView) activity.findViewById(R.id.CB);
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated
         if (state != null) {
