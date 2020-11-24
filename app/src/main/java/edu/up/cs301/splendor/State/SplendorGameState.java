@@ -24,7 +24,6 @@ public class SplendorGameState extends GameState {
     //holds turn value corresponding to player ID below
     private int playerTurn;
 
-
     //player values for playerTurn
     private final int PLAYER1ID = 0;
     private final int PLAYER2ID = 1;
@@ -76,27 +75,36 @@ public class SplendorGameState extends GameState {
     private Noble nobles[];
 
     //this holds the last card that the user has selected
-    private Card selected = null;
+    private Card selected;
     private ArrayList<Integer> coinTracking = new ArrayList<>();
-    private int selectedRow = -1;
-    private int selectedCol = -1;
+    private int selectedRow;
+    private int selectedCol;
 
 //~~~~~~~~~~~~~~~~~~~~~~CONSTRUCTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-    public SplendorGameState(/*InputStream rank1, InputStream rank2, InputStream rank3*/) {
+    public SplendorGameState() {
+        //initialize play
         initializePlayers();
         initializeCoins();
+        initializeSelected();
+        //create deck and shuffle them
         initializeNobles();
-
-
-        this.selected = new Card();
-
-        initializeDecks(); //unfinished: rank1, rank2, rank3
+        initializeDecks();
         Collections.shuffle(this.rank1Stack);
         Collections.shuffle(this.rank2Stack);
         Collections.shuffle(this.rank3Stack);
+        //build board and set default selected
         initializeBoard(this.rank1Stack, this.rank2Stack, this.rank3Stack);
         this.selected = board[2][0];
+    }
+
+    /**
+     * initializeSelected - initializes all values for selected variables
+     */
+    public void initializeSelected() {
+        this.selected = new Card();
+        this.selectedRow = -1;
+        this.selectedCol = -1;
     }
 
     /*
@@ -116,8 +124,10 @@ public class SplendorGameState extends GameState {
             }
         }
 
-        //makes copy of card that is currently selected
-        this.selected = new Card (stateToCopy.getSelected());
+        //makes copy of card that is currently selected if it exists
+        if(stateToCopy.getSelected() != null) {
+            this.selected = new Card(stateToCopy.getSelected());
+        }
         this.playerTurn = stateToCopy.playerTurn;
         this.splendorPlayer1 = new SplendorPlayer(stateToCopy.splendorPlayer1);
         this.splendorPlayer2 = new SplendorPlayer(stateToCopy.splendorPlayer2);
@@ -148,7 +158,7 @@ public class SplendorGameState extends GameState {
         this.noble3 = new Noble(stateToCopy.getNoble3());
         this.noble4 = new Noble(stateToCopy.getNoble4());
 
-        //
+        //copy of which coin is selected
         this.coinTracking = new ArrayList<>();
         for (int coin : stateToCopy.coinTracking) {
             this.coinTracking.add(coin); //uses copy constructor in card
@@ -197,7 +207,7 @@ public class SplendorGameState extends GameState {
      *
      */
 
-    public void initializeDecks(/*InputStream rank1, InputStream rank2, InputStream rank3, InputStream nobles*/) {
+    public void initializeDecks() {
 
         String rank1File = "res/raw/rank1.csv";
         InputStream rank1 =
@@ -830,11 +840,9 @@ public class SplendorGameState extends GameState {
         }
     }
 //~~~~~~~~~~~~~~~~~~Getters~~~~~~~~~~~~~~~~~~~~~~//
-
     public Card getSelected(){ return this.selected; }
 
-    public void setSelected(Card card)
-    { this.selected = card; }
+    public void setSelected(Card card) { this.selected = card; }
 
     public int getPlayerTurn() { return playerTurn; }
 
