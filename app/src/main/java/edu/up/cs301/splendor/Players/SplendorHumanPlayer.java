@@ -221,7 +221,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Gold.setText("" + state.getSplendorPlayer4().getGoldCoins());
         p4PrestigePt.setText(""+ state.getSplendorPlayer4().getPrestigePts());
 
-        coinB.setText("CB: R:" + state.getRubyCoins()+ "B:"+state.getSapphireCoins()+"G:"+state.getEmeraldCoins()+"W:"+state.getDiamondCoins()+"Br:"+state.getOnyxCoins());
+        coinB.setText("CB: R:" + state.getRubyCoins()+ "\tB:"+state.getSapphireCoins()+"\nG:"+state.getEmeraldCoins()+"\tW:"+state.getDiamondCoins()+"\nBr:"+state.getOnyxCoins()+ "turn:"+state.getPlayerTurn());
 
         //Update info box to reflect selected card
         if(state.getSelected() != null) {
