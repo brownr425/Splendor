@@ -1,7 +1,6 @@
 package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
-import edu.up.cs301.splendor.Actions.SplendorBuyReservedCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
@@ -553,6 +552,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // will provide info on current player stats if clicked on
         Button currentPlayer = (Button) activity.findViewById(R.id.currentPlayerInfo);
         currentPlayer.setOnClickListener(this);
+
+        Button returnCoin = (Button) activity.findViewById(R.id.returnCoins);
+        returnCoin.setOnClickListener(this);
 
         //player point values
         p1Emerald = (TextView) activity.findViewById(R.id.emeraldPoint1);

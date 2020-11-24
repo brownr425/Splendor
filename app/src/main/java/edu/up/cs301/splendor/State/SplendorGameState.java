@@ -366,7 +366,7 @@ public class SplendorGameState extends GameState {
                 if(player.getPlayerID() == this.playerTurn)
                 {
                     individualCoinReturn(coinColor);
-                    this.moreThanTenCoins = coinCountBool(player);
+                    this.moreThanTenCoins = coinsGreaterThanTen(player);
                     if(!this.moreThanTenCoins) nextPlayerTurn();
                     return true;
                 }
