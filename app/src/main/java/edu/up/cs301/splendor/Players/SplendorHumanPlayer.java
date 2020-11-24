@@ -1,15 +1,5 @@
 package edu.up.cs301.splendor.Players;
 
-import edu.up.cs301.game.GameFramework.GameHumanPlayer;
-import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
-import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
-import edu.up.cs301.splendor.Actions.SplendorCardAction;
-import edu.up.cs301.splendor.Actions.SplendorCoinAction;
-import edu.up.cs301.splendor.Setup.GameMainActivity;
-import edu.up.cs301.game.R;
-import edu.up.cs301.splendor.Actions.GameAction;
-import edu.up.cs301.splendor.State.GameInfo;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +9,17 @@ import android.widget.TextView;
 
 import edu.up.cs301.splendor.Game.Hand;
 import edu.up.cs301.splendor.State.SplendorGameState;
+import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.splendor.Setup.GameMainActivity;
+import edu.up.cs301.game.R;
+import edu.up.cs301.splendor.Actions.GameAction;
+import edu.up.cs301.splendor.State.GameInfo;
+
+import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
+import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
+import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCardAction;
+import edu.up.cs301.splendor.Actions.SplendorCoinAction;
 
 /**
  * A GUI of a counter-player. The GUI displays the current value of the counter,
