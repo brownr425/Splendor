@@ -185,7 +185,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
            if(coin == 0){
                rubyCoin.setImageResource(R.drawable.ruby_selected);
-               
+
            }
            else if(coin == 1){
                sapphireCoin.setImageResource(R.drawable.sapphire_selected);
