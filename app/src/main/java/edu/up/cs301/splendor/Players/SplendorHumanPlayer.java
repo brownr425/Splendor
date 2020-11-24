@@ -52,7 +52,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     // the android activity that we are running
     private GameMainActivity myActivity;
 
-    //Everything on the GUI that gets updated TODO: RANK card stack for random reserve
+    //Everything on the GUI that gets updated
     private ImageButton nobleCard1;
     private ImageButton nobleCard2;
     private ImageButton nobleCard3;
@@ -148,8 +148,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * updates the buttons and text views to match with the updated gamestate.
      */
     protected void updateDisplay() {
-        //TODO: update player values. coins
-
         //for now, card/coin images are default
         rank3Card1.setImageResource(R.drawable.background1);
         rank3Card2.setImageResource(R.drawable.background2);
