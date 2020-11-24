@@ -66,6 +66,8 @@ public class SplendorGameState extends GameState {
     private int onyxCoins;
     private int goldCoins;
 
+    private boolean moreThanTenCoins = false; // check if current player has moreThanTenCoins
+
 
 //~~~~~~~~~~~~~~~~~~~~~ Game State Specific Variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
@@ -343,6 +345,10 @@ public class SplendorGameState extends GameState {
 
     //increments to next players turn
     private void nextPlayerTurn() {
+        if(moreThanTenCoins) // will check if player has more than 10 coins
+        {
+            return;
+        }
         setPlayerTurn((getPlayerTurn()+1) % playerList.size());
     }
 
@@ -351,14 +357,45 @@ public class SplendorGameState extends GameState {
         this.playerTurn = playerID;
     }
 
+    public boolean returnCoins(int coinColor)
+    {
+        if(this.moreThanTenCoins) // check if player has more than 10 coins, if they do, then disable all actions except returnCoins until they have less
+        {
+            for(SplendorPlayer player : this.playerList)
+            {
+                if(player.getPlayerID() == this.playerTurn)
+                {
+                    individualCoinReturn(coinColor);
+                    this.moreThanTenCoins = coinCountBool(player);
+                    if(!this.moreThanTenCoins) nextPlayerTurn();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     //player chooses three coins to purchase action
     public boolean coinAction(int coinColor1, int coinColor2, int coinColor3) {
         if(coinCheck(coinColor1, coinColor2, coinColor3)) {
-            individualCoinAction(coinColor1);
-            individualCoinAction(coinColor2);
-            individualCoinAction(coinColor3);
-            nextPlayerTurn();
-            return true;
+            if(!moreThanTenCoins) // check if player has more than 10 coins, if they do, then disable all actions except returnCoins until they have less
+            {
+                individualCoinAction(coinColor1);
+                individualCoinAction(coinColor2);
+                individualCoinAction(coinColor3);
+                for(SplendorPlayer player : this.playerList)
+                {
+                    if (player.getPlayerID() == this.playerTurn)
+                    {
+                        if(coinsGreaterThanTen(player))
+                        {
+                            moreThanTenCoins = true;
+                        }
+                    }
+                }
+                nextPlayerTurn();
+                return true;
+            }
         }
         return false;
     }
@@ -366,11 +403,24 @@ public class SplendorGameState extends GameState {
     //player chooses two of one type to purchase
     public boolean coinAction(int coinColor)
     {
-        if (coinCheckDoubles(coinColor)){
-            individualCoinAction(coinColor);
-            individualCoinAction(coinColor);
-            nextPlayerTurn();
-            return true;
+        if(!moreThanTenCoins) // check if player has more than 10 coins, if they do, then disable all actions except returnCoins until they have less
+        {
+            if (coinCheckDoubles(coinColor)){
+                individualCoinAction(coinColor);
+                individualCoinAction(coinColor);
+                for(SplendorPlayer player : this.playerList)
+                {
+                    if (player.getPlayerID() == this.playerTurn)
+                    {
+                        if(coinsGreaterThanTen(player))
+                        {
+                            moreThanTenCoins = true;
+                        }
+                    }
+                }
+                nextPlayerTurn();
+                return true;
+            }
         }
         return false;
     }
@@ -379,7 +429,7 @@ public class SplendorGameState extends GameState {
    public boolean reserveAction(Card cardToReserve, int row, int col) {
         for(SplendorPlayer player : playerList)
         {
-            if(player.getPlayerID() == this.playerTurn)
+            if(player.getPlayerID() == this.playerTurn && !moreThanTenCoins) // check if player has more than 10 coins, if they do, then disable all actions except returnCoins until they have less
             {
                 if(player.getPlayerHand().canReserve() && col != -1){
                     if(this.goldCoins > 0){
@@ -410,7 +460,7 @@ public class SplendorGameState extends GameState {
     public boolean cardAction(Card cardToBuy, int row, int col) {
         for(SplendorPlayer player : this.playerList)
         {
-            if (player.getPlayerID() == this.playerTurn) {
+            if (player.getPlayerID() == this.playerTurn && !moreThanTenCoins) { // check if player has more than 10 coins, if they do, then disable all actions except returnCoins until they have less
                 if(canBuyCard(player, cardToBuy))
                 {
                     buyCardLogic(player, cardToBuy);
@@ -622,7 +672,7 @@ public class SplendorGameState extends GameState {
         {
             if (player.getPlayerID() == this.playerTurn)
             {
-                return (coinCountBool(player) && stackOneNotEmpty && stackTwoNotEmpty && stackThreeNotEmpty);
+                return stackOneNotEmpty && stackTwoNotEmpty && stackThreeNotEmpty;
             }
         }
         return false;
@@ -652,7 +702,7 @@ public class SplendorGameState extends GameState {
     //helper method for coinCount
     private boolean coinsGreaterThanTen(SplendorPlayer splendorPlayer) {
         return splendorPlayer.getDiaCoins()+splendorPlayer.getEmerCoins()+splendorPlayer.getOnyxCoins()+
-                splendorPlayer.getRubyCoins()+splendorPlayer.getSapphCoins()+splendorPlayer.getGoldCoins() >= 100;
+                splendorPlayer.getRubyCoins()+splendorPlayer.getSapphCoins()+splendorPlayer.getGoldCoins() > 10;
     }
 
     //returns array with true values for coin stacks that 2 coins of the same type can be taken
@@ -702,6 +752,47 @@ public class SplendorGameState extends GameState {
                 for(SplendorPlayer player : this.playerList)
                 {
                     if (player.getPlayerID() == this.playerTurn) player.setOnyxCoins(player.getOnyxCoins()+1);
+                }
+                break;
+        }
+    }
+
+    private void individualCoinReturn(int coinColor)
+    {
+        switch(coinColor) {
+            case 0:
+                this.rubyCoins++;
+                for(SplendorPlayer player : this.playerList)
+                {
+                    if (player.getPlayerID() == this.playerTurn) player.setRubyCoins(player.getRubyCoins()-1);
+                }
+                break;
+            case 1:
+                this.sapphireCoins++;
+                for(SplendorPlayer player : this.playerList)
+                {
+                    if (player.getPlayerID() == this.playerTurn) player.setSapphCoins(player.getSapphCoins()-1);
+                }
+                break;
+            case 2:
+                this.emeraldCoins++;
+                for(SplendorPlayer player : this.playerList)
+                {
+                    if (player.getPlayerID() == this.playerTurn) player.setEmerCoins(player.getEmerCoins()-1);
+                }
+                break;
+            case 3:
+                this.diamondCoins++;
+                for(SplendorPlayer player : this.playerList)
+                {
+                    if (player.getPlayerID() == this.playerTurn) player.setDiaCoins(player.getDiaCoins()-1);
+                }
+                break;
+            case 4:
+                this.onyxCoins++;
+                for(SplendorPlayer player : this.playerList)
+                {
+                    if (player.getPlayerID() == this.playerTurn) player.setOnyxCoins(player.getOnyxCoins()-1);
                 }
                 break;
         }
