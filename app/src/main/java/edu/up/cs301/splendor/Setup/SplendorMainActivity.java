@@ -81,6 +81,6 @@ public class SplendorMainActivity extends GameMainActivity {
 
     @Override
     public LocalGame createLocalGame() {
-        return new SplendorLocalGame();
+        return new SplendorLocalGame(this.getnumPlayers());
     }
 }
