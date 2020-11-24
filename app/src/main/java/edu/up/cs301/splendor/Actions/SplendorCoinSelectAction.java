@@ -10,7 +10,7 @@ public class SplendorCoinSelectAction extends GameAction{
      * @param player the player who created the action
      */
 
-    int chosenCoin = -1;
+    private int chosenCoin = -1;
     public SplendorCoinSelectAction(GamePlayer player, int coin) {
         super(player);
         this.chosenCoin = coin;
