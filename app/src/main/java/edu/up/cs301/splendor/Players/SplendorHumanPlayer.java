@@ -2,6 +2,7 @@ package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
+import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinAction;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import edu.up.cs301.splendor.Game.Hand;
 import edu.up.cs301.splendor.State.SplendorGameState;
+import edu.up.cs301.splendor.State.SplendorPlayer;
 
 /**
  * A GUI of a counter-player. The GUI displays the current value of the counter,
@@ -74,7 +76,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     Button buyButton;
     //Take Coins
     Button coinButton;
-    //
 
     TextView coinB;
 
@@ -195,50 +196,59 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p4PrestigePt.setVisibility(View.GONE);
         }
 
-        //player point values
-        for(int i = 0; i < this.state.getPlayerList().size(); i++)
-        {
-            if(i == 0)
-            {
-                p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +" + "+ state.getPlayer(0).getEmerPts());
-                p1Diamond.setText("" + state.getPlayer(0).getDiaCoins()+" + "+ state.getPlayer(0).getDiaPts());
-                p1Sapphire.setText(""+ state.getPlayer(0).getSapphCoins()+" + "+ state.getPlayer(0).getSapphPts());
-                p1Onyx.setText("" + state.getPlayer(0).getOnyxCoins()+" + "+ state.getPlayer(0).getOnyxPts());
-                p1Ruby.setText("" + state.getPlayer(0).getRubyCoins()+" + "+ state.getPlayer(0).getRubyPts());
-                p1Gold.setText("" + state.getPlayer(0).getGoldCoins());
-                p1PrestigePt.setText(""+ state.getPlayer(0).getPrestigePts());
-            }
-            else if(i == 1)
-            {
-                p2Emerald.setText("" + state.getPlayer(1).getEmerCoins() +" + "+ state.getPlayer(1).getEmerPts());
-                p2Diamond.setText("" + state.getPlayer(1).getDiaCoins()+" + "+ state.getPlayer(1).getDiaPts());
-                p2Sapphire.setText(""+ state.getPlayer(1).getSapphCoins()+" + "+ state.getPlayer(1).getSapphPts());
-                p2Onyx.setText("" + state.getPlayer(1).getOnyxCoins()+" + "+ state.getPlayer(1).getOnyxPts());
-                p2Ruby.setText("" + state.getPlayer(1).getRubyCoins()+" + "+ state.getPlayer(1).getRubyPts());
-                p2Gold.setText("" + state.getPlayer(1).getGoldCoins());
-                p2PrestigePt.setText(""+ state.getPlayer(1).getPrestigePts());
-            }
-            else if(i == 2)
-            {
-                p3Emerald.setText("" + state.getPlayer(2).getEmerCoins() +" + "+ state.getPlayer(2).getEmerPts());
-                p3Diamond.setText("" + state.getPlayer(2).getDiaCoins()+" + "+ state.getPlayer(2).getDiaPts());
-                p3Sapphire.setText(""+ state.getPlayer(2).getSapphCoins()+" + "+ state.getPlayer(2).getSapphPts());
-                p3Onyx.setText("" + state.getPlayer(2).getOnyxCoins()+" + "+ state.getPlayer(2).getOnyxPts());
-                p3Ruby.setText("" + state.getPlayer(2).getRubyCoins()+" + "+ state.getPlayer(2).getRubyPts());
-                p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
-                p3PrestigePt.setText(""+ state.getPlayer(2).getPrestigePts());
-            }
-            else if(i == 3)
-            {
-                p4Emerald.setText("" + state.getPlayer(3).getEmerCoins() +" + "+ state.getPlayer(3).getEmerPts());
-                p4Diamond.setText("" + state.getPlayer(3).getDiaCoins()+" + "+ state.getPlayer(3).getDiaPts());
-                p4Sapphire.setText(""+ state.getPlayer(3).getSapphCoins()+" + "+ state.getPlayer(3).getSapphPts());
-                p4Onyx.setText("" + state.getPlayer(3).getOnyxCoins()+" + "+ state.getPlayer(3).getOnyxPts());
-                p4Ruby.setText("" + state.getPlayer(3).getRubyCoins()+" + "+ state.getPlayer(3).getRubyPts());
-                p4Gold.setText("" + state.getPlayer(3).getGoldCoins());
-                p4PrestigePt.setText(""+ state.getPlayer(3).getPrestigePts());
-            }
-        }
+        p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +
+                " + " + state.getPlayer(0).getEmerPts());
+        p1Diamond.setText("" + state.getPlayer(0).getDiaCoins() +
+                " + " + state.getPlayer(0).getDiaPts());
+        p1Sapphire.setText("" + state.getPlayer(0).getSapphCoins() +
+                " + " + state.getPlayer(0).getSapphPts());
+        p1Onyx.setText("" + state.getPlayer(0).getOnyxCoins() +
+                " + " + state.getPlayer(0).getOnyxPts());
+        p1Ruby.setText("" + state.getPlayer(0).getRubyCoins() +
+                " + " + state.getPlayer(0).getRubyPts());
+        p1Gold.setText("" + state.getPlayer(0).getGoldCoins());
+        p1PrestigePt.setText("" + state.getPlayer(0).getPrestigePts());
+
+        p2Emerald.setText("" + state.getPlayer(1).getEmerCoins() +
+                " + " + state.getPlayer(1).getEmerPts());
+        p2Diamond.setText("" + state.getPlayer(1).getDiaCoins() +
+                " + " + state.getPlayer(1).getDiaPts());
+        p2Sapphire.setText("" + state.getPlayer(1).getSapphCoins() +
+                " + " + state.getPlayer(1).getSapphPts());
+        p2Onyx.setText("" + state.getPlayer(1).getOnyxCoins() +
+                " + " + state.getPlayer(1).getOnyxPts());
+        p2Ruby.setText("" + state.getPlayer(1).getRubyCoins() +
+                " + " + state.getPlayer(1).getRubyPts());
+        p2Gold.setText("" + state.getPlayer(1).getGoldCoins());
+        p2PrestigePt.setText("" + state.getPlayer(1).getPrestigePts());
+
+        p3Emerald.setText("" + state.getPlayer(2).getEmerCoins() +
+                " + " + state.getPlayer(2).getEmerPts());
+        p3Diamond.setText("" + state.getPlayer(2).getDiaCoins() +
+                " + " + state.getPlayer(2).getDiaPts());
+        p3Sapphire.setText("" + state.getPlayer(2).getSapphCoins() +
+                " + " + state.getPlayer(2).getSapphPts());
+        p3Onyx.setText("" + state.getPlayer(2).getOnyxCoins() +
+                " + " + state.getPlayer(2).getOnyxPts());
+        p3Ruby.setText("" + state.getPlayer(2).getRubyCoins() +
+                " + " + state.getPlayer(2).getRubyPts());
+        p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
+        p3PrestigePt.setText("" + state.getPlayer(2).getPrestigePts());
+
+        p4Emerald.setText("" + state.getPlayer(3).getEmerCoins() +
+                " + " + state.getPlayer(3).getEmerPts());
+        p4Diamond.setText("" + state.getPlayer(3).getDiaCoins() +
+                " + " + state.getPlayer(3).getDiaPts());
+        p4Sapphire.setText("" + state.getPlayer(3).getSapphCoins() +
+                " + " + state.getPlayer(3).getSapphPts());
+        p4Onyx.setText("" + state.getPlayer(3).getOnyxCoins() +
+                " + " + state.getPlayer(3).getOnyxPts());
+        p4Ruby.setText("" + state.getPlayer(3).getRubyCoins() +
+                " + " + state.getPlayer(3).getRubyPts());
+        p4Gold.setText("" + state.getPlayer(3).getGoldCoins());
+        p4PrestigePt.setText("" + state.getPlayer(3).getPrestigePts());
+
+
         coinB.setText("CB: R:" + state.getRubyCoins()+ "B:"+state.getSapphireCoins()+"G:"+state.getEmeraldCoins()+"W:"+state.getDiamondCoins()+"Br:"+state.getOnyxCoins());
 
         //Update info box to reflect selected card
@@ -247,12 +257,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             infoBox.setText(info);
         } else {
             String playerCoins = "Coins\n" +
-                    "Ruby: " + state.getSplendorPlayer1().getRubyCoins() +
-                    "Sapphire: " + state.getSplendorPlayer1().getSapphCoins() +
-                    "Emerald: " + state.getSplendorPlayer1().getEmerCoins() +
-                    "Diamond: " + state.getSplendorPlayer1().getDiaCoins() +
-                    "Onyx: " + state.getSplendorPlayer1().getOnyxCoins() +
-                    "Gold: " + state.getSplendorPlayer1().getGoldCoins();
+                    "Ruby: " + state.getPlayer(0).getRubyCoins() +
+                    "Sapphire: " + state.getPlayer(0).getSapphCoins() +
+                    "Emerald: " + state.getPlayer(0).getEmerCoins() +
+                    "Diamond: " + state.getPlayer(0).getDiaCoins() +
+                    "Onyx: " + state.getPlayer(0).getOnyxCoins() +
+                    "Gold: " + state.getPlayer(0).getGoldCoins();
             infoBox.setText(playerCoins);
         }
     }
@@ -290,10 +300,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             state.setSelected(null);
         }
 
-        else if (button.getId() == R.id.nobleCard1){
+        /*else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
            // action = new SplendorSelectCardAction(this,0,0);
-    }
+        }
         else if (button.getId() == R.id.nobleCard2){
             // something else was pressed: ignore
             //action = new SplendorSelectCardAction(this,0,1);
@@ -305,7 +315,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         else if (button.getId() == R.id.nobleCard4){
             // something else was pressed: ignore
            // action = new SplendorSelectCardAction(this,0,3);
-        }
+        }*/
         else if (button.getId() == R.id.rank1Card1){
             // something else was pressed: ignore
             action = new SplendorSelectCardAction(this, 2,0);
