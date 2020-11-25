@@ -90,7 +90,6 @@ public class SplendorGameState extends GameState {
         initializeCoins();
         initializeNobles();
 
-
         this.selected = new Card();
 
         initializeDecks(); //unfinished: rank1, rank2, rank3
@@ -155,7 +154,6 @@ public class SplendorGameState extends GameState {
         this.noble3 = new Noble(stateToCopy.getNoble3());
         this.noble4 = new Noble(stateToCopy.getNoble4());
 
-        //
         this.coinTracking = new ArrayList<>();
         for (int coin : stateToCopy.coinTracking) {
             this.coinTracking.add(coin);
@@ -326,11 +324,11 @@ public class SplendorGameState extends GameState {
     }
 
     public void initializeCoins() {
-        this.rubyCoins = 70;
-        this.sapphireCoins = 70;
-        this.emeraldCoins = 70;
-        this.diamondCoins = 70;
-        this.onyxCoins = 70;
+        this.rubyCoins = 7;
+        this.sapphireCoins = 7;
+        this.emeraldCoins = 7;
+        this.diamondCoins = 7;
+        this.onyxCoins = 7;
         this.goldCoins = 5;
     }
     //this will eventually initialize 4 random nobles from a set of 10, for now we have chosen 4
@@ -353,9 +351,7 @@ public class SplendorGameState extends GameState {
     }
 
     //sets turn to exact value
-    public void setPlayerTurn(int playerID) {
-        this.playerTurn = playerID;
-    }
+    public void setPlayerTurn(int playerID) { this.playerTurn = playerID; }
 
     public boolean returnCoins(int coinColor)
     {
@@ -700,7 +696,7 @@ public class SplendorGameState extends GameState {
     }
 
     //helper method for coinCount
-    private boolean coinsGreaterThanTen(SplendorPlayer splendorPlayer) {
+    public boolean coinsGreaterThanTen(SplendorPlayer splendorPlayer) {
         return splendorPlayer.getDiaCoins()+splendorPlayer.getEmerCoins()+splendorPlayer.getOnyxCoins()+
                 splendorPlayer.getRubyCoins()+splendorPlayer.getSapphCoins()+splendorPlayer.getGoldCoins() > 10;
     }

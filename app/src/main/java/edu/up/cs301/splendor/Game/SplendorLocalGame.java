@@ -30,7 +30,7 @@ public class SplendorLocalGame extends LocalGame {
     protected String checkIfGameOver() {
         for(int i = 0; i < this.gameState.getPlayerList().size(); i++)
         {
-            if(this.gameState.getPlayer(i).getPrestigePts() >= 15) return "Congratulatons.";
+            if(this.gameState.getPlayer(i).getPrestigePts() >= 15) return "Congratulatons Player " + (i+1);
         }
         return null;
     }

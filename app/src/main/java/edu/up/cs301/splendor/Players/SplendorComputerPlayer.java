@@ -1,5 +1,7 @@
 package edu.up.cs301.splendor.Players;
 
+import android.util.Log;
+
 import java.util.Random;
 
 import edu.up.cs301.game.GameFramework.GameComputerPlayer;
@@ -50,7 +52,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             }
         }
         randomCoinBuy();
-        randomReturn();
+        if(gameState.coinsGreaterThanTen(gameState.getPlayer(gameState.getPlayerTurn()))) randomReturn();
     }
 
     public boolean randomCoinBuy() {
@@ -88,15 +90,18 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         int coinType = randomizer.nextInt(5);
         boolean flag = false;
 
+        //for numTypes (0-2), return a random coin type if the player has it
         for(int i = 0; i < numTypes; i++) {
             if(!hasCoin(coinType)) {
                 while(!flag) {
+                    //randomize coin type and change flag
                     coinType = randomizer.nextInt(5);
                     if(hasCoin(coinType)) {
                         flag = true;
                     }
                 }
                 gameState.returnCoins(coinType);
+                flag = false;
             }
         }
         return true;
