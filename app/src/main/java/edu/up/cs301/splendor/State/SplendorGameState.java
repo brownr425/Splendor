@@ -53,7 +53,7 @@ public class SplendorGameState extends GameState {
     private final int CARDS_PER_RANK = 4;
 
     //some could be unused, dependent on num players
-    private Noble noble1;;
+    private Noble noble1;
     private Noble noble2;
     private Noble noble3;
     private Noble noble4;
