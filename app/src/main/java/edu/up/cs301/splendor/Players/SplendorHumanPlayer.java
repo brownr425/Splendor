@@ -81,6 +81,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private Button reserveSlot2;
     private Button reserveSlot3;
     private Button currentPlayer;
+    private Button quitButton;
+    private Button returnCoinButton;
 
     // infoBox
     private TextView infoBox;
@@ -177,7 +179,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         //SELECTED COIN HIGHLIGHT
         for (int coin : this.state.getCoinTracking()) {
-
             if (coin == 0) {
                 rubyCoin.setImageResource(R.drawable.ruby_selected);
             } else if (coin == 1) {
@@ -190,9 +191,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
                 onyxCoin.setImageResource(R.drawable.onyx_selected);
             }
         }
+
         Log.d("SHP", "PC" + this.state.getPlayerCount());
+        // If there aren't more than 2 players, don't show player 3 or 4's point box
         if (this.state.getPlayerCount() < 3) {
-            Log.d("SHP", "PC" + this.state.getPlayerCount());
             p3Box.setVisibility(View.GONE);
             p3Emerald.setVisibility(View.GONE);
             p3Diamond.setVisibility(View.GONE);
@@ -203,6 +205,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3PrestigePt.setVisibility(View.GONE);
             p3Name.setVisibility(View.GONE);
         }
+        // If there aren't more than 3 players, don't show player 4's point box
         if (this.state.getPlayerCount() < 4) {
             p4Box.setVisibility(View.GONE);
             p4Emerald.setVisibility(View.GONE);
@@ -331,83 +334,65 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         // Construct the action and send it to the game
         GameAction action = null;
-        if (button.getId() == R.id.quitButton) {
-            myActivity.restartGame();
-        } else if (button.getId() == R.id.buyAction) {
-            // plus button: create "increment" action
+        if (button.equals(quitButton)) {
+            System.exit(0);
+        } else if (button.equals(buyButton)) {
             Log.d("SHP", "BUY");
             action = new SplendorCardAction(this, this.state.getSelected(),
                     this.state.getSelectedRow(), this.state.getSelectedCol());
-        } else if (button.getId() == R.id.reserveAction) {
-            // minus button: create "decrement" action
-            action = new SplendorReserveCardAction(this, this.state.getSelectedRow(), this.state.getSelectedCol());
-        } else if (button.getId() == R.id.coinAction) {
+        } else if (button.equals(reserveButton)) {
+            Log.d("SHP", "RSRV");
+            action = new SplendorReserveCardAction(this,
+                    this.state.getSelectedRow(), this.state.getSelectedCol());
+        } else if (button.equals(coinButton)) {
             action = new SplendorCoinAction(this);
             Log.d("SHP", "COIN");
-        } else if (button.getId() == R.id.returnCoins) {
+        } else if (button.equals(returnCoinButton)) {
             action = new SplendorReturnCoinAction(this);
             Log.d("SHP", "RETURNC");
-        } else if (button.getId() == R.id.currentPlayerInfo) {
+        } else if (button.equals(currentPlayer)) {
             state.setSelected(null);
-        } else if (button.getId() == R.id.rank1Card1) {
-            // something else was pressed: ignore
+            Log.d("SHP", "PINFO");
+        } else if (button.equals(rank1Card1)) {
             action = new SplendorSelectCardAction(this, 2, 0);
-        } else if (button.getId() == R.id.rank1Card2) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank1Card2)) {
             action = new SplendorSelectCardAction(this, 2, 1);
-        } else if (button.getId() == R.id.rank1Card3) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank1Card3)) {
             action = new SplendorSelectCardAction(this, 2, 2);
-        } else if (button.getId() == R.id.rank1Card4) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank1Card4)) {
             action = new SplendorSelectCardAction(this, 2, 3);
-        } else if (button.getId() == R.id.rank2Card1) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank2Card1)) {
             action = new SplendorSelectCardAction(this, 1, 0);
-        } else if (button.getId() == R.id.rank2Card2) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank2Card2)) {
             action = new SplendorSelectCardAction(this, 1, 1);
-        } else if (button.getId() == R.id.rank2Card3) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank2Card3)) {
             action = new SplendorSelectCardAction(this, 1, 2);
-        } else if (button.getId() == R.id.rank2Card4) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank2Card4)) {
             action = new SplendorSelectCardAction(this, 1, 3);
-        } else if (button.getId() == R.id.rank3Card1) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank3Card1)) {
             action = new SplendorSelectCardAction(this, 0, 0);
-        } else if (button.getId() == R.id.rank3Card2) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank3Card2)) {
             action = new SplendorSelectCardAction(this, 0, 1);
-        } else if (button.getId() == R.id.rank3Card3) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank3Card3)) {
             action = new SplendorSelectCardAction(this, 0, 2);
-        } else if (button.getId() == R.id.rank3Card4) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank3Card4)) {
             action = new SplendorSelectCardAction(this, 0, 3);
-        } else if (button.getId() == R.id.rubyCoin) {
-            // something else was pressed: ignore
+        } else if (button.equals(rubyCoin)) {
             action = new SplendorCoinSelectAction(this, 0);
-        } else if (button.getId() == R.id.sapphireCoin) {
-            // something else was pressed: ignore
+        } else if (button.equals(sapphireCoin)) {
             action = new SplendorCoinSelectAction(this, 1);
-        } else if (button.getId() == R.id.emeraldCoin) {
-            // something else was pressed: ignore
+        } else if (button.equals(emeraldCoin)) {
             action = new SplendorCoinSelectAction(this, 2);
-        } else if (button.getId() == R.id.diamondCoin) {
-            // something else was pressed: ignore
+        } else if (button.equals(diamondCoin)) {
             action = new SplendorCoinSelectAction(this, 3);
-        } else if (button.getId() == R.id.onyxCoin) {
-            // something else was pressed: ignore
+        } else if (button.equals(onyxCoin)) {
             action = new SplendorCoinSelectAction(this, 4);
-        } else if (button.getId() == R.id.reserveSlot1) {
-            action = new SplendorSelectCardAction(this, 0, -1); // column are -1 to signify it is not in the board, it is the reserved hand
-        } else if (button.getId() == R.id.reserveSlot2) {
+        } else if (button.equals(reserveSlot1)) {
+            action = new SplendorSelectCardAction(this, 0, -1); // column is -1 to signify it is not in the board, it is the reserved hand
+        } else if (button.equals(reserveSlot2)) {
             action = new SplendorSelectCardAction(this, 1, -1);
-        } else if (button.getId() == R.id.reserveSlot3) {
+        } else if (button.equals(reserveSlot3)) {
             action = new SplendorSelectCardAction(this, 2, -1);
-        } else if (button.getId() == R.id.quitButton) {
-            System.exit(0);
         }
         game.sendAction(action); // send action to the game
         updateDisplay();
@@ -442,83 +427,85 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // Load the layout resource for our GUI
         activity.setContentView(R.layout.splendor_human_player);
 
-        //info box for info to be given too
-        infoBox = (TextView) activity.findViewById(R.id.infoGiven);
-
+        //~~~~~~~~~~~~Buttons and Listeners~~~~~~~~~~~~~~//
         // make noble cards and set on click listener to display noble card information
         nobleCard1 = (ImageButton) activity.findViewById(R.id.nobleCard1);
-        nobleCard1.setOnClickListener(this);
         nobleCard2 = (ImageButton) activity.findViewById(R.id.nobleCard2);
-        nobleCard2.setOnClickListener(this);
         nobleCard3 = (ImageButton) activity.findViewById(R.id.nobleCard3);
-        nobleCard3.setOnClickListener(this);
         nobleCard4 = (ImageButton) activity.findViewById(R.id.nobleCard4);
-        nobleCard4.setOnClickListener(this);
         nobleCard5 = (ImageButton) activity.findViewById(R.id.nobleCard5);
+        nobleCard1.setOnClickListener(this);
+        nobleCard2.setOnClickListener(this);
+        nobleCard3.setOnClickListener(this);
+        nobleCard4.setOnClickListener(this);
         nobleCard5.setOnClickListener(this);
 
         //image buttons for all the rank cards 1-3; starting with 3
         rank3Card1 = (ImageButton) activity.findViewById(R.id.rank3Card1);
-        rank3Card1.setOnClickListener(this);
         rank3Card2 = (ImageButton) activity.findViewById(R.id.rank3Card2);
-        rank3Card2.setOnClickListener(this);
         rank3Card3 = (ImageButton) activity.findViewById(R.id.rank3Card3);
-        rank3Card3.setOnClickListener(this);
         rank3Card4 = (ImageButton) activity.findViewById(R.id.rank3Card4);
-        rank3Card4.setOnClickListener(this);
-
         rank2Card1 = (ImageButton) activity.findViewById(R.id.rank2Card1);
-        rank2Card1.setOnClickListener(this);
         rank2Card2 = (ImageButton) activity.findViewById(R.id.rank2Card2);
-        rank2Card2.setOnClickListener(this);
         rank2Card3 = (ImageButton) activity.findViewById(R.id.rank2Card3);
-        rank2Card3.setOnClickListener(this);
         rank2Card4 = (ImageButton) activity.findViewById(R.id.rank2Card4);
-        rank2Card4.setOnClickListener(this);
-
         rank1Card1 = (ImageButton) activity.findViewById(R.id.rank1Card1);
-        rank1Card1.setOnClickListener(this);
         rank1Card2 = (ImageButton) activity.findViewById(R.id.rank1Card2);
-        rank1Card2.setOnClickListener(this);
         rank1Card3 = (ImageButton) activity.findViewById(R.id.rank1Card3);
-        rank1Card3.setOnClickListener(this);
         rank1Card4 = (ImageButton) activity.findViewById(R.id.rank1Card4);
+        rank3Card1.setOnClickListener(this);
+        rank3Card2.setOnClickListener(this);
+        rank3Card3.setOnClickListener(this);
+        rank3Card4.setOnClickListener(this);
+        rank2Card1.setOnClickListener(this);
+        rank2Card2.setOnClickListener(this);
+        rank2Card3.setOnClickListener(this);
+        rank2Card4.setOnClickListener(this);
+        rank1Card1.setOnClickListener(this);
+        rank1Card2.setOnClickListener(this);
+        rank1Card3.setOnClickListener(this);
         rank1Card4.setOnClickListener(this);
 
         // imagebuttons for all coins
-        emeraldCoin = (ImageButton) activity.findViewById(R.id.emeraldCoin);
-        emeraldCoin.setOnClickListener(this);
-        diamondCoin = (ImageButton) activity.findViewById(R.id.diamondCoin);
-        diamondCoin.setOnClickListener(this);
-        sapphireCoin = (ImageButton) activity.findViewById(R.id.sapphireCoin);
-        sapphireCoin.setOnClickListener(this);
-        onyxCoin = (ImageButton) activity.findViewById(R.id.onyxCoin);
-        onyxCoin.setOnClickListener(this);
         rubyCoin = (ImageButton) activity.findViewById(R.id.rubyCoin);
-        rubyCoin.setOnClickListener(this);
+        sapphireCoin = (ImageButton) activity.findViewById(R.id.sapphireCoin);
+        emeraldCoin = (ImageButton) activity.findViewById(R.id.emeraldCoin);
+        diamondCoin = (ImageButton) activity.findViewById(R.id.diamondCoin);
+        onyxCoin = (ImageButton) activity.findViewById(R.id.onyxCoin);
         goldCoin = (ImageButton) activity.findViewById(R.id.goldCoin);
+        rubyCoin.setOnClickListener(this);
+        sapphireCoin.setOnClickListener(this);
+        emeraldCoin.setOnClickListener(this);
+        diamondCoin.setOnClickListener(this);
+        onyxCoin.setOnClickListener(this);
         goldCoin.setOnClickListener(this);
 
         // simple buttons for the reserved cards
         reserveSlot1 = (Button) activity.findViewById(R.id.reserveSlot1);
-        reserveSlot1.setOnClickListener(this);
         reserveSlot2 = (Button) activity.findViewById(R.id.reserveSlot2);
-        reserveSlot2.setOnClickListener(this);
         reserveSlot3 = (Button) activity.findViewById(R.id.reserveSlot3);
+        reserveSlot1.setOnClickListener(this);
+        reserveSlot2.setOnClickListener(this);
         reserveSlot3.setOnClickListener(this);
 
         //action buttons for the actions
         buyButton = (Button) activity.findViewById(R.id.buyAction);
-        buyButton.setOnClickListener(this);
         reserveButton = (Button) activity.findViewById(R.id.reserveAction);
-        reserveButton.setOnClickListener(this);
         coinButton = (Button) activity.findViewById(R.id.coinAction);
+        returnCoinButton = (Button) activity.findViewById(R.id.returnCoins);
+        buyButton.setOnClickListener(this);
+        reserveButton.setOnClickListener(this);
         coinButton.setOnClickListener(this);
+        returnCoinButton.setOnClickListener(this);
 
         // will provide info on current player stats if clicked on
         currentPlayer = (Button) activity.findViewById(R.id.currentPlayerInfo);
         currentPlayer.setOnClickListener(this);
 
+        quitButton = (Button) activity.findViewById(R.id.quitButton);
+        quitButton.setOnClickListener(this);
+
+        //~~~~~~~~~~~~~TextViews and Player Boxes~~~~~~~~~~~~~//
         //player point values
         p1Emerald = (TextView) activity.findViewById(R.id.emeraldPoint1);
         p1Diamond = (TextView) activity.findViewById(R.id.diamondPoint1);
@@ -528,7 +515,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p1Gold = (TextView) activity.findViewById(R.id.goldPoint1);
         p1PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint1);
         p1Name = (TextView) activity.findViewById(R.id.player1Name);
-
+        //player 1 box not needed because it always exists
         p2Emerald = (TextView) activity.findViewById(R.id.emeraldPoint2);
         p2Diamond = (TextView) activity.findViewById(R.id.diamondPoint2);
         p2Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint2);
@@ -537,7 +524,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2Gold = (TextView) activity.findViewById(R.id.goldPoint2);
         p2PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint2);
         p2Name = (TextView) activity.findViewById(R.id.player2Name);
-
+        //player 2 box not needed because it always exists
         p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
         p3Diamond = (TextView) activity.findViewById(R.id.diamondPoint3);
         p3Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint3);
@@ -547,7 +534,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p3PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint3);
         p3Name = (TextView) activity.findViewById(R.id.player3Name);
         p3Box = (LinearLayout) activity.findViewById((R.id.player3Box));
-
         p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
         p4Diamond = (TextView) activity.findViewById(R.id.diamondPoint4);
         p4Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint4);
@@ -559,6 +545,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Box = (LinearLayout) activity.findViewById(R.id.player4Box);
 
         coinB = (TextView) activity.findViewById(R.id.CB);
+        infoBox = (TextView) activity.findViewById(R.id.infoGiven);
 
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated
