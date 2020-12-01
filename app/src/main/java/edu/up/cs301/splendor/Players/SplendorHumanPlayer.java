@@ -516,28 +516,23 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint2);
         p2Name = (TextView) activity.findViewById(R.id.player2Name);
 
-        if (state.getPlayerList().size() >= 3) {
-            p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
-            p3Diamond = (TextView) activity.findViewById(R.id.diamondPoint3);
-            p3Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint3);
-            p3Onyx = (TextView) activity.findViewById(R.id.onyxPoint3);
-            p3Ruby = (TextView) activity.findViewById(R.id.rubyPoint3);
-            p3Gold = (TextView) activity.findViewById(R.id.goldPoint3);
-            p3PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint3);
-            p3Name = (TextView) activity.findViewById(R.id.player3Name);
+        p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
+        p3Diamond = (TextView) activity.findViewById(R.id.diamondPoint3);
+        p3Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint3);
+        p3Onyx = (TextView) activity.findViewById(R.id.onyxPoint3);
+        p3Ruby = (TextView) activity.findViewById(R.id.rubyPoint3);
+        p3Gold = (TextView) activity.findViewById(R.id.goldPoint3);
+        p3PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint3);
+        p3Name = (TextView) activity.findViewById(R.id.player3Name);
 
-            if (state.getPlayerList().size() == 4) {
-                p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
-                p4Diamond = (TextView) activity.findViewById(R.id.diamondPoint4);
-                p4Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint4);
-                p4Onyx = (TextView) activity.findViewById(R.id.onyxPoint4);
-                p4Ruby = (TextView) activity.findViewById(R.id.rubyPoint4);
-                p4Gold = (TextView) activity.findViewById(R.id.goldPoint4);
-                p4PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint4);
-                p4Name = (TextView) activity.findViewById(R.id.player4Name);
-            }
-
-        }
+        p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
+        p4Diamond = (TextView) activity.findViewById(R.id.diamondPoint4);
+        p4Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint4);
+        p4Onyx = (TextView) activity.findViewById(R.id.onyxPoint4);
+        p4Ruby = (TextView) activity.findViewById(R.id.rubyPoint4);
+        p4Gold = (TextView) activity.findViewById(R.id.goldPoint4);
+        p4PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint4);
+        p4Name = (TextView) activity.findViewById(R.id.player4Name);
 
         coinB = (TextView) activity.findViewById(R.id.CB);
 

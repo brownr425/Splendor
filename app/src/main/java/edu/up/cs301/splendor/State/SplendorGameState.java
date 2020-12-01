@@ -52,11 +52,12 @@ public class SplendorGameState extends GameState {
     private final int RANKS = 3;
     private final int CARDS_PER_RANK = 4;
 
-    // some could be unused, dependent on num players
-    private Noble noble1; //= new Noble(4,0,4,0,0,3);;
-    private Noble noble2; //= new Noble(3,0,0,3,3,3);;
-    private Noble noble3; //= new Noble(4,0,0,0,4,3);;
-    private Noble noble4 ;//= new Noble(0,3,3,3,0,3);;
+    //some could be unused, dependent on num players
+    private Noble noble1;;
+    private Noble noble2;
+    private Noble noble3;
+    private Noble noble4;
+    private Noble noble5;
 
     //coin instance variables for stacks
     private int rubyCoins;
