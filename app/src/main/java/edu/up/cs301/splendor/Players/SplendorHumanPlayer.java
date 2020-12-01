@@ -234,18 +234,18 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2PrestigePt.setText("" + state.getPlayer(1).getPrestigePts());
 
         if (state.getPlayerList().size() >= 3) {
-            p3Emerald.setText("" + state.getPlayer(2).getEmerCoins() +
+            p3Emerald.setText(state.getPlayer(2).getEmerCoins() +
                     " + " + state.getPlayer(2).getEmerPts());
-            p3Diamond.setText("" + state.getPlayer(2).getDiaCoins() +
+            p3Diamond.setText(state.getPlayer(2).getDiaCoins() +
                     " + " + state.getPlayer(2).getDiaPts());
-            p3Sapphire.setText("" + state.getPlayer(2).getSapphCoins() +
+            p3Sapphire.setText(state.getPlayer(2).getSapphCoins() +
                     " + " + state.getPlayer(2).getSapphPts());
-            p3Onyx.setText("" + state.getPlayer(2).getOnyxCoins() +
+            p3Onyx.setText(state.getPlayer(2).getOnyxCoins() +
                     " + " + state.getPlayer(2).getOnyxPts());
-            p3Ruby.setText("" + state.getPlayer(2).getRubyCoins() +
+            p3Ruby.setText(state.getPlayer(2).getRubyCoins() +
                     " + " + state.getPlayer(2).getRubyPts());
-            p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
-            p3PrestigePt.setText("" + state.getPlayer(2).getPrestigePts());
+            p3Gold.setText(state.getPlayer(2).getGoldCoins());
+            p3PrestigePt.setText(state.getPlayer(2).getPrestigePts());
 
             if (state.getPlayerList().size() >= 4) {
                 p4Emerald.setText("" + state.getPlayer(3).getEmerCoins() +
@@ -263,7 +263,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             }
         }
 
-        coinB.setText("Coin Bank:\n Ruby:" + state.getRubyCoins() + "\nSapph:" + state.getSapphireCoins() + "\nEmer:" + state.getEmeraldCoins() + "\nDia:" + state.getDiamondCoins() + "\nOnyx:" + state.getOnyxCoins());
+        coinB.setText("Coin Bank:\nRuby:" + state.getRubyCoins() +
+                "\nSapph:" + state.getSapphireCoins() +
+                "\nEmer:" + state.getEmeraldCoins() +
+                "\nDia:" + state.getDiamondCoins() +
+                "\nOnyx:" + state.getOnyxCoins());
 
         //Update info box to reflect selected card
         if (state.getSelected() != null) {
@@ -305,29 +309,13 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             action = new SplendorReserveCardAction(this, this.state.getSelectedRow(), this.state.getSelectedCol());
         } else if (button.getId() == R.id.coinAction) {
             action = new SplendorCoinAction(this);
+            Log.d("SHP", "COIN");
         } else if (button.getId() == R.id.returnCoins) {
             action = new SplendorReturnCoinAction(this);
+            Log.d("SHP", "RETURNC");
         } else if (button.getId() == R.id.currentPlayerInfo) {
             state.setSelected(null);
-        }
-
-        /*else if (button.getId() == R.id.nobleCard1){
-            // something else was pressed: ignore
-           // action = new SplendorSelectCardAction(this,0,0);
-        }
-        else if (button.getId() == R.id.nobleCard2){
-            // something else was pressed: ignore
-            //action = new SplendorSelectCardAction(this,0,1);
-        }
-        else if (button.getId() == R.id.nobleCard3){
-            // something else was pressed: ignore
-           // action = new SplendorSelectCardAction(this,0,2);
-        }
-        else if (button.getId() == R.id.nobleCard4){
-            // something else was pressed: ignore
-           // action = new SplendorSelectCardAction(this,0,3);
-        }*/
-        else if (button.getId() == R.id.rank1Card1) {
+        } else if (button.getId() == R.id.rank1Card1) {
             // something else was pressed: ignore
             action = new SplendorSelectCardAction(this, 2, 0);
         } else if (button.getId() == R.id.rank1Card2) {

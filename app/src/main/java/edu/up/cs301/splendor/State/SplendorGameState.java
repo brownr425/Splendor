@@ -204,13 +204,12 @@ public class SplendorGameState extends GameState {
         this.board[0][3] = rank3.remove(0);
     }
 
-    /*initialize Decks
+    /* initialize Decks
      * reads input from text files into three array lists then shuffles deck
      *
      */
 
-    public void initializeDecks(/*InputStream rank1, InputStream rank2, InputStream rank3, InputStream nobles*/) {
-
+    public void initializeDecks() {
         String rank1File = "res/raw/rank1.csv";
         InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
         String rank2File = "res/raw/rank2.csv";
@@ -811,7 +810,6 @@ public class SplendorGameState extends GameState {
     }
 
     //Getter methods
-
     public Card getSelected(){
         return this.selected;
     }
