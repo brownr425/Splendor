@@ -1,14 +1,10 @@
 package edu.up.cs301.splendor.Game;
 
-import android.util.Log;
-
-import java.io.InputStream;
-
 
 import edu.up.cs301.splendor.Actions.QuitAction;
-import edu.up.cs301.splendor.Actions.SplendorBuyReservedCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
+import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinAction;
@@ -57,7 +53,7 @@ public class SplendorLocalGame extends LocalGame {
             }
             if(this.gameState.getCoinTracking().size() == 2) // check if coin array has only 2 coins that aren't the same
             {
-                if(this.gameState.getCoinTracking().get(0).equals(this.gameState.getCoinTracking().get(1)))
+                if(this.gameState.getCoinTracking().get(0) != (this.gameState.getCoinTracking().get(1)))
                 {
                     return false;
                 }
@@ -158,6 +154,15 @@ public class SplendorLocalGame extends LocalGame {
                 this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                 return true;
             }
+        }
+        else if(action instanceof SplendorReturnCoinAction)
+        {
+            for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
+            {
+                this.gameState.returnCoins(this.gameState.getCoinTracking().get(i));
+            }
+            this.gameState.getCoinTracking().clear();
+            return true;
         }
         else{
             return false;
