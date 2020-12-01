@@ -49,16 +49,16 @@ public class Card {
     @Override
     public String toString(){
         String ret;
-        ret = "\n----" +
-                "\nCard Level: " + cardLevel +
-                "\n Gem Color: " + colorConversion(this.colorGem) +
-                "\n Prestige Points:  " + prestigePoints +
-                "\n Price of Card: " +
-                "\n Ruby: " + rPrice +
-                "\n Sapphire: " + bPrice +
-                "\n Emerald: " + gPrice +
-                "\n Diamond: " + wPrice +
-                "\n Onyx: " + brPrice;
+        ret =   "------" +
+                "\nCard Level:\n" + cardLevel +
+                "\n\nGem Color:\n" + colorConversion(this.colorGem) +
+                "\n\nPrestige Points:\n" + prestigePoints +
+                "\n\n\nPrice of Card:" +
+                "\nRuby:\n" + rPrice +
+                "\n\nSapphire:\n" + bPrice +
+                "\n\nEmerald:\n" + gPrice +
+                "\n\nDiamond:\n" + wPrice +
+                "\n\nOnyx:\n" + brPrice;
 
         return ret;
     }
