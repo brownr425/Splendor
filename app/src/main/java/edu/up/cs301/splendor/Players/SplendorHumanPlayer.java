@@ -2,6 +2,7 @@ package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
+import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
@@ -266,7 +267,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         coinB.setText("Coin Bank:\n Ruby:" + state.getRubyCoins() + "\nSapph:" + state.getSapphireCoins() + "\nEmer:" + state.getEmeraldCoins() + "\nDia:" + state.getDiamondCoins() + "\nOnyx:" + state.getOnyxCoins());
 
         //Update info box to reflect selected card
-        if (state.getSelected() != null) {
+        if(state.getSelectedCol() == -2) {
+            String info = state.getSelectedNoble().toString();
+            infoBox.setText(info);
+        } else if (state.getSelected() != null) {
             String info = state.getSelected().toString();
             infoBox.setText(info);
         } else {
@@ -310,23 +314,21 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         } else if (button.getId() == R.id.currentPlayerInfo) {
             state.setSelected(null);
         }
-
-        /*else if (button.getId() == R.id.nobleCard1){
+       else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
-           // action = new SplendorSelectCardAction(this,0,0);
+            action = new SplendorNobleSelectAction(this, 0);
         }
         else if (button.getId() == R.id.nobleCard2){
             // something else was pressed: ignore
-            //action = new SplendorSelectCardAction(this,0,1);
+            action = new SplendorNobleSelectAction(this, 1);
         }
         else if (button.getId() == R.id.nobleCard3){
             // something else was pressed: ignore
-           // action = new SplendorSelectCardAction(this,0,2);
+            action = new SplendorNobleSelectAction(this, 2);
         }
         else if (button.getId() == R.id.nobleCard4){
-            // something else was pressed: ignore
-           // action = new SplendorSelectCardAction(this,0,3);
-        }*/
+            action = new SplendorNobleSelectAction(this, 3);
+        }
         else if (button.getId() == R.id.rank1Card1) {
             // something else was pressed: ignore
             action = new SplendorSelectCardAction(this, 2, 0);

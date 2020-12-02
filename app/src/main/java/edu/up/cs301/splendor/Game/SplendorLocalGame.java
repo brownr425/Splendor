@@ -3,6 +3,7 @@ package edu.up.cs301.splendor.Game;
 
 import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
+import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
@@ -114,6 +115,15 @@ public class SplendorLocalGame extends LocalGame {
             this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol()); // set the row and column of where the card was selected so game knows what card to replace
             //action was made, return true/valid move
             return true;
+        }
+        else if(action instanceof SplendorNobleSelectAction)
+        {
+            if(((SplendorNobleSelectAction) action).getRow() < this.gameState.getNobleBoard().size()) {
+                this.gameState.setSelectedCol(-2); // this is to tell the human player that "hey we're looking at a noble right now!"
+                this.gameState.setSelectedNoble(this.gameState.getNobleBoard().get(((SplendorNobleSelectAction) action).getRow()));
+                return true;
+            }
+            return false;
         }
         else if(action instanceof SplendorReserveCardAction){
             this.gameState.reserveAction(this.gameState.getSelected(), this.gameState.getSelectedRow(), this.gameState.getSelectedCol());
