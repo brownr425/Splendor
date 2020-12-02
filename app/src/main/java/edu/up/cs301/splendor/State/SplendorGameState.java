@@ -32,6 +32,10 @@ public class SplendorGameState extends GameState {
     private final int PLAYER3ID = 2;
     private final int PLAYER4ID = 3;
 
+
+
+    private int playerCount;
+
     //create list of all players
     private ArrayList<SplendorPlayer> playerList = new ArrayList<>();
 
@@ -115,6 +119,7 @@ public class SplendorGameState extends GameState {
      *
      */
     public SplendorGameState(SplendorGameState stateToCopy) {
+        this.playerCount = stateToCopy.playerCount;
 
         //runs through board deep copy cards onto new instances board
         for(int row = 0; row < 3; row++) //
@@ -192,6 +197,7 @@ public class SplendorGameState extends GameState {
     //helper method for constructor setting all point values for player to zero
     public void initializePlayers(int num) {
         //set turn to be first
+        this.playerCount = num;
         this.playerTurn = PLAYER1ID;
         /*
         this.splendorPlayer1 = new SplendorPlayer(PLAYER1ID);
@@ -222,13 +228,12 @@ public class SplendorGameState extends GameState {
         this.board[0][3] = rank3.remove(0);
     }
 
-    /*initialize Decks
+    /* initialize Decks
      * reads input from text files into three array lists then shuffles deck
      *
      */
 
-    public void initializeDecks(/*InputStream rank1, InputStream rank2, InputStream rank3, InputStream nobles*/) {
-
+    public void initializeDecks() {
         String rank1File = "res/raw/rank1.csv";
         InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
         String rank2File = "res/raw/rank2.csv";
@@ -917,7 +922,6 @@ public class SplendorGameState extends GameState {
     }
 
     //Getter methods
-
     public Card getSelected(){
         return this.selected;
     }
@@ -1038,6 +1042,10 @@ public class SplendorGameState extends GameState {
     public ArrayList<SplendorPlayer> getPlayerList()
     {
         return this.playerList;
+    }
+
+    public int getPlayerCount() {
+        return playerCount;
     }
 
     public ArrayList<Noble> getNobleBoard() { return this.nobleBoard; }

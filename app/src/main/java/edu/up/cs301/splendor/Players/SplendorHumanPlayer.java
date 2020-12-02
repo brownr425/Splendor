@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
@@ -65,19 +66,22 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private ImageButton rank1Card4;
 
     //coins I buttons
-    ImageButton emeraldCoin;
-    ImageButton diamondCoin;
-    ImageButton sapphireCoin;
-    ImageButton onyxCoin;
-    ImageButton rubyCoin;
-    ImageButton goldCoin;
+    private ImageButton emeraldCoin;
+    private ImageButton diamondCoin;
+    private ImageButton sapphireCoin;
+    private ImageButton onyxCoin;
+    private ImageButton rubyCoin;
+    private ImageButton goldCoin;
 
-    //Buy button
-    Button buyButton;
-    //Take Coins
-    Button coinButton;
-
-    TextView coinB;
+    //player area
+    private Button buyButton;
+    private Button reserveButton;
+    private Button coinButton;
+    private TextView coinB;
+    private Button reserveSlot1;
+    private Button reserveSlot2;
+    private Button reserveSlot3;
+    private Button currentPlayer;
 
     // infoBox
     private TextView infoBox;
@@ -109,6 +113,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p3Gold;
     private TextView p3PrestigePt;
     private TextView p3Name;
+    private LinearLayout p3Box;
 
     private TextView p4Emerald;
     private TextView p4Diamond;
@@ -118,6 +123,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p4Gold;
     private TextView p4PrestigePt;
     private TextView p4Name;
+    private LinearLayout p4Box;
 
     /**
      * constructor
@@ -185,8 +191,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
                 onyxCoin.setImageResource(R.drawable.onyx_selected);
             }
         }
-
-        if (this.state.getPlayerList().size() < 3) {
+        Log.d("SHP", "PC" + this.state.getPlayerCount());
+        if (this.state.getPlayerCount() < 3) {
+            Log.d("SHP", "PC" + this.state.getPlayerCount());
+            p3Box.setVisibility(View.GONE);
             p3Emerald.setVisibility(View.GONE);
             p3Diamond.setVisibility(View.GONE);
             p3Sapphire.setVisibility(View.GONE);
@@ -195,17 +203,17 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3Gold.setVisibility(View.GONE);
             p3PrestigePt.setVisibility(View.GONE);
             p3Name.setVisibility(View.GONE);
-
-            if (this.state.getPlayerList().size() < 4) {
-                p4Emerald.setVisibility(View.GONE);
-                p4Diamond.setVisibility(View.GONE);
-                p4Sapphire.setVisibility(View.GONE);
-                p4Onyx.setVisibility(View.GONE);
-                p4Ruby.setVisibility(View.GONE);
-                p4Gold.setVisibility(View.GONE);
-                p4PrestigePt.setVisibility(View.GONE);
-                p4Name.setVisibility(View.GONE);
-            }
+        }
+        if (this.state.getPlayerCount() < 4) {
+            p4Box.setVisibility(View.GONE);
+            p4Emerald.setVisibility(View.GONE);
+            p4Diamond.setVisibility(View.GONE);
+            p4Sapphire.setVisibility(View.GONE);
+            p4Onyx.setVisibility(View.GONE);
+            p4Ruby.setVisibility(View.GONE);
+            p4Gold.setVisibility(View.GONE);
+            p4PrestigePt.setVisibility(View.GONE);
+            p4Name.setVisibility(View.GONE);
         }
 
         p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +
@@ -234,7 +242,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2Gold.setText("" + state.getPlayer(1).getGoldCoins());
         p2PrestigePt.setText("" + state.getPlayer(1).getPrestigePts());
 
-        if (state.getPlayerList().size() >= 3) {
+        if(state.getPlayerCount() >= 3) {
             p3Emerald.setText("" + state.getPlayer(2).getEmerCoins() +
                     " + " + state.getPlayer(2).getEmerPts());
             p3Diamond.setText("" + state.getPlayer(2).getDiaCoins() +
@@ -243,12 +251,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
                     " + " + state.getPlayer(2).getSapphPts());
             p3Onyx.setText("" + state.getPlayer(2).getOnyxCoins() +
                     " + " + state.getPlayer(2).getOnyxPts());
-            p3Ruby.setText("" + state.getPlayer(2).getRubyCoins() +
+            p3Ruby.setText("" +state.getPlayer(2).getRubyCoins() +
                     " + " + state.getPlayer(2).getRubyPts());
             p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
             p3PrestigePt.setText("" + state.getPlayer(2).getPrestigePts());
 
-            if (state.getPlayerList().size() >= 4) {
+            if(state.getPlayerCount() == 4) {
                 p4Emerald.setText("" + state.getPlayer(3).getEmerCoins() +
                         " + " + state.getPlayer(3).getEmerPts());
                 p4Diamond.setText("" + state.getPlayer(3).getDiaCoins() +
@@ -264,7 +272,37 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             }
         }
 
-        coinB.setText("Coin Bank:\n Ruby:" + state.getRubyCoins() + "\nSapph:" + state.getSapphireCoins() + "\nEmer:" + state.getEmeraldCoins() + "\nDia:" + state.getDiamondCoins() + "\nOnyx:" + state.getOnyxCoins());
+        switch(state.getPlayer(1).getPlayerHand().getReserved().size()) {
+            case 1:
+                reserveSlot1.setText("Reserved Card");
+                reserveSlot2.setText("Reserved Slot");
+                reserveSlot3.setText("Reserved Slot");
+                break;
+            case 2:
+                reserveSlot1.setText("Reserved Card");
+                reserveSlot2.setText("Reserved Card");
+                reserveSlot3.setText("Reserved Slot");
+                break;
+            case 3:
+                reserveSlot1.setText("Reserved Card");
+                reserveSlot2.setText("Reserved Card");
+                reserveSlot3.setText("Reserved Card");
+                break;
+            default:
+                reserveSlot1.setText("Reserved Slot");
+                reserveSlot2.setText("Reserved Slot");
+                reserveSlot3.setText("Reserved Slot");
+                break;
+
+        }
+
+        coinB.setText("Coin Bank:" +
+                "\nRuby: " + state.getRubyCoins() +
+                "\nSapphire: " + state.getSapphireCoins() +
+                "\nEmerald: " + state.getEmeraldCoins() +
+                "\nDiamond: " + state.getDiamondCoins() +
+                "\nOnyx: " + state.getOnyxCoins() +
+                "\nGold: " + state.getGoldCoins());
 
         //Update info box to reflect selected card
         if(state.getSelectedCol() == -2) {
@@ -274,13 +312,13 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             String info = state.getSelected().toString();
             infoBox.setText(info);
         } else {
-            String playerCoins = "Coins\n" +
-                    "Ruby: " + state.getPlayer(0).getRubyCoins() +
-                    "\nSapphire: " + state.getPlayer(0).getSapphCoins() +
-                    "\nEmerald: " + state.getPlayer(0).getEmerCoins() +
-                    "\nDiamond: " + state.getPlayer(0).getDiaCoins() +
-                    "\nOnyx: " + state.getPlayer(0).getOnyxCoins() +
-                    "\nGold: " + state.getPlayer(0).getGoldCoins();
+            String playerCoins = "Player's Coins\n" +
+                    "\nRuby:\n" + state.getPlayer(0).getRubyCoins() +
+                    "\n\nSapphire:\n" + state.getPlayer(0).getSapphCoins() +
+                    "\n\nEmerald:\n" + state.getPlayer(0).getEmerCoins() +
+                    "\n\nDiamond:\n" + state.getPlayer(0).getDiaCoins() +
+                    "\n\nOnyx:\n" + state.getPlayer(0).getOnyxCoins() +
+                    "\n\nGold:\n" + state.getPlayer(0).getGoldCoins();
             infoBox.setText(playerCoins);
         }
     }
@@ -309,8 +347,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             action = new SplendorReserveCardAction(this, this.state.getSelectedRow(), this.state.getSelectedCol());
         } else if (button.getId() == R.id.coinAction) {
             action = new SplendorCoinAction(this);
+            Log.d("SHP", "COIN");
         } else if (button.getId() == R.id.returnCoins) {
             action = new SplendorReturnCoinAction(this);
+            Log.d("SHP", "RETURNC");
         } else if (button.getId() == R.id.currentPlayerInfo) {
             state.setSelected(null);
         }
@@ -480,23 +520,23 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         goldCoin.setOnClickListener(this);
 
         // simple buttons for the reserved cards
-        Button reserveCard1 = (Button) activity.findViewById(R.id.reserveSlot1);
-        reserveCard1.setOnClickListener(this);
-        Button reserveCard2 = (Button) activity.findViewById(R.id.reserveSlot2);
-        reserveCard2.setOnClickListener(this);
-        Button reserveCard3 = (Button) activity.findViewById(R.id.reserveSlot3);
-        reserveCard3.setOnClickListener(this);
+        reserveSlot1 = (Button) activity.findViewById(R.id.reserveSlot1);
+        reserveSlot1.setOnClickListener(this);
+        reserveSlot2 = (Button) activity.findViewById(R.id.reserveSlot2);
+        reserveSlot2.setOnClickListener(this);
+        reserveSlot3 = (Button) activity.findViewById(R.id.reserveSlot3);
+        reserveSlot3.setOnClickListener(this);
 
         //action buttons for the actions
         buyButton = (Button) activity.findViewById(R.id.buyAction);
         buyButton.setOnClickListener(this);
-        Button reserveButton = (Button) activity.findViewById(R.id.reserveAction);
+        reserveButton = (Button) activity.findViewById(R.id.reserveAction);
         reserveButton.setOnClickListener(this);
         coinButton = (Button) activity.findViewById(R.id.coinAction);
         coinButton.setOnClickListener(this);
 
         // will provide info on current player stats if clicked on
-        Button currentPlayer = (Button) activity.findViewById(R.id.currentPlayerInfo);
+        currentPlayer = (Button) activity.findViewById(R.id.currentPlayerInfo);
         currentPlayer.setOnClickListener(this);
 
         Button returnCoin = (Button) activity.findViewById(R.id.returnCoins);
@@ -529,6 +569,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p3Gold = (TextView) activity.findViewById(R.id.goldPoint3);
         p3PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint3);
         p3Name = (TextView) activity.findViewById(R.id.player3Name);
+        p3Box = (LinearLayout) activity.findViewById((R.id.player3Box));
 
         p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
         p4Diamond = (TextView) activity.findViewById(R.id.diamondPoint4);
@@ -538,6 +579,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Gold = (TextView) activity.findViewById(R.id.goldPoint4);
         p4PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint4);
         p4Name = (TextView) activity.findViewById(R.id.player4Name);
+        p4Box = (LinearLayout) activity.findViewById(R.id.player4Box);
 
         coinB = (TextView) activity.findViewById(R.id.CB);
 
