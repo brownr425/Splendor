@@ -1,10 +1,17 @@
 package edu.up.cs301.splendor;
 
+
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+import edu.up.cs301.splendor.State.SplendorGameState;
 
 public class SplendorGameStateTest {
+
 
     @Test
     public void initializePlayerPointValues() {
@@ -12,6 +19,19 @@ public class SplendorGameStateTest {
 
     @Test
     public void initializeDecks() {
+     // SplendorGameState state1 = new SplendorGameState(4);
+        String rank1File = "src/test/res/rank1.csv";
+        InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
+
+        // InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
+
+
+
+
+
+
+
+
     }
 
     @Test
