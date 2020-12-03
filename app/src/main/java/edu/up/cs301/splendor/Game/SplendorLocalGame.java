@@ -1,14 +1,10 @@
 package edu.up.cs301.splendor.Game;
 
-import android.util.Log;
-
-import java.io.InputStream;
-
 
 import edu.up.cs301.splendor.Actions.QuitAction;
-import edu.up.cs301.splendor.Actions.SplendorBuyReservedCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
+import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinAction;
@@ -34,7 +30,7 @@ public class SplendorLocalGame extends LocalGame {
     protected String checkIfGameOver() {
         for(int i = 0; i < this.gameState.getPlayerList().size(); i++)
         {
-            if(this.gameState.getPlayer(i).getPrestigePts() >= 15) return "Congratulatons.";
+            if(this.gameState.getPlayer(i).getPrestigePts() >= 15) return "Congratulatons Player " + (i+1);
         }
         return null;
     }
@@ -182,6 +178,9 @@ public class SplendorLocalGame extends LocalGame {
             }
             this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
             return true;
+        }
+        else{
+            return false;
         }
     }
 }
