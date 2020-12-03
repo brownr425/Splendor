@@ -24,14 +24,7 @@ public class SplendorGameStateTest {
         InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
 
         // InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
-
-
-
-
-
-
-
-
+        
     }
 
     @Test
