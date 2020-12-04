@@ -164,12 +164,12 @@ public class SplendorLocalGame extends LocalGame {
             }
             this.gameState.getCoinTracking().remove(0); // if not, then pop the front of the arrayList then add the chosen coin to back
             this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
-            return true;*
+            return true;
         }
         else {
-            for(int i = 0; i < this.gameState.getCoinTracking().size(); i++) // this will do the same thing, except array isn't filled yet
+            for (int i = 0; i < this.gameState.getCoinTracking().size(); i++) // this will do the same thing, except array isn't filled yet
             {
-                if(((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)){
+                if (((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)) {
                     this.gameState.getCoinTracking().clear();
                     this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                     this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
@@ -178,9 +178,6 @@ public class SplendorLocalGame extends LocalGame {
             }
             this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
             return true;
-        }
-        else{
-            return false;
         }
     }
 }

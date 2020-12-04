@@ -464,7 +464,9 @@
                     android:id="@+id/rank3Card1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background7" />
 
@@ -472,7 +474,9 @@
                     android:id="@+id/rank3Card2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background6" />
 
@@ -480,7 +484,9 @@
                     android:id="@+id/rank3Card3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background4" />
 
@@ -488,7 +494,9 @@
                     android:id="@+id/rank3Card4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background5" />
 
@@ -505,7 +513,9 @@
                     android:id="@+id/rank2Card1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background2" />
 
@@ -513,7 +523,9 @@
                     android:id="@+id/rank2Card2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background3" />
 
@@ -521,7 +533,9 @@
                     android:id="@+id/rank2Card3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background8" />
 
@@ -529,7 +543,9 @@
                     android:id="@+id/rank2Card4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background1" />
 
@@ -546,7 +562,9 @@
                     android:id="@+id/rank1Card1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background1" />
 
@@ -554,7 +572,9 @@
                     android:id="@+id/rank1Card2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background7" />
 
@@ -562,7 +582,9 @@
                     android:id="@+id/rank1Card3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background2" />
 
@@ -570,7 +592,9 @@
                     android:id="@+id/rank1Card4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background1" />
 
