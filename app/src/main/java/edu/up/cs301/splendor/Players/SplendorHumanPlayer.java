@@ -12,6 +12,8 @@ import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.State.GameInfo;
 
+import java.util.Random;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -150,20 +152,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      */
     protected void updateDisplay() {
         //for now, card/coin images are default
-        rank3Card1.setImageResource(R.drawable.background1);
-        rank3Card2.setImageResource(R.drawable.background2);
-        rank3Card3.setImageResource(R.drawable.background3);
-        rank3Card4.setImageResource(R.drawable.background4);
-
-        rank2Card1.setImageResource(R.drawable.background1);
-        rank2Card2.setImageResource(R.drawable.background2);
-        rank2Card3.setImageResource(R.drawable.background3);
-        rank2Card4.setImageResource(R.drawable.background4);
-
-        rank1Card1.setImageResource(R.drawable.background1);
-        rank1Card2.setImageResource(R.drawable.background2);
-        rank1Card3.setImageResource(R.drawable.background3);
-        rank1Card4.setImageResource(R.drawable.background4);
 
         nobleCard1.setImageResource(R.drawable.noble1try2);
         nobleCard2.setImageResource(R.drawable.noble2);
@@ -179,25 +167,88 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         goldCoin.setImageResource(R.drawable.gold);
 
         //SELECTED COIN HIGHLIGHT
-        for (int coin : this.state.getCoinTracking()) {
-            if (coin == 0) {
-                rubyCoin.setImageResource(R.drawable.ruby_selected);
-            } else if (coin == 1) {
-                sapphireCoin.setImageResource(R.drawable.sapphire_selected);
-            } else if (coin == 2) {
-                emeraldCoin.setImageResource(R.drawable.emerald_selected);
-            } else if (coin == 3) {
-                diamondCoin.setImageResource(R.drawable.diamond_selected);
-            } else if (coin == 4) {
-                onyxCoin.setImageResource(R.drawable.onyx_selected);
+        updateSelectedCoins();
+        updatePlayerTurnColor();
+        updatePlayerTurnColor();
+        updatePlayerInfoVisabilty();
+        updatePlayerScores();
+        updateInfoBox();
+        updateBuyableCards(); //TODO needs some fixing
+        coinB.setText("Coin Bank:\n Ruby:" + state.getRubyCoins() + "\nSapph:" + state.getSapphireCoins() + "\nEmer:" + state.getEmeraldCoins() + "\nDia:" + state.getDiamondCoins() + "\nOnyx:" + state.getOnyxCoins());
+
+        //Update info box to reflect selected card
+
+    }
+
+    public void setUpGUIImages() {
+        rank3Card1.setImageResource(randomImage());
+        rank3Card2.setImageResource(randomImage());
+        rank3Card3.setImageResource(randomImage());
+        rank3Card4.setImageResource(randomImage());
+
+        rank2Card1.setImageResource(randomImage());
+        rank2Card2.setImageResource(randomImage());
+        rank2Card3.setImageResource(randomImage());
+        rank2Card4.setImageResource(randomImage());
+
+        rank1Card1.setImageResource(randomImage());
+        rank1Card2.setImageResource(randomImage());
+        rank1Card3.setImageResource(randomImage());
+        rank1Card4.setImageResource(randomImage());
+    }
+
+    public int randomImage()
+    {
+        Random rand = new Random();
+        int newRandomNumber = rand.nextInt(8);
+        int drawableId = 0;
+        switch(newRandomNumber)
+        {
+            case 0: drawableId = R.drawable.background1; break;
+            case 1: drawableId = R.drawable.background2; break;
+            case 2: drawableId = R.drawable.background3; break;
+            case 3: drawableId = R.drawable.background4; break;
+            case 4: drawableId = R.drawable.background5; break;
+            case 5: drawableId = R.drawable.background6; break;
+            case 6: drawableId = R.drawable.background7; break;
+            case 7: drawableId = R.drawable.background8; break;
+        }
+        return drawableId;
+    }
+
+    public void updatePlayerTurnColor() {
+        if (this.state.getPlayerList().size() < 3) {
+            switch (this.state.getPlayerTurn()) {
+                case 0:
+                    p1Name.setBackgroundResource(R.color.green);
+                    p2Name.setBackgroundResource(R.color.grey);
+                    p3Name.setBackgroundResource(R.color.grey);
+                    p4Name.setBackgroundResource(R.color.grey);
+                    break;
+                case 1:
+                    p1Name.setBackgroundResource(R.color.grey);
+                    p2Name.setBackgroundResource(R.color.green);
+                    p3Name.setBackgroundResource(R.color.grey);
+                    p4Name.setBackgroundResource(R.color.grey);
+                    break;
+                case 2:
+                    p1Name.setBackgroundResource(R.color.grey);
+                    p2Name.setBackgroundResource(R.color.grey);
+                    p3Name.setBackgroundResource(R.color.green);
+                    p4Name.setBackgroundResource(R.color.grey);
+                    break;
+                case 3:
+                    p1Name.setBackgroundResource(R.color.grey);
+                    p2Name.setBackgroundResource(R.color.grey);
+                    p3Name.setBackgroundResource(R.color.grey);
+                    p4Name.setBackgroundResource(R.color.green);
+                    break;
             }
         }
+    }
 
-        Log.d("SHP", "PC" + this.state.getPlayerCount());
-        // If there aren't more than 2 players, don't show player 3 or 4's point box
-        if (this.state.getPlayerCount() < 3) {
-            Log.d("SHP", "PC" + this.state.getPlayerCount());
-            p3Box.setVisibility(View.GONE);
+    public void updatePlayerInfoVisabilty() {
+        if (this.state.getPlayerCount() == 2) {
             p3Emerald.setVisibility(View.GONE);
             p3Diamond.setVisibility(View.GONE);
             p3Sapphire.setVisibility(View.GONE);
@@ -206,10 +257,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3Gold.setVisibility(View.GONE);
             p3PrestigePt.setVisibility(View.GONE);
             p3Name.setVisibility(View.GONE);
-        }
-        // If there aren't more than 3 players, don't show player 4's point box
-        if (this.state.getPlayerCount() < 4) {
-            p4Box.setVisibility(View.GONE);
+            p3Box.setVisibility(View.GONE);
+
             p4Emerald.setVisibility(View.GONE);
             p4Diamond.setVisibility(View.GONE);
             p4Sapphire.setVisibility(View.GONE);
@@ -217,9 +266,38 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p4Ruby.setVisibility(View.GONE);
             p4Gold.setVisibility(View.GONE);
             p4PrestigePt.setVisibility(View.GONE);
-            p4Name.setVisibility(View.GONE);
-        }
+            p4Box.setVisibility(View.GONE);
 
+            nobleCard4.setVisibility(View.GONE);
+            nobleCard5.setVisibility(View.GONE);
+
+            p1Name.setText(state.getPlayer1Name());
+            p2Name.setText(state.getPlayer2Name());
+            p4Name.setVisibility(View.GONE);
+        } else if (this.state.getPlayerCount() == 3) {
+            p4Emerald.setVisibility(View.GONE);
+            p4Diamond.setVisibility(View.GONE);
+            p4Sapphire.setVisibility(View.GONE);
+            p4Onyx.setVisibility(View.GONE);
+            p4Ruby.setVisibility(View.GONE);
+            p4Gold.setVisibility(View.GONE);
+            p4PrestigePt.setVisibility(View.GONE);
+            p4Box.setVisibility(View.GONE);
+
+            nobleCard5.setVisibility(View.GONE);
+
+            p1Name.setText(state.getPlayer1Name());
+            p2Name.setText(state.getPlayer2Name());
+            p3Name.setText(state.getPlayer3Name());
+        } else if (this.state.getPlayerCount() == 4) {
+            p1Name.setText(state.getPlayer1Name());
+            p2Name.setText(state.getPlayer2Name());
+            p3Name.setText(state.getPlayer3Name());
+            p4Name.setText(state.getPlayer4Name());
+        }
+    }
+
+    public void updatePlayerScores() {
         p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +
                 " + " + state.getPlayer(0).getEmerPts());
         p1Diamond.setText("" + state.getPlayer(0).getDiaCoins() +
@@ -275,41 +353,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
                 p4PrestigePt.setText("" + state.getPlayer(3).getPrestigePts());
             }
         }
+    }
 
-        switch(state.getPlayer(1).getPlayerHand().getReserved().size()) {
-            case 1:
-                reserveSlot1.setText("Reserved Card");
-                reserveSlot2.setText("Reserved Slot");
-                reserveSlot3.setText("Reserved Slot");
-                break;
-            case 2:
-                reserveSlot1.setText("Reserved Card");
-                reserveSlot2.setText("Reserved Card");
-                reserveSlot3.setText("Reserved Slot");
-                break;
-            case 3:
-                reserveSlot1.setText("Reserved Card");
-                reserveSlot2.setText("Reserved Card");
-                reserveSlot3.setText("Reserved Card");
-                break;
-            default:
-                reserveSlot1.setText("Reserved Slot");
-                reserveSlot2.setText("Reserved Slot");
-                reserveSlot3.setText("Reserved Slot");
-                break;
-
-        }
-
-        coinB.setText("Coin Bank:" +
-                "\nRuby: " + state.getRubyCoins() +
-                "\nSapphire: " + state.getSapphireCoins() +
-                "\nEmerald: " + state.getEmeraldCoins() +
-                "\nDiamond: " + state.getDiamondCoins() +
-                "\nOnyx: " + state.getOnyxCoins() +
-                "\nGold: " + state.getGoldCoins());
-
-        //Update info box to reflect selected card
-        if(state.getSelectedCol() == -2) {
+    public void updateInfoBox() {
+        if(this.state.getSelectedCol() == -2)
+        {
             String info = state.getSelectedNoble().toString();
             infoBox.setText(info);
         } else if (state.getSelected() != null) {
@@ -327,6 +375,74 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    public void updateSelectedCoins() {
+        for (int coin : this.state.getCoinTracking()) {
+
+            if (coin == 0) {
+                rubyCoin.setImageResource(R.drawable.ruby_selected);
+            } else if (coin == 1) {
+                sapphireCoin.setImageResource(R.drawable.sapphire_selected);
+            } else if (coin == 2) {
+                emeraldCoin.setImageResource(R.drawable.emerald_selected);
+            } else if (coin == 3) {
+                diamondCoin.setImageResource(R.drawable.diamond_selected);
+            } else if (coin == 4) {
+                onyxCoin.setImageResource(R.drawable.onyx_selected);
+            }
+        }
+    }
+
+    public void updateBuyableCards() {
+        rank3Card1.setBackgroundResource(R.color.grey);
+        rank3Card2.setBackgroundResource(R.color.grey);
+        rank3Card3.setBackgroundResource(R.color.grey);
+        rank3Card4.setBackgroundResource(R.color.grey);
+        rank2Card1.setBackgroundResource(R.color.grey);
+        rank2Card2.setBackgroundResource(R.color.grey);
+        rank2Card3.setBackgroundResource(R.color.grey);
+        rank2Card4.setBackgroundResource(R.color.grey);
+        rank1Card1.setBackgroundResource(R.color.grey);
+        rank1Card2.setBackgroundResource(R.color.grey);
+        rank1Card3.setBackgroundResource(R.color.grey);
+        rank1Card4.setBackgroundResource(R.color.grey);
+
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,0))) {
+            rank3Card1.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,1))) {
+            rank3Card2.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,2))) {
+            rank3Card3.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,3))) {
+            rank3Card4.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,0))) {
+            rank2Card1.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,1))) {
+            rank2Card2.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,2))) {
+            rank2Card3.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,3))) {
+            rank2Card4.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,0))) {
+            rank1Card1.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,1))) {
+            rank1Card2.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,2))) {
+            rank1Card3.setBackgroundResource(R.color.green);
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,3))) {
+            rank1Card4.setBackgroundResource(R.color.green);
+        }
+    }
     /**
      * this method gets called whenever the user clicks any of the buttons on screen.
      * It creates a corresponding action based on the button that was clicked.
@@ -364,8 +480,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             action = new SplendorNobleSelectAction(this, 1);
         } else if (button.equals(nobleCard3)){
             action = new SplendorNobleSelectAction(this, 2);
-        } else if (button.getId() == R.id.nobleCard4){
+        } else if (button.equals(nobleCard4)){
             action = new SplendorNobleSelectAction(this, 3);
+        } else if (button.equals(nobleCard5)) {
+            action = new SplendorNobleSelectAction(this, 4);
         } else if (button.equals(rank1Card1)) {
             action = new SplendorSelectCardAction(this, 2, 0);
         } else if (button.equals(rank1Card2)) {
@@ -529,6 +647,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p1PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint1);
         p1Name = (TextView) activity.findViewById(R.id.player1Name);
         //player 1 box not needed because it always exists
+
         p2Emerald = (TextView) activity.findViewById(R.id.emeraldPoint2);
         p2Diamond = (TextView) activity.findViewById(R.id.diamondPoint2);
         p2Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint2);
@@ -538,6 +657,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint2);
         p2Name = (TextView) activity.findViewById(R.id.player2Name);
         //player 2 box not needed because it always exists
+
         p3Emerald = (TextView) activity.findViewById(R.id.emeraldPoint3);
         p3Diamond = (TextView) activity.findViewById(R.id.diamondPoint3);
         p3Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint3);
@@ -560,6 +680,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         coinB = (TextView) activity.findViewById(R.id.CB);
         infoBox = (TextView) activity.findViewById(R.id.infoGiven);
+
+        setUpGUIImages();
 
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated
