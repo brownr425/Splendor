@@ -72,6 +72,15 @@ public class SplendorLocalGame extends LocalGame {
             this.gameState.getCoinTracking().clear();
             return true;
         }
+        else if(action instanceof SplendorNobleSelectAction)
+        {
+            if(((SplendorNobleSelectAction) action).getRow() < this.gameState.getNobleBoard().size()) {
+                this.gameState.setSelectedCol(-2); // this is to tell the human player that "hey we're looking at a noble right now!"
+                this.gameState.setSelectedNoble(this.gameState.getNobleBoard().get(((SplendorNobleSelectAction) action).getRow()));
+                return true;
+            }
+            return false;
+        }
         else{
             return false;
         }
@@ -139,6 +148,8 @@ public class SplendorLocalGame extends LocalGame {
             if(this.gameState.getPlayer(this.gameState.getPlayerTurn()).getPlayerHand().getReserved().size() > ((SplendorSelectCardAction) action).getRow())
             {
                 this.gameState.setSelected(this.gameState.getPlayer(this.gameState.getPlayerTurn()).getPlayerHand().getReserved().get(((SplendorSelectCardAction) action).getRow()));
+                this.gameState.setSelectedRow(((SplendorSelectCardAction) action).getRow());
+                this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol()); // set the row and column of where the card was selected so game knows what card to replace
                 return true;
             }
             return false;

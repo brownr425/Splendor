@@ -164,8 +164,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
     }
 
-
-
     public void updateGUIImages() {
         rank3Card1.setImageResource(R.drawable.background1);
         rank3Card2.setImageResource(R.drawable.background2);
@@ -228,7 +226,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     public void updatePlayerInfoVisabilty() {
-        if (this.state.getPlayerList().size() == 2) {
+        if (this.state.getPlayerCount() == 2) {
             p3Emerald.setVisibility(View.GONE);
             p3Diamond.setVisibility(View.GONE);
             p3Sapphire.setVisibility(View.GONE);
@@ -237,6 +235,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3Gold.setVisibility(View.GONE);
             p3PrestigePt.setVisibility(View.GONE);
             p3Name.setVisibility(View.GONE);
+            p3Box.setVisibility(View.GONE);
 
             p4Emerald.setVisibility(View.GONE);
             p4Diamond.setVisibility(View.GONE);
@@ -245,11 +244,15 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p4Ruby.setVisibility(View.GONE);
             p4Gold.setVisibility(View.GONE);
             p4PrestigePt.setVisibility(View.GONE);
+            p4Box.setVisibility(View.GONE);
+
+            nobleCard4.setVisibility(View.GONE);
+            nobleCard5.setVisibility(View.GONE);
 
             p1Name.setText(state.getPlayer1Name());
             p2Name.setText(state.getPlayer2Name());
             p4Name.setVisibility(View.GONE);
-        } else if (this.state.getPlayerList().size() == 3) {
+        } else if (this.state.getPlayerCount() == 3) {
             p4Emerald.setVisibility(View.GONE);
             p4Diamond.setVisibility(View.GONE);
             p4Sapphire.setVisibility(View.GONE);
@@ -257,11 +260,14 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p4Ruby.setVisibility(View.GONE);
             p4Gold.setVisibility(View.GONE);
             p4PrestigePt.setVisibility(View.GONE);
+            p4Box.setVisibility(View.GONE);
+
+            nobleCard5.setVisibility(View.GONE);
 
             p1Name.setText(state.getPlayer1Name());
             p2Name.setText(state.getPlayer2Name());
             p3Name.setText(state.getPlayer3Name());
-        } else if (this.state.getPlayerList().size() == 4) {
+        } else if (this.state.getPlayerCount() == 4) {
             p1Name.setText(state.getPlayer1Name());
             p2Name.setText(state.getPlayer2Name());
             p3Name.setText(state.getPlayer3Name());
@@ -328,7 +334,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     public void updateInfoBox() {
-        if (state.getSelected() != null) {
+        if(this.state.getSelectedCol() == -2)
+        {
+            String info = state.getSelectedNoble().toString();
+            infoBox.setText(info);
+        }
+        else if (state.getSelected() != null) {
             String info = state.getSelected().toString();
             infoBox.setText(info);
         } else {
@@ -376,27 +387,38 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,0))) {
             rank3Card1.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,1))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,1))) {
             rank3Card2.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,2))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,2))) {
             rank3Card3.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,3))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,3))) {
             rank3Card4.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,0))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,0))) {
             rank2Card1.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,1))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,1))) {
             rank2Card2.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,2))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,2))) {
             rank2Card3.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,3))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,3))) {
             rank2Card4.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,0))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,0))) {
             rank1Card1.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,1))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,1))) {
             rank1Card2.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,2))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,2))) {
             rank1Card3.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,3))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,3))) {
             rank1Card4.setBackgroundResource(R.color.green);
         }
     }

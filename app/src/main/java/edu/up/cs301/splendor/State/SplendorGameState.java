@@ -411,10 +411,13 @@ public class SplendorGameState extends GameState {
             {
                 if(player.getPlayerID() == this.playerTurn)
                 {
-                    individualCoinReturn(coinColor);
-                    this.moreThanTenCoins = coinsGreaterThanTen(player); // check if the player still has more than 10 coins
-                    if(!this.moreThanTenCoins) nextPlayerTurn(); // if they don't have more than 10 coins, then we move to the nextPlayerTurn
-                    return true;
+                    if(hasCoin(coinColor))
+                    {
+                        individualCoinReturn(coinColor);
+                        this.moreThanTenCoins = coinsGreaterThanTen(player); // check if the player still has more than 10 coins
+                        if(!this.moreThanTenCoins) nextPlayerTurn(); // if they don't have more than 10 coins, then we move to the nextPlayerTurn
+                        return true;
+                    }
                 }
             }
         }
@@ -490,6 +493,10 @@ public class SplendorGameState extends GameState {
                 if(player.getPlayerHand().canReserve() && col != -1){ // col != -1 makes sure that the selected card ISN'T a reserved card already
                     if(this.goldCoins > 0){
                         player.setGoldCoins(player.getGoldCoins()+1); this.goldCoins--;
+                        if(coinsGreaterThanTen(player))
+                        {
+                            moreThanTenCoins = true;
+                        }
                         player.getPlayerHand().addToReserved(cardToReserve);
                         switch(row)
                         {
@@ -551,6 +558,30 @@ public class SplendorGameState extends GameState {
     }
 
     /*~~~~~~~~~~~~~~~~~~~~~helper methods~~~~~~~~~~~~~~~~~~~*/
+
+    public boolean hasCoin(int coin) {
+        boolean flag = false;
+        switch(coin) {
+            case 0:
+                flag = (this.playerList.get(this.playerTurn).getRubyCoins() != 0);
+                break;
+            case 1:
+                flag = (this.playerList.get(this.playerTurn).getSapphCoins() != 0);
+                break;
+            case 2:
+                flag = (this.playerList.get(this.playerTurn).getEmerCoins() != 0);
+                break;
+            case 3:
+                flag = (this.playerList.get(this.playerTurn).getDiaCoins() != 0);
+                break;
+            case 4:
+                flag = (this.playerList.get(this.playerTurn).getOnyxCoins() != 0);
+                break;
+            default:
+                break;
+        }
+        return flag;
+    }
 
     /** canBuyCard()
      * The helper method for cardAction, will check if a player can buy a card.
@@ -759,7 +790,7 @@ public class SplendorGameState extends GameState {
         {
             if(player.getPlayerID() == this.playerTurn)
             {
-                return (coinCountBool(player) && stackAtLeastFour);
+                return (stackAtLeastFour);
             }
         }
         return false;
@@ -1013,6 +1044,12 @@ public class SplendorGameState extends GameState {
 
     public int getGoldCoins() {
         return goldCoins;
+    }
+
+    public int[] getAllCoins()
+    {
+        int allCoins[] = {this.rubyCoins, this.sapphireCoins, this.emeraldCoins, this.diamondCoins, this.onyxCoins};
+        return allCoins;
     }
 
     public ArrayList<Integer> getCoinTracking(){

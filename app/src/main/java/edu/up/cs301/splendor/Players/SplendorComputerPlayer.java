@@ -17,6 +17,7 @@ import edu.up.cs301.splendor.State.SplendorGameState;
 public class SplendorComputerPlayer extends GameComputerPlayer {
     private SplendorGameState gameState;
     private Random randomizer;
+    private int totalCoins = 0;
 
     /**
      * constructor
@@ -30,7 +31,6 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
     @Override
     public void receiveInfo(GameInfo info) {
-
         if (!(info instanceof SplendorGameState)) {
             return;
         }
@@ -42,7 +42,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             return;
         }
         //traverse through card board and purchases a card if it can
-        for (int row = 0; row < 3; row++) {
+        /*for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 4; col++) {
                 Card card = gameState.getBoard(row, col);
 
@@ -51,17 +51,16 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
                 SplendorCardAction buy = new SplendorCardAction(this, card, row, col);
                 this.game.sendAction(buy);
             }
-        }
+        }*/
+        totalCoins = this.gameState.getPlayer(this.gameState.getPlayerTurn()).getTotalCoins();
         randomCoinBuy();
-        if(gameState.coinsGreaterThanTen(gameState.getPlayer(gameState.getPlayerTurn())))
-        {
-            randomReturn();
-        }
+        randomReturn();
     }
 
     public boolean randomCoinBuy() {
         //generates new random object for random coin selection
         boolean success = false;
+
         int coin1 = randomizer.nextInt(5);
         int coin2 = randomizer.nextInt(5);
         int coin3 = randomizer.nextInt(5);
@@ -74,16 +73,22 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
             this.game.sendAction(new SplendorCoinAction(this));
+            totalCoins+=2;
+            this.gameState.coinAction(coin1);
         } else if (coin2 == coin3) {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin2));
             this.game.sendAction(new SplendorCoinSelectAction(this, coin2));
             this.game.sendAction(new SplendorCoinAction(this));
+            totalCoins+=2;
+            this.gameState.coinAction(coin2);
         } else {
             //otherwise, do action on 3 coins
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
             this.game.sendAction(new SplendorCoinSelectAction(this, coin2));
             this.game.sendAction(new SplendorCoinSelectAction(this, coin3));
             this.game.sendAction(new SplendorCoinAction(this));
+            totalCoins+=3;
+            this.gameState.coinAction(coin1, coin2, coin3);
         }
         return true;
     }
@@ -91,13 +96,13 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
     // Computer player automatically returns between 1-3 random coins.
     public boolean randomReturn() {
         //int numTypes = randomizer.nextInt(3);
-        while(gameState.getPlayer(gameState.getPlayerTurn()).getTotalCoins() > 10)
+        while(totalCoins > 10)
         {
             int coinType = randomizer.nextInt(5);
             boolean flag = false;
 
             //for numTypes (0-2), return a random coin type if the player has it
-            if(!hasCoin(coinType)) {
+            if(!(hasCoin(coinType))) {
                 while(!flag) {
                     //randomize coin type and change flag
                     coinType = randomizer.nextInt(5);
@@ -108,6 +113,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             }
             this.game.sendAction(new SplendorCoinSelectAction(this, coinType));
             this.game.sendAction(new SplendorReturnCoinAction(this));
+            totalCoins--;
         }
         return true;
     }
