@@ -1,6 +1,8 @@
 package edu.up.cs301.splendor.Game;
 
 
+
+
 import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
@@ -44,7 +46,7 @@ public class SplendorLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if(action instanceof QuitAction) {
-            System.exit(0);
+           
         }
         // if action is player clicking a "take coins button"
         if (action instanceof SplendorCoinAction){
