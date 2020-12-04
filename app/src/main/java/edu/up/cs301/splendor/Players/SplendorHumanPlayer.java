@@ -151,6 +151,18 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     protected void updateDisplay() {
         //for now, card/coin images are default
 
+        nobleCard1.setImageResource(R.drawable.noble1try2);
+        nobleCard2.setImageResource(R.drawable.noble2);
+        nobleCard3.setImageResource(R.drawable.noble3);
+        nobleCard4.setImageResource(R.drawable.noble4);
+        nobleCard5.setImageResource(R.drawable.noble5);
+
+        emeraldCoin.setImageResource(R.drawable.emerald);
+        diamondCoin.setImageResource(R.drawable.diamond);
+        sapphireCoin.setImageResource(R.drawable.sapphire);
+        onyxCoin.setImageResource(R.drawable.onyx);
+        rubyCoin.setImageResource(R.drawable.ruby);
+        goldCoin.setImageResource(R.drawable.gold);
 
         //SELECTED COIN HIGHLIGHT
         updateSelectedCoins();
@@ -181,19 +193,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         rank1Card2.setImageResource(randomImage());
         rank1Card3.setImageResource(randomImage());
         rank1Card4.setImageResource(randomImage());
-
-        nobleCard1.setImageResource(R.drawable.noble1try2);
-        nobleCard2.setImageResource(R.drawable.noble2);
-        nobleCard3.setImageResource(R.drawable.noble3);
-        nobleCard4.setImageResource(R.drawable.noble4);
-        nobleCard5.setImageResource(R.drawable.noble5);
-
-        emeraldCoin.setImageResource(R.drawable.emerald);
-        diamondCoin.setImageResource(R.drawable.diamond);
-        sapphireCoin.setImageResource(R.drawable.sapphire);
-        onyxCoin.setImageResource(R.drawable.onyx);
-        rubyCoin.setImageResource(R.drawable.ruby);
-        goldCoin.setImageResource(R.drawable.gold);
     }
 
     public int randomImage()

@@ -42,7 +42,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             return;
         }
         //traverse through card board and purchases a card if it can
-        /*for (int row = 0; row < 3; row++) {
+        for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 4; col++) {
                 Card card = gameState.getBoard(row, col);
 
@@ -51,7 +51,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
                 SplendorCardAction buy = new SplendorCardAction(this, card, row, col);
                 this.game.sendAction(buy);
             }
-        }*/
+        }
         totalCoins = this.gameState.getPlayer(this.gameState.getPlayerTurn()).getTotalCoins();
         randomCoinBuy();
         randomReturn();
