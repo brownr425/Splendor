@@ -32,20 +32,12 @@ public class SplendorGameState extends GameState {
     private final int PLAYER3ID = 2;
     private final int PLAYER4ID = 3;
 
-
+//~~~~~~~~~~~~~~~~ players ~~~~~~~~~~~~~~~~~~~ //
 
     private int playerCount;
 
     //create list of all players
     private ArrayList<SplendorPlayer> playerList = new ArrayList<>();
-
-//~~~~~~~~~~~~~~~~ players ~~~~~~~~~~~~~~~~~~~ //
-
-    //SplendorPlayer objects contain all player point values and cards
-    /*private SplendorPlayer splendorPlayer1;
-    private SplendorPlayer splendorPlayer2;
-    private SplendorPlayer splendorPlayer3;
-    private SplendorPlayer splendorPlayer4;*/
 
 //~~~~~~~~~~~~~~~~~~ Deck and Coin Information ~~~~~~~~~~~~~~~ //
 
@@ -56,13 +48,6 @@ public class SplendorGameState extends GameState {
 
     private final int RANKS = 3;
     private final int CARDS_PER_RANK = 4;
-
-    //some could be unused, dependent on num players
-    private Noble noble1;
-    private Noble noble2;
-    private Noble noble3;
-    private Noble noble4;
-    private Noble noble5;
 
     //coin instance variables for stacks
     private int rubyCoins;
@@ -179,7 +164,7 @@ public class SplendorGameState extends GameState {
         }
 
         this.coinTracking = new ArrayList<>();
-        for (int coin : stateToCopy.coinTracking) {
+        for (int coin : stateToCopy.getCoinTracking()) {
             this.coinTracking.add(coin);
         }
 
@@ -520,7 +505,6 @@ public class SplendorGameState extends GameState {
                                 this.board[row][col] = this.rank1Stack.remove(0);
                                 break;
                         }
-
                     }
                     this.nextPlayerTurn();
                     return true;
@@ -963,22 +947,6 @@ public class SplendorGameState extends GameState {
         return rank3Stack;
     }
 
-    public Noble getNoble1() {
-        return noble1;
-    }
-
-    public Noble getNoble2() {
-        return noble2;
-    }
-
-    public Noble getNoble3() {
-        return noble3;
-    }
-
-    public Noble getNoble4() {
-        return noble4;
-    }
-
     public Card getBoard(int row, int col){
         return this.board[row][col];
     }
@@ -1055,5 +1023,7 @@ public class SplendorGameState extends GameState {
     public Noble getSelectedNoble() { return this.selectedNoble; }
 
     public void setSelectedNoble(Noble selected) { this.selectedNoble = selected; }
+
+    public boolean getMoreThanTenCoins() { return this.moreThanTenCoins; }
 }
 

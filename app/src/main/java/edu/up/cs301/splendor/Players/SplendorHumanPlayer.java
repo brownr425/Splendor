@@ -191,6 +191,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
                 onyxCoin.setImageResource(R.drawable.onyx_selected);
             }
         }
+
         Log.d("SHP", "PC" + this.state.getPlayerCount());
         if (this.state.getPlayerCount() < 3) {
             Log.d("SHP", "PC" + this.state.getPlayerCount());
@@ -203,6 +204,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3Gold.setVisibility(View.GONE);
             p3PrestigePt.setVisibility(View.GONE);
             p3Name.setVisibility(View.GONE);
+            nobleCard4.setVisibility(View.GONE);
+            nobleCard5.setVisibility(View.GONE);
         }
         if (this.state.getPlayerCount() < 4) {
             p4Box.setVisibility(View.GONE);
@@ -214,6 +217,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p4Gold.setVisibility(View.GONE);
             p4PrestigePt.setVisibility(View.GONE);
             p4Name.setVisibility(View.GONE);
+            nobleCard5.setVisibility(View.GONE);
         }
 
         p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +
@@ -369,6 +373,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         else if (button.getId() == R.id.nobleCard4){
             action = new SplendorNobleSelectAction(this, 3);
         }
+        else if (button.getId() == R.id.nobleCard5){
+            action = new SplendorNobleSelectAction(this, 4);
+        }
         else if (button.getId() == R.id.rank1Card1) {
             // something else was pressed: ignore
             action = new SplendorSelectCardAction(this, 2, 0);
@@ -464,6 +471,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         //info box for info to be given too
         infoBox = (TextView) activity.findViewById(R.id.infoGiven);
+
+
 
         // make noble cards and set on click listener to display noble card information
         nobleCard1 = (ImageButton) activity.findViewById(R.id.nobleCard1);

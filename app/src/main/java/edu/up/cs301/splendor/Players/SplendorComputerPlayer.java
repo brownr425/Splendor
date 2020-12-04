@@ -6,6 +6,7 @@ import java.util.Random;
 
 import edu.up.cs301.game.GameFramework.GameComputerPlayer;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
+import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinAction;
@@ -52,7 +53,10 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             }
         }
         randomCoinBuy();
-        if(gameState.coinsGreaterThanTen(gameState.getPlayer(gameState.getPlayerTurn()))) randomReturn();
+        if(gameState.coinsGreaterThanTen(gameState.getPlayer(gameState.getPlayerTurn())))
+        {
+            randomReturn();
+        }
     }
 
     public boolean randomCoinBuy() {
@@ -86,12 +90,13 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
     // Computer player automatically returns between 1-3 random coins.
     public boolean randomReturn() {
-        int numTypes = randomizer.nextInt(3);
-        int coinType = randomizer.nextInt(5);
-        boolean flag = false;
+        //int numTypes = randomizer.nextInt(3);
+        while(gameState.getPlayer(gameState.getPlayerTurn()).getTotalCoins() > 10)
+        {
+            int coinType = randomizer.nextInt(5);
+            boolean flag = false;
 
-        //for numTypes (0-2), return a random coin type if the player has it
-        for(int i = 0; i < numTypes; i++) {
+            //for numTypes (0-2), return a random coin type if the player has it
             if(!hasCoin(coinType)) {
                 while(!flag) {
                     //randomize coin type and change flag
@@ -100,9 +105,9 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
                         flag = true;
                     }
                 }
-                gameState.returnCoins(coinType);
-                flag = false;
             }
+            this.game.sendAction(new SplendorCoinSelectAction(this, coinType));
+            this.game.sendAction(new SplendorReturnCoinAction(this));
         }
         return true;
     }
