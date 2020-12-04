@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wood_grain_background_1"
-    android:orientation="vertical"
-    android:screenOrientation="landscape"
-    android:configChanges="keyboardHidden|orientation|screenSize">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/playerLayout"
@@ -19,11 +17,11 @@
 
         <LinearLayout
             android:id="@+id/player1Box"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="1"
-            android:background="#A6FFFFFF"
+            android:background="#74FFFFFF"
             android:orientation="vertical">
 
             <TextView
@@ -41,31 +39,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/rubyPoint1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/red" />
-
-                <TextView
-                    android:id="@+id/sapphirePoint1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/blue" />
-
-                <TextView
                     android:id="@+id/emeraldPoint1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/green" />
+                    android:textColor="@color/green"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/diamondPoint1"
@@ -76,13 +56,31 @@
                     android:text="1" />
 
                 <TextView
+                    android:id="@+id/sapphirePoint1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:text="1" />
+
+                <TextView
                     android:id="@+id/onyxPoint1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/rubyPoint1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/red"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/goldPoint1"
@@ -105,11 +103,11 @@
 
         <LinearLayout
             android:id="@+id/player2Box"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="1"
-            android:background="#A6FFFFFF"
+            android:background="#74FFFFFF"
             android:orientation="vertical">
 
             <TextView
@@ -127,31 +125,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/rubyPoint2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/red" />
-
-                <TextView
-                    android:id="@+id/sapphirePoint2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/blue" />
-
-                <TextView
                     android:id="@+id/emeraldPoint2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/green" />
+                    android:textColor="@color/green"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/diamondPoint2"
@@ -162,14 +142,32 @@
                     android:text="1" />
 
                 <TextView
+                    android:id="@+id/sapphirePoint2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:text="1" />
+
+                <TextView
                     android:id="@+id/onyxPoint2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1"
+                    android:textColor="@color/black"
 
-                    android:textColor="@color/black" />
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/rubyPoint2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/red"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/goldPoint2"
@@ -192,11 +190,11 @@
 
         <LinearLayout
             android:id="@+id/player3Box"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="1"
-            android:background="#A6FFFFFF"
+            android:background="#74FFFFFF"
             android:orientation="vertical">
 
             <TextView
@@ -214,31 +212,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/rubyPoint3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/red" />
-
-                <TextView
-                    android:id="@+id/sapphirePoint3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/blue" />
-
-                <TextView
                     android:id="@+id/emeraldPoint3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/green" />
+                    android:textColor="@color/green"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/diamondPoint3"
@@ -249,13 +229,31 @@
                     android:text="1" />
 
                 <TextView
+                    android:id="@+id/sapphirePoint3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:text="1" />
+
+                <TextView
                     android:id="@+id/onyxPoint3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/rubyPoint3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/red"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/goldPoint3"
@@ -278,11 +276,11 @@
 
         <LinearLayout
             android:id="@+id/player4Box"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="1"
-            android:background="#A6FFFFFF"
+            android:background="#74FFFFFF"
             android:orientation="vertical">
 
             <TextView
@@ -300,31 +298,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/rubyPoint4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/red" />
-
-                <TextView
-                    android:id="@+id/sapphirePoint4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/blue" />
-
-                <TextView
                     android:id="@+id/emeraldPoint4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/green" />
+                    android:textColor="@color/green"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/diamondPoint4"
@@ -335,13 +315,31 @@
                     android:text="1" />
 
                 <TextView
+                    android:id="@+id/sapphirePoint4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:text="1" />
+
+                <TextView
                     android:id="@+id/onyxPoint4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/rubyPoint4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/red"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/goldPoint4"
@@ -374,7 +372,6 @@
             android:id="@+id/infoBox"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="#80FFFFFF"
             android:orientation="vertical"
             android:padding="10dp"
@@ -385,27 +382,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Information Box"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="Information Box" />
 
             <TextView
                 android:id="@+id/infoGiven"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/given_info"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:text="@string/given_info" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/cards"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             android:layout_weight="3"
             android:orientation="vertical">
 
@@ -413,15 +404,14 @@
                 android:id="@+id/noblerank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 tools:visibility="visible">
 
                 <ImageButton
                     android:id="@+id/nobleCard1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/noble5" />
@@ -466,15 +456,13 @@
                 android:id="@+id/rank3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/rank3Card1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background7" />
@@ -482,7 +470,7 @@
                 <ImageButton
                     android:id="@+id/rank3Card2"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background6" />
@@ -490,7 +478,7 @@
                 <ImageButton
                     android:id="@+id/rank3Card3"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background4" />
@@ -498,10 +486,18 @@
                 <ImageButton
                     android:id="@+id/rank3Card4"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background5" />
+
+                <Button
+                    android:id="@+id/rank3Stack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#3C55F6"
+                    android:text="Card Stack" />
 
             </LinearLayout>
 
@@ -509,14 +505,13 @@
                 android:id="@+id/rank2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/rank2Card1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background2" />
@@ -524,7 +519,7 @@
                 <ImageButton
                     android:id="@+id/rank2Card2"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background3" />
@@ -532,7 +527,7 @@
                 <ImageButton
                     android:id="@+id/rank2Card3"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background8" />
@@ -540,10 +535,18 @@
                 <ImageButton
                     android:id="@+id/rank2Card4"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background1" />
+
+                <Button
+                    android:id="@+id/rank2Stack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#F3D40D"
+                    android:text="Card stack" />
 
             </LinearLayout>
 
@@ -551,14 +554,13 @@
                 android:id="@+id/rank1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/rank1Card1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background1" />
@@ -566,7 +568,7 @@
                 <ImageButton
                     android:id="@+id/rank1Card2"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background7" />
@@ -574,7 +576,7 @@
                 <ImageButton
                     android:id="@+id/rank1Card3"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background2" />
@@ -582,10 +584,18 @@
                 <ImageButton
                     android:id="@+id/rank1Card4"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/background1" />
+
+                <Button
+                    android:id="@+id/rank1Stack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#34C613"
+                    android:text="Card Stack" />
 
             </LinearLayout>
         </LinearLayout>
@@ -594,7 +604,7 @@
             android:id="@+id/coinBox"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.05"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -602,7 +612,6 @@
                 android:id="@+id/rubyCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/ruby" />
 
@@ -610,7 +619,6 @@
                 android:id="@+id/sapphireCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/sapphire" />
 
@@ -618,7 +626,6 @@
                 android:id="@+id/emeraldCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/emerald" />
 
@@ -626,7 +633,6 @@
                 android:id="@+id/diamondCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/diamond" />
 
@@ -634,7 +640,6 @@
                 android:id="@+id/onyxCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/onyx" />
 
@@ -642,7 +647,6 @@
                 android:id="@+id/goldCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/gold" />
 
@@ -657,110 +661,107 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/quitButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="#FF7D7D"
-            android:text="EXIT GAME" />
-
-        <Button
-            android:id="@+id/currentPlayerInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="#FFFFFF"
-            android:text="Player Info" />
-
         <LinearLayout
             android:id="@+id/reserveBox"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="horizontal">
+            android:layout_weight="1">
 
             <Button
                 android:id="@+id/reserveSlot1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Reserved Slot" />
+                android:text="Res 1" />
 
             <Button
                 android:id="@+id/reserveSlot2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Reserved Slot" />
+                android:text="Res 2" />
 
             <Button
                 android:id="@+id/reserveSlot3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Reserved Slot" />
+                android:text="Res 3" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/cardActions"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:id="@+id/currentPlayerBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/buyAction"
+                android:id="@+id/currentPlayerInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#62B12B"
-                android:text="Buy Card" />
+                android:text="Player Info" />
 
-            <Button
-                android:id="@+id/reserveAction"
+            <LinearLayout
+                android:id="@+id/currentPlayerActions"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#F8CC48"
-                android:text="Reserve Card" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buyAction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Buy Card" />
+
+                <Button
+                    android:id="@+id/reserveAction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reserve Card" />
+
+                <Button
+                    android:id="@+id/returnCoins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Return Coins" />
+
+                <Button
+                    android:id="@+id/coinAction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Take Coins" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/coinActions"
-            android:layout_width="wrap_content"
+            android:id="@+id/exitGame"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <Button
-                android:id="@+id/coinAction"
+                android:id="@+id/quitButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#4094D5"
-                android:text="Take Coins" />
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="EXIT GAME" />
 
-            <Button
-                android:id="@+id/returnCoins"
+            <TextView
+                android:id="@+id/CB"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#BA4C4C"
-                android:text="Return Coins" />
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:textColor="@color/green"
+                android:text="TextView" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/CB"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#80FFFFFF"
-            android:gravity="center_horizontal"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
     </LinearLayout>
 </LinearLayout>

@@ -47,11 +47,10 @@ public class SplendorMainActivity extends GameMainActivity {
             }});
 
         // a computer player type (player type 2)
-        /*playerTypes.add(new GamePlayerType("Smart Computer Player") {
+        playerTypes.add(new GamePlayerType("Smart Computer Player") {
             public GamePlayer createPlayer(String name) {
                 return new SplendorSmartComputerPlayer(name);
             }});
-         */
 
         // Create a game configuration class for Counter:
         // - player types as given above
@@ -64,7 +63,7 @@ public class SplendorMainActivity extends GameMainActivity {
         // Add the default players to the configuration
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
-        
+
 
         // Set the default remote-player setup:
         // - player name: "Remote Player"
@@ -78,6 +77,11 @@ public class SplendorMainActivity extends GameMainActivity {
 
     @Override
     public LocalGame createLocalGame() {
-        return new SplendorLocalGame(this.getnumPlayers());
+        String[] names = new String[this.getnumPlayers()];
+        for (int i = 0; i < this.getnumPlayers(); i++) {
+            String name = this.getConfig().getSelName(i);
+            names[i] = name;
+        }
+        return new SplendorLocalGame(this.getnumPlayers(), names);
     }
 }

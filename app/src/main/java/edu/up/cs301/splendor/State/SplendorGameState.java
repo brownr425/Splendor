@@ -25,6 +25,11 @@ public class SplendorGameState extends GameState {
     //holds turn value corresponding to player ID below
     private int playerTurn;
 
+    private String player1Name;
+    private String player2Name;
+    private String player3Name;
+    private String player4Name;
+
 
     //player values for playerTurn
     private final int PLAYER1ID = 0;
@@ -78,8 +83,8 @@ public class SplendorGameState extends GameState {
 
 //~~~~~~~~~~~~~~~~~~~~~~CONSTRUCTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-    public SplendorGameState(int num) {
-        initializePlayers(num);
+    public SplendorGameState(int num, String[] playerNames) {
+        initializePlayers(num, playerNames);
         initializeCoins();
 
         this.selected = new Card();
@@ -177,13 +182,44 @@ public class SplendorGameState extends GameState {
         this.diamondCoins = stateToCopy.diamondCoins;
         this.onyxCoins = stateToCopy.onyxCoins;
         this.goldCoins = stateToCopy.goldCoins;
+
+        this.player1Name = stateToCopy.getPlayer1Name();
+        this.player2Name = stateToCopy.getPlayer2Name();
+        this.player3Name = stateToCopy.getPlayer3Name();
+        this.player4Name = stateToCopy.getPlayer4Name();
     }
 
     //helper method for constructor setting all point values for player to zero
-    public void initializePlayers(int num) {
+    public void initializePlayers(int num, String[] playerNames) {
         //set turn to be first
         this.playerCount = num;
         this.playerTurn = PLAYER1ID;
+
+
+        switch(num) {
+            case 2:
+                this.player1Name = playerNames[0];
+                this.player2Name = playerNames[1];
+                break;
+            case 3:
+                this.player1Name = playerNames[0];
+                this.player2Name = playerNames[1];
+                this.player3Name = playerNames[2];
+                break;
+            case 4:
+                this.player1Name = playerNames[0];
+                this.player2Name = playerNames[1];
+                this.player3Name = playerNames[2];
+                this.player4Name = playerNames[3];
+                break;
+            default:
+                this.player1Name = "";
+                this.player2Name = "";
+                this.player3Name = "";
+                this.player4Name = "";
+
+
+        }
         /*
         this.splendorPlayer1 = new SplendorPlayer(PLAYER1ID);
         this.splendorPlayer2 = new SplendorPlayer(PLAYER2ID);
@@ -1010,6 +1046,19 @@ public class SplendorGameState extends GameState {
     public ArrayList<SplendorPlayer> getPlayerList()
     {
         return this.playerList;
+    }
+
+    public String getPlayer1Name() {
+        return player1Name;
+    }
+    public String getPlayer2Name() {
+        return player2Name;
+    }
+    public String getPlayer3Name() {
+        return player3Name;
+    }
+    public String getPlayer4Name() {
+        return player4Name;
     }
 
     public int getPlayerCount() {
