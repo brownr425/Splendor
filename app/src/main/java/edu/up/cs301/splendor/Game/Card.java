@@ -53,7 +53,7 @@ public class Card {
                 "\nCard Level:\n" + cardLevel +
                 "\n\nGem Color:\n" + colorConversion(this.colorGem) +
                 "\n\nPrestige Points:\n" + prestigePoints +
-                "\n\n\nPrice of Card:" +
+                "\n\nPrice of Card:" +
                 "\nRuby:\n" + rPrice +
                 "\n\nSapphire:\n" + bPrice +
                 "\n\nEmerald:\n" + gPrice +

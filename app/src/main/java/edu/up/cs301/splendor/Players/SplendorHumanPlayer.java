@@ -2,6 +2,7 @@ package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
+import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
@@ -195,6 +196,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         Log.d("SHP", "PC" + this.state.getPlayerCount());
         // If there aren't more than 2 players, don't show player 3 or 4's point box
         if (this.state.getPlayerCount() < 3) {
+            Log.d("SHP", "PC" + this.state.getPlayerCount());
             p3Box.setVisibility(View.GONE);
             p3Emerald.setVisibility(View.GONE);
             p3Diamond.setVisibility(View.GONE);
@@ -307,7 +309,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
                 "\nGold: " + state.getGoldCoins());
 
         //Update info box to reflect selected card
-        if (state.getSelected() != null) {
+        if(state.getSelectedCol() == -2) {
+            String info = state.getSelectedNoble().toString();
+            infoBox.setText(info);
+        } else if (state.getSelected() != null) {
             String info = state.getSelected().toString();
             infoBox.setText(info);
         } else {
@@ -354,6 +359,24 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             state.setSelected(null);
             Log.d("SHP", "PINFO");
         } else if (button.equals(rank1Card1)) {
+        }
+       else if (button.getId() == R.id.nobleCard1){
+            // something else was pressed: ignore
+            action = new SplendorNobleSelectAction(this, 0);
+        }
+        else if (button.getId() == R.id.nobleCard2){
+            // something else was pressed: ignore
+            action = new SplendorNobleSelectAction(this, 1);
+        }
+        else if (button.getId() == R.id.nobleCard3){
+            // something else was pressed: ignore
+            action = new SplendorNobleSelectAction(this, 2);
+        }
+        else if (button.getId() == R.id.nobleCard4){
+            action = new SplendorNobleSelectAction(this, 3);
+        }
+        else if (button.getId() == R.id.rank1Card1) {
+            // something else was pressed: ignore
             action = new SplendorSelectCardAction(this, 2, 0);
         } else if (button.equals(rank1Card2)) {
             action = new SplendorSelectCardAction(this, 2, 1);
@@ -534,6 +557,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p3PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint3);
         p3Name = (TextView) activity.findViewById(R.id.player3Name);
         p3Box = (LinearLayout) activity.findViewById((R.id.player3Box));
+
         p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
         p4Diamond = (TextView) activity.findViewById(R.id.diamondPoint4);
         p4Sapphire = (TextView) activity.findViewById(R.id.sapphirePoint4);

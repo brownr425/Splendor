@@ -43,8 +43,6 @@ public class Noble {
                 "\nEmerald: " + gPrice +
                 "\nDiamond: " + wPrice +
                 "\nOnyx: " + brPrice;
-
-
         return ret;
     }
 
