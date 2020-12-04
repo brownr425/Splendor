@@ -6,6 +6,7 @@ import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinAction;
+import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
@@ -62,6 +63,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private ImageButton rank1Card2;
     private ImageButton rank1Card3;
     private ImageButton rank1Card4;
+
+    private Button reserveCard1;
+    private Button reserveCard2;
+    private Button reserveCard3;
 
     //coins I buttons
     ImageButton emeraldCoin;
@@ -189,6 +194,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         goldCoin.setImageResource(R.drawable.gold);
     }
 
+    /**
+     *
+     */
     public void updatePlayerTurnColor() {
         if (this.state.getPlayerList().size() < 3) {
             switch (this.state.getPlayerTurn()) {
@@ -230,6 +238,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3Gold.setVisibility(View.GONE);
             p3PrestigePt.setVisibility(View.GONE);
             p3Name.setVisibility(View.GONE);
+
 
             p4Emerald.setVisibility(View.GONE);
             p4Diamond.setVisibility(View.GONE);
@@ -367,30 +376,61 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         rank1Card3.setBackgroundResource(R.color.grey);
         rank1Card4.setBackgroundResource(R.color.grey);
 
+        reserveCard1.setBackgroundResource(R.color.grey);
+        reserveCard2.setBackgroundResource(R.color.grey);
+        reserveCard3.setBackgroundResource(R.color.grey);
+
+
         if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,0))) {
             rank3Card1.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,1))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,1))) {
             rank3Card2.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,2))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,2))) {
             rank3Card3.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,3))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,3))) {
             rank3Card4.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,0))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,0))) {
             rank2Card1.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,1))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,1))) {
             rank2Card2.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,2))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,2))) {
             rank2Card3.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,3))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(1,3))) {
             rank2Card4.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,0))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,0))) {
             rank1Card1.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,1))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,1))) {
             rank1Card2.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,2))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,2))) {
             rank1Card3.setBackgroundResource(R.color.green);
-        } else if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,3))) {
+        }
+        if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,3))) {
             rank1Card4.setBackgroundResource(R.color.green);
+        }
+        if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 1) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(0))) {
+                reserveCard1.setBackgroundResource(R.color.green);
+            }
+        }
+        if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 2) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(1))) {
+                reserveCard2.setBackgroundResource(R.color.green);
+            }
+        }
+        if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 3) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(2))) {
+                reserveCard3.setBackgroundResource(R.color.green);
+            }
         }
     }
     /**
@@ -590,11 +630,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         goldCoin.setOnClickListener(this);
 
         // simple buttons for the reserved cards
-        Button reserveCard1 = (Button) activity.findViewById(R.id.reserveSlot1);
+        reserveCard1 = (Button) activity.findViewById(R.id.reserveSlot1);
         reserveCard1.setOnClickListener(this);
-        Button reserveCard2 = (Button) activity.findViewById(R.id.reserveSlot2);
+        reserveCard2 = (Button) activity.findViewById(R.id.reserveSlot2);
         reserveCard2.setOnClickListener(this);
-        Button reserveCard3 = (Button) activity.findViewById(R.id.reserveSlot3);
+        reserveCard3 = (Button) activity.findViewById(R.id.reserveSlot3);
         reserveCard3.setOnClickListener(this);
 
         //action buttons for the actions

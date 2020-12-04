@@ -129,6 +129,8 @@ public class SplendorLocalGame extends LocalGame {
             if(this.gameState.getPlayer(this.gameState.getPlayerTurn()).getPlayerHand().getReserved().size() > ((SplendorSelectCardAction) action).getRow())
             {
                 this.gameState.setSelected(this.gameState.getPlayer(this.gameState.getPlayerTurn()).getPlayerHand().getReserved().get(((SplendorSelectCardAction) action).getRow()));
+                this.gameState.setSelectedRow(((SplendorSelectCardAction) action).getRow());
+                this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol());
                 return true;
             }
             return false;
