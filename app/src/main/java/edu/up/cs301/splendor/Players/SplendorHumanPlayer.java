@@ -375,7 +375,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             infoBox.setText(info);
         }
 
-        if (state.getSelected() != null) {
+        else if (state.getSelected() != null) {
             String info = state.getSelected().toString();
             infoBox.setText(info);
         } else {
