@@ -12,6 +12,8 @@ import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.State.GameInfo;
 
+import java.util.Random;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -148,7 +150,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      */
     protected void updateDisplay() {
         //for now, card/coin images are default
-        updateGUIImages();
+
 
         //SELECTED COIN HIGHLIGHT
         updateSelectedCoins();
@@ -164,21 +166,21 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
     }
 
-    public void updateGUIImages() {
-        rank3Card1.setImageResource(R.drawable.background1);
-        rank3Card2.setImageResource(R.drawable.background2);
-        rank3Card3.setImageResource(R.drawable.background3);
-        rank3Card4.setImageResource(R.drawable.background4);
+    public void setUpGUIImages() {
+        rank3Card1.setImageResource(randomImage());
+        rank3Card2.setImageResource(randomImage());
+        rank3Card3.setImageResource(randomImage());
+        rank3Card4.setImageResource(randomImage());
 
-        rank2Card1.setImageResource(R.drawable.background1);
-        rank2Card2.setImageResource(R.drawable.background2);
-        rank2Card3.setImageResource(R.drawable.background3);
-        rank2Card4.setImageResource(R.drawable.background4);
+        rank2Card1.setImageResource(randomImage());
+        rank2Card2.setImageResource(randomImage());
+        rank2Card3.setImageResource(randomImage());
+        rank2Card4.setImageResource(randomImage());
 
-        rank1Card1.setImageResource(R.drawable.background1);
-        rank1Card2.setImageResource(R.drawable.background2);
-        rank1Card3.setImageResource(R.drawable.background3);
-        rank1Card4.setImageResource(R.drawable.background4);
+        rank1Card1.setImageResource(randomImage());
+        rank1Card2.setImageResource(randomImage());
+        rank1Card3.setImageResource(randomImage());
+        rank1Card4.setImageResource(randomImage());
 
         nobleCard1.setImageResource(R.drawable.noble1try2);
         nobleCard2.setImageResource(R.drawable.noble2);
@@ -192,6 +194,25 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         onyxCoin.setImageResource(R.drawable.onyx);
         rubyCoin.setImageResource(R.drawable.ruby);
         goldCoin.setImageResource(R.drawable.gold);
+    }
+
+    public int randomImage()
+    {
+        Random rand = new Random();
+        int newRandomNumber = rand.nextInt(8);
+        int drawableId = 0;
+        switch(newRandomNumber)
+        {
+            case 0: drawableId = R.drawable.background1; break;
+            case 1: drawableId = R.drawable.background2; break;
+            case 2: drawableId = R.drawable.background3; break;
+            case 3: drawableId = R.drawable.background4; break;
+            case 4: drawableId = R.drawable.background5; break;
+            case 5: drawableId = R.drawable.background6; break;
+            case 6: drawableId = R.drawable.background7; break;
+            case 7: drawableId = R.drawable.background8; break;
+        }
+        return drawableId;
     }
 
     public void updatePlayerTurnColor() {
@@ -438,9 +459,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             myActivity.restartGame();
         } else if (button.getId() == R.id.buyAction) {
             // plus button: create "increment" action
-            Log.d("SHP", "BUY");
             action = new SplendorCardAction(this, this.state.getSelected(),
                     this.state.getSelectedRow(), this.state.getSelectedCol());
+
         } else if (button.getId() == R.id.reserveAction) {
             // minus button: create "decrement" action
             action = new SplendorReserveCardAction(this, this.state.getSelectedRow(), this.state.getSelectedCol());
@@ -681,6 +702,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Name = (TextView) activity.findViewById(R.id.player4Name);
         p4Box = (LinearLayout) activity.findViewById(R.id.player4Box);
         coinB = (TextView) activity.findViewById(R.id.CB);
+
+        setUpGUIImages();
 
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated
