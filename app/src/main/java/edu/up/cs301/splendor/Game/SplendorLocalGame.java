@@ -86,8 +86,7 @@ public class SplendorLocalGame extends LocalGame {
             return selectCardHandler(action);
         } else if (action instanceof SplendorReserveCardAction) {
             return reserveCardHandler(action);
-        } else if (action instanceof SplendorCoinSelectAction) // this is when a player presses coin buttons, to select them
-        {
+        } else if (action instanceof SplendorCoinSelectAction) { // this is when a player presses coin buttons, to select them
             return coinSelectHandler(action);
         } else if (action instanceof SplendorReturnCoinAction) {
             for (int i = 0; i < this.gameState.getCoinTracking().size(); i++) {
