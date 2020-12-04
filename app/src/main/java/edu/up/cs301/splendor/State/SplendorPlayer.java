@@ -29,11 +29,6 @@ public class SplendorPlayer {
 
     public SplendorPlayer(){
         initializePtsNCoins();
-        this.rubyPts = 15;
-        this.sapphPts = 15;
-        this.emerPts = 15;
-        this.diaPts = 15;
-        this.onyxPts = 15;
     }
     /**
      * constructor SplendorPlayer - initialize all values for new object
@@ -79,9 +74,9 @@ public class SplendorPlayer {
         this.emerPts = 0;
         this.diaCoins = 0;
         this.diaPts = 0;
-        this.prestigePts = 10;
         this.onyxCoins = 0;
         this.onyxPts = 0;
+        this.prestigePts = 12;
         this.playerHand = new Hand();
     }
 

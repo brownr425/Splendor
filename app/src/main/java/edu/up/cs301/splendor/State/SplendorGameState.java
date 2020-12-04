@@ -390,7 +390,7 @@ public class SplendorGameState extends GameState {
                 {
                     individualCoinReturn(coinColor);
                     this.moreThanTenCoins = coinsGreaterThanTen(player); // check if the player still has more than 10 coins
-                    if(!this.moreThanTenCoins) nextPlayerTurn(); // if they don't have more than 10 coins, then we move to the nextPlayerTurn
+                    nextPlayerTurn(); // if they don't have more than 10 coins, then we move to the nextPlayerTurn
                     return true;
                 }
             }
@@ -528,32 +528,27 @@ public class SplendorGameState extends GameState {
         return false;
     }
 
-    public int getTrueWin(int playerId) {
-        int victorId;
-        while(this.playerTurn != playerId) {
-            this.nextPlayerTurn();
-        }
-        victorId = getTrueVictor(playerId);
-     return victorId;
-    }
-
-    public int getTrueVictor(int playerId) {
-        int playerVictor = playerId, maxPoints = 0;
-        if(getPlayer(0).getPrestigePts() > maxPoints) {
+    public int getTrueVictor(int firstToThreshold) {
+        int playerVictor = firstToThreshold, maxPoints = 0;
+        if(this.getPlayer(0).getPrestigePts() > maxPoints) {
             maxPoints = getPlayer(0).getPrestigePts();
             playerVictor = 0;
         }
-        if(getPlayer(1).getPrestigePts() > maxPoints) {
+        if(this.getPlayer(1).getPrestigePts() > maxPoints) {
             maxPoints = getPlayer(1).getPrestigePts();
             playerVictor = 1;
         }
-        if(getPlayer(2).getPrestigePts() > maxPoints) {
-            maxPoints = getPlayer(2).getPrestigePts();
-            playerVictor = 2;
-        }
-        if(getPlayer(3).getPrestigePts() > maxPoints) {
-            maxPoints = getPlayer(3).getPrestigePts();
-            playerVictor = 3;
+        if(this.playerCount > 2) {
+            if(getPlayer(2).getPrestigePts() > maxPoints) {
+                maxPoints = getPlayer(2).getPrestigePts();
+                playerVictor = 2;
+            }
+            if(this.playerCount > 3) {
+                if(getPlayer(3).getPrestigePts() > maxPoints) {
+                    maxPoints = getPlayer(3).getPrestigePts();
+                    playerVictor = 3;
+                }
+            }
         }
         return playerVictor;
     }

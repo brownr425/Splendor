@@ -15,12 +15,15 @@ import edu.up.cs301.splendor.State.SplendorGameState;
 
 public class SplendorLocalGame extends LocalGame {
     private SplendorGameState gameState;
+    private static boolean extraTurn;
+    private static int firstToThreshold;
 
     public SplendorLocalGame(int num) {
         this.gameState = new SplendorGameState(num);
+        this.extraTurn = false;
     }
 
-    protected void sendUpdatedStateTo(GamePlayer player){
+    protected void sendUpdatedStateTo(GamePlayer player) {
         player.sendInfo(new SplendorGameState(gameState));
     }
 
@@ -29,53 +32,56 @@ public class SplendorLocalGame extends LocalGame {
     }
 
     protected String checkIfGameOver() {
-        for(int i = 0; i < this.gameState.getPlayerList().size(); i++)
-        {
-            if(this.gameState.getPlayer(i).getPrestigePts() >= 15)
-                return "Congratulatons Player " + (this.gameState.getTrueWin(i)+1);
+        for (int i = 0; i < this.gameState.getPlayerList().size(); i++) {
+            if (extraTurn == false && this.gameState.getPlayer(i).getPrestigePts() >= 15) {
+                extraTurn = true;
+                this.firstToThreshold = i;
+            }
+        }
+        if (extraTurn == true && this.gameState.getPlayerTurn() == firstToThreshold) {
+            return "Congratulatons Player " + (this.gameState.getTrueVictor(firstToThreshold) + 1);
         }
         return null;
     }
 
+
     /**
      * makeMove(GameAction action)
      * where players make moves, differentiated actions based on what action the player sends.
+     *
      * @param action is the action the player sent, will check if it is instance of any actions we have
-     * */
+     */
     @Override
     protected boolean makeMove(GameAction action) {
-        if(action instanceof QuitAction) {
+        if (action instanceof QuitAction) {
 
         }
         // if action is player clicking a "take coins button"
-        if (action instanceof SplendorCoinAction){
-            if(this.gameState.getCoinTracking().isEmpty() || this.gameState.getCoinTracking().size() == 1) // check if selected coin array is empty or one coin
+        if (action instanceof SplendorCoinAction) {
+            if (this.gameState.getCoinTracking().isEmpty() || this.gameState.getCoinTracking().size() == 1) // check if selected coin array is empty or one coin
             {
                 return false;
             }
-            if(this.gameState.getCoinTracking().size() == 2) // check if coin array has only 2 coins that aren't the same
+            if (this.gameState.getCoinTracking().size() == 2) // check if coin array has only 2 coins that aren't the same
             {
-                if(this.gameState.getCoinTracking().get(0) != (this.gameState.getCoinTracking().get(1)))
-                {
+                if (this.gameState.getCoinTracking().get(0) != (this.gameState.getCoinTracking().get(1))) {
                     return false;
                 }
             }
-            for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++) // go through array and check if any coins equal each other
+            for (int i = 0; i < this.gameState.getCoinTracking().size() - 1; i++) // go through array and check if any coins equal each other
             {
-                if(this.gameState.getCoinTracking().get(i).equals(this.gameState.getCoinTracking().get(i+1)))
-                {
+                if (this.gameState.getCoinTracking().get(i).equals(this.gameState.getCoinTracking().get(i + 1))) {
                     if (this.gameState.coinAction(this.gameState.getCoinTracking().get(i))) {
                         this.gameState.getCoinTracking().clear(); // need to clear the array once action is made, to get ready for next turn
                         return true;
-                    } else  {
+                    } else {
                         return false;
                     }
                 }
             }
-            for(int i = 0; i < this.gameState.getCoinTracking().size()-1; i++) // this is another check to make sure all 3 coins are filled for 3 different coins
+            for (int i = 0; i < this.gameState.getCoinTracking().size() - 1; i++) // this is another check to make sure all 3 coins are filled for 3 different coins
             {
-                if(this.gameState.getCoinTracking().get(i) == null)
-                {
+                if (this.gameState.getCoinTracking().get(i) == null) {
                     return false;
                 }
             }
@@ -89,23 +95,18 @@ public class SplendorLocalGame extends LocalGame {
                 return false;
             }
             //action was made, return true/valid move
-        }
-        else if(action instanceof SplendorCardAction) { // this is action to buy card that is in the board array that everyone can access
-            if(this.gameState.getSelected() != null)
-            {
+        } else if (action instanceof SplendorCardAction) { // this is action to buy card that is in the board array that everyone can access
+            if (this.gameState.getSelected() != null) {
                 this.gameState.cardAction(this.gameState.getSelected(), ((SplendorCardAction) action).getRow(), ((SplendorCardAction) action).getCol());
-            }
-            else{
+            } else {
                 return false;
             }
             //action was made, return true/valid move
             return true;
-        }
-        else if(action instanceof SplendorSelectCardAction){ // this is if a player simply presses a card on the board
-            if(((SplendorSelectCardAction) action).getCol() == -1) // check if the card selected is a player's reserved card, if it is, then do this
+        } else if (action instanceof SplendorSelectCardAction) { // this is if a player simply presses a card on the board
+            if (((SplendorSelectCardAction) action).getCol() == -1) // check if the card selected is a player's reserved card, if it is, then do this
             {
-                if(this.gameState.getPlayer(this.gameState.getPlayerTurn()).getPlayerHand().getReserved().size() > ((SplendorSelectCardAction) action).getRow())
-                {
+                if (this.gameState.getPlayer(this.gameState.getPlayerTurn()).getPlayerHand().getReserved().size() > ((SplendorSelectCardAction) action).getRow()) {
                     this.gameState.setSelected(this.gameState.getPlayer(this.gameState.getPlayerTurn()).getPlayerHand().getReserved().get(((SplendorSelectCardAction) action).getRow()));
                     return true;
                 }
@@ -116,32 +117,28 @@ public class SplendorLocalGame extends LocalGame {
             this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol()); // set the row and column of where the card was selected so game knows what card to replace
             //action was made, return true/valid move
             return true;
-        }
-        else if(action instanceof SplendorNobleSelectAction)
-        {
-            if(((SplendorNobleSelectAction) action).getRow() < this.gameState.getNobleBoard().size()) {
+        } else if (action instanceof SplendorNobleSelectAction) {
+            if (((SplendorNobleSelectAction) action).getRow() < this.gameState.getNobleBoard().size()) {
                 this.gameState.setSelectedCol(-2); // this is to tell the human player that "hey we're looking at a noble right now!"
                 this.gameState.setSelectedNoble(this.gameState.getNobleBoard().get(((SplendorNobleSelectAction) action).getRow()));
                 return true;
             }
             return false;
-        }
-        else if(action instanceof SplendorReserveCardAction){
+        } else if (action instanceof SplendorReserveCardAction) {
             this.gameState.reserveAction(this.gameState.getSelected(), this.gameState.getSelectedRow(), this.gameState.getSelectedCol());
             //action was made, return true/valid move
             return true;
-        }
-        else if(action instanceof SplendorCoinSelectAction) // this is when a player presses coin buttons, to select them
+        } else if (action instanceof SplendorCoinSelectAction) // this is when a player presses coin buttons, to select them
         {
-            if(this.gameState.getCoinTracking().isEmpty()) // this is if the array is empty, add the one chosen coin
+            if (this.gameState.getCoinTracking().isEmpty()) // this is if the array is empty, add the one chosen coin
             {
                 this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                 return true;
             }
-            if(this.gameState.getCoinTracking().size() == 3) { // if size is 3, that means the array is filled
-                for(int i = 0; i < this.gameState.getCoinTracking().size(); i++) // iterate through and if the next chose coin == any coin in array, clear it and add two of same coin
+            if (this.gameState.getCoinTracking().size() == 3) { // if size is 3, that means the array is filled
+                for (int i = 0; i < this.gameState.getCoinTracking().size(); i++) // iterate through and if the next chose coin == any coin in array, clear it and add two of same coin
                 {
-                    if(((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)){
+                    if (((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)) {
                         this.gameState.getCoinTracking().clear();
                         this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                         this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
@@ -151,11 +148,10 @@ public class SplendorLocalGame extends LocalGame {
                 this.gameState.getCoinTracking().remove(0); // if not, then pop the front of the arrayList then add the chosen coin to back
                 this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                 return true;
-            }
-            else {
-                for(int i = 0; i < this.gameState.getCoinTracking().size(); i++) // this will do the same thing, except array isn't filled yet
+            } else {
+                for (int i = 0; i < this.gameState.getCoinTracking().size(); i++) // this will do the same thing, except array isn't filled yet
                 {
-                    if(((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)){
+                    if (((SplendorCoinSelectAction) action).getChosenCoin() == this.gameState.getCoinTracking().get(i)) {
                         this.gameState.getCoinTracking().clear();
                         this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                         this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
@@ -165,17 +161,13 @@ public class SplendorLocalGame extends LocalGame {
                 this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
                 return true;
             }
-        }
-        else if(action instanceof SplendorReturnCoinAction)
-        {
-            for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
-            {
+        } else if (action instanceof SplendorReturnCoinAction) {
+            for (int i = 0; i < this.gameState.getCoinTracking().size(); i++) {
                 this.gameState.returnCoins(this.gameState.getCoinTracking().get(i));
             }
             this.gameState.getCoinTracking().clear();
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

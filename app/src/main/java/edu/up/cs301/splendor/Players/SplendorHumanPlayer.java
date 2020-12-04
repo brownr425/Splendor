@@ -358,25 +358,15 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         } else if (button.equals(currentPlayer)) {
             state.setSelected(null);
             Log.d("SHP", "PINFO");
-        } else if (button.equals(rank1Card1)) {
-        }
-       else if (button.getId() == R.id.nobleCard1){
-            // something else was pressed: ignore
+        } else if (button.equals(nobleCard1)){
             action = new SplendorNobleSelectAction(this, 0);
-        }
-        else if (button.getId() == R.id.nobleCard2){
-            // something else was pressed: ignore
+        } else if (button.equals(nobleCard2)){
             action = new SplendorNobleSelectAction(this, 1);
-        }
-        else if (button.getId() == R.id.nobleCard3){
-            // something else was pressed: ignore
+        } else if (button.equals(nobleCard3)){
             action = new SplendorNobleSelectAction(this, 2);
-        }
-        else if (button.getId() == R.id.nobleCard4){
+        } else if (button.getId() == R.id.nobleCard4){
             action = new SplendorNobleSelectAction(this, 3);
-        }
-        else if (button.getId() == R.id.rank1Card1) {
-            // something else was pressed: ignore
+        } else if (button.equals(rank1Card1)) {
             action = new SplendorSelectCardAction(this, 2, 0);
         } else if (button.equals(rank1Card2)) {
             action = new SplendorSelectCardAction(this, 2, 1);
