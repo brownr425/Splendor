@@ -31,8 +31,6 @@ public class SplendorGameState extends GameState {
     private final int PLAYER3ID = 2;
     private final int PLAYER4ID = 3;
 
-
-
     private int playerCount;
 
     //create list of all players
@@ -495,6 +493,36 @@ public class SplendorGameState extends GameState {
             }
         }
         return false;
+    }
+
+    public int getTrueWin(int playerId) {
+        int victorId;
+        while(this.playerTurn != playerId) {
+            this.nextPlayerTurn();
+        }
+        victorId = getTrueVictor(playerId);
+     return victorId;
+    }
+
+    public int getTrueVictor(int playerId) {
+        int playerVictor = playerId, maxPoints = 0;
+        if(getPlayer(0).getPrestigePts() > maxPoints) {
+            maxPoints = getPlayer(0).getPrestigePts();
+            playerVictor = 0;
+        }
+        if(getPlayer(1).getPrestigePts() > maxPoints) {
+            maxPoints = getPlayer(1).getPrestigePts();
+            playerVictor = 1;
+        }
+        if(getPlayer(2).getPrestigePts() > maxPoints) {
+            maxPoints = getPlayer(2).getPrestigePts();
+            playerVictor = 2;
+        }
+        if(getPlayer(3).getPrestigePts() > maxPoints) {
+            maxPoints = getPlayer(3).getPrestigePts();
+            playerVictor = 3;
+        }
+        return playerVictor;
     }
 
     /*~~~~~~~~~~~~~~~~~~~~~helper methods~~~~~~~~~~~~~~~~~~~*/
