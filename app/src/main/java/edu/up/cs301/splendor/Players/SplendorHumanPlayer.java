@@ -162,8 +162,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
     }
 
-
-
+    /**
+     * This method set attaches the images from resources to the cards, coin, and nobles
+     * @return void
+     */
     public void updateGUIImages() {
         rank3Card1.setImageResource(R.drawable.background1);
         rank3Card2.setImageResource(R.drawable.background2);
@@ -195,7 +197,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     /**
-     *
+     *This methods sets the color behind the current players name to be green
      */
     public void updatePlayerTurnColor() {
         if (this.state.getPlayerList().size() < 3) {
@@ -228,6 +230,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method changes which players point boxes are visable based on the number of players
+     */
     public void updatePlayerInfoVisabilty() {
         if (this.state.getPlayerList().size() == 2) {
             p3Emerald.setVisibility(View.GONE);
@@ -271,6 +276,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method updates point boxes at the top of the screen to current player scores
+     */
     public void updatePlayerScores() {
         p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +
                 " + " + state.getPlayer(0).getEmerPts());
@@ -329,6 +337,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method writes the card information of the currently selected card to the info box
+     */
     public void updateInfoBox() {
         if (state.getSelected() != null) {
             String info = state.getSelected().toString();
@@ -345,6 +356,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method updates coin images to reflect which coins are currently chosen
+     */
     public void updateSelectedCoins() {
         for (int coin : this.state.getCoinTracking()) {
 
@@ -362,6 +376,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method sets the background of cards to green if the player can purchase them
+     */
     public void updateBuyableCards() {
         rank3Card1.setBackgroundResource(R.color.grey);
         rank3Card2.setBackgroundResource(R.color.grey);
