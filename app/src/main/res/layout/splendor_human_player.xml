@@ -383,7 +383,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Information Box"
+                android:text="@string/information_box"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -392,7 +392,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/given_info"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -673,7 +672,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="#FF7D7D"
-            android:text="EXIT GAME" />
+            android:text="@string/exit_game" />
 
         <Button
             android:id="@+id/currentPlayerInfo"
@@ -681,7 +680,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
-            android:text="Player Info" />
+            android:text="@string/player_info" />
 
         <LinearLayout
             android:id="@+id/reserveBox"
@@ -696,7 +695,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:text="Reserved Slot" />
+                android:text="@string/reserved_slot" />
 
             <Button
                 android:id="@+id/reserveSlot2"
@@ -704,7 +703,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:text="Reserved Slot" />
+                android:text="@string/reserved_slot" />
 
             <Button
                 android:id="@+id/reserveSlot3"
@@ -712,7 +711,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:text="Reserved Slot" />
+                android:text="@string/reserved_slot" />
         </LinearLayout>
 
         <LinearLayout
@@ -728,7 +727,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#62B12B"
-                android:text="Buy Card" />
+                android:text="@string/buy_card" />
 
             <Button
                 android:id="@+id/reserveAction"
@@ -736,7 +735,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#F8CC48"
-                android:text="Reserve Card" />
+                android:text="@string/reserved_slot" />
         </LinearLayout>
 
         <LinearLayout
@@ -752,7 +751,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#4094D5"
-                android:text="Take Coins" />
+                android:text="@string/take_coins" />
 
             <Button
                 android:id="@+id/returnCoins"
@@ -760,7 +759,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#BA4C4C"
-                android:text="Return Coins" />
+                android:text="@string/return_coins" />
 
         </LinearLayout>
 

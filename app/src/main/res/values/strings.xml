@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">Splendor</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="given_info">\n\nCard Type: Ruby\nPrestige Points: 4\nGreen Currency Needed: 5</string>
+    <!-- INFO BOX -->
+    <string name="information_box">Information Box</string>
+    <string name="card_level">Card Level</string>
+    <string name="gem_color">Gem Color</string>
+    <string name="Prestige_Points">Prestige Points</string>
+    <string name="price_of_card">Price of Card</string>
+    <string name="ruby">Ruby</string>
+    <string name="sapphire">Sapphire</string>
+    <string name="emerald">Emerald</string>
+    <string name="diamond">Diamond</string>
+    <string name="onyx">Onyx</string>
+    <!-- Bottom Bar -->
+    <string name="exit_game">EXIT GAME</string>
+    <string name="player_info">PLAYER INFO</string>
+    <string name="reserved_slot">RESERVED SLOT</string>
+    <string name="buy_card">BUY CARD</string>
+    <string name="take_coins">TAKE COINS</string>
+    <string name="reserve_card">RESERVE CARD</string>
+    <string name="return_coins">RETURN COINS</string>
+
+
+
 </resources>
