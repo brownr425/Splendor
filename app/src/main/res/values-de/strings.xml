@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Splendor</string>
+    <!-- INFO BOX -->
+
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_help">"Hilfe "</string>
+    <string name="title_activity_game_main">"Spiel starten "</string>
+    <string name="save_config">Als Standardkonfiguration speichern</string>
+    <string name="begin_game">"Spiel starten "</string>
+    <string name="server_ip_code">"IP-Code des Servers: "</string>
+    <string name="remove_player">"Spieler entfernen "</string>
+    <string name="add_player">"Spieler hinzufügen "</string>
+    <string name="player_name">"Spielername "</string>
+    <string name="player_type">Spielertyp</string>
+    <string name="guest">"Gast "</string>
+    <string name="save_config_as_default">"Konfiguration als Standard festlegen "</string>
+    <string name="on_screen_logging">"Bildschirmprotokollierung "</string>
+    <string name="debug_logging">Debug Protokollierung</string>
+    <string name="start_the_game">"Spiel starten! "</string>
+    <string name="Saved_Config_Msg">"Spielkonfiguration gespeichert. "</string>
+    <string name="dialog_continue_label">" Spiel weiter spielen "</string>
+    <string name="dialog_quit_label">"Verlassen "</string>
+    <string name="dialog_quit_question">" Möchtest du wirklich aufhören?"</string>
+    <string name="local_tab">"Lokales Spiel "</string>
+    <string name="remote_tab">"Remote-Spiel "</string>
+    <string name="settings_tab">"Spieleinstellungen "</string>
+    <string name="Human_Player_Name">Menschlicher Spieler</string>
+    <string name="IP_Error_Msg">" IP-Adresse kann nicht ermittelt werden."</string>
+    <string name="Config_Error_Msg">Fehler beim Versuch, die Spielkonfigurationsdatei zu lesen.</string>
+    <string name="Game_Creation_Error_Msg">Die Erstellung des Spiels ist fehlgeschlagen.</string>
+    <string name="Local_Player_Name_Error_Msg">Der lokale Spielername darf nicht leer sein.</string>
+    <string name="Game_Server_Error_Msg">Spieleserver im Netzwerk konnte nicht gefunden werden.</string>
+    <string name="Mult_GUI_Tabl_Error_Msg">Auf einem Gerät kann nicht mehr als ein GUI-Player installiert sein.</string>
+    <string name="Saved_Config_Error_Msg">Spielkonfiguration kann nicht gespeichert werden.</string>
+    <string name="Min_Player_Error_Msg">Das Entfernen eines Spielers würde leider unter das zulässige Minimum fallen.</string>
+    <string name="Max_Player_Error_Msg">" Das Hinzufügen eines weiteren Spielers würde leider das maximal zulässige Maß überschreiten."</string>
+    <string name="information_box">Informationsbox</string>
+    <string name="card_level">Kartenlevel</string>
+    <string name="gem_color">Edelsteinfarbe</string>
+    <string name="Prestige_Points">Prestigepunkte</string>
+    <string name="price_of_card">Preis der Karte</string>
+    <string name="ruby">"Rubin: "</string>
+    <string name="sapphire">"Saphir: "</string>
+    <string name="emerald">"Smaragd: "</string>
+    <string name="diamond">"Diamant: "</string>
+    <string name="onyx">"Onyx: "</string>
+    <string name="exit_game">SPIEL VERLASSEN</string>
+    <string name="player_info">SPIELERINFO</string>
+    <string name="reserved_slot">RESERVIERTER SLOT</string>
+    <string name="buy_card">KARTE KAUFEN</string>
+    <string name="take_coins">NEHMEN SIE MÜNZEN</string>
+    <string name="reserve_card">RESERVE CARD</string>
+    <string name="return_coins">RÜCKGABEMÜNZEN</string>
+    <string name="name_label">Name:</string>
+</resources>
