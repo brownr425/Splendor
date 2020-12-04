@@ -90,6 +90,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             totalCoins+=3;
             this.gameState.coinAction(coin1, coin2, coin3);
         }
+        Log.d("CP", "BUYC");
         return true;
     }
 
