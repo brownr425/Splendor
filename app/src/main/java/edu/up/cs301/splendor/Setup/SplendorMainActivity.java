@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-import edu.up.cs301.counter.CounterComputerPlayer1;
-import edu.up.cs301.counter.CounterComputerPlayer2;
-import edu.up.cs301.counter.CounterHumanPlayer;
 import edu.up.cs301.splendor.Game.LocalGame;
 import edu.up.cs301.splendor.Game.SplendorLocalGame;
 import edu.up.cs301.splendor.Players.GamePlayer;

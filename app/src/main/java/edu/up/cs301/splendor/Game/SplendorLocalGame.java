@@ -151,7 +151,7 @@ public class SplendorLocalGame extends LocalGame {
             {
                 this.gameState.setSelected(this.gameState.getPlayer(this.gameState.getPlayerTurn()).getPlayerHand().getReserved().get(((SplendorSelectCardAction) action).getRow()));
                 this.gameState.setSelectedRow(((SplendorSelectCardAction) action).getRow());
-                this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol());
+                this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol()); // set the row and column of where the card was selected so game knows what card to replace
                 return true;
             }
             return false;
