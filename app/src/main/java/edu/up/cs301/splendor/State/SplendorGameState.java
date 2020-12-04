@@ -400,6 +400,13 @@ public class SplendorGameState extends GameState {
         setPlayerTurn((getPlayerTurn()+1) % playerList.size());
     }
 
+    public int getPreviousPlayer(int firstToThreshold) {
+       if(firstToThreshold == 0) {
+           return playerList.size()-1;
+       }else
+           return getPlayerTurn()-1 % playerCount;
+    }
+
     //sets turn to exact value
     public void setPlayerTurn(int playerID) { this.playerTurn = playerID; }
 
