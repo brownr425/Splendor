@@ -437,16 +437,37 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 1) {
             if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(0))) {
                 reserveCard1.setBackgroundResource(R.color.green);
+            } else {
+                reserveCard1.setBackgroundResource(R.color.colorPrimary);
             }
         }
         if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 2) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(0))) {
+                reserveCard1.setBackgroundResource(R.color.green);
+            } else {
+                reserveCard1.setBackgroundResource(R.color.colorPrimary);
+            }
             if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(1))) {
                 reserveCard2.setBackgroundResource(R.color.green);
+            }else {
+                reserveCard2.setBackgroundResource(R.color.colorPrimary);
             }
         }
         if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 3) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(0))) {
+                reserveCard1.setBackgroundResource(R.color.green);
+            } else {
+                reserveCard1.setBackgroundResource(R.color.colorPrimary);
+            }
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(1))) {
+                reserveCard2.setBackgroundResource(R.color.green);
+            }else {
+                reserveCard2.setBackgroundResource(R.color.colorPrimary);
+            }
             if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(2))) {
                 reserveCard3.setBackgroundResource(R.color.green);
+            } else {
+                reserveCard3.setBackgroundResource(R.color.colorPrimary);
             }
         }
     }
