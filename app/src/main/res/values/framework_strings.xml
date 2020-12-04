@@ -30,10 +30,10 @@ really need to.-->
     <!--The following strings are used in the game_config_main for displaying the different types
     of players. These strings are used in MainActivity and GameConfig.-->
     <string name="Human_Player_Name">Human Player</string>
-    <string name="Computer_Dumb_Name">Computer Player (Dumb)</string>
-    <string name="Computer_Smart_Name">Computer Player (Smart)</string>
-    <string name="Network_Internet_Name">Wi-Fi Player</string>
-    <string name="Network_Bluetooth_Name">Bluetooth Network Player</string>
+    <string name="Computer_Dumb_Name" translatable="false">Computer Player (Dumb)</string>
+    <string name="Computer_Smart_Name" translatable="false">Computer Player (Smart)</string>
+    <string name="Network_Internet_Name" translatable="false">Wi-Fi Player</string>
+    <string name="Network_Bluetooth_Name" translatable="false">Bluetooth Network Player</string>
     <!--The following strings are used as error messages in various classes-->
     <string name="IP_Error_Msg">Unable to determine IP address.</string>
     <string name="Config_Error_Msg">Error in attempting to read game configuration file.</string>

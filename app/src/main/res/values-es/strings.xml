@@ -1,4 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Splendor</string>
+    <string name="menu_settings">Configuraciones</string>
+    <string name="menu_help">Ayuda</string>
+    <string name="title_activity_game_main">¿Vamos a jugar un juego?</string>
+    <string name="save_config">Guardar como configuración predeterminada</string>
+    <string name="begin_game">Comenzar juego</string>
+    <string name="name_label" translatable="false">Nombre:</string>
+    <string name="server_ip_code">Código IP del servidor:</string>
+    <string name="remove_player">Quitar jugador</string>
+    <string name="add_player">Agregar jugador</string>
+    <string name="player_name">Nombre del jugador</string>
+    <string name="player_type">Tipo de jugador</string>
+    <string name="guest">Invitada</string>
+    <string name="save_config_as_default">Establecer configuración predeterminada</string>
+    <string name="on_screen_logging">Registro en pantalla</string>
+    <string name="debug_logging">Registro de depuración</string>
+    <string name="start_the_game">¡Empezar juego!</string>
+    <string name="Saved_Config_Msg">Se guardó la configuración del juego.</string>
+    <string name="dialog_continue_label">Continuar jugando juego</string>
+    <string name="dialog_quit_label">Dejar</string>
+    <string name="dialog_quit_question">¿Realmente quieres salir?</string>
+    <string name="local_tab">Juego local</string>
+    <string name="remote_tab">Juego remoto</string>
+    <string name="settings_tab">Configuraciones de juego</string>
+    <string name="Human_Player_Name">Jugadora humana</string>
+    <string name="IP_Error_Msg">No se puede determinar la dirección IP.</string>
+    <string name="Config_Error_Msg">Error al intentar leer el archivo de configuración del juego.</string>
+    <string name="Game_Creation_Error_Msg">Falló la creación del juego.</string>
+    <string name="Local_Player_Name_Error_Msg">El nombre del jugador local no puede estar vacío.</string>
+    <string name="Game_Server_Error_Msg">No se pudo encontrar el servidor del juego en la red.</string>
+    <string name="Mult_GUI_Tabl_Error_Msg">No se puede tener más de un reproductor GUI en un solo dispositivo.</string>
+    <string name="Saved_Config_Error_Msg">No se puede guardar la configuración del juego.</string>
+    <string name="Min_Player_Error_Msg">Lo sentimos, eliminar un reproductor quedaría por debajo del mínimo permitido.</string>
+    <string name="Max_Player_Error_Msg">Lo sentimos, agregar otro jugador excedería el máximo permitido.</string>
+    <string name="information_box">Cuadro de información</string>
+    <string name="card_level">Nivel de tarjeta</string>
+    <string name="gem_color">Color de la gema</string>
+    <string name="Prestige_Points">Puntos de prestigio</string>
+    <string name="price_of_card">Precio de la tarjeta</string>
+    <string name="ruby">Rubí</string>
+    <string name="sapphire">Zafiro</string>
+    <string name="emerald">Esmeralda</string>
+    <string name="diamond">Diamante</string>
+    <string name="onyx">Ónix</string>
+    <string name="exit_game">SALIR DEL JUEGO</string>
+    <string name="player_info">INFORMACIÓN DEL JUGADOR</string>
+    <string name="reserved_slot">ESPACIO RESERVADO</string>
+    <string name="buy_card">COMPRAR TARJETA</string>
+    <string name="take_coins">LLEVAR MONEDAS</string>
+    <string name="reserve_card">TARJETA DE RESERVA</string>
+    <string name="return_coins">DEVOLUCIÓN DE MONEDAS</string>
 </resources>
