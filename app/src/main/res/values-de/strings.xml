@@ -2,24 +2,7 @@
 <resources>
     <string name="app_name">Splendor</string>
     <!-- INFO BOX -->
-    <string name="information_box">Informationsbox</string>
-    <string name="card_level">Kartenlevel</string>
-    <string name="gem_color">Edelsteinfarbe</string>
-    <string name="Prestige_Points">Prestigepunkte</string>
-    <string name="price_of_card">Preis der Karte</string>
-    <string name="ruby">Rubin</string>
-    <string name="sapphire">Saphir</string>
-    <string name="emerald">Smaragd</string>
-    <string name="diamond">Diamant</string>
-    <string name="onyx">Onyx</string>
-    <!-- Bottom Bar -->
-    <string name="exit_game">SPIEL VERLASSEN</string>
-    <string name="player_info">SPIELERINFO</string>
-    <string name="reserved_slot">RESERVIERTER SLOT</string>
-    <string name="buy_card">KARTE KAUFEN</string>
-    <string name="take_coins">NEHMEN SIE MÜNZEN</string>
-    <string name="reserve_card">RESERVE CARD</string>
-    <string name="return_coins">RÜCKGABEMÜNZEN</string>
+
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_help">"Hilfe "</string>
     <string name="title_activity_game_main">"Spiel starten "</string>
@@ -57,11 +40,11 @@
     <string name="gem_color">Edelsteinfarbe</string>
     <string name="Prestige_Points">Prestigepunkte</string>
     <string name="price_of_card">Preis der Karte</string>
-    <string name="ruby">Rubin</string>
-    <string name="sapphire">Saphir</string>
-    <string name="emerald">Smaragd</string>
-    <string name="diamond">Diamant</string>
-    <string name="onyx">Onyx</string>
+    <string name="ruby">"Rubin: "</string>
+    <string name="sapphire">"Saphir: "</string>
+    <string name="emerald">"Smaragd: "</string>
+    <string name="diamond">"Diamant: "</string>
+    <string name="onyx">"Onyx: "</string>
     <string name="exit_game">SPIEL VERLASSEN</string>
     <string name="player_info">SPIELERINFO</string>
     <string name="reserved_slot">RESERVIERTER SLOT</string>

@@ -39,11 +39,11 @@
     <string name="gem_color">Color de la gema</string>
     <string name="Prestige_Points">Puntos de prestigio</string>
     <string name="price_of_card">Precio de la tarjeta</string>
-    <string name="ruby">Rubí</string>
-    <string name="sapphire">Zafiro</string>
-    <string name="emerald">Esmeralda</string>
-    <string name="diamond">Diamante</string>
-    <string name="onyx">Ónix</string>
+    <string name="ruby">"Rubí: "</string>
+    <string name="sapphire">"Zafiro: "</string>
+    <string name="emerald">"Esmeralda: "</string>
+    <string name="diamond">"Diamante: "</string>
+    <string name="onyx">"Ónix: "</string>
     <string name="exit_game">SALIR DEL JUEGO</string>
     <string name="player_info">INFORMACIÓN DEL JUGADOR</string>
     <string name="reserved_slot">ESPACIO RESERVADO</string>
