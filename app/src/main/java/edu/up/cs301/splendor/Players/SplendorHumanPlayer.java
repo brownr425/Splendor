@@ -82,7 +82,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private Button reserveSlot2;
     private Button reserveSlot3;
     private Button currentPlayer;
-    private Button quitButton;
+    private Button restartButton;
     private Button returnCoinButton;
 
     // infoBox
@@ -339,8 +339,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         // Construct the action and send it to the game
         GameAction action = null;
-        if (button.equals(quitButton)) {
-            System.exit(0);
+        if (button.equals(restartButton)) {
+            myActivity.recreate();
         } else if (button.equals(buyButton)) {
             Log.d("SHP", "BUY");
             action = new SplendorCardAction(this, this.state.getSelected(),
@@ -515,8 +515,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         currentPlayer = (Button) activity.findViewById(R.id.currentPlayerInfo);
         currentPlayer.setOnClickListener(this);
 
-        quitButton = (Button) activity.findViewById(R.id.quitButton);
-        quitButton.setOnClickListener(this);
+        restartButton = (Button) activity.findViewById(R.id.restartButton);
+        restartButton.setOnClickListener(this);
 
         //~~~~~~~~~~~~~TextViews and Player Boxes~~~~~~~~~~~~~//
         //player point values
