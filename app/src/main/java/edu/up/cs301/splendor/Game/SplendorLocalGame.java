@@ -46,7 +46,7 @@ public class SplendorLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if(action instanceof QuitAction) {
-           
+
         }
         // if action is player clicking a "take coins button"
         if (action instanceof SplendorCoinAction){
