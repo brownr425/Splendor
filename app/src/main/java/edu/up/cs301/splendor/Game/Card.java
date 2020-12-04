@@ -1,5 +1,9 @@
 package edu.up.cs301.splendor.Game;
 
+import android.content.res.Resources;
+
+import edu.up.cs301.game.R;
+
 public class Card {
 
     private int rPrice;
@@ -49,16 +53,16 @@ public class Card {
     @Override
     public String toString(){
         String ret;
-        ret =   "------" +
-                "\nCard Level:\n" + cardLevel +
-                "\n\nGem Color:\n" + colorConversion(this.colorGem) +
-                "\n\nPrestige Points:\n" + prestigePoints +
-                "\n\nPrice of Card:" +
-                "\nRuby:\n" + rPrice +
-                "\n\nSapphire:\n" + bPrice +
-                "\n\nEmerald:\n" + gPrice +
-                "\n\nDiamond:\n" + wPrice +
-                "\n\nOnyx:\n" + brPrice;
+        ret = "\n----" +
+                "\n Card Level: " + cardLevel +
+                "\n Gem Color: " + colorConversion(this.colorGem) +
+                "\n Prestige Points:  " + prestigePoints +
+                "\n Price of Card: " +
+                "\n Ruby: " + rPrice +
+                "\n Sapphire: " + bPrice +
+                "\n Emerald: " + gPrice +
+                "\n Diamond: " + wPrice +
+                "\n Onyx: " + brPrice;
 
         return ret;
     }
