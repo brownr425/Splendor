@@ -345,6 +345,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * This method writes the card information of the currently selected card to the info box
      */
     public void updateInfoBox() {
+        if(this.state.getSelectedCol() == -2)
+        {
+            String info = state.getSelectedNoble().toString();
+            infoBox.setText(info);
+        }
+
         if (state.getSelected() != null) {
             String info = state.getSelected().toString();
             infoBox.setText(info);
@@ -483,7 +489,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         } else if (button.getId() == R.id.currentPlayerInfo) {
             state.setSelected(null);
         }
-
+        //TODO: NOBLE SELECT ACTION
         /*else if (button.getId() == R.id.nobleCard1){
             // something else was pressed: ignore
            // action = new SplendorSelectCardAction(this,0,0);
