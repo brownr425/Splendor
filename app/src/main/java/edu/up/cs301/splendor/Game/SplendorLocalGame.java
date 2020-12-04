@@ -43,7 +43,7 @@ public class SplendorLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if(action instanceof QuitAction) {
-
+            System.exit(0);
         }
         // if action is player clicking a "take coins button"
         if (action instanceof SplendorCoinAction){
@@ -168,4 +168,8 @@ public class SplendorLocalGame extends LocalGame {
             return false;
         }
     }
+
+    public SplendorGameState getLocalGameGameState(){return this.gameState; }
 }
+
+

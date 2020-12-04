@@ -9,6 +9,8 @@ import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Game.Noble;
 import android.util.Log;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -95,7 +97,7 @@ public class SplendorGameState extends GameState {
 
         this.selected = new Card();
 
-        initializeDecks(); //unfinished: rank1, rank2, rank3
+        initializeDecks();
         Collections.shuffle(this.rank1Stack);
         Collections.shuffle(this.rank2Stack);
         Collections.shuffle(this.rank3Stack);
@@ -216,13 +218,67 @@ public class SplendorGameState extends GameState {
 
         String rank1File = "res/raw/rank1.csv";
         InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
+
         String rank2File = "res/raw/rank2.csv";
         InputStream rank2 = this.getClass().getClassLoader().getResourceAsStream(rank2File);
+
         String rank3File = "res/raw/rank3.csv";
         InputStream rank3 = this.getClass().getClassLoader().getResourceAsStream(rank3File);
+
         String nobleFile = "res/raw/noble";
         InputStream nobles = this.getClass().getClassLoader().getResourceAsStream(nobleFile);
 
+        /**
+         * External Citation
+         * Date: 12/3/2020
+         * Problem: files not read in junit testing
+         * Solution: jury-rigged path with trial and error
+         * Contributors: Dr. Nuxoll and Noah LaFave
+         */
+        //test case to make sure files load correctly
+        if (rank1 == null) {
+            //this must be the unit test
+            String filepath1 = System.getProperty("user.dir") + "/src/main/" + rank1File;
+            try {
+                rank1 = new FileInputStream(filepath1);
+            } catch(FileNotFoundException fnfe) {
+                //do nothing for now
+                System.out.println(filepath1);
+            }
+        }
+        if (rank2 == null) {
+            //this must be the unit test
+            String filepath2 = System.getProperty("user.dir") + "/src/main/" + rank2File;
+            try {
+                rank2 = new FileInputStream(filepath2);
+            } catch(FileNotFoundException fnfe) {
+                //do nothing for now
+                System.out.println(filepath2);
+            }
+        }
+        if (rank3 == null) {
+            //this must be the unit test
+            String filepath3 = System.getProperty("user.dir") + "/src/main/" + rank3File;
+            try {
+                rank3 = new FileInputStream(filepath3);
+            } catch(FileNotFoundException fnfe) {
+                //do nothing for now
+                System.out.println(filepath3);
+            }
+        }
+        if (nobles == null) {
+            //this must be the unit test
+            String filepathNoble = System.getProperty("user.dir") + "/src/main/" + nobleFile;
+            try {
+                nobles = new FileInputStream(filepathNoble);
+            } catch(FileNotFoundException fnfe) {
+                //do nothing for now
+                System.out.println(filepathNoble);
+            }
+        }
+        //End Unit test appendage
+
+        //initialize card stacks
         this.rank1Stack = new ArrayList<Card>();
         this.rank2Stack = new ArrayList<Card>();
         this.rank3Stack = new ArrayList<Card>();
@@ -346,7 +402,7 @@ public class SplendorGameState extends GameState {
     /*~~~~~~~~~~~~~~~~~~~~~~~~action methods~~~~~~~~~~~~~~~~~~~*/
 
     //increments to next players turn
-    private void nextPlayerTurn() {
+    public void nextPlayerTurn() {
         if(moreThanTenCoins) // will check if player has more than 10 coins
         {
             return;

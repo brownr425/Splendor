@@ -1,6 +1,7 @@
 package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
@@ -47,7 +48,7 @@ import edu.up.cs301.splendor.Actions.SplendorCoinAction;
  * @version July 2013
  */
 public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListener {
-    // the most recent game state, as given to us by the CounterLocalGame
+    // the most recent game state, as given to us by the SplendorLocalGame
     private SplendorGameState state;
 
     // the android activity that we are running
@@ -439,7 +440,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             action = new SplendorSelectCardAction(this, 2, -1);
         }
         else if(button.getId() == R.id.quitButton){
-            System.exit(0);
+            action = new QuitAction(this);
         }
         game.sendAction(action); // send action to the game
         updateDisplay();
