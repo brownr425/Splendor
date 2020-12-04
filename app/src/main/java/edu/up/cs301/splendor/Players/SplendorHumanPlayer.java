@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
@@ -70,12 +71,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private Button reserveCard3;
 
     //coins I buttons
-    ImageButton emeraldCoin;
-    ImageButton diamondCoin;
-    ImageButton sapphireCoin;
-    ImageButton onyxCoin;
-    ImageButton rubyCoin;
-    ImageButton goldCoin;
+    private ImageButton emeraldCoin;
+    private ImageButton diamondCoin;
+    private ImageButton sapphireCoin;
+    private ImageButton onyxCoin;
+    private ImageButton rubyCoin;
+    private ImageButton goldCoin;
 
     //Buy button
     Button buyButton;
@@ -114,6 +115,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p3Gold;
     private TextView p3PrestigePt;
     private TextView p3Name;
+    private LinearLayout p3Box;
 
     private TextView p4Emerald;
     private TextView p4Diamond;
@@ -123,6 +125,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p4Gold;
     private TextView p4PrestigePt;
     private TextView p4Name;
+    private LinearLayout p4Box;
 
     /**
      * constructor
@@ -698,6 +701,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p3Gold = (TextView) activity.findViewById(R.id.goldPoint3);
         p3PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint3);
         p3Name = (TextView) activity.findViewById(R.id.player3Name);
+        p3Box = (LinearLayout) activity.findViewById((R.id.player3Box));
 
         p4Emerald = (TextView) activity.findViewById(R.id.emeraldPoint4);
         p4Diamond = (TextView) activity.findViewById(R.id.diamondPoint4);
@@ -707,6 +711,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Gold = (TextView) activity.findViewById(R.id.goldPoint4);
         p4PrestigePt = (TextView) activity.findViewById(R.id.prestigePoint4);
         p4Name = (TextView) activity.findViewById(R.id.player4Name);
+        p4Box = (LinearLayout) activity.findViewById(R.id.player4Box);
 
         coinB = (TextView) activity.findViewById(R.id.CB);
 

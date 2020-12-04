@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,6 +41,10 @@ public class SplendorGameState extends GameState {
     private final int PLAYER2ID = 1;
     private final int PLAYER3ID = 2;
     private final int PLAYER4ID = 3;
+
+
+
+    private int playerCount;
 
     //create list of all players
     private ArrayList<SplendorPlayer> playerList = new ArrayList<>();
@@ -87,10 +92,11 @@ public class SplendorGameState extends GameState {
     private Card board[][] = new Card[RANKS][CARDS_PER_RANK];
 
     //nobles displayed on board
-    private Noble nobles[];
+    private ArrayList<Noble> nobleBoard = new ArrayList<>();
 
     //this holds the last card that the user has selected
     private Card selected = null;
+    private Noble selectedNoble = null;
     private ArrayList<Integer> coinTracking = new ArrayList<>();
     private int selectedRow = -1;
     private int selectedCol = -1;
@@ -100,15 +106,17 @@ public class SplendorGameState extends GameState {
     public SplendorGameState(int num, String[] playerNames) {
         initializePlayers(num, playerNames);
         initializeCoins();
-        initializeNobles();
 
         this.selected = new Card();
+        this.selectedNoble = new Noble();
 
         initializeDecks();
         Collections.shuffle(this.rank1Stack);
         Collections.shuffle(this.rank2Stack);
         Collections.shuffle(this.rank3Stack);
+        Collections.shuffle(this.nobleStack);
         initializeBoard(this.rank1Stack, this.rank2Stack, this.rank3Stack);
+        initializeNobles();
         this.selected = board[2][0];
     }
 
@@ -118,6 +126,7 @@ public class SplendorGameState extends GameState {
      * @param stateToCopy :SplendorGameState that needs to be copied
      */
     public SplendorGameState(SplendorGameState stateToCopy) {
+        this.playerCount = stateToCopy.playerCount;
 
         //runs through board deep copy cards onto new instances board
         for (int row = 0; row < 3; row++) //
@@ -131,6 +140,9 @@ public class SplendorGameState extends GameState {
         //makes copy of card that is currently selected
         this.selected = new Card(stateToCopy.getSelected());
 
+        //makes copy of Noble currently selected
+        this.selectedNoble = new Noble(stateToCopy.getSelectedNoble());
+
         /*this.splendorPlayer1 = new SplendorPlayer(stateToCopy.splendorPlayer1);
         this.splendorPlayer2 = new SplendorPlayer(stateToCopy.splendorPlayer2);
         this.splendorPlayer3 = new SplendorPlayer(stateToCopy.splendorPlayer3);
@@ -142,7 +154,7 @@ public class SplendorGameState extends GameState {
             this.playerList.add(new SplendorPlayer(player));
         }
 
-        //deep copies for all 3 card stacks
+        //deep copies for all 3 card stacks + nobleStack
         this.rank1Stack = new ArrayList<>();
         for (Card rankCard : stateToCopy.rank1Stack) {
             this.rank1Stack.add(new Card(rankCard)); //uses copy constructor in card
@@ -158,11 +170,18 @@ public class SplendorGameState extends GameState {
             this.rank3Stack.add(new Card(rankCard)); //uses copy constructor in card
         }
 
+        this.nobleStack = new ArrayList<Noble>();
+        for(Noble nobleCard : stateToCopy.getNobleBoard())
+        {
+            this.nobleStack.add(new Noble(nobleCard));
+        }
+
         //deep copy for noble cards
-        this.noble1 = new Noble(stateToCopy.getNoble1());
-        this.noble2 = new Noble(stateToCopy.getNoble2());
-        this.noble3 = new Noble(stateToCopy.getNoble3());
-        this.noble4 = new Noble(stateToCopy.getNoble4());
+
+        for(Noble noblesToCopy : stateToCopy.nobleBoard)
+        {
+            this.nobleBoard.add(new Noble(noblesToCopy));
+        }
 
         this.coinTracking = new ArrayList<>();
         for (int coin : stateToCopy.coinTracking) {
@@ -188,6 +207,7 @@ public class SplendorGameState extends GameState {
     //helper method for constructor setting all point values for player to zero
     public void initializePlayers(int num, String[] playerNames) {
         //set turn to be first
+        this.playerCount = num;
         this.playerTurn = PLAYER1ID;
 
 
@@ -243,13 +263,12 @@ public class SplendorGameState extends GameState {
         this.board[0][3] = rank3.remove(0);
     }
 
-    /*initialize Decks
+    /* initialize Decks
      * reads input from text files into three array lists then shuffles deck
      *
      */
 
-    public void initializeDecks(/*InputStream rank1, InputStream rank2, InputStream rank3, InputStream nobles*/) {
-
+    public void initializeDecks() {
         String rank1File = "res/raw/rank1.csv";
         InputStream rank1 = this.getClass().getClassLoader().getResourceAsStream(rank1File);
 
@@ -427,11 +446,15 @@ public class SplendorGameState extends GameState {
     }
 
     //this will eventually initialize 4 random nobles from a set of 10, for now we have chosen 4
-    public void initializeNobles() {
-        this.noble1 = new Noble(4, 0, 4, 0, 0);
-        this.noble2 = new Noble(3, 0, 0, 3, 3);
-        this.noble3 = new Noble(4, 0, 0, 0, 4);
-        this.noble4 = new Noble(0, 3, 3, 3, 0);
+    public void initializeNobles(){
+        /*this.noble1 = new Noble(4,0,4,0,0);
+        this.noble2 = new Noble(3,0,0,3,3);
+        this.noble3 = new Noble(4,0,0,0,4);
+        this.noble4 = new Noble(0,3,3,3,0);*/
+        for(int i = 0; i <= playerList.size(); i++)
+        {
+            this.nobleBoard.add(this.nobleStack.remove(0));
+        }
     }
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~action methods~~~~~~~~~~~~~~~~~~~*/
@@ -442,7 +465,8 @@ public class SplendorGameState extends GameState {
         {
             return;
         }
-        setPlayerTurn((getPlayerTurn() + 1) % playerList.size());
+        nobleReqChecker();
+        setPlayerTurn((getPlayerTurn()+1) % playerList.size());
     }
 
     //sets turn to exact value
@@ -939,6 +963,47 @@ public class SplendorGameState extends GameState {
         }
     }
 
+    /**
+     * nobleReqChecker()
+     *      checks if current player can take a noble, looking at the player's pts across all currencies
+     *
+     * */
+    public boolean nobleReqChecker()
+    {
+        for (SplendorPlayer player : this.playerList)
+        {
+            if (player.getPlayerID() == this.playerTurn)
+            {
+                for(Noble noble : this.nobleBoard)
+                {
+                    if(noblePriceChecker(player, noble))
+                    {
+                        this.nobleBoard.remove(noble);
+                        player.setPrestigePts(player.getPrestigePts()+3);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * noblePriceChecker()
+     *      checks if current player can take a noble, looking at the player's pts across all currencies; helper method for above method
+     *
+     * @param player  player to check
+     * @param noble noble to check
+     * */
+    public boolean noblePriceChecker(SplendorPlayer player, Noble noble)
+    {
+        return player.getRubyPts() >= noble.getrPrice() &&
+                player.getDiaPts() >= noble.getwPrice() &&
+                player.getEmerPts() >= noble.getgPrice() &&
+                player.getOnyxPts() >= noble.getBrPrice() &&
+                player.getSapphPts() >= noble.getbPrice();
+    }
+
     //Getter methods
 
     public Card getSelected() {
@@ -1073,5 +1138,17 @@ public class SplendorGameState extends GameState {
         return player4Name;
     }
 
+
+    public int getPlayerCount() {
+        return playerCount;
+    }
+
+    public ArrayList<Noble> getNobleBoard() { return this.nobleBoard; }
+
+    public ArrayList<Noble> getNobleStack() { return this.nobleStack; }
+
+    public Noble getSelectedNoble() { return this.selectedNoble; }
+
+    public void setSelectedNoble(Noble selected) { this.selectedNoble = selected; }
 }
 

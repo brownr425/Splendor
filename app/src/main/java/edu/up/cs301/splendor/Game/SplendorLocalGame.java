@@ -3,6 +3,7 @@ package edu.up.cs301.splendor.Game;
 
 import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
+import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
@@ -61,6 +62,24 @@ public class SplendorLocalGame extends LocalGame {
         else if(action instanceof SplendorCoinSelectAction) // this is when a player presses coin buttons, to select them
         {
             return coinSelectHandler(action);
+        }
+        else if(action instanceof SplendorReturnCoinAction)
+        {
+            for(int i = 0; i < this.gameState.getCoinTracking().size(); i++)
+            {
+                this.gameState.returnCoins(this.gameState.getCoinTracking().get(i));
+            }
+            this.gameState.getCoinTracking().clear();
+            return true;
+        }
+        else if(action instanceof SplendorNobleSelectAction)
+        {
+            if(((SplendorNobleSelectAction) action).getRow() < this.gameState.getNobleBoard().size()) {
+                this.gameState.setSelectedCol(-2); // this is to tell the human player that "hey we're looking at a noble right now!"
+                this.gameState.setSelectedNoble(this.gameState.getNobleBoard().get(((SplendorNobleSelectAction) action).getRow()));
+                return true;
+            }
+            return false;
         }
         else{
             return false;
@@ -181,6 +200,7 @@ public class SplendorLocalGame extends LocalGame {
             this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
             return true;
         }
+
     }
 
     public SplendorGameState getLocalGameGameState(){return this.gameState; }
