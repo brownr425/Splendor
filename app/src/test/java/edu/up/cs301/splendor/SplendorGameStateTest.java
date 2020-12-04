@@ -21,7 +21,8 @@ public class SplendorGameStateTest {
     public void testPlayerValues() {
         int zero = 0;
         int playerSize = 4;
-        SplendorGameState state1 = new SplendorGameState(playerSize);
+        String[] arr = {"p1", "p2", "p3", "p4"};
+        SplendorGameState state1 = new SplendorGameState(playerSize, arr);
 
         //player array size is correct, values initialized to zero
         assert(state1.getPlayerList().size() == (playerSize));
@@ -33,7 +34,8 @@ public class SplendorGameStateTest {
 
     @Test
     public void initializeDecks() {
-        SplendorGameState state1 = new SplendorGameState(4);
+        String[] arr = {"p1", "p2", "p3", "p4"};
+        SplendorGameState state1 = new SplendorGameState(4, arr);
         //check that card in deck got initialized
        for(int i = 0; i < state1.getRank1Stack().size(); i++) {
            assertFalse(state1.getRank1Stack().get(i) == null);
@@ -48,7 +50,8 @@ public class SplendorGameStateTest {
 
     @Test
     public void copyConst() {
-        SplendorGameState state1 = new SplendorGameState(4);
+        String[] arr = {"p1", "p2", "p3", "p4"};
+        SplendorGameState state1 = new SplendorGameState(4, arr);
         state1.getPlayer(0).setPrestigePts(10);
         state1.getPlayer(1).setPrestigePts(5);
         SplendorGameState state2 = new SplendorGameState(state1);
@@ -65,7 +68,8 @@ public class SplendorGameStateTest {
     @Test
     public void playerTurn() {
         //check that player turn updates correctly with 4 players
-        SplendorGameState state1 = new SplendorGameState(4);
+        String[] arr = {"p1", "p2", "p3", "p4"};
+        SplendorGameState state1 = new SplendorGameState(4, arr);
         state1.setPlayerTurn(3);
         state1.nextPlayerTurn();
         assertEquals(0,state1.getPlayerTurn());
@@ -74,13 +78,13 @@ public class SplendorGameStateTest {
         assertEquals(1, state1.getPlayerTurn());
 
         //check that player turn updates correctly with 3 players
-        SplendorGameState state2 = new SplendorGameState(3);
+        SplendorGameState state2 = new SplendorGameState(3, arr);
         state2.setPlayerTurn(2);
         state2.nextPlayerTurn();
         assertEquals(0,state2.getPlayerTurn());
 
         //check that player turn updates correctly with 2 players
-        SplendorGameState state3 = new SplendorGameState(2);
+        SplendorGameState state3 = new SplendorGameState(2, arr);
         state3.setPlayerTurn(1);
         state3.nextPlayerTurn();
         assertEquals(0,state3.getPlayerTurn());
