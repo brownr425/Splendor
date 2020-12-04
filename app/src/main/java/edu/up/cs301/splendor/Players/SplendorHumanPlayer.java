@@ -1,12 +1,14 @@
 package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinAction;
+import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
@@ -39,7 +41,7 @@ import edu.up.cs301.splendor.State.SplendorGameState;
  * @version July 2013
  */
 public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListener {
-    // the most recent game state, as given to us by the CounterLocalGame
+    // the most recent game state, as given to us by the SplendorLocalGame
     private SplendorGameState state;
 
     // the android activity that we are running
@@ -67,6 +69,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private ImageButton rank1Card3;
     private ImageButton rank1Card4;
 
+    private Button reserveCard1;
+    private Button reserveCard2;
+    private Button reserveCard3;
+
     //coins I buttons
     private ImageButton emeraldCoin;
     private ImageButton diamondCoin;
@@ -80,9 +86,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private Button reserveButton;
     private Button coinButton;
     private TextView coinB;
-    private Button reserveSlot1;
-    private Button reserveSlot2;
-    private Button reserveSlot3;
     private Button currentPlayer;
     private Button restartButton;
     private Button returnCoinButton;
@@ -216,6 +219,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         return drawableId;
     }
 
+    /**
+     *This methods sets the color behind the current players name to be green
+     */
     public void updatePlayerTurnColor() {
         if (this.state.getPlayerList().size() < 3) {
             switch (this.state.getPlayerTurn()) {
@@ -247,6 +253,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method changes which players point boxes are visable based on the number of players
+     */
     public void updatePlayerInfoVisabilty() {
         if (this.state.getPlayerCount() == 2) {
             p3Emerald.setVisibility(View.GONE);
@@ -297,6 +306,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method updates point boxes at the top of the screen to current player scores
+     */
     public void updatePlayerScores() {
         p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +
                 " + " + state.getPlayer(0).getEmerPts());
@@ -333,7 +345,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
                     " + " + state.getPlayer(2).getSapphPts());
             p3Onyx.setText("" + state.getPlayer(2).getOnyxCoins() +
                     " + " + state.getPlayer(2).getOnyxPts());
-            p3Ruby.setText("" +state.getPlayer(2).getRubyCoins() +
+            p3Ruby.setText("" + state.getPlayer(2).getRubyCoins() +
                     " + " + state.getPlayer(2).getRubyPts());
             p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
             p3PrestigePt.setText("" + state.getPlayer(2).getPrestigePts());
@@ -355,6 +367,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method writes the card information of the currently selected card to the info box
+     */
     public void updateInfoBox() {
         if(this.state.getSelectedCol() == -2)
         {
@@ -375,6 +390,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method updates coin images to reflect which coins are currently chosen
+     */
     public void updateSelectedCoins() {
         for (int coin : this.state.getCoinTracking()) {
 
@@ -392,6 +410,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * This method sets the background of cards to green if the player can purchase them
+     */
     public void updateBuyableCards() {
         rank3Card1.setBackgroundResource(R.color.grey);
         rank3Card2.setBackgroundResource(R.color.grey);
@@ -405,6 +426,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         rank1Card2.setBackgroundResource(R.color.grey);
         rank1Card3.setBackgroundResource(R.color.grey);
         rank1Card4.setBackgroundResource(R.color.grey);
+
+        reserveCard1.setBackgroundResource(R.color.grey);
+        reserveCard2.setBackgroundResource(R.color.grey);
+        reserveCard3.setBackgroundResource(R.color.grey);
+
 
         if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(0,0))) {
             rank3Card1.setBackgroundResource(R.color.green);
@@ -441,6 +467,21 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
         if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),state.getBoard(2,3))) {
             rank1Card4.setBackgroundResource(R.color.green);
+        }
+        if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 1) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(0))) {
+                reserveCard1.setBackgroundResource(R.color.green);
+            }
+        }
+        if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 2) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(1))) {
+                reserveCard2.setBackgroundResource(R.color.green);
+            }
+        }
+        if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 3) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(2))) {
+                reserveCard3.setBackgroundResource(R.color.green);
+            }
         }
     }
     /**
@@ -518,11 +559,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             action = new SplendorCoinSelectAction(this, 3);
         } else if (button.equals(onyxCoin)) {
             action = new SplendorCoinSelectAction(this, 4);
-        } else if (button.equals(reserveSlot1)) {
+        } else if (button.equals(reserveCard1)) {
             action = new SplendorSelectCardAction(this, 0, -1); // column is -1 to signify it is not in the board, it is the reserved hand
-        } else if (button.equals(reserveSlot2)) {
+        } else if (button.equals(reserveCard2)) {
             action = new SplendorSelectCardAction(this, 1, -1);
-        } else if (button.equals(reserveSlot3)) {
+        } else if (button.equals(reserveCard3)) {
             action = new SplendorSelectCardAction(this, 2, -1);
         }
         game.sendAction(action); // send action to the game
@@ -612,12 +653,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         goldCoin.setOnClickListener(this);
 
         // simple buttons for the reserved cards
-        reserveSlot1 = (Button) activity.findViewById(R.id.reserveSlot1);
-        reserveSlot2 = (Button) activity.findViewById(R.id.reserveSlot2);
-        reserveSlot3 = (Button) activity.findViewById(R.id.reserveSlot3);
-        reserveSlot1.setOnClickListener(this);
-        reserveSlot2.setOnClickListener(this);
-        reserveSlot3.setOnClickListener(this);
+        reserveCard1 = (Button) activity.findViewById(R.id.reserveSlot1);
+        reserveCard2 = (Button) activity.findViewById(R.id.reserveSlot2);
+        reserveCard3 = (Button) activity.findViewById(R.id.reserveSlot3);
+        reserveCard1.setOnClickListener(this);
+        reserveCard2.setOnClickListener(this);
+        reserveCard3.setOnClickListener(this);
 
         //action buttons for the actions
         buyButton = (Button) activity.findViewById(R.id.buyAction);

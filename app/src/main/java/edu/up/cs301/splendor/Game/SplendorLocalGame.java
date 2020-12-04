@@ -1,6 +1,5 @@
 package edu.up.cs301.splendor.Game;
 
-
 import edu.up.cs301.splendor.Actions.QuitAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
@@ -220,4 +219,6 @@ public class SplendorLocalGame extends LocalGame {
     private int nextPlayerSim(int playerId) {
         return (playerId+1 % gameState.getPlayerCount());
     }
+
+    public SplendorGameState getLocalGameGameState(){return this.gameState; }
 }
