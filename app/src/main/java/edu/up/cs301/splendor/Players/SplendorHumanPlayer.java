@@ -12,6 +12,7 @@ import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
 import edu.up.cs301.splendor.State.GameInfo;
 
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -122,6 +123,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private TextView p4Gold;
     private TextView p4PrestigePt;
     private TextView p4Name;
+
+    private MediaPlayer clickSound;
+    private MediaPlayer coinBuy;
 
     /**
      * constructor
@@ -494,8 +498,10 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             // minus button: create "decrement" action
             action = new SplendorReserveCardAction(this, this.state.getSelectedRow(), this.state.getSelectedCol());
         } else if (button.getId() == R.id.coinAction) {
+            coinBuy.start();
             action = new SplendorCoinAction(this);
         } else if (button.getId() == R.id.returnCoins) {
+            coinBuy.start();
             action = new SplendorReturnCoinAction(this);
         } else if (button.getId() == R.id.currentPlayerInfo) {
             state.setSelected(null);
@@ -519,42 +525,55 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }*/
         else if (button.getId() == R.id.rank1Card1) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 2, 0);
         } else if (button.getId() == R.id.rank1Card2) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 2, 1);
         } else if (button.getId() == R.id.rank1Card3) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 2, 2);
         } else if (button.getId() == R.id.rank1Card4) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 2, 3);
         } else if (button.getId() == R.id.rank2Card1) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 1, 0);
         } else if (button.getId() == R.id.rank2Card2) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 1, 1);
         } else if (button.getId() == R.id.rank2Card3) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 1, 2);
         } else if (button.getId() == R.id.rank2Card4) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 1, 3);
         } else if (button.getId() == R.id.rank3Card1) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 0, 0);
         } else if (button.getId() == R.id.rank3Card2) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 0, 1);
         } else if (button.getId() == R.id.rank3Card3) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 0, 2);
         } else if (button.getId() == R.id.rank3Card4) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorSelectCardAction(this, 0, 3);
         } else if (button.getId() == R.id.rubyCoin) {
             // something else was pressed: ignore
+            clickSound.start();
             action = new SplendorCoinSelectAction(this, 0);
         } else if (button.getId() == R.id.sapphireCoin) {
             // something else was pressed: ignore
@@ -728,6 +747,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p4Name = (TextView) activity.findViewById(R.id.player4Name);
 
         coinB = (TextView) activity.findViewById(R.id.CB);
+
+        clickSound = MediaPlayer.create(activity, R.raw.button_click);
+        coinBuy = MediaPlayer.create(activity, R.raw.coin_buy);
 
         // if we have a game state, "simulate" that we have just received
         // the state from the game so that the GUI values are updated

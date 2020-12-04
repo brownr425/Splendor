@@ -54,7 +54,7 @@ public class Card {
     public String toString(){
         String ret;
         ret = "\n----" +
-                "\n Card Level" + cardLevel +
+                "\n Card Level: " + cardLevel +
                 "\n Gem Color: " + colorConversion(this.colorGem) +
                 "\n Prestige Points:  " + prestigePoints +
                 "\n Price of Card: " +
