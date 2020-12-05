@@ -31,7 +31,8 @@ public class SplendorPlayer {
         initializePtsNCoins();
     }
     /**
-     * constructor SplendorPlayer - initialize all values for new object
+     * constructor SplendorPlayer() initialize all values for new object
+     *
      * @param playerID - player's id, 1-4
      *
      */
@@ -40,7 +41,8 @@ public class SplendorPlayer {
     }
 
     /**
-     * Constructor playerToCopy - deep copy for game state
+     * Constructor playerToCopy() deep copy for game state
+     *
      * @param playerToCopy - player to copy to instance
      */
     public SplendorPlayer(SplendorPlayer playerToCopy) {
@@ -64,6 +66,9 @@ public class SplendorPlayer {
         this.playerHand = new Hand(playerToCopy.getPlayerHand());
     }
 
+    /**
+     * initializePtsNCoins() sets coin hands to have zero coins
+     */
     private void initializePtsNCoins() {
         this.goldCoins = 0;
         this.rubyCoins = 0;
