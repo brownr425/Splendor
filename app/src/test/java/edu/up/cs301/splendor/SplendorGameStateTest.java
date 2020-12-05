@@ -29,7 +29,6 @@ public class SplendorGameStateTest {
         for(int i = 0; i< playerSize; i++){
             assertEquals(zero, state1.getPlayer(i).getPrestigePts());
         }
-
     }
 
     @Test
@@ -90,5 +89,5 @@ public class SplendorGameStateTest {
         assertEquals(0,state3.getPlayerTurn());
 
     }
-    
+
 }

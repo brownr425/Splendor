@@ -33,8 +33,11 @@ public class SplendorLocalGameTest {
 
     @Test
     public void checkIfGameOver() {
-
-
+        String[] arr = {"p1", "p2", "p3", "p4"};
+        SplendorLocalGame local1 = new SplendorLocalGame(4, arr);
+        local1.getLocalGameGameState().getPlayer(1).setPrestigePts(20);
+        String str = local1.checkIfGameOver();
+        System.out.println(str);
     }
 
     @Test
