@@ -4,6 +4,7 @@ import edu.up.cs301.game.GameFramework.actionMessage.GameOverAckAction;
 import edu.up.cs301.game.GameFramework.actionMessage.MyNameIsAction;
 import edu.up.cs301.game.GameFramework.actionMessage.ReadyAction;
 import edu.up.cs301.game.GameFramework.infoMessage.BindGameInfo;
+import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Game.Game;
 import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.splendor.State.GameInfo;

@@ -156,8 +156,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      */
     protected void updateDisplay() {
 
-        mainLayout.setBackgroundResource(R.drawable.wood_grain_background_1);
-
         nobleCard1.setImageResource(R.drawable.noble1try2);
         nobleCard2.setImageResource(R.drawable.noble2);
         nobleCard3.setImageResource(R.drawable.noble3);
@@ -187,6 +185,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         //Update info box to reflect selected card
 
+        mainLayout.setBackgroundResource(R.drawable.wood_grain_background_1);
     }
 
     public void setUpGUIImages() {
@@ -429,7 +428,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      */
     public void updateSelectedCoins() {
         for (int coin : this.state.getCoinTracking()) {
-
             if (coin == 0) {
                 rubyCoin.setImageResource(R.drawable.ruby_selected);
             } else if (coin == 1) {
@@ -625,7 +623,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             // update our state; then update the display
             this.state = (SplendorGameState) info;
         } else {
-            flash(Color.RED, 10);
+
         }
         updateDisplay();
     }

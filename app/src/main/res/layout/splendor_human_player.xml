@@ -5,7 +5,7 @@
     android:id="@+id/top_gui_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wood_grain_background_1"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <LinearLayout

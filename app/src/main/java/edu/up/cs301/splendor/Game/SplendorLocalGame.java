@@ -114,7 +114,9 @@ public class SplendorLocalGame extends LocalGame {
         } else if (action instanceof SplendorReturnCoinAction) {
             // player returns coins from their inventory
             for (int i = 0; i < this.gameState.getCoinTracking().size(); i++) {
-                this.gameState.returnCoins(this.gameState.getCoinTracking().get(i));
+                if (!this.gameState.returnCoins(this.gameState.getCoinTracking().get(i))){
+                    return false;
+                }
             }
             this.gameState.getCoinTracking().clear();
             return true;
@@ -193,14 +195,12 @@ public class SplendorLocalGame extends LocalGame {
      */
     public boolean cardActionHandler(GameAction action) {
         if (this.gameState.getSelected() != null) {
-            this.gameState.cardAction(this.gameState.getSelected(),
+            return this.gameState.cardAction(this.gameState.getSelected(),
                     ((SplendorCardAction) action).getRow(),
                     ((SplendorCardAction) action).getCol());
         } else {
             return false;
         }
-        //action was made
-        return true;
     }
 
     /**
