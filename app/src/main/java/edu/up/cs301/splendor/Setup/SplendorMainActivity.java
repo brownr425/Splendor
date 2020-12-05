@@ -57,7 +57,7 @@ public class SplendorMainActivity extends GameMainActivity {
         // - from 1 to 2 players
         // - name of game is "Counter Game"
         // - port number as defined above
-        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 4, "Splendor Game",
+        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Splendor Game",
                 PORT_NUMBER);
 
         // Add the default players to the configuration
