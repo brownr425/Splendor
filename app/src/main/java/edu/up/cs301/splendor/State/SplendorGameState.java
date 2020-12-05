@@ -5,9 +5,12 @@
  */
 
 package edu.up.cs301.splendor.State;
+
 import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Game.Noble;
+
 import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -87,7 +90,7 @@ public class SplendorGameState extends GameState {
 
     public SplendorGameState(int num, String[] playerNames) {
         initializePlayers(num, playerNames);
-        initializeCoins();
+        initializeCoins(num);
 
         this.selected = new Card();
         this.selectedNoble = new Noble();
@@ -153,15 +156,13 @@ public class SplendorGameState extends GameState {
         }
 
         this.nobleStack = new ArrayList<Noble>();
-        for(Noble nobleCard : stateToCopy.getNobleBoard())
-        {
+        for (Noble nobleCard : stateToCopy.getNobleBoard()) {
             this.nobleStack.add(new Noble(nobleCard));
         }
 
         //deep copy for noble cards
 
-        for(Noble noblesToCopy : stateToCopy.nobleBoard)
-        {
+        for (Noble noblesToCopy : stateToCopy.nobleBoard) {
             this.nobleBoard.add(new Noble(noblesToCopy));
         }
 
@@ -273,7 +274,7 @@ public class SplendorGameState extends GameState {
             String filepath1 = System.getProperty("user.dir") + "/src/main/" + rank1File;
             try {
                 rank1 = new FileInputStream(filepath1);
-            } catch(FileNotFoundException fnfe) {
+            } catch (FileNotFoundException fnfe) {
                 //do nothing for now
                 System.out.println(filepath1);
             }
@@ -283,7 +284,7 @@ public class SplendorGameState extends GameState {
             String filepath2 = System.getProperty("user.dir") + "/src/main/" + rank2File;
             try {
                 rank2 = new FileInputStream(filepath2);
-            } catch(FileNotFoundException fnfe) {
+            } catch (FileNotFoundException fnfe) {
                 //do nothing for now
                 System.out.println(filepath2);
             }
@@ -293,7 +294,7 @@ public class SplendorGameState extends GameState {
             String filepath3 = System.getProperty("user.dir") + "/src/main/" + rank3File;
             try {
                 rank3 = new FileInputStream(filepath3);
-            } catch(FileNotFoundException fnfe) {
+            } catch (FileNotFoundException fnfe) {
                 //do nothing for now
                 System.out.println(filepath3);
             }
@@ -303,7 +304,7 @@ public class SplendorGameState extends GameState {
             String filepathNoble = System.getProperty("user.dir") + "/src/main/" + nobleFile;
             try {
                 nobles = new FileInputStream(filepathNoble);
-            } catch(FileNotFoundException fnfe) {
+            } catch (FileNotFoundException fnfe) {
                 //do nothing for now
                 System.out.println(filepathNoble);
             }
@@ -415,23 +416,43 @@ public class SplendorGameState extends GameState {
         }
     }
 
-    public void initializeCoins() {
-        this.rubyCoins = 7;
-        this.sapphireCoins = 7;
-        this.emeraldCoins = 7;
-        this.diamondCoins = 7;
-        this.onyxCoins = 7;
-        this.goldCoins = 5;
+    public void initializeCoins(int numPlayers) {
+        switch (numPlayers) {
+            case 2:
+                this.rubyCoins = 4;
+                this.sapphireCoins = 4;
+                this.emeraldCoins = 4;
+                this.diamondCoins = 4;
+                this.onyxCoins = 4;
+                this.goldCoins = 4;
+                break;
+            case 3:
+                this.rubyCoins = 5;
+                this.sapphireCoins = 5;
+                this.emeraldCoins = 5;
+                this.diamondCoins = 5;
+                this.onyxCoins = 5;
+                this.goldCoins = 5;
+                break;
+            case 4:
+                this.rubyCoins = 7;
+                this.sapphireCoins = 7;
+                this.emeraldCoins = 7;
+                this.diamondCoins = 7;
+                this.onyxCoins = 7;
+                this.goldCoins = 5;
+                break;
+        }
+
     }
 
     //this will eventually initialize 4 random nobles from a set of 10, for now we have chosen 4
-    public void initializeNobles(){
+    public void initializeNobles() {
         /*this.noble1 = new Noble(4,0,4,0,0);
         this.noble2 = new Noble(3,0,0,3,3);
         this.noble3 = new Noble(4,0,0,0,4);
         this.noble4 = new Noble(0,3,3,3,0);*/
-        for(int i = 0; i <= playerList.size(); i++)
-        {
+        for (int i = 0; i <= playerList.size(); i++) {
             this.nobleBoard.add(this.nobleStack.remove(0));
         }
     }
@@ -440,12 +461,12 @@ public class SplendorGameState extends GameState {
 
     //increments to next players turn
     public void nextPlayerTurn() {
-        if(moreThanTenCoins) // will check if player has more than 10 coins
+        if (moreThanTenCoins) // will check if player has more than 10 coins
         {
             return;
         }
         nobleReqChecker();
-        setPlayerTurn((getPlayerTurn()+1) % playerList.size());
+        setPlayerTurn((getPlayerTurn() + 1) % playerList.size());
     }
 
     //sets turn to exact value
@@ -453,19 +474,16 @@ public class SplendorGameState extends GameState {
         this.playerTurn = playerID;
     }
 
-    public boolean returnCoins(int coinColor)
-    {
-        if(this.moreThanTenCoins) // check if player has more than 10 coins, if they do, then disable all actions except returnCoins until they have less
+    public boolean returnCoins(int coinColor) {
+        if (this.moreThanTenCoins) // check if player has more than 10 coins, if they do, then disable all actions except returnCoins until they have less
         {
-            for(SplendorPlayer player : this.playerList)
-            {
-                if(player.getPlayerID() == this.playerTurn)
-                {
-                    if(hasCoin(coinColor))
-                    {
+            for (SplendorPlayer player : this.playerList) {
+                if (player.getPlayerID() == this.playerTurn) {
+                    if (hasCoin(coinColor)) {
                         individualCoinReturn(coinColor);
                         this.moreThanTenCoins = coinsGreaterThanTen(player); // check if the player still has more than 10 coins
-                        if(!this.moreThanTenCoins) nextPlayerTurn(); // if they don't have more than 10 coins, then we move to the nextPlayerTurn
+                        if (!this.moreThanTenCoins)
+                            nextPlayerTurn(); // if they don't have more than 10 coins, then we move to the nextPlayerTurn
                         return true;
                     }
                 }
@@ -533,11 +551,11 @@ public class SplendorGameState extends GameState {
         for (SplendorPlayer player : playerList) {
             if (player.getPlayerID() == this.playerTurn && !moreThanTenCoins) // check if player has more than 10 coins, if they do, then disable all actions except returnCoins until they have less
             {
-                if(player.getPlayerHand().canReserve() && col != -1){ // col != -1 makes sure that the selected card ISN'T a reserved card already
-                    if(this.goldCoins > 0){
-                        player.setGoldCoins(player.getGoldCoins()+1); this.goldCoins--;
-                        if(coinsGreaterThanTen(player))
-                        {
+                if (player.getPlayerHand().canReserve() && col != -1) { // col != -1 makes sure that the selected card ISN'T a reserved card already
+                    if (this.goldCoins > 0) {
+                        player.setGoldCoins(player.getGoldCoins() + 1);
+                        this.goldCoins--;
+                        if (coinsGreaterThanTen(player)) {
                             moreThanTenCoins = true;
                         }
                         player.getPlayerHand().addToReserved(cardToReserve);
@@ -597,21 +615,21 @@ public class SplendorGameState extends GameState {
 
     public int getTrueVictor(int firstToThreshold) {
         int playerVictor = firstToThreshold, maxPoints = 0;
-        if(this.getPlayer(0).getPrestigePts() > maxPoints) {
+        if (this.getPlayer(0).getPrestigePts() > maxPoints) {
             maxPoints = getPlayer(0).getPrestigePts();
             playerVictor = 0;
         }
-        if(this.getPlayer(1).getPrestigePts() > maxPoints) {
+        if (this.getPlayer(1).getPrestigePts() > maxPoints) {
             maxPoints = getPlayer(1).getPrestigePts();
             playerVictor = 1;
         }
-        if(this.playerCount > 2) {
-            if(getPlayer(2).getPrestigePts() > maxPoints) {
+        if (this.playerCount > 2) {
+            if (getPlayer(2).getPrestigePts() > maxPoints) {
                 maxPoints = getPlayer(2).getPrestigePts();
                 playerVictor = 2;
             }
-            if(this.playerCount > 3) {
-                if(getPlayer(3).getPrestigePts() > maxPoints) {
+            if (this.playerCount > 3) {
+                if (getPlayer(3).getPrestigePts() > maxPoints) {
                     maxPoints = getPlayer(3).getPrestigePts();
                     playerVictor = 3;
                 }
@@ -624,7 +642,7 @@ public class SplendorGameState extends GameState {
 
     public boolean hasCoin(int coin) {
         boolean flag = false;
-        switch(coin) {
+        switch (coin) {
             case 0:
                 flag = (this.playerList.get(this.playerTurn).getRubyCoins() != 0);
                 break;
@@ -646,7 +664,8 @@ public class SplendorGameState extends GameState {
         return flag;
     }
 
-    /** canBuyCard()
+    /**
+     * canBuyCard()
      * The helper method for cardAction, will check if a player can buy a card.
      *
      * @param player    What player should we look at?
@@ -665,7 +684,7 @@ public class SplendorGameState extends GameState {
 
     /**
      * goldCoinCheck()
-     *
+     * <p>
      * helper method for canBuyCard method. This is the second check to see if user can buy a card with gold coins
      * function will keep track of however many gold coins have been used so far while checking each color value
      * outer while loop will break when gold > player's gold coins, meaning they need more gold coins than they have, so they can't buy
@@ -709,7 +728,7 @@ public class SplendorGameState extends GameState {
             iterator++;
         }
 
-        if(gold > player.getGoldCoins()) {
+        if (gold > player.getGoldCoins()) {
             return false;
         } else {
             return true;
@@ -1000,21 +1019,15 @@ public class SplendorGameState extends GameState {
 
     /**
      * nobleReqChecker()
-     *      checks if current player can take a noble, looking at the player's pts across all currencies
-     *
-     * */
-    public boolean nobleReqChecker()
-    {
-        for (SplendorPlayer player : this.playerList)
-        {
-            if (player.getPlayerID() == this.playerTurn)
-            {
-                for(Noble noble : this.nobleBoard)
-                {
-                    if(noblePriceChecker(player, noble))
-                    {
+     * checks if current player can take a noble, looking at the player's pts across all currencies
+     */
+    public boolean nobleReqChecker() {
+        for (SplendorPlayer player : this.playerList) {
+            if (player.getPlayerID() == this.playerTurn) {
+                for (Noble noble : this.nobleBoard) {
+                    if (noblePriceChecker(player, noble)) {
                         this.nobleBoard.remove(noble);
-                        player.setPrestigePts(player.getPrestigePts()+3);
+                        player.setPrestigePts(player.getPrestigePts() + 3);
                         return true;
                     }
                 }
@@ -1025,13 +1038,12 @@ public class SplendorGameState extends GameState {
 
     /**
      * noblePriceChecker()
-     *      checks if current player can take a noble, looking at the player's pts across all currencies; helper method for above method
+     * checks if current player can take a noble, looking at the player's pts across all currencies; helper method for above method
      *
-     * @param player  player to check
-     * @param noble noble to check
-     * */
-    public boolean noblePriceChecker(SplendorPlayer player, Noble noble)
-    {
+     * @param player player to check
+     * @param noble  noble to check
+     */
+    public boolean noblePriceChecker(SplendorPlayer player, Noble noble) {
         return player.getRubyPts() >= noble.getrPrice() &&
                 player.getDiaPts() >= noble.getwPrice() &&
                 player.getEmerPts() >= noble.getgPrice() &&
@@ -1081,7 +1093,7 @@ public class SplendorGameState extends GameState {
         return rank3Stack;
     }
 
-    public Card getBoard(int row, int col){
+    public Card getBoard(int row, int col) {
         return this.board[row][col];
     }
 
@@ -1113,13 +1125,12 @@ public class SplendorGameState extends GameState {
         return goldCoins;
     }
 
-    public int[] getAllCoins()
-    {
+    public int[] getAllCoins() {
         int allCoins[] = {this.rubyCoins, this.sapphireCoins, this.emeraldCoins, this.diamondCoins, this.onyxCoins};
         return allCoins;
     }
 
-    public ArrayList<Integer> getCoinTracking(){
+    public ArrayList<Integer> getCoinTracking() {
         return this.coinTracking;
     }
 
@@ -1168,14 +1179,24 @@ public class SplendorGameState extends GameState {
         return playerCount;
     }
 
-    public ArrayList<Noble> getNobleBoard() { return this.nobleBoard; }
+    public ArrayList<Noble> getNobleBoard() {
+        return this.nobleBoard;
+    }
 
-    public ArrayList<Noble> getNobleStack() { return this.nobleStack; }
+    public ArrayList<Noble> getNobleStack() {
+        return this.nobleStack;
+    }
 
-    public Noble getSelectedNoble() { return this.selectedNoble; }
+    public Noble getSelectedNoble() {
+        return this.selectedNoble;
+    }
 
-    public void setSelectedNoble(Noble selected) { this.selectedNoble = selected; }
+    public void setSelectedNoble(Noble selected) {
+        this.selectedNoble = selected;
+    }
 
-    public boolean getMoreThanTenCoins() { return this.moreThanTenCoins; }
+    public boolean getMoreThanTenCoins() {
+        return this.moreThanTenCoins;
+    }
 }
 

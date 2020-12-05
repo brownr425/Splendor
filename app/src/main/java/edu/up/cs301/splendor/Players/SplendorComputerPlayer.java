@@ -45,7 +45,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 4; col++) {
                 Card card = gameState.getBoard(row, col);
-                sleep(0.2);
+                sleep(0.05);
                 SplendorSelectCardAction select = new SplendorSelectCardAction(this, row, col);
                 this.game.sendAction(select);
                 SplendorCardAction buy = new SplendorCardAction(this, card, row, col);
@@ -103,7 +103,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
     // Computer player automatically returns between 1-3 random coins.
     public boolean randomReturn() {
-        while(totalCoins > 10)
+        while(gameState.getPlayer(gameState.getPlayerTurn()).getTotalCoins() > 10)
         {
             int coinType = randomizer.nextInt(5);
             boolean flag = false;

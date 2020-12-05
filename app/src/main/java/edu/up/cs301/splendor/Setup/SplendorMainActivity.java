@@ -79,7 +79,7 @@ public class SplendorMainActivity extends GameMainActivity {
     public LocalGame createLocalGame() {
         String[] names = new String[this.getnumPlayers()];
         for (int i = 0; i < this.getnumPlayers(); i++) {
-            String name = this.getConfig().getSelName(i);
+            String name = super.getConfig().getSelName(i);
             names[i] = name;
         }
         return new SplendorLocalGame(this.getnumPlayers(), names);
