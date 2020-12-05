@@ -8,9 +8,7 @@ public class Hand {
 
 
     /**
-     * constructor Hand
-     *
-     * creates new hand and reserved hand whenever a new Hand object is created
+     * Hand() default hand constructor
      */
     public Hand() {
         this.hand = new ArrayList<Card>();
@@ -18,10 +16,10 @@ public class Hand {
     }
 
     /**
-
-     Hand copy constructor
-
-     **/
+     * Hand() copy constructor for Hand
+     *
+     * @param handToCopy
+     */
     public Hand(Hand handToCopy) {
 
         this.hand = new ArrayList<Card>();
@@ -36,6 +34,8 @@ public class Hand {
     }
 
     /**
+     * addToHand() adds a Card to players hand
+     *
      * @param card - to add to player's hand
      */
     public void addToHand(Card card) {
@@ -43,6 +43,8 @@ public class Hand {
     }
 
     /**
+     * addToReserved() adds a card to reserved cards
+     *
      * @param card - to add to player's reserved hand
      */
     public void addToReserved(Card card) {
@@ -50,16 +52,14 @@ public class Hand {
     }
 
     /**
-     * removeFromReserved(int idx)
-     *
-     * should remove a card from the reserved hand, in case someone buys it
+     * removeFromReserved() should remove a card from the reserved hand, in case someone buys it
      *
      * @param idx index in array to remove from
      * */
     public void removeFromReserved(int idx){reserved.remove(idx);}
 
     /**
-     * canReserve - detects if player's reserved hand is equal to or greater than 3
+     * canReserve() detects if player's reserved hand is equal to or greater than 3
      *
      * @return - if player's reserved hand has less than 3, return true
      */

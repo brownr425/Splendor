@@ -31,6 +31,8 @@ public class SplendorLocalGame extends LocalGame {
     }
 
     /**
+     * sendUpdatedStateTo() sends the new updated gamestate to the next player
+     *
      * @param player the player doing the action
      */
     protected void sendUpdatedStateTo(GamePlayer player) {
@@ -46,7 +48,7 @@ public class SplendorLocalGame extends LocalGame {
     }
 
     /**
-     * checkIfGameOver - called after every turn, includes logic for end of game
+     * checkIfGameOver() called after every turn, includes logic for end of game
      * after someone reaches 15 points, every other player gets to play one more turn
      * if anyone gets more points than the player who reached the threshold, the new player wins
      *
@@ -89,8 +91,7 @@ public class SplendorLocalGame extends LocalGame {
     }
 
     /**
-     * makeMove(GameAction action)
-     * where players make moves, differentiated actions based on what action the player sends.
+     * makeMove() where players make moves, differentiated actions based on what action the player sends.
      *
      * @param action is the action the player sent, will check if it is instance of any actions we have
      */
@@ -136,11 +137,10 @@ public class SplendorLocalGame extends LocalGame {
 
 
     /**
-     * coinActionHandler
-     * handles coin actions
+     * coinActionHandler(GameAction action) handles making sure that player coin actions are viable before select coins
      *
      * @param action the action being done
-     * @return
+     * @return boolean whether the actions was completed successfully
      */
     protected boolean coinActionHandler(GameAction action) {
         // check if selected coin array is empty or one coin
@@ -186,10 +186,10 @@ public class SplendorLocalGame extends LocalGame {
 
     /**
      * cardActionHandler
-     * handles buying action on card
+     * handles the players attempt to purchase a card
      *
      * @param action stores the card to be bought
-     * @return
+     * @return boolean whether the action was completed successfully
      */
     public boolean cardActionHandler(GameAction action) {
         if (this.gameState.getSelected() != null) {
@@ -202,11 +202,10 @@ public class SplendorLocalGame extends LocalGame {
     }
 
     /**
-     * selectCardHandler
-     *      handles selecting a card from the board
+     * selectCardHandler() handles selecting a card from the board
      *
      * @param action - stores the card's location on the board
-     * @return
+     * @return boolean for if the card was selected propperly
      */
     public boolean selectCardHandler(GameAction action) {
         // check if the card selected is a player's reserved card
@@ -246,11 +245,10 @@ public class SplendorLocalGame extends LocalGame {
     }
 
     /**
-     * reserveCardHandler
-     * Handles reserving a card
+     * reserveCardHandler() Handles reserving a card
      *
      * @param action - action that stores the card to reserve
-     * @return
+     * @return boolean whether a card is reserved successfully
      */
     public boolean reserveCardHandler(GameAction action) {
         this.gameState.reserveAction(this.gameState.getSelected(),
@@ -260,11 +258,10 @@ public class SplendorLocalGame extends LocalGame {
     }
 
     /**
-     * coinSelectHandler
-     * Handles selecting coins
+     * coinSelectHandler() Handles selecting coins
      *
      * @param action - action done on a coin
-     * @return
+     * @return whether a coin is selected successfully
      */
     public boolean coinSelectHandler(GameAction action) {
         // this is if the array is empty, add the one chosen coin
@@ -341,9 +338,9 @@ public class SplendorLocalGame extends LocalGame {
     }
 
     /**
-     * returns this object
+     * SplendorGameState() gets the current gamestate
      *
-     * @return
+     * @return SplendorGameState the current game state
      */
     public SplendorGameState getLocalGameGameState() {
         return this.gameState;

@@ -15,7 +15,17 @@ public class Card {
     private int cardLevel;
     private int prestigePoints;
 
-
+    /**
+     * Card() creates a new instance of a card from the given
+     * @param rPrice
+     * @param bPrice
+     * @param gPrice
+     * @param wPrice
+     * @param brPrice
+     * @param colorGem
+     * @param cardLevel
+     * @param prestigePoints
+     */
     public Card(int rPrice, int bPrice, int gPrice, int wPrice, int brPrice, int colorGem, int cardLevel, int prestigePoints) {
         this.rPrice = rPrice;
         this.bPrice = bPrice;
@@ -26,7 +36,10 @@ public class Card {
         this.cardLevel = cardLevel;
         this.prestigePoints = prestigePoints;
     }
-    //card factory constructor
+
+    /**
+     * Card() constructs a card with all zero value
+     */
     public Card() {
         this.rPrice = 0;
         this.bPrice = 0;
@@ -38,7 +51,11 @@ public class Card {
         this.prestigePoints = 0;
     }
 
-    //Copy Constructor
+    /**
+     * Card(Card cardToCopy) creates a new Card instance copy of an existing card
+     *
+     * @param cardToCopy
+     */
     public Card(Card cardToCopy) {
         this.rPrice = cardToCopy.getrPrice();
         this.bPrice = cardToCopy.getbPrice();
@@ -50,6 +67,11 @@ public class Card {
         this.prestigePoints = cardToCopy.getPrestigePoints();
     }
 
+    /**
+     * toString() this method returns a description of card values
+     *
+     * @return String description of card values
+     */
     @Override
     public String toString(){
         String ret;
@@ -67,6 +89,12 @@ public class Card {
         return ret;
     }
 
+    /**
+     * colorConversion() decoder for int gem color to name
+     *
+     * @param color
+     * @return String name associated with gem index
+     */
     public String colorConversion(int color)
     {
         switch(color)

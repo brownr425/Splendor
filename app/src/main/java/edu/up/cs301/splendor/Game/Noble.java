@@ -9,6 +9,15 @@ public class Noble {
 
     private final int PRESTIGE_POINTS = 3;
 
+    /**
+     * Noble() constructs noble based on param value
+     *
+     * @param rPrice
+     * @param bPrice
+     * @param gPrice
+     * @param wPrice
+     * @param brPrice
+     */
     public Noble(int rPrice, int bPrice, int gPrice, int wPrice, int brPrice){
         this.rPrice = rPrice;
         this.bPrice = bPrice;
@@ -17,6 +26,9 @@ public class Noble {
         this.brPrice = brPrice;
     }
 
+    /**
+     * Noble() constructs noble with all values of -1
+     */
     public Noble() {
         this.rPrice = -1;
         this.bPrice = -1;
@@ -25,7 +37,10 @@ public class Noble {
         this.brPrice = -1;
     }
 
-    //COPY CONSTRUCTOR
+    /**
+     * Noble() copy constructor makes a new noble based on existing noble
+     * @param nobelToCopy
+     */
     public Noble(Noble nobelToCopy){
         this.rPrice = nobelToCopy.rPrice;
         this.bPrice = nobelToCopy.bPrice;
@@ -34,6 +49,11 @@ public class Noble {
         this.brPrice = nobelToCopy.brPrice;
     }
 
+    /**
+     * toString() prints out a String description of noble
+     *
+     * @return String description of noble
+     */
     @Override
     public String toString(){
         String ret;

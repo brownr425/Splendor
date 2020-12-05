@@ -1,6 +1,6 @@
-/*
+/**
  * @authors Ryan Brown, Noah LaFave, Jacob Noble, Aidan Day
- * @version Alpha
+ * @version 1.0
  *
  */
 
