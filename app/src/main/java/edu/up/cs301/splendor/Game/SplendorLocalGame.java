@@ -221,7 +221,10 @@ public class SplendorLocalGame extends LocalGame {
                 // set the row and column of where the card was selected so game knows what card to replace
                 this.gameState.setSelectedRow(((SplendorSelectCardAction) action).getRow());
                 this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol());
-                this.gameState.setBoughtCard(false);
+                this.gameState.setBoughtCard(false); // this resets all the information that action has happened
+                this.gameState.setReserveSuccess(false);
+                this.gameState.setTakenCoins(false);
+                this.gameState.setNobleTaken(false);
                 return true;
             }
             return false;
@@ -234,7 +237,10 @@ public class SplendorLocalGame extends LocalGame {
         // set the row and column of where the card was selected so game knows what card to replace
         this.gameState.setSelectedRow(((SplendorSelectCardAction) action).getRow());
         this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol());
-        this.gameState.setBoughtCard(false);
+        this.gameState.setBoughtCard(false); // this resets all the information that action has happened
+        this.gameState.setReserveSuccess(false);
+        this.gameState.setTakenCoins(false);
+        this.gameState.setNobleTaken(false);
         //action was made, return true/valid move
         return true;
     }
@@ -265,7 +271,10 @@ public class SplendorLocalGame extends LocalGame {
         if (this.gameState.getCoinTracking().isEmpty()) {
             this.gameState.getCoinTracking().add(
                     ((SplendorCoinSelectAction) action).getChosenCoin());
-
+            this.gameState.setBoughtCard(false); // this resets all the information that action has happened
+            this.gameState.setReserveSuccess(false);
+            this.gameState.setTakenCoins(false);
+            this.gameState.setNobleTaken(false);
             return true;
         }
         // if size is 3, that means the array is filled
@@ -280,12 +289,20 @@ public class SplendorLocalGame extends LocalGame {
                             ((SplendorCoinSelectAction) action).getChosenCoin());
                     this.gameState.getCoinTracking().add(
                             ((SplendorCoinSelectAction) action).getChosenCoin());
+                    this.gameState.setBoughtCard(false); // this resets all the information that action has happened
+                    this.gameState.setReserveSuccess(false);
+                    this.gameState.setTakenCoins(false);
+                    this.gameState.setNobleTaken(false);
                     return true;
                 }
             }
             // if all different coins, pop the front of the arrayList then add the chosen coin to back
             this.gameState.getCoinTracking().remove(0);
             this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+            this.gameState.setBoughtCard(false); // this resets all the information that action has happened
+            this.gameState.setReserveSuccess(false);
+            this.gameState.setTakenCoins(false);
+            this.gameState.setNobleTaken(false);
             return true;
         } else {
             // add chosen coins to selected, not filled
@@ -296,10 +313,18 @@ public class SplendorLocalGame extends LocalGame {
                             ((SplendorCoinSelectAction) action).getChosenCoin());
                     this.gameState.getCoinTracking().add(
                             ((SplendorCoinSelectAction) action).getChosenCoin());
+                    this.gameState.setBoughtCard(false); // this resets all the information that action has happened
+                    this.gameState.setReserveSuccess(false);
+                    this.gameState.setTakenCoins(false);
+                    this.gameState.setNobleTaken(false);
                     return true;
                 }
             }
             this.gameState.getCoinTracking().add(((SplendorCoinSelectAction) action).getChosenCoin());
+            this.gameState.setBoughtCard(false); // this resets all the information that action has happened
+            this.gameState.setReserveSuccess(false);
+            this.gameState.setTakenCoins(false);
+            this.gameState.setNobleTaken(false);
             return true;
         }
     }

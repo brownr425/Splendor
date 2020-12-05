@@ -35,7 +35,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             return;
         }
         //refreshes the local copy of the game state with the new info
-        this.gameState = new SplendorGameState((SplendorGameState) info);
+        this.gameState = new SplendorGameState((SplendorGameState)info);
 
         //checks to see if it Computer Players turn
         if (this.playerNum != gameState.getPlayerTurn()) {
@@ -44,6 +44,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
         sleep(1);
         //traverse through card board and purchases a card if it can
+       // totalCoins = this.gameState.getPlayer(this.gameState.getPlayerTurn()).getTotalCoins();
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 4; col++) {
                 Card card = gameState.getBoard(row, col);
@@ -54,7 +55,6 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
                 this.game.sendAction(buy);
             }
         }
-        totalCoins = this.gameState.getPlayer(this.gameState.getPlayerTurn()).getTotalCoins();
         randomCoinBuy();
         randomReturn();
     }
@@ -77,16 +77,14 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
             sleep(1);
             this.game.sendAction(new SplendorCoinAction(this));
-            totalCoins+=2;
-            this.gameState.coinAction(coin1);
+            totalCoins += 2;
         } else if (coin2 == coin3) {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin2));
             sleep(0.1);
             this.game.sendAction(new SplendorCoinSelectAction(this, coin2));
             sleep(1);
             this.game.sendAction(new SplendorCoinAction(this));
-            totalCoins+=2;
-            this.gameState.coinAction(coin2);
+            totalCoins += 2;
         } else {
             //otherwise, do action on 3 coins
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
@@ -96,8 +94,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin3));
             sleep(1);
             this.game.sendAction(new SplendorCoinAction(this));
-            totalCoins+=3;
-            this.gameState.coinAction(coin1, coin2, coin3);
+            totalCoins += 3;
         }
         Log.d("CP", "BUYC");
         return true;
@@ -105,25 +102,22 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
     // Computer player automatically returns between 1-3 random coins.
     public boolean randomReturn() {
-        while(totalCoins > 10)
-        {
-            int coinType = randomizer.nextInt(5);
-            boolean flag = false;
+        int coinType = randomizer.nextInt(5);
+        boolean flag = false;
 
-            //for numTypes (0-2), return a random coin type if the player has it
-            if(!(hasCoin(coinType))) {
-                while(!flag) {
-                    //randomize coin type and change flag
-                    coinType = randomizer.nextInt(5);
-                    if(hasCoin(coinType)) {
-                        flag = true;
-                    }
+        //for numTypes (0-2), return a random coin type if the player has it
+        if (!(hasCoin(coinType))) {
+            while (!flag) {
+                //randomize coin type and change flag
+                coinType = randomizer.nextInt(5);
+                if (hasCoin(coinType)) {
+                    flag = true;
                 }
             }
-            this.game.sendAction(new SplendorCoinSelectAction(this, coinType));
-            this.game.sendAction(new SplendorReturnCoinAction(this));
-            totalCoins--;
         }
+        this.game.sendAction(new SplendorCoinSelectAction(this, coinType));
+        this.game.sendAction(new SplendorReturnCoinAction(this));
+        totalCoins--;
         return true;
     }
 
@@ -137,7 +131,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
 
     public boolean hasCoin(int coin) {
         boolean flag = false;
-        switch(coin) {
+        switch (coin) {
             case 0:
                 flag = (this.gameState.getPlayerList().get(gameState.getPlayerTurn()).getRubyCoins() != 0);
                 break;

@@ -40,14 +40,14 @@ public class Card {
 
     //Copy Constructor
     public Card(Card cardToCopy) {
-        this.rPrice = cardToCopy.rPrice;
-        this.bPrice = cardToCopy.bPrice;
-        this.gPrice = cardToCopy.gPrice;
-        this.wPrice = cardToCopy.wPrice;
-        this.brPrice = cardToCopy.brPrice;
-        this.colorGem = cardToCopy.colorGem;
-        this.cardLevel = cardToCopy.cardLevel;
-        this.prestigePoints = cardToCopy.prestigePoints;
+        this.rPrice = cardToCopy.getrPrice();
+        this.bPrice = cardToCopy.getbPrice();
+        this.gPrice = cardToCopy.getgPrice();
+        this.wPrice = cardToCopy.getwPrice();
+        this.brPrice = cardToCopy.getBrPrice();
+        this.colorGem = cardToCopy.getColorGem();
+        this.cardLevel = cardToCopy.getCardLevel();
+        this.prestigePoints = cardToCopy.getPrestigePoints();
     }
 
     @Override

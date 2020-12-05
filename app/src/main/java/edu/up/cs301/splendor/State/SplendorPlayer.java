@@ -45,23 +45,23 @@ public class SplendorPlayer {
      */
     public SplendorPlayer(SplendorPlayer playerToCopy) {
         this.playerName = playerToCopy.playerName;
-        this.playerID = playerToCopy.playerID;
-        this.prestigePts = playerToCopy.prestigePts;
+        this.playerID = playerToCopy.getPlayerID();
+        this.prestigePts = playerToCopy.getPrestigePts();
 
-        this.rubyPts = playerToCopy.rubyPts;
-        this.sapphPts = playerToCopy.sapphPts;
-        this.emerPts = playerToCopy.emerPts;
-        this.diaPts = playerToCopy.diaPts;
-        this.onyxPts = playerToCopy.onyxPts;
+        this.rubyPts = playerToCopy.getRubyPts();
+        this.sapphPts = playerToCopy.getSapphPts();
+        this.emerPts = playerToCopy.getEmerPts();
+        this.diaPts = playerToCopy.getDiaPts();
+        this.onyxPts = playerToCopy.getOnyxPts();
 
-        this.goldCoins = playerToCopy.goldCoins;
-        this.rubyCoins = playerToCopy.rubyCoins;
-        this.sapphCoins = playerToCopy.sapphCoins;
-        this.emerCoins = playerToCopy.emerCoins;
-        this.diaCoins = playerToCopy.diaCoins;
-        this.onyxCoins = playerToCopy.onyxCoins;
+        this.goldCoins = playerToCopy.getGoldCoins();
+        this.rubyCoins = playerToCopy.getRubyCoins();
+        this.sapphCoins = playerToCopy.getSapphCoins();
+        this.emerCoins = playerToCopy.getEmerCoins();
+        this.diaCoins = playerToCopy.getDiaCoins();
+        this.onyxCoins = playerToCopy.getOnyxCoins();
 
-        this.playerHand = new Hand(playerToCopy.playerHand);
+        this.playerHand = new Hand(playerToCopy.getPlayerHand());
     }
 
     private void initializePtsNCoins() {

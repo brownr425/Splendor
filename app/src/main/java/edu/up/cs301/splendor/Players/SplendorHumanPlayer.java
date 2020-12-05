@@ -197,6 +197,24 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         sapphireCoin.setImageResource(R.drawable.sapphire);
         onyxCoin.setImageResource(R.drawable.onyx);
         rubyCoin.setImageResource(R.drawable.ruby);
+
+        nobleCard1.setVisibility(View.GONE);
+        nobleCard2.setVisibility(View.GONE);
+        nobleCard3.setVisibility(View.GONE);
+        nobleCard4.setVisibility(View.GONE);
+        nobleCard5.setVisibility(View.GONE);
+
+        for(int i = 0; i < this.state.getNobleBoard().size(); i++)
+        {
+            switch(i)
+            {
+                case 0: nobleCard1.setVisibility(View.VISIBLE);
+                case 1: nobleCard2.setVisibility(View.VISIBLE);
+                case 2: nobleCard3.setVisibility(View.VISIBLE);
+                case 3: nobleCard4.setVisibility(View.VISIBLE);
+                case 4: nobleCard5.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     public void setUpGUIImages() {
@@ -337,7 +355,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p1Ruby.setText("" + state.getPlayer(0).getRubyCoins() +
                 " + " + state.getPlayer(0).getRubyPts());
         p1Gold.setText("" + state.getPlayer(0).getGoldCoins());
-        p1PrestigePt.setText("" + state.getPlayer(0).getPrestigePts());
+        p1PrestigePt.setText("Prestige Points:" + state.getPlayer(0).getPrestigePts());
 
         p2Emerald.setText("" + state.getPlayer(1).getEmerCoins() +
                 " + " + state.getPlayer(1).getEmerPts());
@@ -350,7 +368,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         p2Ruby.setText("" + state.getPlayer(1).getRubyCoins() +
                 " + " + state.getPlayer(1).getRubyPts());
         p2Gold.setText("" + state.getPlayer(1).getGoldCoins());
-        p2PrestigePt.setText("" + state.getPlayer(1).getPrestigePts());
+        p2PrestigePt.setText("Prestige Points:" + state.getPlayer(1).getPrestigePts());
 
         if(state.getPlayerCount() >= 3) {
             p3Emerald.setText("" + state.getPlayer(2).getEmerCoins() +
@@ -364,7 +382,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             p3Ruby.setText("" + state.getPlayer(2).getRubyCoins() +
                     " + " + state.getPlayer(2).getRubyPts());
             p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
-            p3PrestigePt.setText("" + state.getPlayer(2).getPrestigePts());
+            p3PrestigePt.setText("Prestige Points:" + state.getPlayer(2).getPrestigePts());
 
             if(state.getPlayerCount() == 4) {
                 p4Emerald.setText("" + state.getPlayer(3).getEmerCoins() +
@@ -378,7 +396,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
                 p4Ruby.setText("" + state.getPlayer(3).getRubyCoins() +
                         " + " + state.getPlayer(3).getRubyPts());
                 p4Gold.setText("" + state.getPlayer(3).getGoldCoins());
-                p4PrestigePt.setText("" + state.getPlayer(3).getPrestigePts());
+                p4PrestigePt.setText("Prestige Points:" + state.getPlayer(3).getPrestigePts());
             }
         }
     }
@@ -389,6 +407,20 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     public void updateInfoBox() {
         if(this.state.getBoughtCard()){
             String info = "Successfully bought Card!";
+            if(this.state.getNobleTaken())
+            {
+                info = "Successfully bought Card " +
+                        "\nand received a noble!" +
+                        "\nYou have received 3 Prestige Points.";
+            }
+            infoBox.setText(info);
+        }
+        else if(this.state.getReserveSuccess()) {
+            String info = "Successfully reserved Card!";
+            infoBox.setText(info);
+        }
+        else if(this.state.getTakenCoins()) {
+            String info = "Successfully taken coins!";
             infoBox.setText(info);
         }
         else if(this.state.getSelectedCol() == -2) {
@@ -619,7 +651,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             action = new SplendorSelectCardAction(this, 2, -1);
         }
         game.sendAction(action); // send action to the game
-        updateDisplay();
     }// onClick
 
     /**
@@ -632,9 +663,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         // ignore the message if it's not a CounterState message
         if ((info instanceof SplendorGameState))
         {
-            this.state = (SplendorGameState) info;
             // update our state; then update the display
-            this.state = (SplendorGameState) info;
+            this.state = (SplendorGameState)info;
         } else {
 
         }

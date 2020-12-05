@@ -66,7 +66,6 @@ public class SplendorGameState extends GameState {
 
     private boolean moreThanTenCoins = false; // check if current player has moreThanTenCoins, this doesn't need to be in copy constructor
     // BECAUSE we ONLY want this to be false at the start of every turn, and it won't move onto the next turn until this is false.
-    private boolean boughtCard = false;
 
 
 //~~~~~~~~~~~~~~~~~~~~~ Game State Specific Variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -83,6 +82,12 @@ public class SplendorGameState extends GameState {
     private ArrayList<Integer> coinTracking = new ArrayList<>();
     private int selectedRow = -1;
     private int selectedCol = -1;
+
+    // these are checkers to see if an action is successful because some classes can't determine that through the actions like human player
+    private boolean boughtCard = false;
+    private boolean reserveSuccess = false;
+    private boolean takenCoins = false;
+    private boolean nobleTaken = false;
 
 //~~~~~~~~~~~~~~~~~~~~~~CONSTRUCTOR~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
@@ -123,17 +128,13 @@ public class SplendorGameState extends GameState {
         //makes copy of card that is currently selected
         this.selected = new Card(stateToCopy.getSelected());
 
+        this.moreThanTenCoins = stateToCopy.getMoreThanTenCoins();
+
         //makes copy of Noble currently selected
         this.selectedNoble = new Noble(stateToCopy.getSelectedNoble());
 
-        /*this.splendorPlayer1 = new SplendorPlayer(stateToCopy.splendorPlayer1);
-        this.splendorPlayer2 = new SplendorPlayer(stateToCopy.splendorPlayer2);
-        this.splendorPlayer3 = new SplendorPlayer(stateToCopy.splendorPlayer3);
-        this.splendorPlayer4 = new SplendorPlayer(stateToCopy.splendorPlayer4);*/
-
         this.playerTurn = stateToCopy.getPlayerTurn();
-        this.playerList = new ArrayList<>();
-        for (SplendorPlayer player : stateToCopy.playerList) {
+        for (SplendorPlayer player : stateToCopy.getPlayerList()) {
             this.playerList.add(new SplendorPlayer(player));
         }
 
@@ -174,12 +175,12 @@ public class SplendorGameState extends GameState {
         this.selectedRow = stateToCopy.getSelectedRow();
         this.selectedCol = stateToCopy.getSelectedCol();
 
-        this.rubyCoins = stateToCopy.rubyCoins;
-        this.sapphireCoins = stateToCopy.sapphireCoins;
-        this.emeraldCoins = stateToCopy.emeraldCoins;
-        this.diamondCoins = stateToCopy.diamondCoins;
-        this.onyxCoins = stateToCopy.onyxCoins;
-        this.goldCoins = stateToCopy.goldCoins;
+        this.rubyCoins = stateToCopy.getRubyCoins();
+        this.sapphireCoins = stateToCopy.getSapphireCoins();
+        this.emeraldCoins = stateToCopy.getEmeraldCoins();
+        this.diamondCoins = stateToCopy.getDiamondCoins();
+        this.onyxCoins = stateToCopy.getOnyxCoins();
+        this.goldCoins = stateToCopy.getGoldCoins();
 
         this.player1Name = stateToCopy.getPlayer1Name();
         this.player2Name = stateToCopy.getPlayer2Name();
@@ -188,6 +189,9 @@ public class SplendorGameState extends GameState {
 
         // this is to see if someone bought a card!
         this.boughtCard = stateToCopy.getBoughtCard();
+        this.reserveSuccess = stateToCopy.getReserveSuccess();
+        this.takenCoins = stateToCopy.getTakenCoins();
+        this.nobleTaken = stateToCopy.getNobleTaken();
     }
 
     //helper method for constructor setting all point values for player to zero
@@ -221,11 +225,6 @@ public class SplendorGameState extends GameState {
 
 
         }
-        /*
-        this.splendorPlayer1 = new SplendorPlayer(PLAYER1ID);
-        this.splendorPlayer2 = new SplendorPlayer(PLAYER2ID);
-        this.splendorPlayer3 = new SplendorPlayer(PLAYER3ID);
-        this.splendorPlayer4 = new SplendorPlayer(PLAYER4ID);*/
 
         // make SplendorPlayers based on how many are needed
         for (int i = 0; i < num; i++) {
@@ -469,7 +468,9 @@ public class SplendorGameState extends GameState {
                     {
                         individualCoinReturn(coinColor);
                         this.moreThanTenCoins = coinsGreaterThanTen(player); // check if the player still has more than 10 coins
-                        if(!this.moreThanTenCoins) nextPlayerTurn(); // if they don't have more than 10 coins, then we move to the nextPlayerTurn
+                        if(!this.moreThanTenCoins) {
+                            nextPlayerTurn(); // if they don't have more than 10 coins, then we move to the nextPlayerTurn
+                        }
                         return true;
                     }
                 }
@@ -494,6 +495,7 @@ public class SplendorGameState extends GameState {
                         }
                     }
                 }
+                this.takenCoins = true;
                 nextPlayerTurn();
                 return true;
             }
@@ -515,6 +517,7 @@ public class SplendorGameState extends GameState {
                         }
                     }
                 }
+                this.takenCoins = true;
                 nextPlayerTurn();
                 return true;
             }
@@ -556,6 +559,7 @@ public class SplendorGameState extends GameState {
                                 this.board[row][col] = this.rank1Stack.remove(0);
                                 break;
                         }
+                        this.reserveSuccess = true;
                         this.nextPlayerTurn();
                         return true;
                     }
@@ -1020,6 +1024,7 @@ public class SplendorGameState extends GameState {
                     {
                         this.nobleBoard.remove(noble);
                         player.setPrestigePts(player.getPrestigePts()+3);
+                        this.nobleTaken = true;
                         return true;
                     }
                 }
@@ -1186,5 +1191,16 @@ public class SplendorGameState extends GameState {
     public boolean getBoughtCard() { return this.boughtCard; }
 
     public void setBoughtCard(boolean bought) { this.boughtCard = bought; }
-}
 
+    public boolean getReserveSuccess() { return this.reserveSuccess; }
+
+    public void setReserveSuccess(boolean success) { this.reserveSuccess = success; }
+
+    public boolean getTakenCoins() { return this.takenCoins; }
+
+    public void setTakenCoins(boolean taken) { this.takenCoins = taken; }
+
+    public boolean getNobleTaken() { return this.nobleTaken; }
+
+    public void setNobleTaken(boolean taken) { this.nobleTaken = taken; }
+}
