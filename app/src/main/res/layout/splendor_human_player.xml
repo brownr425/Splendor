@@ -647,13 +647,12 @@
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/onyx" />
 
-            <ImageButton
-                android:id="@+id/goldCoin"
+            <Button
+                android:id="@+id/clearCoins"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/gold" />
+                android:text="Clear Coins" />
 
         </LinearLayout>
 

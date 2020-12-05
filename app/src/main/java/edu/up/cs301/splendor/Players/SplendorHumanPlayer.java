@@ -1,14 +1,13 @@
 package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
-import edu.up.cs301.splendor.Actions.QuitAction;
+import edu.up.cs301.splendor.Actions.SplendorClearSelectedAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinAction;
-import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
@@ -81,7 +80,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private ImageButton sapphireCoin;
     private ImageButton onyxCoin;
     private ImageButton rubyCoin;
-    private ImageButton goldCoin;
+    private Button clearCoins;
 
     //player area
     private Button buyButton;
@@ -170,7 +169,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         sapphireCoin.setImageResource(R.drawable.sapphire);
         onyxCoin.setImageResource(R.drawable.onyx);
         rubyCoin.setImageResource(R.drawable.ruby);
-        goldCoin.setImageResource(R.drawable.gold);
 
         //SELECTED COIN HIGHLIGHT
         updateSelectedCoins();
@@ -180,7 +178,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         updatePlayerScores();
         updateInfoBox();
         updateBuyableCards(); //TODO needs some fixing
-        coinB.setText("Coin Bank:\n Ruby:" + state.getRubyCoins() + "\nSapph:" + state.getSapphireCoins() + "\nEmer:" + state.getEmeraldCoins() + "\nDia:" + state.getDiamondCoins() + "\nOnyx:" + state.getOnyxCoins());
+        updateSelectedCards();
+        coinB.setText("Coin Bank:\n Ruby: " + state.getRubyCoins() +
+                "\nSapphire: " + state.getSapphireCoins() +
+                "\nEmerald: " + state.getEmeraldCoins() +
+                "\nDiamond: " + state.getDiamondCoins() +
+                "\nOnyx: " + state.getOnyxCoins());
 
         //Update info box to reflect selected card
 
@@ -392,6 +395,34 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             infoBox.setText(playerCoins);
         }
     }
+    public void updateSelectedCards() {
+        switch(this.state.getSelectedCol()) {
+            case 0:
+                switch(this.state.getSelectedRow()) {
+                    case 0: rank3Card1.setBackgroundResource(R.color.cyan); break;
+                    case 1: rank2Card1.setBackgroundResource(R.color.cyan); break;
+                    case 2: rank1Card1.setBackgroundResource(R.color.cyan); break;
+                } break;
+            case 1:
+                switch(this.state.getSelectedRow()) {
+                    case 0: rank3Card2.setBackgroundResource(R.color.cyan); break;
+                    case 1: rank2Card2.setBackgroundResource(R.color.cyan); break;
+                    case 2: rank1Card2.setBackgroundResource(R.color.cyan); break;
+                } break;
+            case 2:
+                switch(this.state.getSelectedRow()) {
+                    case 0: rank3Card3.setBackgroundResource(R.color.cyan); break;
+                    case 1: rank2Card3.setBackgroundResource(R.color.cyan); break;
+                    case 2: rank1Card3.setBackgroundResource(R.color.cyan); break;
+                } break;
+            case 3:
+                switch(this.state.getSelectedRow()) {
+                    case 0: rank3Card4.setBackgroundResource(R.color.cyan); break;
+                    case 1: rank2Card4.setBackgroundResource(R.color.cyan); break;
+                    case 2: rank1Card4.setBackgroundResource(R.color.cyan); break;
+                } break;
+        }
+    }
 
     /**
      * This method updates coin images to reflect which coins are currently chosen
@@ -472,17 +503,20 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             rank1Card4.setBackgroundResource(R.color.green);
         }
         if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 1) {
-            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(0))) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),
+                    state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(0))) {
                 reserveCard1.setBackgroundResource(R.color.green);
             }
         }
         if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 2) {
-            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(1))) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),
+                    state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(1))) {
                 reserveCard2.setBackgroundResource(R.color.green);
             }
         }
         if (state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().size() == 3) {
-            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()), state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(2))) {
+            if (state.canBuyCard(state.getPlayer(state.getPlayerTurn()),
+                    state.getPlayer(state.getPlayerTurn()).getPlayerHand().getReserved().get(2))) {
                 reserveCard3.setBackgroundResource(R.color.green);
             }
         }
@@ -562,8 +596,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             action = new SplendorCoinSelectAction(this, 3);
         } else if (button.equals(onyxCoin)) {
             action = new SplendorCoinSelectAction(this, 4);
+        } else if (button.equals(clearCoins)) {
+            action = new SplendorClearSelectedAction(this);
         } else if (button.equals(reserveCard1)) {
-            action = new SplendorSelectCardAction(this, 0, -1); // column is -1 to signify it is not in the board, it is the reserved hand
+            action = new SplendorSelectCardAction(this, 0, -1);
+            // column is -1 to signify it is not in the board, it is the reserved hand
         } else if (button.equals(reserveCard2)) {
             action = new SplendorSelectCardAction(this, 1, -1);
         } else if (button.equals(reserveCard3)) {
@@ -652,13 +689,13 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         emeraldCoin = (ImageButton) activity.findViewById(R.id.emeraldCoin);
         diamondCoin = (ImageButton) activity.findViewById(R.id.diamondCoin);
         onyxCoin = (ImageButton) activity.findViewById(R.id.onyxCoin);
-        goldCoin = (ImageButton) activity.findViewById(R.id.goldCoin);
+        clearCoins = (Button) activity.findViewById(R.id.clearCoins);
         rubyCoin.setOnClickListener(this);
         sapphireCoin.setOnClickListener(this);
         emeraldCoin.setOnClickListener(this);
         diamondCoin.setOnClickListener(this);
         onyxCoin.setOnClickListener(this);
-        goldCoin.setOnClickListener(this);
+        clearCoins.setOnClickListener(this);
 
         // simple buttons for the reserved cards
         reserveCard1 = (Button) activity.findViewById(R.id.reserveSlot1);
