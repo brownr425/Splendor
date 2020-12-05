@@ -42,13 +42,12 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             return;
         }
 
-        sleep(1);
+        sleep(0.5);
         //traverse through card board and purchases a card if it can
        // totalCoins = this.gameState.getPlayer(this.gameState.getPlayerTurn()).getTotalCoins();
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 4; col++) {
                 Card card = gameState.getBoard(row, col);
-                sleep(0.2);
                 SplendorSelectCardAction select = new SplendorSelectCardAction(this, row, col);
                 this.game.sendAction(select);
                 SplendorCardAction buy = new SplendorCardAction(this, card, row, col);
