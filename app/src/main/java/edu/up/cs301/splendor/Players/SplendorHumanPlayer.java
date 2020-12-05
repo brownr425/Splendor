@@ -1,14 +1,13 @@
 package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
-import edu.up.cs301.splendor.Actions.QuitAction;
+import edu.up.cs301.splendor.Actions.SplendorClearSelectedAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinAction;
-import edu.up.cs301.splendor.Game.Card;
 import edu.up.cs301.splendor.Setup.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.splendor.Actions.GameAction;
@@ -16,7 +15,6 @@ import edu.up.cs301.splendor.State.GameInfo;
 
 import java.util.Random;
 
-import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -80,7 +78,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private ImageButton sapphireCoin;
     private ImageButton onyxCoin;
     private ImageButton rubyCoin;
-    private ImageButton goldCoin;
+    private Button clearCoins;
 
     //player area
     private Button buyButton;
@@ -168,7 +166,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         sapphireCoin.setImageResource(R.drawable.sapphire);
         onyxCoin.setImageResource(R.drawable.onyx);
         rubyCoin.setImageResource(R.drawable.ruby);
-        goldCoin.setImageResource(R.drawable.gold);
 
         //SELECTED COIN HIGHLIGHT
         updateSelectedCoins();
@@ -596,6 +593,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             action = new SplendorCoinSelectAction(this, 3);
         } else if (button.equals(onyxCoin)) {
             action = new SplendorCoinSelectAction(this, 4);
+        } else if (button.equals(clearCoins)) {
+            action = new SplendorClearSelectedAction(this);
         } else if (button.equals(reserveCard1)) {
             action = new SplendorSelectCardAction(this, 0, -1);
             // column is -1 to signify it is not in the board, it is the reserved hand
@@ -682,13 +681,13 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         emeraldCoin = (ImageButton) activity.findViewById(R.id.emeraldCoin);
         diamondCoin = (ImageButton) activity.findViewById(R.id.diamondCoin);
         onyxCoin = (ImageButton) activity.findViewById(R.id.onyxCoin);
-        goldCoin = (ImageButton) activity.findViewById(R.id.goldCoin);
+        clearCoins = (Button) activity.findViewById(R.id.clearCoins);
         rubyCoin.setOnClickListener(this);
         sapphireCoin.setOnClickListener(this);
         emeraldCoin.setOnClickListener(this);
         diamondCoin.setOnClickListener(this);
         onyxCoin.setOnClickListener(this);
-        goldCoin.setOnClickListener(this);
+        clearCoins.setOnClickListener(this);
 
         // simple buttons for the reserved cards
         reserveCard1 = (Button) activity.findViewById(R.id.reserveSlot1);
