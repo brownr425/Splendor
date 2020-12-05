@@ -21,9 +21,9 @@ public class SplendorMainActivity extends GameMainActivity {
 
 /**
  * Create the default configuration for this game:
- * - one human player vs. three computer players
- * - hard 4 players
- * - one kind of computer player available (date tbd)
+ * - one human player vs. one computer players
+ * -
+ * -
  *
  * @return
  * 		the new configuration object, representing the default configuration
@@ -52,12 +52,12 @@ public class SplendorMainActivity extends GameMainActivity {
                 return new SplendorSmartComputerPlayer(name);
             }});
 
-        // Create a game configuration class for Counter:
+        // Create a game configuration class for Splendor:
         // - player types as given above
-        // - from 1 to 2 players
-        // - name of game is "Counter Game"
+        // -  2 players
+        // - name of game is "Splendor Game"
         // - port number as defined above
-        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 4, "Splendor Game",
+        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Splendor Game",
                 PORT_NUMBER);
 
         // Add the default players to the configuration

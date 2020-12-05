@@ -30,17 +30,16 @@ import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
 import edu.up.cs301.splendor.State.SplendorGameState;
 
 /**
- * A GUI of a counter-player. The GUI displays the current value of the counter,
- * and allows the human player to press the '+' and '-' buttons in order to
- * send moves to the game.
- * <p>
- * Just for fun, the GUI is implemented so that if the player presses either button
- * when the counter-value is zero, the screen flashes briefly, with the flash-color
- * being dependent on whether the player is player 0 or player 1.
+ * A GUI of a splendor-player. The GUI displays the splendor board as given by the Local Game, GUI has multiple parts:
+ * Info: Info banner on top of screen that displays points, Info box that displays runtime information
+ * Board: The board is a 3x4 board with 3 ranks, all are selectable buttons
+ * Coins: the Far right of the board has 6 coin selection buttons
+ * Action buttons: The bottom of the board is reserved for action buttons namely:
+ *      Take coin, Buy Card, Reserve Card, Return Coins
  *
- * @author Steven R. Vegdahl
- * @author Andrew M. Nuxoll
- * @version July 2013
+ *  This GUI worked off the framework given by Dr. Nuxoll and Dr. Vegdahl and their counter game
+ *
+ * @version December 2020
  */
 public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListener {
     // the most recent game state, as given to us by the SplendorLocalGame
@@ -76,7 +75,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private Button reserveCard2;
     private Button reserveCard3;
 
-    //coins I buttons
     private ImageButton emeraldCoin;
     private ImageButton diamondCoin;
     private ImageButton sapphireCoin;
@@ -84,7 +82,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private ImageButton rubyCoin;
     private Button clearCoins;
 
-    //player area
     private Button buyButton;
     private Button reserveButton;
     private Button coinButton;
@@ -93,10 +90,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     private Button restartButton;
     private Button returnCoinButton;
 
-    // infoBox
     private TextView infoBox;
 
-    //player points values
     private TextView p1Emerald;
     private TextView p1Diamond;
     private TextView p1Sapphire;
@@ -165,25 +160,33 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     protected void updateDisplay() {
 
         setUpNoblesandCoins();
-
-        //SELECTED COIN HIGHLIGHT
         updateSelectedCoins();
         updatePlayerTurnColor();
         updatePlayerTurnColor();
         updatePlayerInfoVisabilty();
         updatePlayerScores();
         updateInfoBox();
-        updateBuyableCards(); //TODO needs some fixing
+        updateBuyableCards();
         updateSelectedCards();
-        coinB.setText("Coin Bank:\n Ruby: " + state.getRubyCoins() +
+        updateCoinBank();
+
+        //Update info box to reflect selected card
+        mainLayout.setBackgroundResource(R.drawable.wood_grain_background_1);
+    }
+
+    /**
+     * updateCoinBank()
+     *
+     * helper method for updateDisplay()
+     * sets text for coin bank message
+     * */
+    public void updateCoinBank(){
+        String message = "Coin Bank:\n Ruby: " + state.getRubyCoins() +
                 "\nSapphire: " + state.getSapphireCoins() +
                 "\nEmerald: " + state.getEmeraldCoins() +
                 "\nDiamond: " + state.getDiamondCoins() +
-                "\nOnyx: " + state.getOnyxCoins());
-
-        //Update info box to reflect selected card
-
-        mainLayout.setBackgroundResource(R.drawable.wood_grain_background_1);
+                "\nOnyx: " + state.getOnyxCoins();
+        coinB.setText(message);
     }
 
     /**
@@ -225,6 +228,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * setUpGUIImages()
+     *
+     * helper method for setAsGUI
+     * sets initial random board config images
+     * */
     public void setUpGUIImages() {
         rank3Card1.setImageResource(randomImage());
         rank3Card2.setImageResource(randomImage());
@@ -242,6 +251,12 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         rank1Card4.setImageResource(randomImage());
     }
 
+    /**
+     * randomImage()
+     *
+     * helper method for setUpGUIImages
+     * creates random drawable object
+     * */
     public int randomImage() {
         Random rand = new Random();
         int newRandomNumber = rand.nextInt(8);
@@ -276,6 +291,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     /**
+     * updatePlayerTurnColor()
+     *
      * This methods sets the color behind the current players name to be green
      */
     public void updatePlayerTurnColor() {
@@ -303,6 +320,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     /**
+     * updatePlayerInfoVisabilty()
+     *
      * This method changes which players point boxes are visable based on the number of players
      */
     public void updatePlayerInfoVisabilty() {
@@ -356,67 +375,99 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     /**
+     * updatePlayerScores()
+     *
      * This method updates point boxes at the top of the screen to current player scores
      */
     public void updatePlayerScores() {
-        p1Emerald.setText("" + state.getPlayer(0).getEmerCoins() +
-                " + " + state.getPlayer(0).getEmerPts());
-        p1Diamond.setText("" + state.getPlayer(0).getDiaCoins() +
-                " + " + state.getPlayer(0).getDiaPts());
-        p1Sapphire.setText("" + state.getPlayer(0).getSapphCoins() +
-                " + " + state.getPlayer(0).getSapphPts());
-        p1Onyx.setText("" + state.getPlayer(0).getOnyxCoins() +
-                " + " + state.getPlayer(0).getOnyxPts());
-        p1Ruby.setText("" + state.getPlayer(0).getRubyCoins() +
-                " + " + state.getPlayer(0).getRubyPts());
-        p1Gold.setText("" + state.getPlayer(0).getGoldCoins());
-        p1PrestigePt.setText("Prestige Points:" + state.getPlayer(0).getPrestigePts());
+        String p1E_message ="" + state.getPlayer(0).getEmerCoins() +
+                " + " + state.getPlayer(0).getEmerPts();
+        String p1D_message ="" + state.getPlayer(0).getDiaCoins() +
+                " + " + state.getPlayer(0).getDiaPts();
+        String p1S_message ="" + state.getPlayer(0).getSapphCoins() +
+                        " + " + state.getPlayer(0).getSapphPts();
+        String p1O_message ="" + state.getPlayer(0).getOnyxCoins() +
+                        " + " + state.getPlayer(0).getOnyxPts();
+        String p1R_message ="" + state.getPlayer(0).getRubyCoins() +
+                        " + " + state.getPlayer(0).getRubyPts();
+        String p1G_message = "" + state.getPlayer(0).getGoldCoins();
+        String p1PP_message ="Prestige Points:" + state.getPlayer(0).getPrestigePts();
+        p1Emerald.setText(p1E_message);
+        p1Diamond.setText(p1D_message);
+        p1Sapphire.setText(p1S_message);
+        p1Onyx.setText(p1O_message);
+        p1Ruby.setText(p1R_message);
+        p1Gold.setText(p1G_message);
+        p1PrestigePt.setText(p1PP_message);
 
-        p2Emerald.setText("" + state.getPlayer(1).getEmerCoins() +
-                " + " + state.getPlayer(1).getEmerPts());
-        p2Diamond.setText("" + state.getPlayer(1).getDiaCoins() +
-                " + " + state.getPlayer(1).getDiaPts());
-        p2Sapphire.setText("" + state.getPlayer(1).getSapphCoins() +
-                " + " + state.getPlayer(1).getSapphPts());
-        p2Onyx.setText("" + state.getPlayer(1).getOnyxCoins() +
-                " + " + state.getPlayer(1).getOnyxPts());
-        p2Ruby.setText("" + state.getPlayer(1).getRubyCoins() +
-                " + " + state.getPlayer(1).getRubyPts());
-        p2Gold.setText("" + state.getPlayer(1).getGoldCoins());
-        p2PrestigePt.setText("Prestige Points:" + state.getPlayer(1).getPrestigePts());
+        String p2E_message ="" + state.getPlayer(1).getEmerCoins() +
+                " + " + state.getPlayer(1).getEmerPts();
+        String p2D_message ="" + state.getPlayer(1).getDiaCoins() +
+                " + " + state.getPlayer(1).getDiaPts();
+        String p2S_message ="" + state.getPlayer(1).getSapphCoins() +
+                " + " + state.getPlayer(1).getSapphPts();
+        String p2O_message ="" + state.getPlayer(1).getOnyxCoins() +
+                " + " + state.getPlayer(1).getOnyxPts();
+        String p2R_message ="" + state.getPlayer(1).getRubyCoins() +
+                " + " + state.getPlayer(1).getRubyPts();
+        String p2G_message = "" + state.getPlayer(1).getGoldCoins();
+        String p2PP_message ="Prestige Points:" + state.getPlayer(1).getPrestigePts();
+        p2Emerald.setText(p2E_message);
+        p2Diamond.setText(p2D_message);
+        p2Sapphire.setText(p2S_message);
+        p2Onyx.setText(p2O_message);
+        p2Ruby.setText(p2R_message);
+        p2Gold.setText(p2G_message);
+        p2PrestigePt.setText(p2PP_message);
 
         if (state.getPlayerCount() >= 3) {
-            p3Emerald.setText("" + state.getPlayer(2).getEmerCoins() +
-                    " + " + state.getPlayer(2).getEmerPts());
-            p3Diamond.setText("" + state.getPlayer(2).getDiaCoins() +
-                    " + " + state.getPlayer(2).getDiaPts());
-            p3Sapphire.setText("" + state.getPlayer(2).getSapphCoins() +
-                    " + " + state.getPlayer(2).getSapphPts());
-            p3Onyx.setText("" + state.getPlayer(2).getOnyxCoins() +
-                    " + " + state.getPlayer(2).getOnyxPts());
-            p3Ruby.setText("" + state.getPlayer(2).getRubyCoins() +
-                    " + " + state.getPlayer(2).getRubyPts());
-            p3Gold.setText("" + state.getPlayer(2).getGoldCoins());
-            p3PrestigePt.setText("Prestige Points:" + state.getPlayer(2).getPrestigePts());
+            String p3E_message ="" + state.getPlayer(2).getEmerCoins() +
+                    " + " + state.getPlayer(2).getEmerPts();
+            String p3D_message ="" + state.getPlayer(2).getDiaCoins() +
+                    " + " + state.getPlayer(2).getDiaPts();
+            String p3S_message ="" + state.getPlayer(2).getSapphCoins() +
+                    " + " + state.getPlayer(2).getSapphPts();
+            String p3O_message ="" + state.getPlayer(2).getOnyxCoins() +
+                    " + " + state.getPlayer(2).getOnyxPts();
+            String p3R_message ="" + state.getPlayer(2).getRubyCoins() +
+                    " + " + state.getPlayer(2).getRubyPts();
+            String p3G_message = "" + state.getPlayer(2).getGoldCoins();
+            String p3PP_message ="Prestige Points:" + state.getPlayer(2).getPrestigePts();
+            p3Emerald.setText(p3E_message);
+            p3Diamond.setText(p3D_message);
+            p3Sapphire.setText(p3S_message);
+            p3Onyx.setText(p3O_message);
+            p3Ruby.setText(p3R_message);
+            p3Gold.setText(p3G_message);
+            p3PrestigePt.setText(p3PP_message);
 
             if (state.getPlayerCount() == 4) {
-                p4Emerald.setText("" + state.getPlayer(3).getEmerCoins() +
-                        " + " + state.getPlayer(3).getEmerPts());
-                p4Diamond.setText("" + state.getPlayer(3).getDiaCoins() +
-                        " + " + state.getPlayer(3).getDiaPts());
-                p4Sapphire.setText("" + state.getPlayer(3).getSapphCoins() +
-                        " + " + state.getPlayer(3).getSapphPts());
-                p4Onyx.setText("" + state.getPlayer(3).getOnyxCoins() +
-                        " + " + state.getPlayer(3).getOnyxPts());
-                p4Ruby.setText("" + state.getPlayer(3).getRubyCoins() +
-                        " + " + state.getPlayer(3).getRubyPts());
-                p4Gold.setText("" + state.getPlayer(3).getGoldCoins());
-                p4PrestigePt.setText("Prestige Points:" + state.getPlayer(3).getPrestigePts());
+                String p4E_message ="" + state.getPlayer(3).getEmerCoins() +
+                        " + " + state.getPlayer(3).getEmerPts();
+                String p4D_message ="" + state.getPlayer(3).getDiaCoins() +
+                        " + " + state.getPlayer(3).getDiaPts();
+                String p4S_message ="" + state.getPlayer(3).getSapphCoins() +
+                        " + " + state.getPlayer(3).getSapphPts();
+                String p4O_message ="" + state.getPlayer(3).getOnyxCoins() +
+                        " + " + state.getPlayer(3).getOnyxPts();
+                String p4R_message ="" + state.getPlayer(3).getRubyCoins() +
+                        " + " + state.getPlayer(3).getRubyPts();
+                String p4G_message = "" + state.getPlayer(3).getGoldCoins();
+                String p4PP_message ="Prestige Points:" + state.getPlayer(3).getPrestigePts();
+                p4Emerald.setText(p4E_message);
+                p4Diamond.setText(p4D_message);
+                p4Sapphire.setText(p4S_message);
+                p4Onyx.setText(p4O_message);
+                p4Ruby.setText(p4R_message);
+                p4Gold.setText(p4G_message);
+                p4PrestigePt.setText(p4PP_message);
             }
         }
     }
 
     /**
+     * updateInfoBox()
+     *
      * This method writes the card information of the currently selected card to the info box
      */
     public void updateInfoBox() {
@@ -456,6 +507,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         }
     }
 
+    /**
+     * updateSelectedCards()
+     *
+     * The method updates what selected card has been picked
+     */
     public void updateSelectedCards() {
         switch (this.state.getSelectedCol()) {
             case 0:
@@ -514,6 +570,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     /**
+     * updateSelectedCoins()
+     *
      * This method updates coin images to reflect which coins are currently chosen
      */
     public void updateSelectedCoins() {
@@ -525,7 +583,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             } else if (coin == 2) {
                 emeraldCoin.setImageResource(R.drawable.emerald_selected_hr);
             } else if (coin == 3) {
-                diamondCoin.setImageResource(R.drawable.diamond_selected_hr);
+                diamondCoin.setImageResource(R.drawable.diamond_selected_hrr);
             } else if (coin == 4) {
                 onyxCoin.setImageResource(R.drawable.onyx_selected_hr);
             }
@@ -533,6 +591,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     /**
+     * updateBuyableCards()
+     *
      * This method sets the background of cards to green if the player can purchase them
      */
     public void updateBuyableCards() {
@@ -611,6 +671,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     /**
+     * onClick(View button)
+     *
      * this method gets called whenever the user clicks any of the buttons on screen.
      * It creates a corresponding action based on the button that was clicked.
      *
@@ -725,6 +787,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }// onClick
 
     /**
+     * receiveInfo(GameInfo info)
+     *
      * callback method when we get a message (e.g., from the game)
      *
      * @param info the message
@@ -743,6 +807,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     }
 
     /**
+     * setAsGui(GameMainActivity activity)
+     *
      * callback method--our game has been chosen/rechosen to be the GUI,
      * called from the GUI thread
      *

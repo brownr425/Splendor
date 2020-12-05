@@ -22,13 +22,20 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
     /**
      * constructor
      *
-     * @param name the player's name (e.g., "John")
+     * @param name the computer player's name
      */
     public SplendorComputerPlayer(String name) {
         super(name);
         this.randomizer = new Random();
     }
 
+    /**
+     * receiveInfo(GameInfo info) get info about the updated GameState
+     *
+     * AI checks if it can buy a card, if not take coins. return coins if needed
+     *
+     * @param info the info being sent from Local Game
+     */
     @Override
     public void receiveInfo(GameInfo info) {
         if (!(info instanceof SplendorGameState)) {
@@ -58,6 +65,12 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         randomReturn();
     }
 
+    /**
+     * helper method for receiveInfo()
+     *
+     * generates a random coin to but, could be 2, could be 3
+     *
+     */
     public boolean randomCoinBuy() {
         //generates new random object for random coin selection
         boolean success = false;
@@ -98,11 +111,15 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             totalCoins += 3;
             this.gameState.coinAction(coin1, coin2, coin3);
         }
-        Log.d("CP", "BUYC");
         return true;
     }
 
-    // Computer player automatically returns between 1-3 random coins.
+    /**
+     * helper to receiveInfo
+     *
+     * returns 1-3 random coins
+     *
+     */
     public boolean randomReturn() {
         int coinType = randomizer.nextInt(5);
         boolean flag = false;
