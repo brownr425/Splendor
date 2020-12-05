@@ -16,18 +16,10 @@ import edu.up.cs301.splendor.State.SplendorGameState;
 public class SplendorLocalGame extends LocalGame {
     private SplendorGameState gameState;
 
-    //used for extra turn logic at the end of the game
-    private static int firstToThreshold;
-    private static int playerTracking = 0;
-    private static boolean extraTurn = false;
-    private static boolean extraTurnCheck = false;
-    private static boolean extraTurnCheck2 = false;
-    private static boolean extraTurnCheck3 = false;
-    private static boolean allPlayersExtra = false;
+
 
     public SplendorLocalGame(int num, String[] playerNames) {
         this.gameState = new SplendorGameState(num, playerNames);
-        this.extraTurn = false;
     }
 
     /**
@@ -55,37 +47,9 @@ public class SplendorLocalGame extends LocalGame {
      * @return
      */
     protected String checkIfGameOver() {
-        int playerTurn = this.gameState.getPlayerTurn();
-        for (int i = 0; i < this.gameState.getPlayerCount(); i++) {
-            if (extraTurn == false && this.gameState.getPlayer(i).getPrestigePts() >= 15) {
-                extraTurn = true;
-                this.firstToThreshold = i;
-            }
-        }
-        if (extraTurn == true) {
-            playerTracking = nextPlayerSim(firstToThreshold);
-            if (playerTurn == playerTracking) this.extraTurnCheck = true;
-            if (this.gameState.getPlayerCount() >= 3) {
-                playerTracking = nextPlayerSim(playerTracking);
-                if (playerTurn == playerTracking) this.extraTurnCheck2 = true;
-            }
-            if (this.gameState.getPlayerCount() == 4) {
-                playerTracking = nextPlayerSim(playerTracking);
-                if (playerTurn == playerTracking) this.extraTurnCheck3 = true;
-            }
-
-            if (gameState.getPlayerCount() == 2) {
-                allPlayersExtra = extraTurnCheck;
-            } else if (gameState.getPlayerCount() == 3) {
-                allPlayersExtra = (extraTurnCheck && extraTurnCheck2);
-            } else if (gameState.getPlayerCount() == 4) {
-                allPlayersExtra = (extraTurnCheck && extraTurnCheck2 && extraTurnCheck3);
-            }
-        }
-        if (extraTurn == true &&
-                this.allPlayersExtra && playerTurn == firstToThreshold) {
-            return "Congratulations Player " +
-                    (this.gameState.getTrueVictor(firstToThreshold) + 1) + "! ";
+        for(int i = 0; i < this.gameState.getPlayerList().size(); i++)
+        {
+            if(this.gameState.getPlayer(i).getPrestigePts() >= 15) return "Congratulations Player " + (i+1) + "! ";
         }
         return null;
     }
