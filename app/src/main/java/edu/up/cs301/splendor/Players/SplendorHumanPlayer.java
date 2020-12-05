@@ -200,11 +200,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         nobleCard4.setImageResource(R.drawable.noble4);
         nobleCard5.setImageResource(R.drawable.noble5);
 
-        emeraldCoin.setImageResource(R.drawable.emerald);
-        diamondCoin.setImageResource(R.drawable.diamond);
-        sapphireCoin.setImageResource(R.drawable.sapphire);
-        onyxCoin.setImageResource(R.drawable.onyx);
-        rubyCoin.setImageResource(R.drawable.ruby);
+        emeraldCoin.setImageResource(R.drawable.emerald_hr);
+        diamondCoin.setImageResource(R.drawable.diamond_hr);
+        sapphireCoin.setImageResource(R.drawable.sapphire_hr);
+        onyxCoin.setImageResource(R.drawable.onyx_hr);
+        rubyCoin.setImageResource(R.drawable.ruby_hr);
 
         nobleCard1.setVisibility(View.GONE);
         nobleCard2.setVisibility(View.GONE);
@@ -519,15 +519,15 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     public void updateSelectedCoins() {
         for (int coin : this.state.getCoinTracking()) {
             if (coin == 0) {
-                rubyCoin.setImageResource(R.drawable.ruby_selected);
+                rubyCoin.setImageResource(R.drawable.ruby_selected_hr);
             } else if (coin == 1) {
-                sapphireCoin.setImageResource(R.drawable.sapphire_selected);
+                sapphireCoin.setImageResource(R.drawable.sapphire_selected_hr);
             } else if (coin == 2) {
-                emeraldCoin.setImageResource(R.drawable.emerald_selected);
+                emeraldCoin.setImageResource(R.drawable.emerald_selected_hr);
             } else if (coin == 3) {
-                diamondCoin.setImageResource(R.drawable.diamond_selected);
+                diamondCoin.setImageResource(R.drawable.diamond_selected_hr);
             } else if (coin == 4) {
-                onyxCoin.setImageResource(R.drawable.onyx_selected);
+                onyxCoin.setImageResource(R.drawable.onyx_selected_hr);
             }
         }
     }
