@@ -49,7 +49,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             return;
         }
 
-        sleep(0.5);
+        sleep(2);
         //traverse through card board and purchases a card if it can
        // totalCoins = this.gameState.getPlayer(this.gameState.getPlayerTurn()).getTotalCoins();
         for (int row = 0; row < 3; row++) {
