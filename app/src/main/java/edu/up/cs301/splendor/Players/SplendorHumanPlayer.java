@@ -1,6 +1,7 @@
 package edu.up.cs301.splendor.Players;
 
 import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.splendor.Actions.SplendorClearSelectedAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorNobleSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
@@ -780,8 +781,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         coinB = (TextView) activity.findViewById(R.id.CB);
         infoBox = (TextView) activity.findViewById(R.id.infoGiven);
-
-        setUpGUIImages();
 
         clickSound = MediaPlayer.create(activity, R.raw.button_click);
         coinBuy = MediaPlayer.create(activity, R.raw.coin_buy);
