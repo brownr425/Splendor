@@ -175,6 +175,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         updatePlayerScores();
         updateInfoBox();
         updateBuyableCards(); //TODO needs some fixing
+        randomizeLastBoughtCard();
         coinB.setText("Coin Bank:\n Ruby:" + state.getRubyCoins() + "\nSapph:" + state.getSapphireCoins() + "\nEmer:" + state.getEmeraldCoins() + "\nDia:" + state.getDiamondCoins() + "\nOnyx:" + state.getOnyxCoins());
 
         //Update info box to reflect selected card
@@ -196,6 +197,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         rank1Card2.setImageResource(randomImage());
         rank1Card3.setImageResource(randomImage());
         rank1Card4.setImageResource(randomImage());
+
     }
     public int randomImage()
     {
@@ -409,6 +411,81 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
             }
         }
     }
+
+    public void randomizeLastBoughtCard(){
+        if(state.getLastBoughtRow() > 0 && state.getLastBoughtCol() > 0 ){
+
+
+            if( state.getLastBoughtRow() == 0 ){
+                switch (state.getLastBoughtCol()){
+
+                    case 0:
+                        rank3Card1.setImageResource(randomImage());
+
+                        break;
+                    case 1:
+                        rank3Card2.setImageResource(randomImage());
+
+                        break;
+                    case 2:
+                        rank3Card3.setImageResource(randomImage());
+
+                        break;
+                    case 3:
+                        rank3Card4.setImageResource(randomImage());
+
+                        break;
+                }
+            }
+            else if (state.getLastBoughtRow() == 1 ){
+                switch (state.getLastBoughtCol()){
+
+                    case 0:
+                        rank2Card1.setImageResource(randomImage());
+                        break;
+                    case 1:
+                        rank2Card2.setImageResource(randomImage());
+                        break;
+                    case 2:
+                        rank2Card3.setImageResource(randomImage());
+                        break;
+                    case 3:
+                        rank2Card4.setImageResource(randomImage());
+                        break;
+                }
+
+            }
+            else if ( state.getLastBoughtRow() == 2 ){
+                switch (state.getLastBoughtCol()){
+
+                    case 0:
+                        rank1Card1.setImageResource(randomImage());
+                        break;
+                    case 1:
+                        rank1Card2.setImageResource(randomImage());
+                        break;
+                    case 2:
+                        rank1Card3.setImageResource(randomImage());
+                        break;
+                    case 3:
+                        rank1Card4.setImageResource(randomImage());
+                        break;
+                }
+
+            }
+
+
+
+        }
+
+
+
+
+    }
+
+
+
+
 
     /**
      * This method sets the background of cards to green if the player can purchase them

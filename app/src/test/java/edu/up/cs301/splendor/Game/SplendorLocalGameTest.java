@@ -9,6 +9,7 @@ import edu.up.cs301.splendor.Actions.SplendorCardAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinAction;
 import edu.up.cs301.splendor.Actions.SplendorCoinSelectAction;
 import edu.up.cs301.splendor.Actions.SplendorReserveCardAction;
+import edu.up.cs301.splendor.Actions.SplendorReturnCoinAction;
 import edu.up.cs301.splendor.Actions.SplendorSelectCardAction;
 import edu.up.cs301.splendor.Players.SplendorHumanPlayer;
 import edu.up.cs301.splendor.State.SplendorGameState;
@@ -37,7 +38,7 @@ public class SplendorLocalGameTest {
         SplendorLocalGame local1 = new SplendorLocalGame(4, arr);
         local1.getLocalGameGameState().getPlayer(1).setPrestigePts(20);
         String str = local1.checkIfGameOver();
-        System.out.println(str);
+        assertEquals("Congratulatons Player 2", str);
     }
 
     @Test
@@ -226,7 +227,30 @@ public class SplendorLocalGameTest {
 
     @Test
     public void SplendorReturnCoinAction() {
+        String[] arr = {"p1", "p2", "p3", "p4"};
+        SplendorLocalGame local1 = new SplendorLocalGame(4, arr);
+        SplendorHumanPlayer human1 = new SplendorHumanPlayer("name2");
+        local1.getLocalGameGameState().setPlayerTurn(1);
+        //total coins == 12
+        local1.getLocalGameGameState().getPlayer(1).setDiaCoins(3);
+        local1.getLocalGameGameState().getPlayer(1).setEmerCoins(3);
+        local1.getLocalGameGameState().getPlayer(1).setSapphCoins(3);
+        local1.getLocalGameGameState().getPlayer(1).setRubyCoins(3);
+        local1.getLocalGameGameState().getCoinTracking().add(1);
+        local1.getLocalGameGameState().getCoinTracking().add(2);
+        local1.getLocalGameGameState().getCoinTracking().add(0);
 
+       // GameAction actiontake = new SplendorCoinAction(human1);
+        //local1.makeMove(actiontake);
+        local1.getLocalGameGameState().getCoinTracking().add(1);
+        local1.getLocalGameGameState().getCoinTracking().add(2);
+        local1.getLocalGameGameState().getCoinTracking().add(0);
+        GameAction actionreturn = new SplendorReturnCoinAction(human1);
+        local1.makeMove(actionreturn);
+
+        assert(3 == local1.getLocalGameGameState().getPlayer(1).getRubyCoins());
+        assert(3 == local1.getLocalGameGameState().getPlayer(1).getEmerCoins());
+        assert(3 == local1.getLocalGameGameState().getPlayer(1).getSapphCoins());
 
     }
 

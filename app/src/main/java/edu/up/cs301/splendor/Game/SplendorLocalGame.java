@@ -45,6 +45,8 @@ public class SplendorLocalGame extends LocalGame {
      * */
     @Override
     protected boolean makeMove(GameAction action) {
+        gameState.setLastBoughtCol(-1);
+        gameState.setLastBoughtRow(-1);
         if(action instanceof QuitAction) {
 
         }

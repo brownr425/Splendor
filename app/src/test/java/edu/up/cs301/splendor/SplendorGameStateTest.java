@@ -53,6 +53,7 @@ public class SplendorGameStateTest {
         SplendorGameState state1 = new SplendorGameState(4, arr);
         state1.getPlayer(0).setPrestigePts(10);
         state1.getPlayer(1).setPrestigePts(5);
+        state1.getPlayer(1).setRubyCoins(3);
         SplendorGameState state2 = new SplendorGameState(state1);
         state2.getPlayer(1).setPrestigePts(14);
 
@@ -61,6 +62,8 @@ public class SplendorGameStateTest {
         assertEquals(5, state1.getPlayer(1).getPrestigePts());
         assertEquals(10, state2.getPlayer(0).getPrestigePts());
         assertEquals(14, state2.getPlayer(1).getPrestigePts());
+        assertEquals(3, state2.getPlayer(1).getRubyCoins());
+
     }
 
 

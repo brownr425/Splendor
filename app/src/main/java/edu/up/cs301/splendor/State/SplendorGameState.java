@@ -56,6 +56,9 @@ public class SplendorGameState extends GameState {
     private final int RANKS = 3;
     private final int CARDS_PER_RANK = 4;
 
+    private int lastBoughtRow = -1;
+    private int lastBoughtCol = -1;
+
     //coin instance variables for stacks
     private int rubyCoins;
     private int sapphireCoins;
@@ -184,6 +187,9 @@ public class SplendorGameState extends GameState {
         this.player2Name = stateToCopy.getPlayer2Name();
         this.player3Name = stateToCopy.getPlayer3Name();
         this.player4Name = stateToCopy.getPlayer4Name();
+
+       this.lastBoughtRow = stateToCopy.getLastBoughtRow();
+       this.lastBoughtCol = stateToCopy.getLastBoughtCol();
     }
 
     //helper method for constructor setting all point values for player to zero
@@ -541,6 +547,8 @@ public class SplendorGameState extends GameState {
                             moreThanTenCoins = true;
                         }
                         player.getPlayerHand().addToReserved(cardToReserve);
+                        this.lastBoughtRow = row;
+                        this.lastBoughtCol = col;
                         switch (row) {
                             case 0:
                                 this.board[row][col] = this.rank3Stack.remove(0);
@@ -574,16 +582,22 @@ public class SplendorGameState extends GameState {
                     {
                         player.getPlayerHand().removeFromReserved(row);
                     } else {
+                        this.lastBoughtRow = row;
+                        this.lastBoughtCol = col;
                         switch (row) {
+
                             case 0:
                                 this.board[row][col] = this.rank3Stack.remove(0);
                                 break;
                             case 1:
                                 this.board[row][col] = this.rank2Stack.remove(0);
+
                                 break;
                             case 2:
                                 this.board[row][col] = this.rank1Stack.remove(0);
+
                                 break;
+
                         }
 
                     }
@@ -1137,6 +1151,13 @@ public class SplendorGameState extends GameState {
     public String getPlayer4Name() {
         return player4Name;
     }
+
+    public int getLastBoughtRow(){return this.lastBoughtRow;}
+
+    public int getLastBoughtCol(){return this.lastBoughtCol;}
+
+    public void setLastBoughtRow(int LBR){this.lastBoughtRow = LBR ;}
+    public void setLastBoughtCol(int LBC){this.lastBoughtCol = LBC ;}
 
 
     public int getPlayerCount() {
