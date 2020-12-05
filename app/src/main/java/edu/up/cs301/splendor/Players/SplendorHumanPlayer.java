@@ -204,7 +204,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         nobleCard5.setImageResource(R.drawable.noble5);
 
         emeraldCoin.setImageResource(R.drawable.emerald_hr);
-        diamondCoin.setImageResource(R.drawable.diamond_hr);
+        diamondCoin.setImageResource(R.drawable.diamond_hrhr);
         sapphireCoin.setImageResource(R.drawable.sapphire_hr);
         onyxCoin.setImageResource(R.drawable.onyx_hr);
         rubyCoin.setImageResource(R.drawable.ruby_hr);
