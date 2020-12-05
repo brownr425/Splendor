@@ -57,11 +57,6 @@ public class SplendorLocalGameTest {
         local1.makeMove(action);
         assert( 2 == local1.getLocalGameGameState().getSelectedCol());
         assert( 1 == local1.getLocalGameGameState().getSelectedRow());
-
-
-
-
-
     }
     @Test
     public void SplendorCardAction() {
@@ -96,16 +91,68 @@ public class SplendorLocalGameTest {
         SplendorHumanPlayer human1 = new SplendorHumanPlayer("name1");
 
         local1.getLocalGameGameState().setPlayerTurn(1);
-        Card testCard = local1.getLocalGameGameState().getBoard(0,0);
-        local1.getLocalGameGameState().setSelected(testCard);
-
+        Card testCard1 = local1.getLocalGameGameState().getBoard(2,0);
+        local1.getLocalGameGameState().setSelectedRow(0);
+        local1.getLocalGameGameState().setSelectedCol(0);
         GameAction action = new SplendorReserveCardAction(human1,0,0);
         local1.makeMove(action);
-        //TODO
-        //assertEquals(2, local1.getLocalGameGameState().getPlayerTurn());
-        //assert (1 == local1.getLocalGameGameState().getPlayer(1).getGoldCoins());
+        //Check next turn and gold coins updated
+        assertEquals(2, local1.getLocalGameGameState().getPlayerTurn());
+        assert (1 == local1.getLocalGameGameState().getPlayer(1).getGoldCoins());
+        //check that res card is in array now
+        assert (testCard1 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(0));
+
+        //reserve 2 more cards
+        local1.getLocalGameGameState().setPlayerTurn(1);
+        Card testCard2 = local1.getLocalGameGameState().getBoard(2,0);
+        local1.getLocalGameGameState().setSelectedRow(0);
+        local1.getLocalGameGameState().setSelectedCol(0);
+        local1.makeMove(action);
+        local1.getLocalGameGameState().setPlayerTurn(1);
+        Card testCard3 = local1.getLocalGameGameState().getBoard(2,0);
+        local1.getLocalGameGameState().setSelectedRow(0);
+        local1.getLocalGameGameState().setSelectedCol(0);
+        local1.makeMove(action);
+        assert (testCard1 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(0));
+        assert (testCard2 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(1));
+        assert (testCard3 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(2));
 
 
+        //make illegal reserve
+        local1.getLocalGameGameState().setPlayerTurn(1);
+        Card testCard4 = local1.getLocalGameGameState().getBoard(2,0);
+        local1.getLocalGameGameState().setSelectedRow(0);
+        local1.getLocalGameGameState().setSelectedCol(0);
+        local1.makeMove(action);
+
+        //these should be the same
+        assert (testCard1 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(0));
+        assert (testCard2 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(1));
+        assert (testCard3 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(2));
+        //should still be p1 turn
+        assertEquals(1, local1.getLocalGameGameState().getPlayerTurn());
+
+        //make sure player can buy card
+        local1.getLocalGameGameState().getPlayer(1).setDiaPts(70);
+        local1.getLocalGameGameState().getPlayer(1).setEmerPts(70);
+        local1.getLocalGameGameState().getPlayer(1).setOnyxPts(70);
+        local1.getLocalGameGameState().getPlayer(1).setSapphPts(70);
+        local1.getLocalGameGameState().getPlayer(1).setRubyPts(70);
+
+        //buy reserved card 1
+        GameAction buyaction = new SplendorCardAction(human1, testCard1, 0, -1);
+        local1.makeMove(buyaction);
+        assert (testCard2 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(0));
+        assert (testCard3 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(1));
+
+        //Checkt that we can reserve again
+        local1.getLocalGameGameState().setPlayerTurn(1);
+        local1.getLocalGameGameState().setSelectedRow(0);
+        local1.getLocalGameGameState().setSelectedCol(0);
+        local1.makeMove(action);
+        assert (testCard4 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(0));
+        assert (testCard2 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(1));
+        assert (testCard3 == local1.getLocalGameGameState().getPlayer(1).getPlayerHand().getReserved().get(2));
 
     }
 
@@ -182,11 +229,5 @@ public class SplendorLocalGameTest {
 
 
     }
-
-
-
-
-
-
 
 }
