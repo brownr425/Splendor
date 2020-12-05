@@ -16,6 +16,7 @@ import edu.up.cs301.splendor.State.GameInfo;
 
 import java.util.Random;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -44,8 +45,9 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     // the most recent game state, as given to us by the SplendorLocalGame
     private SplendorGameState state;
 
-    // the android activity that we are running
+    // the android activity that we are running + most Outer linear layout
     private GameMainActivity myActivity;
+    private LinearLayout mainLayout;
 
     //Everything on the GUI that gets updated
     private ImageButton nobleCard1;
@@ -154,7 +156,8 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * updates the buttons and text views to match with the updated gamestate.
      */
     protected void updateDisplay() {
-        //for now, card/coin images are default
+
+        mainLayout.setBackgroundResource(R.drawable.wood_grain_background_1);
 
         nobleCard1.setImageResource(R.drawable.noble1try2);
         nobleCard2.setImageResource(R.drawable.noble2);
@@ -578,11 +581,15 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
     @Override
     public void receiveInfo(GameInfo info) {
         // ignore the message if it's not a CounterState message
-        if (!(info instanceof SplendorGameState)) return;
-        this.state = (SplendorGameState) info;
+        if ((info instanceof SplendorGameState))
+        {
+            this.state = (SplendorGameState) info;
 
-        // update our state; then update the display
-        this.state = (SplendorGameState) info;
+            // update our state; then update the display
+            this.state = (SplendorGameState) info;
+        } else {
+            flash(Color.RED, 10);
+        }
         updateDisplay();
     }
 
@@ -598,6 +605,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
 
         // Load the layout resource for our GUI
         activity.setContentView(R.layout.splendor_human_player);
+        mainLayout = myActivity.findViewById(R.id.top_gui_layout);
 
         //~~~~~~~~~~~~Buttons and Listeners~~~~~~~~~~~~~~//
         // make noble cards and set on click listener to display noble card information
