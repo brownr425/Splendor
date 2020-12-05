@@ -76,7 +76,7 @@ public class SplendorPlayer {
         this.diaPts = 0;
         this.onyxCoins = 0;
         this.onyxPts = 0;
-        this.prestigePts = 12;
+        this.prestigePts = 0;
         this.playerHand = new Hand();
     }
 

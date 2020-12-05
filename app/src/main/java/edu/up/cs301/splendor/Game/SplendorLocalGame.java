@@ -114,9 +114,7 @@ public class SplendorLocalGame extends LocalGame {
         } else if (action instanceof SplendorReturnCoinAction) {
             // player returns coins from their inventory
             for (int i = 0; i < this.gameState.getCoinTracking().size(); i++) {
-                if (!this.gameState.returnCoins(this.gameState.getCoinTracking().get(i))){
-                    return false;
-                }
+                this.gameState.returnCoins(this.gameState.getCoinTracking().get(i));
             }
             this.gameState.getCoinTracking().clear();
             return true;
