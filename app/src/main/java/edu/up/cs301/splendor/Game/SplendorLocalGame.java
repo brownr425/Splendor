@@ -82,7 +82,7 @@ public class SplendorLocalGame extends LocalGame {
         }
         if (extraTurn == true &&
                 this.allPlayersExtra && playerTurn == firstToThreshold) {
-            return "Congratulatons Player " +
+            return "Congratulations Player " +
                     (this.gameState.getTrueVictor(firstToThreshold) + 1) + "! ";
         }
         return null;
