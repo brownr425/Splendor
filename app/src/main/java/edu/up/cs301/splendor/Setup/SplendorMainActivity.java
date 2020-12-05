@@ -22,8 +22,6 @@ public class SplendorMainActivity extends GameMainActivity {
 /**
  * Create the default configuration for this game:
  * - one human player vs. one computer players
- * -
- * -
  *
  * @return
  * 		the new configuration object, representing the default configuration

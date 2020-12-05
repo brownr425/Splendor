@@ -140,14 +140,12 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         return true;
     }
 
-    public boolean notPlayerTurn() {
-        return this.playerNum != gameState.getPlayerTurn();
-    }
-
-    public boolean canBuy(Card card, int row, int col) {
-        return this.gameState.cardAction(card, row, col);
-    }
-
+    /**
+     * helper to randomReturn
+     *
+     * checks if the computer player has the selected coins before they return them
+     *
+     */
     public boolean hasCoin(int coin) {
         boolean flag = false;
         switch (coin) {
