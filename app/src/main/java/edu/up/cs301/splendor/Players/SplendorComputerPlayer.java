@@ -78,6 +78,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             sleep(1);
             this.game.sendAction(new SplendorCoinAction(this));
             totalCoins += 2;
+            this.gameState.coinAction(coin1);
         } else if (coin2 == coin3) {
             this.game.sendAction(new SplendorCoinSelectAction(this, coin2));
             sleep(0.1);
@@ -85,6 +86,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             sleep(1);
             this.game.sendAction(new SplendorCoinAction(this));
             totalCoins += 2;
+            this.gameState.coinAction(coin2);
         } else {
             //otherwise, do action on 3 coins
             this.game.sendAction(new SplendorCoinSelectAction(this, coin1));
@@ -95,6 +97,7 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
             sleep(1);
             this.game.sendAction(new SplendorCoinAction(this));
             totalCoins += 3;
+            this.gameState.coinAction(coin1, coin2, coin3);
         }
         Log.d("CP", "BUYC");
         return true;
