@@ -156,17 +156,7 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      */
     protected void updateDisplay() {
 
-        nobleCard1.setImageResource(R.drawable.noble1try2);
-        nobleCard2.setImageResource(R.drawable.noble2);
-        nobleCard3.setImageResource(R.drawable.noble3);
-        nobleCard4.setImageResource(R.drawable.noble4);
-        nobleCard5.setImageResource(R.drawable.noble5);
-
-        emeraldCoin.setImageResource(R.drawable.emerald);
-        diamondCoin.setImageResource(R.drawable.diamond);
-        sapphireCoin.setImageResource(R.drawable.sapphire);
-        onyxCoin.setImageResource(R.drawable.onyx);
-        rubyCoin.setImageResource(R.drawable.ruby);
+        setUpNoblesandCoins();
 
         //SELECTED COIN HIGHLIGHT
         updateSelectedCoins();
@@ -186,6 +176,27 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         //Update info box to reflect selected card
 
         mainLayout.setBackgroundResource(R.drawable.wood_grain_background_1);
+    }
+
+    /**
+     * setUpNoblesandCoins()
+     *
+     * helper method for updateDisplay()
+     * sets all imageResources of nobles and coins, before any selections
+     * */
+    public void setUpNoblesandCoins()
+    {
+        nobleCard1.setImageResource(R.drawable.noble1try2);
+        nobleCard2.setImageResource(R.drawable.noble2);
+        nobleCard3.setImageResource(R.drawable.noble3);
+        nobleCard4.setImageResource(R.drawable.noble4);
+        nobleCard5.setImageResource(R.drawable.noble5);
+
+        emeraldCoin.setImageResource(R.drawable.emerald);
+        diamondCoin.setImageResource(R.drawable.diamond);
+        sapphireCoin.setImageResource(R.drawable.sapphire);
+        onyxCoin.setImageResource(R.drawable.onyx);
+        rubyCoin.setImageResource(R.drawable.ruby);
     }
 
     public void setUpGUIImages() {
@@ -376,8 +387,11 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
      * This method writes the card information of the currently selected card to the info box
      */
     public void updateInfoBox() {
-        if(this.state.getSelectedCol() == -2)
-        {
+        if(this.state.getBoughtCard()){
+            String info = "Successfully bought Card!";
+            infoBox.setText(info);
+        }
+        else if(this.state.getSelectedCol() == -2) {
             String info = state.getSelectedNoble().toString();
             infoBox.setText(info);
         } else if (state.getSelected() != null) {
@@ -619,7 +633,6 @@ public class SplendorHumanPlayer extends GameHumanPlayer implements OnClickListe
         if ((info instanceof SplendorGameState))
         {
             this.state = (SplendorGameState) info;
-
             // update our state; then update the display
             this.state = (SplendorGameState) info;
         } else {

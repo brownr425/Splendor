@@ -41,6 +41,8 @@ public class SplendorComputerPlayer extends GameComputerPlayer {
         if (this.playerNum != gameState.getPlayerTurn()) {
             return;
         }
+
+        sleep(1);
         //traverse through card board and purchases a card if it can
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 4; col++) {

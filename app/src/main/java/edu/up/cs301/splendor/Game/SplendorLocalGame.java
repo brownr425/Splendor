@@ -221,6 +221,7 @@ public class SplendorLocalGame extends LocalGame {
                 // set the row and column of where the card was selected so game knows what card to replace
                 this.gameState.setSelectedRow(((SplendorSelectCardAction) action).getRow());
                 this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol());
+                this.gameState.setBoughtCard(false);
                 return true;
             }
             return false;
@@ -233,6 +234,7 @@ public class SplendorLocalGame extends LocalGame {
         // set the row and column of where the card was selected so game knows what card to replace
         this.gameState.setSelectedRow(((SplendorSelectCardAction) action).getRow());
         this.gameState.setSelectedCol(((SplendorSelectCardAction) action).getCol());
+        this.gameState.setBoughtCard(false);
         //action was made, return true/valid move
         return true;
     }

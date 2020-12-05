@@ -66,6 +66,7 @@ public class SplendorGameState extends GameState {
 
     private boolean moreThanTenCoins = false; // check if current player has moreThanTenCoins, this doesn't need to be in copy constructor
     // BECAUSE we ONLY want this to be false at the start of every turn, and it won't move onto the next turn until this is false.
+    private boolean boughtCard = false;
 
 
 //~~~~~~~~~~~~~~~~~~~~~ Game State Specific Variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -184,6 +185,9 @@ public class SplendorGameState extends GameState {
         this.player2Name = stateToCopy.getPlayer2Name();
         this.player3Name = stateToCopy.getPlayer3Name();
         this.player4Name = stateToCopy.getPlayer4Name();
+
+        // this is to see if someone bought a card!
+        this.boughtCard = stateToCopy.getBoughtCard();
     }
 
     //helper method for constructor setting all point values for player to zero
@@ -587,6 +591,7 @@ public class SplendorGameState extends GameState {
                         }
 
                     }
+                    this.boughtCard = true;
                     this.nextPlayerTurn();
                     return true;
                 }
@@ -1177,5 +1182,9 @@ public class SplendorGameState extends GameState {
     public void setSelectedNoble(Noble selected) { this.selectedNoble = selected; }
 
     public boolean getMoreThanTenCoins() { return this.moreThanTenCoins; }
+
+    public boolean getBoughtCard() { return this.boughtCard; }
+
+    public void setBoughtCard(boolean bought) { this.boughtCard = bought; }
 }
 
